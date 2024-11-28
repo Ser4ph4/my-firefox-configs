@@ -142,3 +142,12 @@ toolbarbutton#scrollbutton-down:not([disabled]):hover{
 menuseparator::before {
   margin-inline: -12px !important;
 }
+/* Gradient line - separators */
+
+toolbarseparator {
+  margin-inline: -1px !important;
+}
+
+#PlacesToolbar menupopup[placespopup] menuseparator {
+  margin-inline: -1px !important;
+}
