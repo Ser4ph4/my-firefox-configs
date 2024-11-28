@@ -10,7 +10,7 @@ user_pref("layout.css.backdrop-filter.enabled", true);
 user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar", false);
 user_pref("browser.newtabpage.activity-stream.newtabWallpapers.enabled", true);
 user_pref("browser.newtabpage.activity-stream.newtabWallpapers.v2.enabled", false);
-
+teste
 /** TEMA AJUSTES ***/
 user_pref("browser.compactmode.show", true);
 user_pref("browser.display.focus_ring_on_anything", true);
