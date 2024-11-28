@@ -138,3 +138,7 @@ toolbarbutton#scrollbutton-down:not([disabled]):hover{
 @media (min-width: 1700px){ #statuspanel[type="status"]::after{ background-size: 15%; animation-duration: 550ms } }
 @media (min-width: 2200px){ #statuspanel[type="status"]::after{ animation-duration: 600ms } }
 .browserContainer{ transform: translate(0) }
+
+menuseparator::before {
+  margin-inline: -12px !important;
+}
