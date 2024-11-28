@@ -1,3 +1,4 @@
 # my-firefox-configs
 CSS backup and hacks for Firefox 🦊
-!(https://github.com/Ser4ph4/my-firefox-configs/blob/main/Firefox.png?raw=true)
+!
+![Firefox](https://github.com/user-attachments/assets/ce9172f0-bedf-4dc8-8186-5adaafbad258)
