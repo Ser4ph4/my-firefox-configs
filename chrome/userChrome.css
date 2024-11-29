@@ -16,6 +16,8 @@
 @import url('components/ogx_library.css');
 @import url('components/ogx_menu.css');
 @import url('components/ogx_icons.css');
+@import url('components/ogx_close-button.css');
+
 
 /* ############## Extra Files ###############  */
 @import url('components/ogx_left-sidebar.css');

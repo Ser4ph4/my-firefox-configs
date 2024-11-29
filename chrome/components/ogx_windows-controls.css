@@ -42,7 +42,7 @@
         background-color: hsla(0, 0%, 100%, .32) !important
     }
     .titlebar-close:hover {
-        background-color: hsl(355, 86%, 49%) !important;
+        background-color: hsla(205, 6%, 62%, 0.801) !important;
         color: white !important;
     }
     .titlebar-close {

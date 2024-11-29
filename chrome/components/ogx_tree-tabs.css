@@ -313,7 +313,7 @@
             height: 16px !important;
             fill: var(--toolbarbutton-icon-fill) !important;
             -moz-context-properties: fill !important;
-            opacity: 0.2 !important;
+            opacity: 0.7 !important;
             fill-opacity: 1 !important;
             margin-inline-start: -24px !important;
         }
