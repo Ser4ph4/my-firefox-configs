@@ -248,3 +248,9 @@ toolbarseparator {
  -moz-appearance: none !important;
 }
 
+
+.urlbar-input::selection {
+  background-color: rgba(182, 179, 179, 0.959) !important;
+
+}
+
