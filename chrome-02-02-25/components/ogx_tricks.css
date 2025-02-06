@@ -9,7 +9,15 @@ MrOtherGuy -  https://github.com/MrOtherGuy/firefox-csshacks (Source)
 ❕Sidebery
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
-  
+#sidebar-box:is(
+[sidebarcommand*="tabcenter"],
+[sidebarcommand*="treestyletab"],
+[sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929"]) {
+  & #sidebar-header {
+    display: none;
+  }
+}
+
    #sidebar-box{
     --uc-sidebar-width: 33px;
     --uc-sidebar-hover-width: 250px;
@@ -276,3 +284,20 @@ toolbarseparator {
 :root:has(#urlbar[open]) #nav-bar::after {
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+/* tracking protection icon */
+:is(#urlbar-input-container,.urlbar-input-container)[pageproxystate="valid"] > #tracking-protection-icon-container > #tracking-protection-icon-box > #tracking-protection-icon {
+  -moz-context-properties: fill !important;
+  fill: #40aa40b7 !important; /* rgb(64,170,64) */
+}
+
+:is(#urlbar-input-container,.urlbar-input-container)[pageproxystate="valid"] > #tracking-protection-icon-container > #tracking-protection-icon-box[hasException] > #tracking-protection-icon {
+  -moz-context-properties: fill !important;
+  fill: orangered !important;
+}
+
+:is(#urlbar-input-container,.urlbar-input-container)[pageproxystate="valid"] > #tracking-protection-icon-container > #tracking-protection-icon-box:not([hasException])[active] > #tracking-protection-icon {
+  -moz-context-properties: fill !important;
+  fill: #40aa4075 !important; /* rgb(64,170,64) */
+}
+
