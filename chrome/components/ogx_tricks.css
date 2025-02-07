@@ -130,21 +130,13 @@ toolbarbutton#scrollbutton-down{
 ❕Glow effects on hover 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
-.close-icon:hover,
-.urlbar-history-dropmarker:hover,
-#page-action-buttons > .urlbar-icon:hover,
-.urlbar-icon-wrapper:hover > .urlbar-icon,
-toolbar .toolbarbutton-1:not([disabled]):hover .toolbarbutton-icon,
-.browser-toolbar toolbarbutton:not([disabled]):hover .toolbarbutton-icon,
 toolbar #downloads-button:hover #downloads-indicator-anchor,
-.identity-box-button:hover,
-#tracking-protection-icon:hover,
 .findbar-textbox~toolbarbutton:not([disabled]):hover,
 toolbarbutton.scrollbutton-up:not([disabled]):hover,
 toolbarbutton.scrollbutton-down:not([disabled]):hover,
 toolbarbutton#scrollbutton-up:not([disabled]):hover,
 toolbarbutton#scrollbutton-down:not([disabled]):hover{ 
-  filter: drop-shadow(0 0 1px var(--uc-icon-glow-secondary)) drop-shadow(0 0 1px var(--uc-icon-glow-primary))
+filter: drop-shadow(0 0 1px var(--uc-icon-glow-primary)) drop-shadow(0 0 1px var(--uc-icon-glow-primary))
 }
 
 /*
@@ -322,13 +314,8 @@ See the above repository for updates as well as full license text. */
 #identity-box[pageproxystate="valid"].localResource ~ .urlbar-input-box,
 #identity-box[pageproxystate="valid"].chromeUI ~ .urlbar-input-box{ color: rgb(169, 49, 224) }
 
-
-
 /* https */
-#identity-box.verifiedDomain~ .urlbar-input-box{ background-color: rgba(50, 255, 50, 0.144);
+#identity-box.verifiedDomain~ .urlbar-input-box{ background-color: rgba(50, 255, 50, 0.13);
 border-radius: 13px !important;
 
 }
-
-
-
