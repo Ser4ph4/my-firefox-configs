@@ -86,6 +86,7 @@
 #root.root {--general-border-radius: 5px;}
 #root.root {--tabs-close-btn-margin: 3px;}
 #root.root {--nav-btn-accent: #aeceaaff;}
+#root.root {--nav-btn-border-radius: 10px 0 10px 0;}
 
 .Tab[data-active="true"] .title {
   font-weight: 500;
@@ -205,4 +206,3 @@ display: none !important;
 }
 
 
-  
