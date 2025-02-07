@@ -26,17 +26,6 @@
   --ctp-mantle: #181825;
   --ctp-crust: #11111b;
 }
-
-/*tab close button*/
-.Tab .close > svg {
-  fill: var(--ctp-red);
-}
-
-.Tab .close:hover > svg {
-  fill: var(--ctp-maroon);
- 
-}
-
 #root.root {--toolbar-el-overlay-active-bg: rgba(255,255,255,0);}
 #root.root {--toolbar-bg: #131019;}
 #root.root {--frame-bg: #131019;}
@@ -56,7 +45,6 @@
 #root.root {--nav-delimiter-size: 19px;}
 #root.root {--nav-hidden-btn-border-radius: 4px;}
 #root.root {--nav-hidden-panels-popup-margin: 3px;}
-
 #root.root {--tabs-activated-bg: #2a2a41ff;}
 #root.root {--accent: #a4e9ffff;}
 #root.root {--bookmarks-bookmark-height: 30px;}
@@ -73,7 +61,6 @@
 #root.root {--nav-btn-border-radius: 5px;}
 #root.root {--tabs-border-radius: 5px;}
 #root.root {--tabs-activated-shadow: 0 1px 2px -1px rgba(0,0,0,0.282), inset 0 0 0 1px rgb(62, 62, 63), inset 2px 0 0 0 rgb(62, 62, 63);}
-
 #root.root {--history-item-margin: 3px;}
 #root.root {--history-item-border-radius: 5px;}
 #root.root {--history-item-padding-right: 1px;}
@@ -82,7 +69,6 @@
 #root.root {--bookmarks-folder-font: 0.9399rem sans-serif;}
 #root.root {--bookmarks-border-radius: 5px;}
 #root.root {--tabs-audio-btn-width: 0px;}
-
 #root.root {--tabs-count-font: 0.5625rem sans-serif;}
 #root.root {--ctx-menu-opt-border-radius: calc(5px - 3px + 1px);}
 #root.root {--ctx-menu-padding: 7px;}
@@ -95,7 +81,6 @@
 #root.root {--scroll-progress-bg: #37adef;}
 #root.root {--tabs-border-radius: 3px;}
 #root.root {--tabs-color-layer-opacity: 0.2;}
-
 #root.root {--nav-btn-active-shadow: inset 0 0 0 1px rgba(255,255,255,0.071), 0 1px 3px 0 rgba(0,0,0,0.212);}
 #root.root {--general-margin: 1px;}
 #root.root {--general-border-radius: 5px;}
@@ -124,6 +109,7 @@
 
 .Tab .-loud {
   animation: audio-animation 1s infinite;
+color: #fffffff;
 }
 
 @keyframes audio-animation {
@@ -142,7 +128,7 @@
 }
 
 .BookmarkNode[data-type="folder"] > .body > .fav > svg {
-  fill: #FFFF;
+  fill: rgba(174, 23, 53, 0.9);
   opacity: 1;
 }
 
@@ -175,6 +161,16 @@ display: none !important;
   display: none;
 }
 
+/*tab close button*/
+.Tab .close > svg {
+  fill: var(--ctp-red);
+}
+
+.Tab .close:hover > svg {
+  fill: var(--ctp-maroon);
+ 
+}
+
 /* Optional patch for better tab notifications on pinned tabs */
 
     .PinnedTab[data-audible] .fav>img,
@@ -202,4 +198,11 @@ display: none !important;
 .Tab[data-discarded="true"] .body {
     opacity: 0.67;
 }
+ .NavigationBar {
+  padding: 1.5px !important;
+  background-color: rgb(31, 34, 47) !important;
+  font-family:Roboto;
+}
 
+
+  
