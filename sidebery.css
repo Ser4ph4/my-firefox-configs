@@ -109,7 +109,7 @@
 
 .Tab .-loud {
   animation: audio-animation 1s infinite;
-color: #fffffff;
+
 }
 
 @keyframes audio-animation {
