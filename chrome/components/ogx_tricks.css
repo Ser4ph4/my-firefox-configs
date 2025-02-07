@@ -10,14 +10,11 @@ MrOtherGuy -  https://github.com/MrOtherGuy/firefox-csshacks (Source)
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
 #sidebar-box:is(
-[sidebarcommand*="tabcenter"],
-[sidebarcommand*="treestyletab"],
 [sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929"]) {
   & #sidebar-header {
     display: none;
   }
 }
-
    #sidebar-box{
     --uc-sidebar-width: 33px;
     --uc-sidebar-hover-width: 250px;
