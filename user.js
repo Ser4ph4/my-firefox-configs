@@ -136,4 +136,3 @@ user_pref("image.cache.size", 10485760);
 user_pref("image.mem.decode_bytes_at_a_time", 65536);
 user_pref("network.buffer.cache.size", 262144); // 256 kb; default=32768 (32 kb)
 user_pref("network.buffer.cache.count", 128); // default=2
-
