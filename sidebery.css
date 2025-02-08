@@ -25,6 +25,7 @@
   --ctp-base: #1e1e2e;
   --ctp-mantle: #181825;
   --ctp-crust: #11111b;
+
 }
 #root.root {--toolbar-el-overlay-active-bg: rgba(255,255,255,0);}
 #root.root {--toolbar-bg: #131019;}
@@ -205,4 +206,9 @@ display: none !important;
   font-family:Roboto;
 }
 
+.Tab[data-pin="true"][data-active="true"]{
+border: 1px thin gray;
+border-radius: 5px;
 
+
+}
