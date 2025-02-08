@@ -299,17 +299,26 @@ See the above repository for updates as well as full license text. */
 #identity-box[pageproxystate="valid"].unknownIdentity ~ .urlbar-input-box{ color: orange }
 
 /* http: and potentially some other insecure connections like ftp: */
-#identity-box[pageproxystate="valid"].notSecure ~ .urlbar-input-box{ color: orangered }
+#identity-box[pageproxystate="valid"].notSecure ~ .urlbar-input-box{ color: orangered ;
+background-color: rgba(255, 68, 0, 0.226);
+border-radius: 13px !important;
+}
 
 /* http: and potentially some other insecure connections like ftp: */
-#identity-box[pageproxystate="valid"].secure ~ .urlbar-input-box{ color: rgba(12, 170, 25, 0.603) }
+#identity-box[pageproxystate="valid"].secure ~ .urlbar-input-box{ color: rgba(12, 170, 25, 0.603) ;}
 
 /* Extension pages */
-#identity-box[pageproxystate="valid"].extensionPage ~ .urlbar-input-box{ color: rgb(5, 187, 233) }
+#identity-box[pageproxystate="valid"].extensionPage ~ .urlbar-input-box{ color: rgb(5, 187, 233);
+background-color: rgba(42, 86, 97, 0.445);
+border-radius: 13px !important;
+}
 
 /* Internal about: and chrome:// urls (includes reader-view) */
 #identity-box[pageproxystate="valid"].localResource ~ .urlbar-input-box,
-#identity-box[pageproxystate="valid"].chromeUI ~ .urlbar-input-box{ color: rgb(169, 49, 224) }
+#identity-box[pageproxystate="valid"].chromeUI ~ .urlbar-input-box{ color: rgb(214, 160, 240) ;
+ background-color: rgba(169, 49, 224, 0.322) ;
+border-radius: 13px !important;
+}
 
 /* https */
 #identity-box.verifiedDomain~ .urlbar-input-box{ background-color: rgba(50, 255, 50, 0.13);
