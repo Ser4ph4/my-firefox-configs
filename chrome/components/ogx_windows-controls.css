@@ -10,10 +10,7 @@
         padding-inline-start: 13px !important;
         padding-inline-end: 13px !important;
     }
-    .titlebar-button:hover:not(.titlebar-close) {
-        background-color: var(--toolbarbutton-hover-personal) !important;
-    }
-    
+  
     @media (not (-moz-bool-pref:"firefoxgx.oneline")) and (not (-moz-bool-pref:"firefoxgx.tree-tabs")) and (not (-moz-bool-pref:"sidebar.verticalTabs")) {
         .titlebar-min {
             padding-block-start: 12px !important;
@@ -21,10 +18,16 @@
         }
     }
     
-    .titlebar-min image, .titlebar-max image, .titlebar-close image {
+    .titlebar-close image {
         border-radius: 0 !important;
-        height: 14px !important;
-        width: 14px !important;
+        height: 15px !important;
+        width: 15px !important;
+    }
+    
+    .titlebar-min image, .titlebar-max image  {
+        border-radius: 0 !important;
+        height: 12px !important;
+        width: 12px !important;
     }
     .titlebar-restore image {
         height: 14px !important;
@@ -43,11 +46,7 @@
         stroke: currentColor !important;
     }
     .titlebar-button:hover {
-        background-color: hsla(0, 0%, 100%, .32) !important
-    }
-    .titlebar-close:hover {
-        background-color: hsl(355, 86%, 49%) !important;
-        color: white !important;
+        background-color: hsla(0, 0%, 100%, 0.11) !important
     }
     .titlebar-close {
         list-style-image: url(chrome://browser/skin/window-controls/close.svg) !important
@@ -106,4 +105,21 @@
     .titlebar-buttonbox-container {
         margin-inline: 2px 8px !important;
     }
+}
+.titlebar-button{
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+    list-style-image: none !important;
+    background-color: transparent !important; 
+    opacity: 0.7;
+}
+.titlebar-min{
+background-image: radial-gradient(rgba(255, 255, 0, 0.514) 55%,transparent 65%);
+} 
+.titlebar-restore, .titlebar-max {
+background-image: radial-gradient(rgba(8, 110, 206, 0.973) 55%,transparent 65%);
+}
+.titlebar-close{
+background-image: radial-gradient(rgb(221, 0, 0) 55%,transparent 65%);
 }

@@ -93,7 +93,7 @@ toolbar .toolbarbutton-1:not([disabled]):hover > .toolbarbutton-icon{
 :root{
   --uc-icon-glow-primary: rgba(3, 172, 172, 0.685);
   --uc-icon-glow-secondary: cadetblue;
-  --uc-icon-glow-hover-primary: red;
+  --uc-icon-glow-hover-primary: rgba(255, 0, 0, 0.678);
   --uc-icon-glow-hover-secondary: yellow;
 }
 
@@ -243,7 +243,6 @@ toolbarseparator {
 #identity-box, #urlbar-input, .urlbar-input-box, #urlbar-input-container {
   font-size: 11pt !important;
   font-family: Fira Sans, sans-serif !important;
- -moz-appearance: none !important;
 }
 
 .urlbar-input::selection {
@@ -325,3 +324,11 @@ border-radius: 13px !important;
 border-radius: 13px !important;
 
 }
+#statuspanel-label {
+	background: #131019 !important;
+	color: rgb(175, 173, 175) !important;
+  border-radius: 0 4px 0 0;
+	border-top: solid 1px #131019 !important;
+  border-right: solid 1px #131019 !important;
+}
+
