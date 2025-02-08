@@ -295,7 +295,11 @@ See the above repository for updates as well as full license text. */
 /* Modifies the urlbar text color based on connection type - "normal" https: won't be mdofied */
 
 /* Mixed content including neterror */
-#identity-box[pageproxystate="valid"].unknownIdentity ~ .urlbar-input-box{ color: orange }
+#identity-box[pageproxystate="valid"].unknownIdentity ~ .urlbar-input-box{ color: orange ;
+  background-color: rgba(80, 67, 3, 0.397);
+  border-radius: 13px !important;
+
+}
 
 /* http: and potentially some other insecure connections like ftp: */
 #identity-box[pageproxystate="valid"].notSecure ~ .urlbar-input-box{ color: orangered ;
