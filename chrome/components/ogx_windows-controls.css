@@ -46,7 +46,12 @@
         stroke: currentColor !important;
     }
     .titlebar-button:hover {
-        background-color: hsla(0, 0%, 100%, 0.11) !important
+        background-color: hsla(180, 1%, 33%, 0.507) !important;
+         -khtml-border-radius: 3px;
+        -moz-border-radius: 3px;
+         border-radius: 3px;
+     
+     
     }
     .titlebar-close {
         list-style-image: url(chrome://browser/skin/window-controls/close.svg) !important

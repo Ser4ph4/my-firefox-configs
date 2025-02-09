@@ -93,7 +93,7 @@ toolbar .toolbarbutton-1:not([disabled]):hover > .toolbarbutton-icon{
 :root{
   --uc-icon-glow-primary: rgba(3, 172, 172, 0.685);
   --uc-icon-glow-secondary: cadetblue;
-  --uc-icon-glow-hover-primary: rgba(255, 0, 0, 0.678);
+  --uc-icon-glow-hover-primary: rgba(255, 0, 0, 0.521);
   --uc-icon-glow-hover-secondary: yellow;
 }
 
@@ -298,6 +298,7 @@ See the above repository for updates as well as full license text. */
 #identity-box[pageproxystate="valid"].unknownIdentity ~ .urlbar-input-box{ color: orange ;
   background-color: rgba(80, 67, 3, 0.397);
   border-radius: 13px !important;
+  font-style: oblique;
 
 }
 
@@ -336,3 +337,11 @@ border-radius: 13px !important;
   border-right: solid 1px #131019 !important;
 }
 
+.titlebar-button:hover {
+  background-color: hsla(180, 1%, 33%, 0.507) !important;
+   -khtml-border-radius: 3px !important;
+  -moz-border-radius: 3px !important;
+   border-radius: 3px !important;
+  }
+
+  
