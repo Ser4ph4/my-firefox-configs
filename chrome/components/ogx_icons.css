@@ -58,11 +58,6 @@
 
 /* Tracking protection icon */
 
-#tracking-protection-icon-container {
-    -moz-box-ordinal-group: 2 !important;
-    order: 2 !important;
-}
-
 .urlbar-input-container[pageproxystate="valid"] > #tracking-protection-icon-container > #tracking-protection-icon-box {
   &[active] {
     list-style-image: url("../icons/shield.svg") !important;

@@ -339,11 +339,13 @@ border-radius: 13px !important;
 
 .titlebar-button:hover {
   background-color: hsla(180, 1%, 33%, 0.507) !important;
-   -khtml-border-radius: 3px !important;
-  -moz-border-radius: 3px !important;
-   border-radius: 3px !important;
+   -khtml-border-radius: 15px 0 10px 0 !important;
+  -moz-border-radius: 15px 0 10px 0 !important;
+   border-radius: 15px 0 10px 0  !important;
    cursor: pointer;
    transition: background-color 0.3s;
   }
 
-  
+  #tracking-protection-icon-container {
+    order: 0 !important;
+}
