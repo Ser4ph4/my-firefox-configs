@@ -342,6 +342,8 @@ border-radius: 13px !important;
    -khtml-border-radius: 3px !important;
   -moz-border-radius: 3px !important;
    border-radius: 3px !important;
+   cursor: pointer;
+   transition: background-color 0.3s;
   }
 
   
