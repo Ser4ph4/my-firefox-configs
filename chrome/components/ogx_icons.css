@@ -58,6 +58,11 @@
 
 /* Tracking protection icon */
 
+#tracking-protection-icon-container {
+    -moz-box-ordinal-group: 2 !important;
+    order: 2 !important;
+}
+
 .urlbar-input-container[pageproxystate="valid"] > #tracking-protection-icon-container > #tracking-protection-icon-box {
   &[active] {
     list-style-image: url("../icons/shield.svg") !important;
@@ -347,7 +352,7 @@
   }
   @-moz-document url("chrome://browser/content/places/places.xhtml")
   {
-    @media not (-moz-bool-pref: "firefoxgx.icon.disabled") {
+    @media not -moz-pref("firefoxgx.icon.disabled") {
       /*= Menubar - Icons ==========================================================*/
       #organizeButton,
       #viewMenu,
@@ -393,7 +398,7 @@
     }
   }
 
-@media not (-moz-bool-pref: "firefoxgx.icon.disabled") {
+@media not -moz-pref("firefoxgx.icon.disabled") {
   
   /*= Padding ==================================================================*/
   :root {
@@ -1403,7 +1408,7 @@
     padding-inline: 0 !important; /* Original: padding: var(--panel-padding); --panel-padding-block: 4px; */
   }}
 
-@media not (-moz-bool-pref: "firefoxgx.icon.disabled") {
+@media not -moz-pref("firefoxgx.icon.disabled") {
 
   :root {
     --context-menu-background-padding: 1em;
@@ -1624,6 +1629,7 @@
     --menuitem-image: url("chrome://browser/skin/privateBrowsing.svg");
   }
   
+  #context_moveTabToNewGroup,
   #context_moveTabToGroup {
       --menuitem-image: url("../icons/add-tab-to-group.svg");
   }
@@ -1765,6 +1771,11 @@
   #tabcenter-reborn_ariasuni-menuitem-_contextMenuUndoCloseTab,
   #sidebartabs_asamuzak_jp-menuitem-_undoCloseTab {
     --menuitem-image: url("../icons/undo.svg");
+  }
+  
+  #context_toggleVerticalTabs,
+  #toolbar-context-toggle-vertical-tabs{
+    --menuitem-image: url("../icons/logo_tree-tabs.svg");
   }
 
   #new-tab-button-popup > menuitem[command="Browser:NewUserContextTab"],
@@ -2375,7 +2386,7 @@
     --menuitem-image: url("chrome://global/skin/media/pause-fill.svg");
   }}
 
-@media not (-moz-bool-pref: "firefoxgx.icon.disabled") {
+@media not -moz-pref("firefoxgx.icon.disabled") {
 
   .downloadResumeMenuItem {
     --menuitem-image: url("chrome://global/skin/media/play-fill.svg");

@@ -7,7 +7,7 @@
     --windowed-top-padding: 8px;
 }
 
-:root:is([customtitlebar][sizemode="normal"]):has(#toolbar-menubar[autohide="true"]) #TabsToolbar {
+:root:is([customtitlebar][sizemode="normal"]) #toolbar-menubar[autohide="true"] ~ #TabsToolbar {
     padding-block-start: var(--windowed-top-padding, 0px) !important;
 }
 
@@ -19,7 +19,7 @@
 
 /* _____ Vertical alignment of buttons in the 'tabs-bar' _____ */
 
-@media not (-moz-bool-pref:"firefoxgx.oneline") {
+@media not -moz-pref("firefoxgx.oneline") {
     
     /* Default buttons */
     #TabsToolbar .toolbarbutton-1 { 
@@ -79,9 +79,9 @@ tab-group>.tabbrowser-tab:not([multiselected])>.tab-stack>.tab-content .tab-labe
 /* Tab group shape */
 
 tab-group .tabbrowser-tab {
-    --my-tab-background-clip: polygon(7px 0, calc(101% - 8px) 0, 101% 8px, 100% 100%, 0 100%, 0 7px) !important;
-    --my-tab-stack-clip: polygon(5px 0, calc(101% - 6px) 0, 101% 6px, 101% 101%, 0 100%, 0 5px) !important;
-    --group-tab-background: color-mix(in srgb, var(--tab-group-color) 10%, var(--toolbar-bgcolor)) !important;
+    --my-tab-background-clip: polygon(7px 0, calc(101% - 8px) 0, 101% 8px, 100% 100%, 0 100%, 0 7px);
+    --my-tab-stack-clip: polygon(5px 0, calc(101% - 6px) 0, 101% 6px, 101% 101%, 0 100%, 0 5px);
+    --group-tab-background: color-mix(in srgb, var(--tab-group-color) 10%, var(--toolbar-bgcolor));
 }
 
 .tab-background { clip-path: var(--my-tab-background-clip); border-radius: 0px 3px 0px 0px !important; }
@@ -188,7 +188,7 @@ tab-group:not([collapsed]) .tab-group-label::before {
 
 /* _________________________________ Styles just for Horizontal tabs _________________________________ */
 
-@media not (-moz-bool-pref: "sidebar.verticalTabs") {
+@media not -moz-pref("sidebar.verticalTabs") {
 
     #tabbrowser-arrowscrollbox[orient="horizontal"] {
         
@@ -208,36 +208,27 @@ tab-group:not([collapsed]) .tab-group-label::before {
             margin-inline-end: 2px !important;
         }
         
-        /* _____________________ Group name box re-done _____________________ */
+        /* _____________________ Group name _____________________ */
         
-        &>tab-group>.tab-group-label-container{
-            align-self: start !important;
-        }
-        
-        & .tab-group-label {
-            background: transparent !important;
-            border: transparent !important;
-            outline: transparent !important;
-            line-height: calc(var(--tab-height-personal) - 2px) !important;
-            height: calc(var(--tab-height-personal) - 1px) !important;
-            z-index: 1 !important;
+        .tab-group-label {
+            min-height: calc(var(--tab-group-label-height) - 1px) !important;
+            border-radius: calc(var(--border-radius-urlbar-personal) - 3px) !important;
+            margin-block: 4px 5px !important;
             
-            &::before {
-                content: ""; 
-                display: flex;
-                position: absolute;
-                inset-inline-start: 1px; /* not 'left' cause RTL compatibility */
-                width: calc(100% - 4px);
-                margin-block: 7px;
-                padding-block: calc(var(--tab-height-personal)/2 - 7px) calc(var(--tab-height-personal)/2 - 8px);
-                border-radius: calc(var(--border-radius-urlbar-personal) - 3px);
-                background-color: light-dark(transparent, var(--tab-group-color));
-                z-index: -1;
-                align-self: center !important;
+            &:hover {
+                background-color: light-dark(transparent, color-mix( in srgb, var(--tab-group-color) 80%, var(--lwt-tab-text))) !important;
             }
             
-            &:hover::before {
-                background-color: light-dark(transparent, color-mix( in srgb, var(--tab-group-color) 80%, var(--lwt-tab-text)));
+            /* Trick to clic on border */
+            
+            &::after {
+                -moz-window-dragging: no-drag;
+                content: "";
+                position: absolute;
+                inset-block-start: 0px;
+                inset-inline-start: 0px;
+                width: calc(100% - 3px);
+                height: 8px;
             }
         }
         
@@ -276,7 +267,7 @@ tab-group:not([collapsed]) .tab-group-label::before {
         & .tabbrowser-tab[selected]:has(+ .tabbrowser-tab[dragover-createGroup]),      /* 'Moving tab' + 'Tabforgroup' */
         & .tabbrowser-tab[dragover-createGroup] + .tabbrowser-tab[selected] {          /* 'tabforgroup' + 'Moving tab' */
 
-            & .tab-background {    
+            & .tab-background {
                 background-image: none !important;
                 background-color: light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color)) !important;
                 outline-color: var(--dragover-tab-group-color-pale) !important;
@@ -296,7 +287,7 @@ tab-group:not([collapsed]) .tab-group-label::before {
                 display: none !important;
             }
 
-            & .tab-stack::before{
+            & .tab-stack::before {
                 clip-path: none !important;
                 border-radius: 0px !important;
                 --general-color: light-dark(var(--dragover-tab-group-color-pale), var(--dragover-tab-group-color-pale)) !important;
@@ -323,7 +314,7 @@ tab-group:not([collapsed]) .tab-group-label::before {
 
     .tab-group-label-container {
         tab-group:not([collapsed]) > &::after {
-            inset: auto 0px 2px !important;
+            inset: auto 0px 3px !important;
         }
     }
 
@@ -345,84 +336,47 @@ tab-group:not([collapsed]) .tab-group-label::before {
 
 /* _________________________________ Group styles just for Vertical tabs _________________________________ */
 
-@media (-moz-bool-pref: "sidebar.verticalTabs") {
+@media -moz-pref("sidebar.verticalTabs") {
     
     #tabbrowser-arrowscrollbox[orient="vertical"] {
-        
-        /* 'Group label container' height  and aling */
-        
-        .tab-group-label-container {
-            #tabbrowser-tabs[orient="vertical"] & {
-                height: calc(var(--vertical-elements-width) - 12px) !important;
-            }
-        }
-        
-        .tab-group-label {
-            #tabbrowser-tabs[orient="vertical"][expanded] & {
-                height: calc(var(--vertical-elements-width) - 16px) !important;
-                margin-block: 0px 3px !important;
-                padding-block: 3px 0px !important;
-            }
-        }
         
         /* Group line */
         
         tab-group {
             #tabbrowser-tabs & {
+                
                 &::before {
                     inset-inline-start: 0px !important;
-                    inset-block-start: 2px !important;
+                    inset-block: 0px !important;
                 }
             }
         }
+
+        /* _____________________ Group name _____________________ */
         
-        tab-group {
-            #tabbrowser-tabs & {
-                #tabbrowser-tabs[orient="vertical"][expanded] &::before {
-                    inset-block-start: 0px !important;
-                }
+        .tab-group-label {
+            &:hover {
+                background-color: light-dark(transparent, color-mix( in srgb, var(--tab-group-color) 80%, var(--lwt-tab-text))) !important;
             }
-        }
-
-        & .tab-group-label {
-            background: transparent !important;
-            border-color: transparent !important;
-            outline-color: transparent !important;/**/
-            min-width: var(--vertical-elements-width) !important;
-            text-overflow: '..'  !important;
-            margin-block: 0px !important;
-            margin-inline: 0px !important;
-            padding-block: 0px !important;
-            padding-inline: 8px 8px !important;
-            font-size: inherit !important;
-            justify-content: center !important;
-            z-index: 1 !important; /* Allow click on border cause group-line may avoid the clic */
-
-            &::before {
-                content: ""; 
-                display: flex;
+            
+            /* Trick to clic on border */
+            
+            &::after {
+                -moz-window-dragging: no-drag;
+                content: "";
                 position: absolute;
-                inset-inline-start: 6px;
-                height: calc(var(--vertical-elements-width) - 16px);
-                width: calc(100% - 12px) !important;
-                margin-block: 0px !important;
-                padding-block: 0px !important;
-                border-radius: calc(var(--border-radius-urlbar-personal) - 3px);
-                background-color: light-dark(transparent, var(--tab-group-color));
-                z-index: -1;
-            }
-
-            &:hover::before {
-                background-color: light-dark(transparent, color-mix( in srgb, var(--tab-group-color) 80%, var(--lwt-tab-text)));
+                inset-block-start: 0px;
+                inset-inline-start: 0px;
+                width: 100%;
+                height: calc(var(--tab-height-personal) - 7px);
             }
         }
         
         /* Align */
         .tab-group-label {
             #tabbrowser-tabs[orient="vertical"][expanded] & {
-            &::before {
-                top: 0 !important;
-                }
+                margin-inline: var(--space-small) !important;
+                text-overflow: '' !important;
             }
         }
     }
@@ -469,7 +423,7 @@ tab-group:not([collapsed]) .tab-group-label::before {
 /* ________________________________________________________________________________________________________________________________________
    ________________________________________________________________________________________________________________________________________ */
 
-/* Gradient under tabs */
+/* Gradient under tabs-bar */
 
 #nav-bar { border-top: none !important;}
 
@@ -480,19 +434,10 @@ tab-group:not([collapsed]) .tab-group-label::before {
     height: 1px !important;
     min-height: 1px !important;
     max-height: 1px !important;
-    inset-inline-start: var(--vertical-elements-width, 0px) !important;
+    inset-inline-start: var(--my-elements-left-margin, 0px) !important;
     width: 100% !important;
     border-block-end: 1px solid var(--general-color) !important;
     border-image: var(--panel-separator-zap-gradient2) 1 !important;
-}
-
-/* Fix gradient line in some sitiations */
-
-@media (not (-moz-bool-pref:"firefoxgx.left-sidebar")) and ((-moz-bool-pref:"sidebar.revamp") and (not (-moz-bool-pref:"sidebar.position_start"))) {
-    #TabsToolbar::before {
-        --my-vertical-toolbar-width: 0px !important;
-        --vertical-elements-width: 0px !important;
-    }
 }
 
 /* 'Newtab' button */
@@ -543,11 +488,14 @@ tab-group:not([collapsed]) .tab-group-label::before {
 /* Size and color of the 'dot' when a tab needs attention */
 
 .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-    background-position: center calc(2px + var(--tabs-navbar-shadow-size)) !important;
+    background-image: radial-gradient(circle, var(--attention-dot-color), var(--attention-dot-color) 1px, transparent 3px) !important;
+    background-position: center bottom !important;
+    background-size: 8px 8px !important;
 }
 
-#vertical-pinned-tabs-container .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-    background-position: center top !important;
+.tabbrowser-tab > .tab-stack > .tab-content[titlechanged]:not([selected="true"]) {
+    background-position: center bottom !important;
+    background-size: 8px 8px !important;
 }
 
 /* Menu-bar */
@@ -615,8 +563,7 @@ toolbar:is(#TabsToolbar, #nav-bar, #PersonalToolbar) #firefox-view-button[aria-p
     width: -moz-available !important;
     height: 138px !important;
     border: 1px solid transparent !important;
-    border-top-style: dotted !important;
-    border-top-color: var(--button-hover-bgcolor) !important;
+    border-top-color: var(--panel-separator-color) !important;
 }
 
 /* _______________________ Configuration for Linux _______________________ */

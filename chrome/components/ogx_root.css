@@ -8,9 +8,12 @@
   /*--lwt-accent-color: #09080d !important;                                             /* frame */
   --lwt-frame: var(--lwt-accent-color, #09080d) !important;                             /* frame */
   /*--lwt-text-color: inherit !important;                                               /* tab_background_text */
+  /*--toolbox-textcolor: var(--lwt-tab-text) !important;                                /* tab_background_text */
+  /*--toolbox-textcolor-inactive: var(--lwt-tab-text) !important;                       /* tab_background_text */
   --lwt-accent-color-inactive: var(--lwt-accent-color, Field) !important;               /* frame_inactive */
   
   --lwt-selected-tab-background-color: var(--tab-selected-bgcolor) !important;          /* tab_selected */
+  
   --tab-selected-outline-color: transparent !important;                                 /* Selected tab border color */
   --tab-loading-fill: var(--general-color) !important;                                  /* Dot color when page loads */
   
@@ -44,7 +47,7 @@
   --urlbar-icon-border-radius: 2px !important;                                          /* shape of url bar icons */
 
   /*--toolbarbutton-icon-fill: #b6b6d2 !important;                                      /* icons */
-  /*--lwt-toolbarbutton-icon-fill-attention: var(--general-color) !important;           /* icons_attention */    
+  /*--toolbarbutton-icon-fill-attention: var(--general-color) !important;               /* icons_attention */    
   
   --lwt-sidebar-background-color: var(--toolbar-bgcolor) !important;                    /* Sidebar-background */
   
@@ -55,9 +58,10 @@
   --toolbarseparator-color: var(--toolbarbutton-hover-personal) !important;             /* Bookmarks-bar separator */
   
   --tab-block-margin: 0px !important;                                                   /* Tab margins - change this will break the theme */
-  --margin-top-personal: 0px !important;                                                /* Top margin of tabs - variable personal */
+  --my-tab-margin-top: 0px !important;                                                  /* Top margin of tabs - variable personal */
   
   --tab-min-height: var(--tab-height-personal) !important;                              /* Tab size */
+  --tabstrip-min-height: var(--tab-height-personal) !important;                         /* Tab min size */
   --tabs-shadow-size: 0px !important;                                                   /* Tab shadow */
   --tab-border-radius: 0px !important;                                                  /* Tab roundness */
   
@@ -75,7 +79,7 @@
   --panel-separator-margin: var(--panel-separator-margin-vertical) var(--panel-separator-margin-horizontal) !important;
   
   --urlbar-icon-padding: 4px !important;                                                /* Urlbar icon padding */
-  --panel-separator-color: var(--general-color) !important;                             /* Bookmarks-bar menu separator color */
+  /*--panel-separator-color: var(--general-color) !important;                           /* Bookmarks-bar menu separator color */
   
   --urlbar-popup-url-color: var(--general-color) !important;                            /* 'Search suggestions' urls color */
   --autocomplete-popup-hover-background: var(--button-bgcolor) !important;              /* 'Search suggestions' urls 'hover' color */
@@ -91,10 +95,13 @@
   --link-color-visited: var(--purple);
   
     accent-color: var(--general-color) !important;
+  --attention-dot-color: var(--general-color) !important;
   
   --color-accent-primary: var(--button-active-bgcolor) !important;                      /* Radiobutton */
   --color-accent-primary-hover: var(--button-hover-bgcolor) !important;                 /* Radiobutton 'hover' */
   --color-accent-primary-active: var(--general-color) !important;                       /* Radiobutton 'active' */
+  
+  --inactive-titlebar-opacity: 1 !important;                                            /* Opacity unfocused window */
   
 }
 
@@ -118,8 +125,9 @@
   --toolbarbutton-hover-personal: var(--toolbar-field-focus-background-color) !important;                               /* Button personal color when 'hover' */
   
   scrollbar-color: #38375580 #18173530 !important;                                                                      /* Scroll bar colors */
-  --shield-icon-personal: url("../icons/shield-dark.svg") !important;                                                   /* Tracking protection icon */
+  
   --noise-urlbar-personal: url("../icons/urlbar-noise-light.png") !important;                                           /* Urlbar [open] - noise background */
+  --my-beats-image: url("../icons/Beats.webp") !important;
   
   --button-primary-bgcolor: var(--button-active-bgcolor) !important;                                                    /* Color of the 'Save' button */
   --button-primary-color: #eaeaea !important;                                                                           /* Font Color of the 'Save' button */
@@ -154,8 +162,9 @@
   --toolbarbutton-hover-personal: color-mix(in srgb, var(--toolbar-bgcolor) 88%, black) !important;                     /* Button personal color when 'hover' */
 
   scrollbar-color: #d8d9da var(--toolbar-bgcolor) !important;                                                           /* Scroll bar colors */
-  --shield-icon-personal: url("../icons/shield-light.svg") !important;                                                  /* Tracking protection icon */
+  
   --noise-urlbar-personal: url("../icons/urlbar-noise-light.png") !important;                                           /* Urlbar [open] - noise background */
+  --my-beats-image: url("../icons/Beats.gif") !important;
 
   --button-primary-bgcolor: var(--general-color) !important;                                                            /* Color of the 'Save' button */
   --button-primary-color: #eaeaea !important;                                                                           /* Font Color of the 'Save' button */
@@ -260,8 +269,10 @@
 
 @media not (prefers-contrast) {
   :root:not([lwtheme]) {
+    --toolbox-bgcolor: light-dark(var(--lwt-frame), var(--lwt-frame)) !important;                         /* Frame */
     --toolbox-non-lwt-bgcolor: light-dark(var(--lwt-frame), var(--lwt-frame)) !important;                 /* Frame */
     --toolbox-non-lwt-bgcolor-inactive: light-dark(var(--lwt-frame), var(--lwt-frame)) !important;        /* Frame inactive */
+    --toolbox-bgcolor-inactive: light-dark(var(--lwt-frame), var(--lwt-frame)) !important;                /* Frame inactive */
     --toolbar-bgcolor: light-dark(#f4f2f7, #131019) !important;                                           /* Toolbar */
     --arrowpanel-background: light-dark(#f4f2f7, #1c1726) !important;                                     /* Popup */
     --toolbar-field-focus-background-color: light-dark(#f4f2f7, #251f33) !important;                      /* Urlbar focus */
@@ -282,19 +293,20 @@
 
 /* Set menu-bar height */
 
-:root:has(#toolbar-menubar[autohide="false"]) {
+:root:not([sizemode="fullscreen"]):has(#toolbar-menubar[autohide="false"]) {
   --menubar-height-personal: 30px !important;
 }
 
 /* Set bookmarks-bar height */
 
-:root:has(#PersonalToolbar[collapsed="false"]) {
+:root:not([sizemode="fullscreen"]):has(#PersonalToolbar[collapsed="false"]) {
   --bookmarksbar-height-personal: 28px !important;
 }
 
 #PersonalToolbar {
   max-height: var(--bookmarksbar-height-personal) !important;
 }
+
 
 /* _____________________ Sizes for other densities _____________________ */
 
@@ -303,24 +315,17 @@
 :root[uidensity="compact"] {
 
   --tab-height-personal: 26px !important;
+  --tabstrip-min-height: var(--tab-height-personal) !important;
   --toolbar-height-personal: 32px !important;
   --toolbarbutton-inner-padding: 4px !important;                                        /* Smaller toolbar buttons */
   --toolbarbutton-outer-padding: 2px !important;                                        /* More spaced buttons */
-
-  & .tab-label-container[pinned] {
-    display: none !important;
-  }
-
-  & .tab-content[pinned] {
-    padding-inline-start: 9px !important;
-  }
   
   &:root:has(#PersonalToolbar[collapsed="false"]) {
   --bookmarksbar-height-personal: 22px !important;
   }
 }
 
-@media (-moz-bool-pref:"firefoxgx.left-sidebar") or (-moz-bool-pref:"sidebar.revamp") or (-moz-bool-pref:"firefoxgx.tree-tabs") {
+@media -moz-pref("firefoxgx.left-sidebar"), -moz-pref("sidebar.revamp"), -moz-pref("firefoxgx.tree-tabs"), -moz-pref("firefoxgx.oneline") {
   :root[uidensity="compact"] {
     --my-vertical-toolbar-width: 35px !important;
   }}
@@ -338,7 +343,7 @@
   }
 }
 
-@media (-moz-bool-pref:"firefoxgx.left-sidebar") or (-moz-bool-pref:"sidebar.revamp") or (-moz-bool-pref:"firefoxgx.tree-tabs") {
+@media -moz-pref("firefoxgx.left-sidebar"), -moz-pref("sidebar.revamp"), -moz-pref("firefoxgx.tree-tabs"), -moz-pref("firefoxgx.oneline") {
   :root[uidensity="touch"]{
     --my-vertical-toolbar-width: 47px !important;
   }}

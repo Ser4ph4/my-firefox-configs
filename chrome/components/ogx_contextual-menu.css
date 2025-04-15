@@ -36,12 +36,6 @@ menuseparator::before {
     margin-inline: -6px !important;
 }
 
-/* Bug fix: Separator after 'AI menu' causes unwanted scrolling */
-
-:root:not(:has(#context-ask-chat[hidden="true"])) #frame-sep {
-    display: flex !important;
-}
-
 @media (-moz-platform: linux) {
     menuseparator::before {
     appearance: none !important;
@@ -49,6 +43,14 @@ menuseparator::before {
     margin-inline: 6px !important;
     }
 }
+
+/* Bug fix: Separator after 'AI menu' causes unwanted scrolling */
+
+:root:has(#context-ask-chat[hidden="true"]) { 
+    --context-ask-chat-display: none; 
+}
+
+#context-ask-chat + #frame-sep { display: var(--context-ask-chat-display, flex) !important; }
 
 /* 'Menu inside menu' margin */
 
@@ -137,7 +139,7 @@ menupopup > menuitem:is([selected="true"]):hover:not([disabled="false"]) {
 
 #context-navigation { flex-direction: column !important; }
 
-@media (-moz-bool-pref: "firefoxgx.icon.disabled") {
+@media -moz-pref("firefoxgx.icon.disabled") {
 
     #context-navigation > menuitem > .menu-iconic-left { display: none !important; }
 
@@ -163,7 +165,7 @@ menupopup > menuitem:is([selected="true"]):hover:not([disabled="false"]) {
 
 /* 'back-forward-reload-addBookmark' buttons size */
 
-@media not (-moz-bool-pref: "firefoxgx.icon.disabled") {
+@media not -moz-pref("firefoxgx.icon.disabled") {
 
     #context-navigation > menuitem > .menu-iconic-left .menu-iconic-icon {
         appearance: none !important;
@@ -195,7 +197,7 @@ menupopup > menuitem:is([selected="true"]):hover:not([disabled="false"]) {
 
 @media (-moz-platform: linux) {
     
-    @media not (-moz-bool-pref: "firefoxgx.icon.disabled") {
+    @media not -moz-pref("firefoxgx.icon.disabled") {
     
     /* Remove unwanted margin that interferes with icon margin */
 
@@ -236,7 +238,7 @@ menupopup > menuitem:is([selected="true"]):hover:not([disabled="false"]) {
     
 /* Align items when icons are disabled */
     
-    @media (-moz-bool-pref: "firefoxgx.icon.disabled") {
+    @media -moz-pref("firefoxgx.icon.disabled") {
         #context-navigation > menuitem {
             padding-inline-start: 28px !important;
             padding-block: 4px !important;

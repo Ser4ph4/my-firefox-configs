@@ -1,7 +1,7 @@
 /* Source file made available under Mozilla Public License v. 2.0 See the main repository for updates as well as full license text. 
    https://github.com/Godiesc/firefox-gx */
 
-@media (-moz-bool-pref:"firefoxgx.oneline") and (not (-moz-bool-pref:"sidebar.verticalTabs")) {
+@media -moz-pref("firefoxgx.oneline") and (not -moz-pref("sidebar.verticalTabs")) {
 
 /* ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡ IMPORTANT: To only apply one-line config to screen bigger than some px !!!!!!!!!!!!!!!!!!!!!!!!!! */
 
@@ -26,12 +26,13 @@
     --uc-window-control-width: 105px;
   }
 }
+/* On linux set width based on number of caption buttons.
+One button
+Two buttons 
+Three buttons 
+  -> Code added in 'ogx_windows_controls.css' */
 
-@media (-moz-gtk-csd-available) {
-  :root:is([customtitlebar],[sizemode="fullscreen"]) {
-    --uc-window-control-width: 84px;
-  }
-}
+  
 @media (-moz-platform: macos){
   :root:is([customtitlebar],[sizemode="fullscreen"]) {
     --uc-window-control-width: 72px;
@@ -84,7 +85,7 @@
 
 #nav-bar-customization-target{ padding-right: calc(100vw - (var(--uc-navigationbar-width)) - var(--uc-window-control-width) - var(--uc-buttons-width) - var(--uc-window-drag-space-post)); }
 
-@media (-moz-bool-pref:"layout.css.osx-font-smoothing.enabled"){
+@media -moz-pref("layout.css.osx-font-smoothing.enabled"){
   .titlebar-buttonbox-container{ position: fixed; display: blocK; left: 0px; z-index: 3; }
   #nav-bar-customization-target{ padding-right: calc(100vw - (var(--uc-navigationbar-width)) - var(--uc-buttons-width) - var(--uc-window-drag-space-pre)) }
 }
@@ -139,18 +140,13 @@
   }
 
   /* overwriting: Modify these values to match your preferences */
+  
+  @media (-moz-platform: windows) {
 
-  :root:is([customtitlebar], [sizemode="fullscreen"]) {
-    --uc-window-control-width: 144px;                   /* Space reserved for window controls (Win10) */
-    --uc-window-drag-space-pre: 0px;                    /* left side*/
-    --uc-window-drag-space-post: 0px;                   /* right side*/
-  }
-
-  /* overwriting: <window controls> width in linux */
-
-  @media (-moz-gtk-csd-available) {
-    :root:is([customtitlebar],[sizemode="fullscreen"]) {
-      --uc-window-control-width: 108px;
+    :root:is([customtitlebar], [sizemode="fullscreen"]) {
+      --uc-window-control-width: 144px;                   /* Space reserved for window controls (Win10) */
+      --uc-window-drag-space-pre: 0px;                    /* left side*/
+      --uc-window-drag-space-post: 0px;                   /* right side*/
     }
   }
 
@@ -242,11 +238,11 @@
              background: var(--lwt-selected-tab-background-color) !important;
   }
 
-  /* Smaller url-bar in private windows */
+  /* Smaller url-bar in private windows 
 
   :root:is([privatebrowsingmode="temporary"]) #urlbar-container:not([open],:focus, :focus-within ){
     max-width: calc(var(--min-width-url) - 1vw) !important;
-  }
+  }*/
 
   @media (-moz-gtk-csd-reversed-placement){
     :root:is([privatebrowsingmode="temporary"]) #nav-bar-customization-target {
@@ -257,21 +253,6 @@
   }
   
 /* ________________________________________________________________________________________________________________________________________ */
-  
-  /* fix */
-
-  :root:not([customizing]):has(sidebar-main:is([expanded])) {
-    #navigator-toolbox::before {
-      z-index: unset !important;
-    }
-  }
-  
-  :root:not([chromehidden~="toolbar"]):has(#PersonalToolbar[collapsed="true"]),
-  :root:not([chromehidden~="toolbar"]):has(#sidebar-main[hidden="true"],sidebar-main[hidden]){
-    :is(#nav-bar,#toolbar-menubar) {
-      margin-inline-start: 0px !important;
-    }
-  }
    
   /* overwriting: ogx_tabs-bar */
 
@@ -288,7 +269,7 @@
   
   /* Separator between <window controls> and other buttons */
 
-  :root:not([chromehidden~="toolbar"]):is([sizemode="fullscreen"],[sizemode="maximized"]) .titlebar-buttonbox::before{
+  :root:not([chromehidden~="toolbar"]) .titlebar-buttonbox::before{
     content: ""; position: absolute !important; align-self: center !important;
     background: url("../icons/urlbar-separator.svg") no-repeat left !important; 
     background-size: 6px 16px !important;
@@ -307,7 +288,7 @@
       position: absolute;
       display: flex;
       top: 0 !important;
-      left: calc(100vw - var(--uc-window-control-width) - 66px);
+      left: calc(100vw - var(--uc-window-control-width, 0px) - 66px) !important;
       height: var(--tab-height-personal);
       /*z-index: 12 !important;/**/
   }
@@ -316,18 +297,19 @@
   
 #scrollbutton-up, #scrollbutton-down{ border-block-width: 1px !important; }*/
   
-/* overwriting: reserved space for overflow + menu buttons */
+  /* overwriting: reserved space for overflow + menu buttons */
+
+  #navigator-toolbox{
+    --uc-buttons-width: calc(67px + 4 * var(--toolbarbutton-outer-padding) + var(--uc-menubutton-padding,6px)) !important;
+  }
   
-#navigator-toolbox{
-  --uc-buttons-width: calc(67px + 4 * var(--toolbarbutton-outer-padding) + var(--uc-menubutton-padding,6px)) !important;
-}
-  
-/* overwriting: reserved space for overflow + menu buttons on LINUX */
-  
-@media (-moz-platform: linux) {
-#navigator-toolbox{
-  --uc-buttons-width: calc(66px + 4 * var(--toolbarbutton-outer-padding) + var(--uc-menubutton-padding,6px)) !important;
-  }}
+  /* overwriting: reserved space for overflow + menu buttons on LINUX */
+
+  @media (-moz-platform: linux) {
+    #navigator-toolbox{
+      --uc-buttons-width: calc(34px + 4 * var(--toolbarbutton-outer-padding) + var(--uc-menubutton-padding,6px)) !important;
+    }
+  }
   
 /* ___________________________ Adds more space to use as drag space in non-maximized window ___________________________ */
   
@@ -386,21 +368,22 @@
     mask-image: linear-gradient(to right,  transparent 0%, #fff 10% 80%, transparent 90%) !important;
 }
   
-/* urlbar when 'focus' and 'open' */
-  
-#urlbar-container, #urlbar-container:not([open],:focus, :focus-within ){
+  /* urlbar when 'focus' and 'open' */
+
+  #urlbar-container, #urlbar-container:not([open],:focus, :focus-within ){
     max-width: var(--min-width-url) !important; 
-}
+  }
   
-#urlbar:focus-within, #urlbar[focused="true"] { 
-    min-width: calc(var(--min-width-url) + 30vw) !important;
+  #urlbar:focus-within, 
+  #urlbar[focused="true"],
+  #urlbar[open] { 
+    min-width: calc(var(--min-width-url) + 340px) !important;
     clip-path: polygon(0px 0%, calc(var(--min-width-url) ) 0%, 0% 999999vw, 0% 0px) !important;
-}
-  
-#urlbar[open]{ 
-    width: calc(var(--min-width-url) + 30vw) !important; 
+  }
+
+  #urlbar[open]{
     clip-path: none !important;
-}
+  }
   
 /* Allows you to make space to move icons in 'customization mode' */
   
@@ -423,23 +406,27 @@
     transform: rotate(90deg);
 }
   
-/* Microphone icon */
-  
-#notification-popup-box[open]  .microphone-icon  {
-  margin-left: -3px !important;
+  /* Microphone icon */
+
+  #notification-popup-box[open]  .microphone-icon  {
+    margin-left: -3px !important;
   }
   
-/* Urlbar icons - show on 'hover' */
-  
-#identity-box>box:not([open])>image, #urlbar-searchmode-switcher:not([open]), #urlbar-zoom-button, .urlbar-page-action:not([open])>image {
+  /* Urlbar icons - show on 'hover' */
+
+  #identity-box>box:not([open])>:is(image, box), 
+  #urlbar-searchmode-switcher:not([open]), 
+  #urlbar-zoom-button, .urlbar-page-action:not([open])>image {
     opacity: 0 !important;
     transition: opacity 250ms ease-in-out !important;
-}
+  }
 
-#urlbar:is([open],:hover,[focused]) :is(#identity-box>box>image, #urlbar-searchmode-switcher, #urlbar-zoom-button, .urlbar-page-action>image) {
+  #urlbar:is([open],:hover,[focused]) :is(#identity-box>box>:is(image, box),
+  #urlbar-searchmode-switcher,
+  #urlbar-zoom-button, .urlbar-page-action>image) {
     opacity: 1 !important;
     transition: opacity 250ms ease-in-out !important;
-}
+  }
   
 /* Align the navbar gradient line with selected tab, and trick to vertically center all elements */ 
   
@@ -604,22 +591,22 @@
     #toolbar-menubar[autohide="true"]:not([inactive]) > .titlebar-buttonbox-container{ display: none }  
   }
 
-  /* Bug fix: Trick to hide urlbar when menu appears (Alt key) */
-  
+  /* Bug fix: Trick to hide urlbar when menu appears */
+
   /* (Alt key) */
-  :root:has(#toolbar-menubar[autohide="true"]) #urlbar {
+
+  #toolbar-menubar[autohide="true"] ~ #nav-bar #urlbar {
     opacity: 0 !important;
     pointer-events: none !important;
   }
 
-  :root:has(#toolbar-menubar[autohide="true"][inactive="true"]) {
-    & #urlbar {
-      opacity: 1 !important;
-      pointer-events: all !important;
-    }
+  #toolbar-menubar[autohide="true"][inactive] ~ #nav-bar #urlbar {
+    opacity: 1 !important;
+    pointer-events: all !important;
   }
 
   /* Menu Always active */
+
   :root:not([sizemode="fullscreen"]):has(#toolbar-menubar[autohide="false"]) #urlbar:not([open],[focused]) {
     opacity: 0 !important;
     pointer-events: none !important;
@@ -751,12 +738,11 @@
 
   /* ______________ 'Left-sidebar' */
 
-  @media (-moz-bool-pref:"firefoxgx.left-sidebar") and ((not (-moz-bool-pref:"sidebar.verticalTabs")) or (-moz-bool-pref:"sidebar.revamp")) {
+  @media -moz-pref("firefoxgx.left-sidebar") and ((not -moz-pref("sidebar.verticalTabs")) or (-moz-pref("sidebar.revamp"))) {
 
     :root{ 
-      /*--my-vertical-toolbar-width: 41px;/**/
       --padding-left-tab: calc(var(--my-vertical-toolbar-width) - 1px) !important;
-      --vertical-elements-width: var(--padding-left-tab) !important;
+      --my-vertical-elements-width: var(--padding-left-tab) !important;
     }
 
     /* Gradient line */
@@ -765,31 +751,14 @@
     }
   }
 
-  /* Remove hamburger-menu when left-sidebar is ON but 'hidden' */
-
-  @media (-moz-bool-pref:"firefoxgx.left-sidebar") and (( (-moz-bool-pref:"sidebar.verticalTabs")) or (-moz-bool-pref:"sidebar.revamp")) {
-
-    :root:not([chromehidden~="toolbar"]):has(#PersonalToolbar[collapsed="true"]),
-    :root:not([chromehidden~="toolbar"]):has(#sidebar-main[hidden="true"],sidebar-main[hidden]) {
-
-      #PanelUI-menu-button .toolbarbutton-badge-stack,
-      #PanelUI-button{
-        display: none !important;
-      }
-    }
-  }
-
   /* ______________ 'Firefox Revamp'*/
 
-  @media ((-moz-bool-pref:"sidebar.revamp") and (not (-moz-bool-pref:"sidebar.verticalTabs"))) and (-moz-bool-pref:"sidebar.position_start")
-    and (not (-moz-bool-pref:"firefoxgx.left-sidebar")) {
-
-      /* Gradient line */
-      :root:has(sidebar-main:not([expanded])) {
-        & #sidebar-main {
-          --padding-top-left-sidebar: calc(var(--space-before-gradient-line) + var(--menubar-height-personal, 30px)) !important;
-          margin-top: calc(0px - var(--space-before-gradient-line) - var(--bookmarksbar-height-personal,0px)) !important;
-        }
+  @media ((-moz-pref("sidebar.revamp") and (not -moz-pref("sidebar.verticalTabs"))) and -moz-pref("sidebar.position_start")) and (not -moz-pref("firefoxgx.left-sidebar")) {
+    
+    :root:not([customizing]) {
+      & #navigator-toolbox::before {
+        bottom: 0 !important;
+        height: calc(1px + var(--windowed-top-padding, 0px) + var(--toolbar-height-personal) + var(--bookmarksbar-height-personal, 1px)) !important;
       }
   }
 

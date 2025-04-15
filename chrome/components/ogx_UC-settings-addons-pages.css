@@ -47,8 +47,10 @@
     --in-content-page-color: var(--contrast-color) !important;                                  /* Other general 'text' color */
     --in-content-primary-button-text-color: var(--contrast-color) !important;                   /* Another general 'text' color */
 
-    --in-content-box-background-odd: color-mix(in srgb,                                         /* Color distinction between rows in a 'table' and 'search shortcuts' */
+    --in-content-box-background-odd: color-mix(in srgb,                                         
         var(--in-content-box-border-color), transparent) !important;
+    --table-row-background-color-alternate: var(--in-content-page-background) !important;       /* Color distinction between rows in a 'table' and 'search shortcuts' */
+    
     --in-content-box-info-background: var(--in-content-box-background-odd) !important;          /* Background color of the box of items that sync */
     --section-highlight-background-color: var(--in-content-box-info-background) !important;
 
@@ -357,7 +359,7 @@
 
     /* Wallpaper */
 
-    @media not (-moz-bool-pref:"firefoxgx.main-image") {
+    @media not -moz-pref("firefoxgx.main-image") {
 
         body,.sticky-container{
             --bg: linear-gradient(var(--opaque), var(--opaque)), var(--lwt-main-image);
@@ -374,7 +376,7 @@
 
     /* _______________________________________ Wallpaper when using with 'Main-image' config _______________________________________ */
 
-    @media (-moz-bool-pref:"firefoxgx.main-image") {
+    @media -moz-pref("firefoxgx.main-image") {
 
         :root {
             --opaque: color-mix(in srgb, var(--border-contrast-color) 90%, transparent) !important;
@@ -471,7 +473,6 @@
 
         /* Right part */
         & .main-search {
-            text-align: center !important;
             justify-content: center !important;
             display: grid !important;
             grid-column: 2;
@@ -514,7 +515,7 @@
             17px 1px 27px var(--border-contrast-color) !important;
     }
 
-    @media not (-moz-bool-pref:"firefoxgx.main-image") {
+    @media not -moz-pref("firefoxgx.main-image") {
 
         #mainPrefPane{
             padding-top: 20px !important; 

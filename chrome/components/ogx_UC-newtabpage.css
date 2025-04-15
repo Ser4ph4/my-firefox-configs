@@ -49,129 +49,129 @@
     
 /* _______________________________________________________ Wallpapers _______________________________________________________ */
     
-    @media not (-moz-bool-pref:"firefoxgx.main-image"){
+    @media not -moz-pref("firefoxgx.main-image") {
 
         /* Dark 1 - Fuchsia */
         #dark-sky,
-        #photographs[style*='e94b1e49-c518-40d6-98e3-dffab6cc370d.avif'],
-        body[style*="e94b1e49-c518-40d6-98e3-dffab6cc370d.avif"]{
+        body[style*="e94b1e49-c518-40d6-98e3-dffab6cc370d.avif"],
+        body[style*="e94b1e49-c518-40d6-98e3-dffab6cc370d.avif"] #photographs{
             background-image: var(--wallpaper-dark1) !important;
         }
 
         /* Dark 2 - Ultraviolet */
         #dark-mountain,
-        #photographs[style*='af6073d2-cbb2-4e28-b642-3327d14808b2.avif'],
-        body[style*="af6073d2-cbb2-4e28-b642-3327d14808b2.avif"]{
+        body[style*="af6073d2-cbb2-4e28-b642-3327d14808b2.avif"],
+        body[style*="af6073d2-cbb2-4e28-b642-3327d14808b2.avif"] #photographs{
             background-image: var(--wallpaper-dark2) !important;
         }
 
         /* Dark 3 - Blue */
         #dark-panda,
-        #photographs[style*='6b8eb3cf-f232-4c7b-a179-afd174555134.avif'],
-        body[style*="6b8eb3cf-f232-4c7b-a179-afd174555134.avif"]{
+        body[style*="6b8eb3cf-f232-4c7b-a179-afd174555134.avif"],
+        body[style*="6b8eb3cf-f232-4c7b-a179-afd174555134.avif"] #photographs{
             background-image: var(--wallpaper-dark3) !important;
         }
         
         /* Dark 4 - Green */
         #dark-fox-anniversary,
-        #photographs[style*='d8b71c77-9985-41d2-b98e-51bebc60e595.avif'],
-        body[style*="d8b71c77-9985-41d2-b98e-51bebc60e595.avif"]{
+        body[style*='d8b71c77-9985-41d2-b98e-51bebc60e595.avif'],
+        body[style*="d8b71c77-9985-41d2-b98e-51bebc60e595.avif"] #photographs{
             background-image: var(--wallpaper-dark4) !important;
         }
 
         /* Dark 5 - Swamp */
         #dark-landscape,
-        #photographs[style*='10e23599-85bc-4660-ae06-7a67befbbcf9.avif'],
-        body[style*="10e23599-85bc-4660-ae06-7a67befbbcf9.avif"]{
+        body[style*='10e23599-85bc-4660-ae06-7a67befbbcf9.avif'],
+        body[style*="10e23599-85bc-4660-ae06-7a67befbbcf9.avif"] #photographs{
             background-image: var(--wallpaper-dark5) !important;
         }
 
         /* Dark 6 - Gray */
         #dark-beach,
-        #photographs[style*='966b18ad-3733-41c4-92f6-c89cdf1381d0.avif'],
-        body[style*="966b18ad-3733-41c4-92f6-c89cdf1381d0.avif"]{
+        body[style*='966b18ad-3733-41c4-92f6-c89cdf1381d0.avif'],
+        body[style*="966b18ad-3733-41c4-92f6-c89cdf1381d0.avif"] #photographs{
             background-image: var(--wallpaper-dark6) !important;
         }
 
         /* Light 1 - Fuchsia */
         #light-panda,
-        #photographs[style*='dfd3762e-f77d-4b6e-ac75-32eb2549ef40.avif'],
-        body[style*="dfd3762e-f77d-4b6e-ac75-32eb2549ef40.avif"]{
+        body[style*='dfd3762e-f77d-4b6e-ac75-32eb2549ef40.avif'],
+        body[style*="dfd3762e-f77d-4b6e-ac75-32eb2549ef40.avif"] #photographs{
             background-image: var(--wallpaper-light1) !important;
         }
 
         /* Light 2 - Ultraviolet */
         #light-landscape,
-        #photographs[style*='d9289c5b-8c78-4b27-b5d8-afe7285ce7d1.avif'],
-        body[style*="d9289c5b-8c78-4b27-b5d8-afe7285ce7d1.avif"]{
+        body[style*='d9289c5b-8c78-4b27-b5d8-afe7285ce7d1.avif'],
+        body[style*="d9289c5b-8c78-4b27-b5d8-afe7285ce7d1.avif"] #photographs{
             background-image: var(--wallpaper-light2) !important;
         }
 
         /* Light 3 - BLue */
         #light-mountain,
-        #photographs[style*='5344443f-f427-4029-bc6b-68bc22f83355.avif'],
-        body[style*="5344443f-f427-4029-bc6b-68bc22f83355.avif"]{
+        body[style*='5344443f-f427-4029-bc6b-68bc22f83355.avif'],
+        body[style*="5344443f-f427-4029-bc6b-68bc22f83355.avif"] #photographs{
             background-image: var(--wallpaper-light3) !important;
         }
 
         /* Light 4 - Rose */
         #light-sky,
-        #photographs[style*='45ecab20-ffb9-47b4-94ff-07a5f8b9f53f.avif'],
-        body[style*="45ecab20-ffb9-47b4-94ff-07a5f8b9f53f.avif"]{
+        body[style*='45ecab20-ffb9-47b4-94ff-07a5f8b9f53f.avif'],
+        body[style*="45ecab20-ffb9-47b4-94ff-07a5f8b9f53f.avif"] #photographs{
             background-image: var(--wallpaper-light4) !important;
         }
 
         /* Light 5 - Lightgreen */
         #light-beach,
-        #photographs[style*='56a7f3ae-70cc-45f2-82ec-1d39acdd3b8d.avif'],
-        body[style*="56a7f3ae-70cc-45f2-82ec-1d39acdd3b8d.avif"]{
+        body[style*='56a7f3ae-70cc-45f2-82ec-1d39acdd3b8d.avif'],
+        body[style*="56a7f3ae-70cc-45f2-82ec-1d39acdd3b8d.avif"] #photographs{
             background-image: var(--wallpaper-light5) !important;
         }
         
         /* Light 6 - Orange */
         #light-fox-anniversary,
-        #photographs[style*='a5a041de-9275-4eb5-8f21-a0171c82d388.avif'],
-        body[style*="a5a041de-9275-4eb5-8f21-a0171c82d388.avif"]{
+        body[style*='a5a041de-9275-4eb5-8f21-a0171c82d388.avif'],
+        body[style*="a5a041de-9275-4eb5-8f21-a0171c82d388.avif"] #photographs{
             background-image: var(--wallpaper-light6) !important;
         }
     }
     
     /* Accent color for each wallpaper */
     
-    :root:has(#photographs[style*='e94b1e49-c518-40d6-98e3-dffab6cc370d.avif']){
+    :root:has(body[style*='e94b1e49-c518-40d6-98e3-dffab6cc370d.avif']){
         --general-color: var(--general-color-dark1) !important;    }
 
-    :root:has(#photographs[style*='af6073d2-cbb2-4e28-b642-3327d14808b2.avif']){
+    :root:has(body[style*='af6073d2-cbb2-4e28-b642-3327d14808b2.avif']){
         --general-color: var(--general-color-dark2) !important;    }
     
-    :root:has(#photographs[style*='6b8eb3cf-f232-4c7b-a179-afd174555134.avif']){
+    :root:has(body[style*='6b8eb3cf-f232-4c7b-a179-afd174555134.avif']){
         --general-color: var(--general-color-dark3) !important;    }
     
-    :root:has(#photographs[style*='d8b71c77-9985-41d2-b98e-51bebc60e595.avif']){
+    :root:has(body[style*='d8b71c77-9985-41d2-b98e-51bebc60e595.avif']){
         --general-color: var(--general-color-dark4) !important;    }
 
-    :root:has(#photographs[style*='10e23599-85bc-4660-ae06-7a67befbbcf9.avif']){
+    :root:has(body[style*='10e23599-85bc-4660-ae06-7a67befbbcf9.avif']){
         --general-color: var(--general-color-dark5) !important;    }
 
-    :root:has(#photographs[style*='966b18ad-3733-41c4-92f6-c89cdf1381d0.avif']){
+    :root:has(body[style*='966b18ad-3733-41c4-92f6-c89cdf1381d0.avif']){
         --general-color: var(--general-color-dark6) !important;    }
 
-    :root:has(#photographs[style*='dfd3762e-f77d-4b6e-ac75-32eb2549ef40.avif']){
+    :root:has(body[style*='dfd3762e-f77d-4b6e-ac75-32eb2549ef40.avif']){
         --general-color: var(--general-color-light1) !important;   }
 
-    :root:has(#photographs[style*='d9289c5b-8c78-4b27-b5d8-afe7285ce7d1.avif']){
+    :root:has(body[style*='d9289c5b-8c78-4b27-b5d8-afe7285ce7d1.avif']){
         --general-color: var(--general-color-light2) !important;   }
 
-    :root:has(#photographs[style*='5344443f-f427-4029-bc6b-68bc22f83355.avif']){
+    :root:has(body[style*='5344443f-f427-4029-bc6b-68bc22f83355.avif']){
         --general-color: var(--general-color-light3) !important;   }
 
-    :root:has(#photographs[style*='45ecab20-ffb9-47b4-94ff-07a5f8b9f53f.avif']){
+    :root:has(body[style*='45ecab20-ffb9-47b4-94ff-07a5f8b9f53f.avif']){
         --general-color: var(--general-color-light4) !important;   }
 
-    :root:has(#photographs[style*='56a7f3ae-70cc-45f2-82ec-1d39acdd3b8d.avif']){
+    :root:has(body[style*='56a7f3ae-70cc-45f2-82ec-1d39acdd3b8d.avif']){
         --general-color: var(--general-color-light5) !important;   }
     
-    :root:has(#photographs[style*='a5a041de-9275-4eb5-8f21-a0171c82d388.avif']){
+    :root:has(body[style*='a5a041de-9275-4eb5-8f21-a0171c82d388.avif']){
         --general-color: var(--general-color-light6) !important;   }
     
     /* Accent color indicator over each wallpaper */
@@ -237,10 +237,12 @@
         background-color: color-mix(in srgb, var(--newtab-background-color), transparent var(--brightness-wallpaper));
         pointer-events: none;
     }
-
-    
     
 /* _____________________________________________________ Logo & Wordmark ____________________________________________________ */
+    
+    .layout-variant-b.has-recommended-stories .logo {
+        background-size: 52px !important;
+    }
     
     .logo{
         background: url("../icons/foxmenu.svg") no-repeat center !important;
@@ -527,14 +529,14 @@
     
     @media (height > 700px) {
         body:not(.inline-onboarding) .fixed-search .search-wrapper {
-            background-color: color-mix(in srgb, var(--border-contrast-color) 90%, transparent) !important;
-            backdrop-filter: blur(5px) !important;
+            background-color: color-mix(in srgb, var(--newtab-background-color) 90%, transparent) !important;
+            backdrop-filter: var(--personal-blur) !important;
         }
     }
     
     /* Styles for the classic search box */
     
-    @media not (-moz-bool-pref:"browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar") {
+    @media not -moz-pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar") {
         
         .search-inner-wrapper:not(:focus) input, .search-wrapper:not(:active) input:focus {
             box-shadow: none !important;
@@ -577,12 +579,7 @@
     
     /* Styles for the improved search box */
     
-    @media (-moz-bool-pref:"browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar"){
-
-        /* Border button */    
-        .search-inner-wrapper{
-            clip-path: polygon(0 0, 100% 0, 100% 93%, 93% 93%, 93% 104%, 7% 104%, 7% 95%, 0 95%);
-        }
+    @media -moz-pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar") {
 
         /* Transparent border when 'focus' */    
         .search-wrapper.fake-focus .search-inner-wrapper .search-handoff-button {
@@ -624,76 +621,83 @@
 
 /* _____________________________________________________ Pinned sites ______________________________________________________ */
     
-    /* Pin icon removed */
-    .top-site-outer .title span .icon.icon-pin-small { display: none !important; }
+    /* Margin when 'News' are actived */
+    
+    .has-weather.has-search.layout-variant-b.has-recommended-stories.has-sections-grid {
+        .top-sites-list {
+            margin-block-start: 40px !important;
+        }
+    }
+    
+    .top-sites-list {
+        
+        /* Pinned Site Colors (Small Background) */
+        .top-site-outer .tile {
+            border-radius: 4px !important;
+            width: 100px !important;
+            height: 100px !important;
+            align-items: start !important;
+            margin-inline: 0px !important;
+            padding-top: 18px !important;
+            box-shadow: 0 0 0 1px #50505030 !important;
+            outline-color: transparent !important; /* Used for smooth transition */
+            background-image: linear-gradient(0deg, color-mix(in srgb, var(--general-color)4%, var(--newtab-pinnedsites-background)) , rgba(0,255,0,0) 64.71%),
+                linear-gradient(190deg, var(--newtab-pinnedsites-background), var(--newtab-pinnedsites-background) 99.71%) !important;/**/
+            backdrop-filter: var(--personal-blur) !important;
+        }
 
-    /* Label - pinned site */
-    :not(.fields-and-preview) .top-site-outer>.top-site-inner>.top-site-button>.title  {
-        width: 80px !important;
-        font-weight: 500 !important;
-        font-size: 14px !important;
-        margin-top: -40px !important;
-        margin-inline: 20px 10px !important;
-    }
-    
-    /* Fix site label alignment when editing a pinned site */
-    .fields-and-preview .top-site-outer>.top-site-inner>.top-site-button>.title  {
-        overflow: hidden !important;
-        text-wrap-mode: nowrap !important;
-        text-overflow: ellipsis ".." !important;
-    }
-    
-    /* Title label just in one line */
-    
-    .top-sites-list .top-site-outer span[dir="auto"] {
-        overflow: hidden !important;
-        text-overflow: ellipsis ".." !important;
-    }
-    
-    .top-sites-list .top-site-outer:hover span[dir="auto"], 
-    .top-sites-list .top-site-outer:focus-within span[dir="auto"] {
-        text-wrap-mode: nowrap !important;
-    }
+        /* Pin icon removed */
+        .title.has-icon.pinned .icon.icon-pin-small { 
+            display: none !important; 
+        }
+        
+        /* Label - pinned site */
+        .title {
+            padding-block: 0px !important;
+        }
+        
+        .title-label  {
+            padding: 0px !important;
+            padding-inline: 4px !important;
+            font-size: 14px !important;
+            margin-top: -30px !important;
+        }
 
-    /* Pinned Site Colors (Small Background) */
-    .top-site-outer .tile {
-        border-radius: 4px !important;
-        width: 100px !important;
-        height: 100px !important;
-        align-items: start !important;
-        padding-top: 12px !important;
-        box-shadow: 0 0 0 1px #50505030 !important;
-        outline-color: transparent !important; /* Used for smooth transition */
-        background-image: linear-gradient(0deg, color-mix(in srgb, var(--general-color)4%, var(--newtab-pinnedsites-background)) , rgba(0,255,0,0) 64.71%),
-                    linear-gradient(190deg, var(--newtab-pinnedsites-background), var(--newtab-pinnedsites-background) 99.71%) !important;/**/
-        backdrop-filter: var(--personal-blur) !important;
-    }
+        /* Title label just in one line */
+        
+        .top-site-outer:hover .title:not(.sponsored) .title-label {
+            -webkit-line-clamp: unset !important;
+        }
+        
+        .top-site-outer:is(:hover,:focus-within) span[dir="auto"] {
+            text-wrap-mode: nowrap !important;
+        }
+        
+        /* Remove style when on 'hover' over pinned sites (larger background) */
 
-    /* Remove style when on 'hover' over pinned sites (larger background) */
-    
-    .collapsible-section {
-        padding-block-start: 30px !important;
-    }
-    
-    /* remove unwanted padding of elements */
-    .top-site-outer .top-site-inner > a {
-        padding: 6px 0 0 0 !important;
-    }
-    
-    /* size and background color */
-    .top-site-outer {
-        border-radius: 0px !important;
-        background-color: transparent !important;/**/
-    }
-    
-    /* Styes when on 'hover' over 'Pinned sites' and 'Recent Activity' */
-    .top-site-outer:hover .tile, .card-outer:hover .card{
-        outline: 1px solid var(--button-hover-bgcolor) !important;
-        transition: outline 0.1s ease-in-out !important;
+        /* remove unwanted padding of elements */
+        .top-site-outer .top-site-inner > a {
+            padding: 0 !important;
+        }
+
+        /* size and background color */
+        .top-site-outer {
+            margin-inline: 8px !important;
+            margin-block: 0px !important;
+            border-radius: 0px !important;
+            background-color: transparent !important;
+        }
+
+        /* Styes when on 'hover' over 'Pinned sites' and 'Recent Activity' */
+        .top-site-outer:hover .tile, .card-outer:hover .card{
+            outline: 1px solid var(--button-hover-bgcolor) !important;
+            transition: outline 0.1s ease-in-out !important;
+        }
     }
     
     /* Styles when clicking on a pinned site and moving the mouse away */
-    .top-site-outer:is(:focus-within) .tile, .card-outer:is(.active,:focus-within) .card{
+    .top-site-outer:is(:focus-within) .tile, 
+    .card-outer:is(.active,:focus-within) .card{
         outline: 1px solid var(--button-active-bgcolor) !important;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
     }
@@ -768,14 +772,16 @@
     
     .lightWallpaper :is(
     .card-host-name, .card-outer:not(.placeholder) .card-title, .card-outer .icon,    /* 'Pinned' label */
-    .top-site-outer:is(:hover, :active, .active) .title span ) {                      /* 'Activity' label */
+    .top-site-outer:is(:hover, :active, .active) .title span,                         /* 'Activity' label */
+    .ds-card .meta .clamp ) {                                                        /* 'News' */
         color: black !important;
         --contrast-color: white !important;
     }
     
     .darkWallpaper :is(
     .card-host-name, .card-outer:not(.placeholder) .card-title, .card-outer .icon,    /* 'Pinned' label */
-    .top-site-outer:is(:hover, :active, .active) .title span ) {                      /* 'Activity' label */
+    .top-site-outer:is(:hover, :active, .active) .title span,                         /* 'Activity' label */
+    .ds-card .meta .clamp ) {                                                        /* 'News' */
         color: white !important;
         --contrast-color: black !important;
     }
@@ -803,8 +809,7 @@
     .context-menu {
         background-color: var(--arrowpanel-background) !important; 
         border-radius: 0px !important;
-        top: 4px !important;
-        margin-inline-start: 0px !important;
+        top: 0px !important;
         box-shadow: 0px 0px 0 1px var(--contrast-color) !important;
         border: 1px solid var(--arrowpanel-background) !important;
         border-image: var(--panel-separator-zap-gradient4) 1 !important;
@@ -824,8 +829,8 @@
         background-image: url("../icons/more.svg") !important;
         background-color: transparent !important;
         border-radius: 0px 4px !important;
-        margin-inline-end: 7px !important;
-        margin-block-start: 26px !important;
+        margin-inline-end: -6px !important;
+        margin-block-start: 19px !important;
         margin-inline-start: -10px !important;
         transition: opacity 200ms;
     }
@@ -857,7 +862,7 @@
     
     /* ________________________________________________ For Main-image configuration ___________________________________________ */
     
-    @media (-moz-bool-pref:"firefoxgx.main-image") {
+    @media -moz-pref("firefoxgx.main-image") {
         
         body {
             background-image: none !important;
@@ -867,23 +872,6 @@
             &::before {
                 display: none !important;
             }
-        }
-                
-        .weatherInfoLink, .weatherButtonContextMenuWrapper,     /* Weather */
-        .top-site-outer>div>.top-site-button>.tile,             /* Pinned sites */
-        .ds-card,                                               /* News */
-        .card-outer .card {                                     /* Recent activity */
-            
-            background-color: var(--newtab-weather-background-color) !important;
-            /*
-            --noise-urlbar-personal: url("../icons/urlbar-noise-light.png") !important;
-            --newtab-pinnedsites-background: color-mix(in srgb, white 1%, transparent) !important;
-            --newtab-pinnedsites-background2: color-mix(in srgb, var(--general-color) 3%, var(--newtab-pinnedsites-background)) !important;
-            
-            background-image: linear-gradient(0deg, var(--newtab-pinnedsites-background2) , rgba(0,255,0,0) 64.71%),
-                linear-gradient(190deg, var(--newtab-pinnedsites-background), var(--newtab-pinnedsites-background) 99.71%),
-                var(--noise-urlbar-personal,none), var(--noise-urlbar-personal, none) !important;
-            background-color: color-mix(in srgb, var(--contrast-color), transparent var(--brightness-wallpaper)) !important;/**/
         }
         
         .customize-menu {
@@ -1061,7 +1049,7 @@
     
 /* Compatibility for aligning wallpaper when used with 'Main-image' config */
     
-    @media (-moz-bool-pref:"firefoxgx.main-image") {
+    @media -moz-pref("firefoxgx.main-image") {
 
         .sticky-container {
             background-image: none !important;
