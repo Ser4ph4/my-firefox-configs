@@ -251,11 +251,10 @@ toolbarseparator {
 }
 
 #navigator-toolbox {
-  z-index: unset !important;
+ z-index: unset !important;
 }
 
 /* Brilho quando a urlbar [aberta] */
-
 #nav-bar::after {
   position: fixed;
   content: "";
@@ -299,7 +298,6 @@ See the above repository for updates as well as full license text. */
   background-color: rgba(80, 67, 3, 0.397);
   border-radius: 13px !important;
   font-style: oblique;
-
 }
 
 /* http: and potentially some other insecure connections like ftp: */
@@ -350,15 +348,12 @@ border-radius: 13px !important;
     order: 0 !important;
 }
 
-
 /* Border Radius in Page Sidebery */
 #tabbrowser-tabpanels {
     browser[type="content"] {
     border-top-left-radius: 10px  !important;
     border-bottom-left-radius: 10px  !important;
-    width: 99.2%; height: 99.2%;
-    
-  }
+    }
 }
 
 .browserContainer {
