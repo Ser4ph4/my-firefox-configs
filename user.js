@@ -1,5 +1,4 @@
-/* Source file made available under Mozilla Public License v. 2.0 See the main repository for updates as well as full license text. 
-   https://github.com/Godiesc/opera-gx */
+/* Last Uptdate: 06/2025 */
 
 /* Default rules */
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
