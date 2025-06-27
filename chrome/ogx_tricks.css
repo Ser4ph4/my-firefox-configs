@@ -1,58 +1,40 @@
-/*
+    /*
+░░░░░░░░░
+MrOtherGuy -  https://github.com/MrOtherGuy/firefox-csshacks (Source)
+░░░░░░░░░
+*/
+ 
+ /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ❕Sidebery
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
-/* Hide menu Sidebery */
-#sidebar-header {
-  display: none !important;
+#sidebar-box:is(
+[sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929"]) {
+  & #sidebar-header {
+    display: none;
+  }
 }
-
-/* Hide splitter line */
-#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] + #sidebar-splitter {
-  display: none !important;
-}
-
-/* Shrink sidebar until hovered */
-:root {
-  --thin-tab-width: 32.2px;
-  --wide-tab-width: 200px;
-}
-#sidebar-box:not([sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]) {
-  min-width: var(--wide-tab-width) !important;
-  max-width: none !important;
-}
-#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] {
-  overflow: hidden !important;
-  position: relative !important;
-  transition: all 280ms !important;
-  /*transition: all 0ms 0s !important;*/
-  min-width: var(--thin-tab-width) !important;
-  max-width: var(--thin-tab-width) !important;
- 
-}
-#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:hover,
-#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] #sidebar {
-  /*transition-delay: 0s !important;*/
-  transition: all 280ms !important;
-  min-width: var(--wide-tab-width) !important;
-  max-width: var(--wide-tab-width) !important;
-
-}
-
-@media -moz-pref("firefoxgx.tree-tabs") {
-    #sidebar-box:is(
-    [sidebarcommand*="tabcenter"],
-    [sidebarcommand*="treestyletab"],
-    [sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929"]) {
-
-        /* Sidebar content 'open' + web content /**/
-        &[checked="true"] ~ #tabbrowser-tabbox {
-            box-shadow: none !important;
-        }
-    }
-}
-
+   #sidebar-box{
+    --uc-sidebar-width: 33px;
+    --uc-sidebar-hover-width: 250px;
+    --uc-autohide-sidebar-delay: 200ms; /* Wait 0.6s before hiding sidebar */
+    position: relative;
+    min-width: var(--uc-sidebar-width) !important;
+    width: var(--uc-sidebar-width) !important;
+    max-width: var(--uc-sidebar-width) !important;
+    z-index:10;
+  }
+ #sidebar{
+    transition: min-width 250ms linear var(--uc-autohide-sidebar-delay) !important;
+    min-width: var(--uc-sidebar-width) !important;
+    will-change: min-width;
+  }
+#sidebar-box:hover > #sidebar-header,
+#sidebar-box:hover > #sidebar{
+    min-width: var(--uc-sidebar-hover-width) !important;
+    transition-delay: 0ms !important;
+  }
 
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -269,10 +251,11 @@ toolbarseparator {
 }
 
 #navigator-toolbox {
- z-index: unset !important;
+  z-index: unset !important;
 }
 
 /* Brilho quando a urlbar [aberta] */
+
 #nav-bar::after {
   position: fixed;
   content: "";
@@ -316,6 +299,7 @@ See the above repository for updates as well as full license text. */
   background-color: rgba(80, 67, 3, 0.397);
   border-radius: 13px !important;
   font-style: oblique;
+
 }
 
 /* http: and potentially some other insecure connections like ftp: */
@@ -366,12 +350,15 @@ border-radius: 13px !important;
     order: 0 !important;
 }
 
+
 /* Border Radius in Page Sidebery */
 #tabbrowser-tabpanels {
     browser[type="content"] {
     border-top-left-radius: 10px  !important;
     border-bottom-left-radius: 10px  !important;
-    }
+    width: 99.2%; height: 99.2%;
+    
+  }
 }
 
 .browserContainer {

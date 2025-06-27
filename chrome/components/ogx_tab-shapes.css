@@ -34,6 +34,7 @@
 
   tab-group:is([collapsed]) .tabbrowser-tab {
     opacity: 0 !important;
+    pointer-events: none !important;
   }
 
   /* Smaller size of tab shape */
@@ -51,25 +52,28 @@
 /* ________________________________________________ various styles ________________________________________________ */
 
   @media -moz-pref("userChrome.tab.bottom_rounded_corner.wave") or
-         -moz-pref("userChrome.tab.bottom_rounded_corner.australis") or
-         -moz-pref("userChrome.tab.bottom_rounded_corner.chrome") {
+    -moz-pref("userChrome.tab.bottom_rounded_corner.australis") or
+    -moz-pref("userChrome.tab.bottom_rounded_corner.chrome") {
 
-          :root,
-          :root[lwtheme],
-          :root:not([lwtheme]){
-            --border-radius-urlbar-personal: 14px !important;
-            --urlbar-icon-border-radius: 4px !important;
-          }
+      :root,
+      :root[lwtheme],
+      :root:not([lwtheme]){
+        --border-radius-urlbar-personal: 14px !important;
+        --urlbar-icon-border-radius: 4px !important;
+      }
 
-          .tab-close-button {
-            clip-path: circle(50%) !important; 
-            padding: 5px !important;
-            border-radius: 0px !important;
-          }
-
-          #TabsToolbar #tabs-newtab-button image:not(.menu-iconic-icon), #TabsToolbar #new-tab-button image:not(.menu-iconic-icon){
-            border-radius: 50% !important;
-          }
+      .tab-close-button {
+        clip-path: circle(50%) !important;
+        padding: 5px !important;
+        border-radius: 0px !important;
+      }
+      #tabs-newtab-button, 
+      #new-tab-button,
+      #vertical-tabs-newtab-button {
+        &::before {
+          border-radius: 50% !important;
+        }
+      }
   }
 
   /* Newtab button */
@@ -149,7 +153,8 @@
     background-attachment: scroll, fixed, fixed !important;
     background-color: transparent !important;
     background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), 
-                    var(--lwt-additional-images,none), var(--lwt-header-image, none) !important;
+                                      var(--lwt-additional-images,none), var(--lwt-header-image, none),
+                      linear-gradient(var(--lwt-accent-color, Field), var(--lwt-accent-color, Field))!important;
     background-position: 0 0, var(--lwt-background-alignment), right top !important;
     background-repeat: repeat-x, var(--lwt-background-tiling), no-repeat !important;
     background-size: auto 100%, var(--lwt-background-size, auto auto), auto auto !important;
@@ -274,7 +279,7 @@
         --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-wave-clipped.svg");
         
         --uc-margin-left-right: 4px;
-        --uc-margin-left-newtab: 7px;
+        --uc-margin-left-newtab: 3px;
       }
     }
     @media -moz-pref("userChrome.tab.bottom_rounded_corner.australis") {
@@ -287,7 +292,7 @@
         --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-australis-clipped.svg");
         
         --uc-margin-left-right: 1px;
-        --uc-margin-left-newtab: 8px;
+        --uc-margin-left-newtab: 4px;
       }
     }
     @media -moz-pref("userChrome.tab.bottom_rounded_corner.chrome") {
@@ -301,7 +306,7 @@
         --uc-tab-corner-size: 12px;
         
         --uc-margin-left-right: -1px;
-        --uc-margin-left-newtab: 7px;
+        --uc-margin-left-newtab: 3px;
       }
     }
     @media -moz-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") {
@@ -314,7 +319,7 @@
         --uc-tab-corner-right-side-svg-clipped: url("../icons/tab-bottom-corner-right-chromeLegacy-clipped.svg");
         
         --uc-margin-left-right: 6px;
-        --uc-margin-left-newtab: 12px;
+        --uc-margin-left-newtab: 8px;
       }
     }
     @media -moz-pref("userChrome.tab.bottom_rounded_corner.edge") {
@@ -328,7 +333,7 @@
         --uc-tab-corner-size: 12px;
         
         --uc-margin-left-right: 2px;
-        --uc-margin-left-newtab: 8px;
+        --uc-margin-left-newtab: 4px;
       }
     }
       .tabbrowser-tab {
@@ -377,7 +382,8 @@
         & .tab-background::before,
         & .tab-background::after {
           background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), 
-            var(--lwt-additional-images,none), var(--lwt-header-image, none) !important;
+                                            var(--lwt-additional-images,none), var(--lwt-header-image, none),
+                            linear-gradient(var(--lwt-accent-color, Field), var(--lwt-accent-color, Field))!important;
           background-position: 0 0, var(--lwt-background-alignment), right top !important;
           background-repeat: repeat-x, var(--lwt-background-tiling), no-repeat !important;
           background-size: auto 100%, var(--lwt-background-size, auto auto), auto auto !important;
@@ -400,7 +406,7 @@
       & .tab-background::before,
       & .tab-background::after {
         top: -1px !important;
-        transition: fill 0.2s ease !important;
+        /*transition: fill 0.2s ease !important;/**/
       }
     }
   }
@@ -430,24 +436,6 @@
       */
       --uc-tab-corner-bgimage: linear-gradient(var(--toolbar-non-lwt-bgcolor), var(--toolbar-non-lwt-bgcolor));
       fill: rgba(255, 255, 255, 0.075);
-    }
-  }
-  
-/* ___________________________________________________ Compatibility with "one-line" config ___________________________________________________ */
-  
-  @media -moz-pref("firefoxgx.oneline") {
-
-    @media screen and (min-width: 1000px) {
-      /* ___________________________________ Missed Selected tab background _______________________ */
-
-      .tabbrowser-tab:is([selected]) {
-        & .tab-background,
-        & .tab-background::before,
-        & .tab-background::after {      
-          background-image: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), 
-            var(--lwt-additional-images,none), var(--lwt-header-image, none) !important;
-        }
-      }
     }
   }
 }

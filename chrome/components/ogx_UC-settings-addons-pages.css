@@ -246,34 +246,37 @@
 
     /* ___________ Background and border color of elements in about:addons */
     
-    /* Addons enabled */
+    /* Addons */
+    
+    .addon.card {
+        transition: outline 150ms, box-shadow 150ms !important;
+    }
+    
+    addon-card:not([expanded]) > .addon.card:hover {
+        & .addon-name-link {
+            color: inherit !important;
+            text-decoration: underline currentColor !important;
+            text-underline-offset: 2px !important;
+        }
+    }
 
     .card[active="true"] {
-        background-color: color-mix(in srgb, var(--in-content-box-background) 96%, var(--contrast-color)) !important;
+        background-color: color-mix(in srgb, var(--in-content-box-background) 98%, var(--contrast-color)) !important;
         outline-color: transparent !important;
-    }
 
-    addon-card:not([expanded="true"]) .card[active="true"]:not(:hover) {
-        box-shadow: 0 0 0 1px var(--in-content-border-color) !important;
-    }
-    
-    /* addons disabled */
-    
-    .card, 
-    .card[active="false"] {
-        outline: 1px solid var(--in-content-box-border-color) !important;
+        &:hover {
+            border-color: var(--general-color) !important;
+            outline: 1px solid var(--general-color) !important;
+        }
     }
 
     .card[active="false"]:hover {
-        outline-color: gray !important;
-        box-shadow: none !important;
+        --border-color-card: color-mix(in srgb, currentColor 20%, transparent) !important;
     }
-        
+
     addon-card[expanded] .addon.card {
         margin-top: 24px !important;
         outline-color: var(--general-color) !important;
-        outline-width: 2px !important;
-        outline-offset: 1px !important;
     }
         
         /* Category Sidebar */
@@ -281,13 +284,13 @@
         .navigation, 
         #sidebar {
             box-shadow: inset -1px 0 0 0 var(--in-content-box-border-color), 
-                1px 77px 27px var(--border-contrast-color) !important;
+                1px 77px 17px var(--border-contrast-color) !important;
         }
         
         .navigation:dir(rtl), 
         #sidebar:dir(rtl) {
             box-shadow: inset 1px 0 0 0 var(--in-content-box-border-color), 
-                1px 77px 27px var(--border-contrast-color) !important;
+                1px 77px 17px var(--border-contrast-color) !important;
         }
 
     /* Search-box in 'about:preferences' */
@@ -356,10 +359,63 @@
         background-image: none !important;
         background-color: transparent !important;
     }
+    
+    /* _________ New layout of sticky and main content _________ */
 
-    /* Wallpaper */
+    /* 'About:preferences' page */
 
-    @media not -moz-pref("firefoxgx.main-image") {
+    /* Remove unwanted margin from right section */
+    .main-content {
+        padding-inline: 0px !important;
+    }
+
+    .pane-container{
+        width: max(100%, var(--page-main-content-width)) !important;
+        display: grid !important;
+        overflow-x: hidden !important;
+
+        & #mainPrefPane {
+            padding-top: 20px !important; 
+            padding-inline-start: 60px !important;
+            padding-inline-end: calc(100% - var(--page-main-content-width)) !important;
+            overflow-x: hidden !important;
+        }
+    }
+    /* 'About:addons' page */
+
+    #content {
+        max-height: 100vh;
+        display: grid !important;
+        grid-template-rows: auto auto 1fr;
+        --in-content-page-background: transparent;
+    }
+
+    #main {
+        overflow: auto;
+        max-width: 100% !important;
+        scrollbar-gutter: stable !important;
+
+        & addon-card[expanded="true"],
+        & addon-list,
+        &>recommended-themes-section>recommended-addon-list,
+        & recommended-extensions-section {
+            --page-main-content-width: calc(100% + 28px + 4px) !important;
+            display: block !important;
+            max-width: calc(100% - var(--in-content-sidebar-width) - var(--main-margin-start, 0px)) !important;
+            padding-inline-start: 4px !important;
+        }
+
+        & discovery-pane {
+            --page-main-content-width: calc(100% + var(--main-margin-start) + 4px) !important;
+            display: block !important;
+            max-width: calc(100% - var(--in-content-sidebar-width) - var(--main-margin-start)) !important;
+            padding-inline-start: 4px !important;
+        }
+    }
+
+    /* Background without transparent browser */
+
+    @media not -moz-pref("firefoxgx.main-image"), not -moz-pref("browser.tabs.allow_transparent_browser") {
 
         body,.sticky-container{
             --bg: linear-gradient(var(--opaque), var(--opaque)), var(--lwt-main-image);
@@ -368,81 +424,22 @@
             background-attachment: fixed !important;
         }
 
-        body, .sticky-container{
+        body, .sticky-container {
             background-image: linear-gradient(var(--opaque), var(--opaque)),
                 var(--bg) !important;
         }
     }
-
-    /* _______________________________________ Wallpaper when using with 'Main-image' config _______________________________________ */
-
-    @media -moz-pref("firefoxgx.main-image") {
-
-        :root {
-            --opaque: color-mix(in srgb, var(--border-contrast-color) 90%, transparent) !important;
+    
+    /* Background When using transparent browser */
+    
+    @media -moz-pref("browser.tabs.allow_transparent_browser") {
+        
+        :root, 
+        body,
+        .sticky-container {  /* used for other 'about' pages */
+            --opaque: transparent !important;
+            background-image: none !important;
             background-color: transparent !important;
-        }
-
-        /* _________ About:preferences page */
-
-        /* Remove unwanted margin from right section */
-        .main-content {
-            padding-inline: 0px !important;
-        }
-
-        .pane-container{
-            width: max(100%, var(--page-main-content-width)) !important;
-            display: grid !important;
-            overflow-x: hidden !important;
-
-            & #mainPrefPane {
-                padding-top: 20px !important; 
-                padding-inline-start: 60px !important;
-                padding-inline-end: calc(100% - var(--page-main-content-width)) !important;
-                overflow-x: hidden !important;
-            }
-        }
-        /* _________ About:addons page */
-
-        #content {
-            max-height: 100vh;
-            display: grid !important;
-            grid-template-rows: auto auto 1fr;
-            --in-content-page-background: transparent;
-        }
-
-        #main {
-            overflow: auto;
-            max-width: 100% !important;
-            scrollbar-gutter: stable !important;
-
-            & addon-card[expanded="true"],
-            & addon-list,
-            &>recommended-themes-section>recommended-addon-list,
-            & recommended-extensions-section {
-                --page-main-content-width: calc(100% + 28px + 4px) !important;
-                display: block !important;
-                max-width: calc(100% - var(--in-content-sidebar-width) - var(--main-margin-start, 0px)) !important;
-                padding-inline-start: 4px !important;
-            }
-
-            & discovery-pane {
-                --page-main-content-width: calc(100% + var(--main-margin-start) + 4px) !important;
-                display: block !important;
-                max-width: calc(100% - var(--in-content-sidebar-width) - var(--main-margin-start)) !important;
-                padding-inline-start: 4px !important;
-            }
-        }
-
-        /* Brightness wallpaper */
-        body::before{
-            --bg: linear-gradient(to bottom, transparent, var(--opaque));
-            position: fixed; content: ""; top: 0; left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: var(--bg);
-            pointer-events: none;
-            z-index: -1;
         }
     }
 }
@@ -458,7 +455,7 @@
         grid-template-rows: 1 !important;
         grid-template-columns: auto  auto !important;
         box-shadow: 0 1px 0 0 var(--in-content-box-border-color), 
-                27px 1px 27px var(--border-contrast-color) !important;
+                17px 1px 17px var(--border-contrast-color) !important;
 
         /* Left part */            
         & .main-heading {
@@ -487,7 +484,7 @@
     
     .sticky-container:dir(rtl) {
         box-shadow: 0 1px 0 0 var(--in-content-box-border-color), 
-            -27px -1px 27px var(--border-contrast-color) !important;
+            -17px -1px 17px var(--border-contrast-color) !important;
     }
 
     /* Stycky head Style in small width resolution */
@@ -522,21 +519,23 @@
             width: 100% !important; 
         }
 
+        /*
         .pane-container {
-            margin-inline-start: 50px !important; margin-inline-end: 50px !important;
-        }
+            margin-inline-start: 50px !important; 
+            margin-inline-end: 50px !important;
+        }/**/
 
         .sticky-container {
             width: 125% !important;
             margin-inline-start: -78px !important;
             border-block-end: 1px solid transparent !important;
             border-image: var(--gradiente-casual) 1 !important;
-            box-shadow: -17px 1px 27px var(--border-contrast-color) !important;
+            box-shadow: -17px 1px 17px var(--border-contrast-color) !important;
         }
         
         .sticky-container:dir(rtl) {
             border-image: var(--gradiente-casual-rtl) 1 !important;
-            box-shadow: 17px 1px 27px var(--border-contrast-color) !important;
+            box-shadow: 17px 1px 17px var(--border-contrast-color) !important;
         }
     }
 }
