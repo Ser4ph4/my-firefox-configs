@@ -1,6 +1,6 @@
 /*
 ===================================================================
-== TEMA Dark PARA SIDEBERY - By Ser4ph4==
+== TEMA Dark PARA SIDEBERY - By Ser4ph4 (Versão Final Revisada)  ==
 ===================================================================
 */
 
@@ -49,7 +49,7 @@
   --bookmarks-border-radius: 5px;
   --tabs-height: 30px;
   --tabs-indent: 10px;
-  --tabs-inner-gap: 5px;
+  --tabs-inner-gap: 6px;
   --tabs-pinned-height: 30px;
   --tabs-pinned-width: 30px;
   --tabs-margin: 1px;
@@ -97,33 +97,25 @@
   --accent: #a4e9ffff;
 }
 
-/* --- 3. Estilos de Componentes --- */
+/* --- 3. Estilos de Componentes (Seu tema base) --- */
 .NavigationBar {
   padding: 1.5px !important;
   font-family: Roboto;
 }
-
 .PinnedTabsBar {
   box-shadow: inset -2px 0px 3px rgba(0, 0, 0, 0.23);
 }
-
 .BottomBar {
   display: none;
 }
-
 .tabbrowser-tabs .tab-text {
   font-family: "Hack Nerd Font Mono", sans-serif !important;
 }
-
-/* Estilo do Título da Aba */
 .Tab .title {
-  background: linear-gradient(90deg,
-      var(--tabs-normal-fg) 60%,
-      #f1f1f100 95%);
+  background: linear-gradient(90deg, var(--tabs-normal-fg) 60%, #f1f1f100 95%);
   background-clip: text;
   color: transparent;
 }
-
 .Tab[data-active="true"] .title {
   font-weight: 400;
   text-shadow: 1px 2px 0px #0b0a0a;
@@ -132,56 +124,35 @@
   font-family: "SF Pro" !important;
   color: #8ae8fc;
 }
-
-/* Aba Descartada */
 .Tab[data-discarded="true"] .body {
   opacity: 0.67;
 }
-
-/* Aba Fixada e Ativa */
 .Tab[data-pin="true"][data-active="true"] {
   border: 1px thin gray;
   border-radius: 5px;
 }
-
-/* Botão de Fechar Aba */
-.Tab .close>svg {
+.Tab .close > svg {
   fill: var(--ctp-red);
 }
-
-.Tab .close:hover>svg {
+.Tab .close:hover > svg {
   fill: var(--ctp-maroon);
 }
-
-/* Animação de Aba com Áudio */
 .Tab.-loud {
   animation: audio-animation 1s infinite;
 }
-
 @keyframes audio-animation {
-  0% {
-    transform: scale(0.8);
-  }
-  50% {
-    transform: scale(5.2);
-  }
-  50% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0.9);
-  }
+  0% { transform: scale(0.8); }
+  50% { transform: scale(5.2); }
+  50% { transform: scale(1); }
+  100% { transform: scale(0.9); }
 }
-
-/* Animação de Carregamento (Throbber) */
-.Tab[data-loading="true"] .fav>.fav-icon {
+.Tab[data-loading="true"] .fav > .fav-icon {
   opacity: 0;
+  padding-left: 10px !important;
 }
-
 #root .Tab[data-loading="true"] .fav {
   opacity: 1;
 }
-
 .Tab[data-loading="true"] .fav:before {
   content: url("https://pub-cc79f915e3d84c13aa11e36fc28fa15f.r2.dev/images/infinity.png");
   position: absolute;
@@ -193,70 +164,156 @@
   line-height: 16px;
   text-align: center;
 }
-
 .Tab .progress-spinner {
   display: none !important;
 }
-
-/* Favoritos */
-.BookmarkNode[data-type="folder"]>.body>.fav>svg {
+.BookmarkNode[data-type="folder"] > .body > .fav > svg {
   fill: rgba(174, 23, 53, 0.9);
   opacity: 1;
 }
-
-/* Notificações em Abas Fixadas */
-.PinnedTab[data-audible] .fav>img,
-.PinnedTab[data-muted] .fav>img,
-.PinnedTab[data-loading] .fav>img {
+.PinnedTab[data-audible] .fav > img,
+.PinnedTab[data-muted] .fav > img,
+.PinnedTab[data-loading] .fav > img {
   mask: none;
 }
-
-.PinnedTab .fav>img {
+.PinnedTab .fav > img {
   mask: none;
 }
-
-.PinnedTab[data-updated="true"] .fav>img {
+.PinnedTab[data-updated="true"] .fav > img {
   mask: radial-gradient(circle at calc(100% - 2px) calc(100% - 2px),
       rgba(0, 0, 0, 0.141),
       rgba(0, 0, 0, 0.141) 4px,
       #000 5px,
       #000);
 }
-
 .PinnedTab .update-badge {
   opacity: 50;
 }
-
 .PinnedTab[data-updated="true"] .update-badge {
   opacity: 100;
 }
 
+
 /*
-=========================================================
-== MODIFICAÇÃO: Borda Esquerda na Aba Ativa (Sem Fundo) ==
-=========================================================
+===================================================================
+== MODIFICAÇÃO CONSOLIDADA E CORRIGIDA (Versão Final)            ==
+===================================================================
 */
-/* 1. Remove completamente o fundo e a sombra original da aba ativa */
-.Tab[data-active="true"],
-.Tab[data-active="true"] .body {
-  background: none !important;
-  background-color: transparent !important;
+
+/* --- 1. Reset da Aba Ativa (Não Fixada) --- */
+/* Desliga os estilos padrão de fundo/sombra da aba ativa do seu tema */
+.Tab:not([data-pin="true"])[data-active="true"] {
+  --tabs-activated-bg: transparent !important;
+  --tabs-activated-shadow: none !important;
+  background: transparent !important;
   box-shadow: none !important;
+  border: none !important;
 }
 
-/* 2. Adiciona a nova borda esquerda sólida na aba ativa */
-.Tab[data-active="true"] {
-  /* Use a cor que preferir da sua paleta. --ctp-sky é uma boa opção. */
-  border-left: 2px solid var(--ctp-sky) !important;
-  border-radius: 4px;
+/* --- 2. Fundo Retangular no Favicon da Aba Ativa --- */
+/* Aplica o fundo e centraliza o ícone DENTRO dele */
+.Tab:not([data-pin="true"])[data-active="true"] .fav {
+  background-color: var(--ctp-surface1) !important;
+  border-radius: 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
 }
 
-/* 3. Garante que as outras abas não tenham borda */
-.Tab:not([data-active="true"]) {
-  border-left: 2px solid transparent !important;
+/* Força o tamanho e remove margens do ícone para garantir a centralização */
+.Tab:not([data-pin="true"])[data-active="true"] .fav > .fav-icon,
+.Tab:not([data-pin="true"])[data-active="true"] .fav > svg {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  margin: 0 !important;
+  vertical-align: middle !important; /* Correção final para o alinhamento vertical */
 }
 
-/* 4. Ajusta o efeito de passar o mouse */
-.Tab:not([data-active="true"]):hover .body {
-  background-color: var(--ctp-surface0) !important;
+/* --- 3. Exceção para Aba em Carregamento --- */
+/* Remove o fundo retangular quando a aba ativa está carregando */
+.Tab[data-active="true"][data-loading="true"] .fav {
+  background-color: transparent !important;
+}
+
+/* --- 4. Alinhamento Central no Modo Colapsado --- */
+/* Força TODOS os itens a se centralizarem quando a barra está estreita */
+#root.-collapsed .Tab,
+#root.-collapsed .NewTabBtn {
+  display: flex !important;
+  justify-content: center !important;
+  padding: 0 !important; /* Remove qualquer padding que atrapalhe */
+}
+
+/* --- 5. Estilos Gerais para Inativos --- */
+/* Garante que favicons inativos não tenham fundo */
+.Tab:not([data-active="true"]) .fav {
+  background-color: transparent !important;
+}
+
+/*
+===================================================================
+== ABORDAGEM FINAL: Centralização Absoluta do Favicon            ==
+===================================================================
+* Este método ignora o fluxo normal da página para forçar o
+* alinhamento do ícone, e não deve falhar.
+*/
+
+/* --- 1. Reset da Aba Ativa (Não Fixada) --- */
+/* Garante que a linha da aba não tenha fundo ou borda */
+.Tab:not([data-pin="true"])[data-active="true"] {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* --- 2. Cria o Fundo Retangular (A "Caixa") --- */
+/* Prepara o container do ícone para ser a referência de posição */
+.Tab:not([data-pin="true"])[data-active="true"] .fav {
+    position: relative !important; /* Essencial para a centralização absoluta */
+    background-color: var(--ctp-surface1) !important;
+    border-radius: 4px !important;
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+   margin-left: 4px
+}
+
+/* --- 3. Centraliza o Ícone (O "Item Flutuante") --- */
+/* Força o ícone a ficar no centro absoluto da "caixa" criada acima */
+.Tab:not([data-pin="true"])[data-active="true"] .fav > .fav-icon,
+.Tab:not([data-pin="true"])[data-active="true"] .fav > svg {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important; /* A mágica da centralização */
+    
+    /* Garante o tamanho e remove margens */
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px !important;
+    margin: 0 !important;
+}
+
+/* --- 4. Garante que ícones inativos não tenham fundo --- */
+.Tab:not([data-active="true"]) .fav {
+    background-color: transparent !important;
+}
+
+ /*
+===================================================================
+== CORREÇÃO: Remove o fundo do ícone DURANTE o carregamento    ==
+===================================================================
+*/
+
+/*
+ * Esta regra se aplica a um ícone de uma aba que está
+ * ATIVA e CARREGANDO ao mesmo tempo.
+ * Ela torna o fundo retangular transparente, mas mantém o ícone de infinito.
+*/
+.Tab[data-active="true"][data-loading="true"] .fav {
+  background-color: transparent !important;
 }
