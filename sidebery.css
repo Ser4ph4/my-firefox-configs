@@ -1,3 +1,10 @@
+/*
+===================================================================
+== TEMA Dark PARA SIDEBERY - By Ser4ph4==
+===================================================================
+*/
+
+/* --- 1. Paleta de Cores (Catppuccin) --- */
 :root {
   --ctp-rosewater: #f5e0dc;
   --ctp-flamingo: #f2cdcd;
@@ -25,94 +32,130 @@
   --ctp-base: #1e1e2e;
   --ctp-mantle: #181825;
   --ctp-crust: #11111b;
+}
 
+/* --- 2. Variáveis Globais de Estilo --- */
+#root.root {
+  --toolbar-el-overlay-active-bg: rgba(255, 255, 255, 0);
+  --toolbar-bg: #131019;
+  --frame-bg: #131019;
+  --bookmarks-margin: 2px;
+  --bookmarks-bookmark-height: 30px;
+  --bookmarks-folder-height: 30px;
+  --bookmarks-separator-height: 17px;
+  --bookmarks-node-activated-fg: #ccc;
+  --bookmarks-bookmark-font: 0.9333rem sans-serif;
+  --bookmarks-folder-font: 0.9399rem sans-serif;
+  --bookmarks-border-radius: 5px;
+  --tabs-height: 30px;
+  --tabs-indent: 10px;
+  --tabs-inner-gap: 5px;
+  --tabs-pinned-height: 30px;
+  --tabs-pinned-width: 30px;
+  --tabs-margin: 1px;
+  --tabs-font: .9955rem sans-serif;
+  --tabs-border-radius: 5px;
+  --tabs-activated-bg: #2a2a41ff;
+  --tabs-activated-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.282),
+    inset 0 0 0 1px rgb(62, 62, 63), inset 2px 0 0 0 rgb(62, 62, 63);
+  --tabs-activated-color-layer-opacity: 0.2;
+  --tabs-lvl-opacity: 5.16;
+  --tabs-progress-bg: #8bdc56ff;
+  --tabs-audio-btn-width: 0px;
+  --tabs-count-font: 0.5625rem sans-serif;
+  --tabs-close-btn-margin: 3px;
+  --nav-btn-width: 28px;
+  --nav-btn-height: 30px;
+  --nav-btn-margin: 2px;
+  --nav-btn-len-margin: 0px;
+  --nav-btn-border-radius: 10px 0 10px 0;
+  --nav-btn-active-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.071),
+    0 1px 3px 0 rgba(0, 0, 0, 0.212);
+  --nav-btn-accent: #aeceaaff;
+  --nav-delimiter-size: 19px;
+  --nav-hidden-btn-border-radius: 4px;
+  --nav-hidden-panels-popup-margin: 3px;
+  --ctx-menu-padding: 7px;
+  --ctx-menu-font: 0.975rem sans-serif;
+  --ctx-menu-border-radius: calc(9px + 1px);
+  --ctx-menu-opt-border-radius: calc(5px - 3px + 1px);
+  --ctx-menu-shadow: 0 0 0 1px rgba(255, 255, 255, 0.086),
+    0 1px 16px 0 rgba(0, 0, 0, 0.282);
+  --history-item-margin: 3px;
+  --history-item-border-radius: 5px;
+  --history-item-padding-right: 1px;
+  --ntb-border-radius: 59px;
+  --ntb-btn-height: 32px;
+  --scroll-progress-height: 17px;
+  --scroll-progress-bg: #37adef;
+  --popup-scrollbar-color: rgba(255, 255, 255, 0.275);
+  --notification-border-radius: 4px;
+  --notification-margin: 4px;
+  --general-margin: 1px;
+  --general-border-radius: 5px;
+  --d-slow: 0.3s;
+  --accent: #a4e9ffff;
 }
-#root.root {--toolbar-el-overlay-active-bg: rgba(255,255,255,0);}
-#root.root {--toolbar-bg: #131019;}
-#root.root {--frame-bg: #131019;}
-#root.root {--bookmarks-margin: 2px;}
-#root.root {--d-slow: 0.3s;}
-#root.root {--notification-border-radius: 4px;}
-#root.root {--notification-margin: 4px;}
-#root.root {--popup-scrollbar-color: rgba(255,255,255,0.275);}
-#root.root {--tabs-activated-shadow: 0 1px 4px -1px rgba(0,0,0,0.282), inset 0 0 0 1px rgba(255,255,255,0.031);}
-#root.root {--tabs-activated-color-layer-opacity: 0.2;} #root.root {--tabs-lvl-opacity: 5.16;} #root.root {--nav-btn-width: 28px;} #root.root {--nav-delimiter-size: 19px;} #root.root {--nav-hidden-btn-border-radius: 4px;} #root.root {--nav-hidden-panels-popup-margin: 3px;}    #root.root {--tabs-activated-bg: #2a2a41ff;} #root.root {--accent: #a4e9ffff;} #root.root {--bookmarks-bookmark-height: 30px;} #root.root {--bookmarks-folder-height: 30px;} #root.root {--bookmarks-separator-height: 17px;} #root.root {--tabs-progress-bg: #8bdc56ff;} #root.root {--tabs-pinned-height: 30px;} #root.root {--tabs-pinned-width: 30px;} #root.root {--tabs-margin: 1px;} #root.root {--tabs-font: 0.9375rem sans-serif;} #root.root {--nav-btn-height: 30px;} #root.root {--nav-btn-margin: 2px;} #root.root {--nav-btn-len-margin: 0px;} #root.root {--nav-btn-border-radius: 5px;} #root.root {--tabs-border-radius: 5px;}   #root.root {--history-item-margin: 3px;} #root.root {--history-item-border-radius: 5px;} #root.root {--history-item-padding-right: 1px;} #root.root {--bookmarks-node-activated-fg: #ccc;} #root.root {--bookmarks-bookmark-font: 0.9333rem sans-serif;} #root.root {--bookmarks-folder-font: 0.9399rem sans-serif;} #root.root {--bookmarks-border-radius: 5px;} #root.root {--tabs-audio-btn-width: 0px;}  #root.root {--tabs-count-font: 0.5625rem sans-serif;} #root.root {--ctx-menu-opt-border-radius: calc(5px - 3px + 1px);} #root.root {--ctx-menu-padding: 7px;} #root.root {--ctx-menu-font: 0.975rem sans-serif;} #root.root {--ctx-menu-border-radius: calc(9px + 1px);} #root.root {--ctx-menu-shadow: 0 0 0 1px rgba(255,255,255,0.086), 0 1px 16px 0 rgba(0,0,0,0.282);} #root.root {--ntb-border-radius: 59px;} #root.root {--ntb-btn-height: 32px;} #root.root {--scroll-progress-height: 17px;} #root.root {--scroll-progress-bg: #37adef;} #root.root {--tabs-border-radius: 3px;} #root.root {--tabs-color-layer-opacity: 0.2;}  #root.root {--nav-btn-active-shadow: inset 0 0 0 1px rgba(255,255,255,0.071), 0 1px 3px 0 rgba(0,0,0,0.212);} #root.root {--general-margin: 1px;} #root.root {--general-border-radius: 5px;} #root.root {--tabs-close-btn-margin: 2px;} #root.root {--nav-btn-accent: #aeceaaff;}  .Tab[data-active="true"] .title {   font-weight: bold;   text-shadow: 1px 2px 0px #0b0a0a;   font-size: 15px;   text-align:left; } .Tab .title {  background: linear-gradient(90deg, var(--tabs-normal-fg) 60%, #f1f1f100 95%);   background-clip: text;  color: transparent; } .PinnedTabsBar {     box-shadow: inset -2px 0px 3px rgba(0, 0, 0, 0.23); };
-#root.root {--tabs-height: 30px;}
-#root.root {--tabs-indent: 10px;}
-#root.root {--tabs-inner-gap: 5px;}
-#root.root {--tabs-activated-color-layer-opacity: 0.2;}
-#root.root {--tabs-lvl-opacity: 5.16;}
-#root.root {--nav-btn-width: 28px;}
-#root.root {--nav-delimiter-size: 19px;}
-#root.root {--nav-hidden-btn-border-radius: 4px;}
-#root.root {--nav-hidden-panels-popup-margin: 3px;}
-#root.root {--tabs-activated-bg: #2a2a41ff;}
-#root.root {--accent: #a4e9ffff;}
-#root.root {--bookmarks-bookmark-height: 30px;}
-#root.root {--bookmarks-folder-height: 30px;}
-#root.root {--bookmarks-separator-height: 17px;}
-#root.root {--tabs-progress-bg: #8bdc56ff;}
-#root.root {--tabs-pinned-height: 30px;}
-#root.root {--tabs-pinned-width: 30px;}
-#root.root {--tabs-margin: 1px;}
-#root.root {--tabs-font: .9955rem sans-serif;}
-#root.root {--nav-btn-height: 30px;}
-#root.root {--nav-btn-margin: 2px;}
-#root.root {--nav-btn-len-margin: 0px;}
-#root.root {--nav-btn-border-radius: 5px;}
-#root.root {--tabs-border-radius: 5px;}
-#root.root {--tabs-activated-shadow: 0 1px 2px -1px rgba(0,0,0,0.282), inset 0 0 0 1px rgb(62, 62, 63), inset 2px 0 0 0 rgb(62, 62, 63);}
-#root.root {--history-item-margin: 3px;}
-#root.root {--history-item-border-radius: 5px;}
-#root.root {--history-item-padding-right: 1px;}
-#root.root {--bookmarks-node-activated-fg: #ccc;}
-#root.root {--bookmarks-bookmark-font: 0.9333rem sans-serif;}
-#root.root {--bookmarks-folder-font: 0.9399rem sans-serif;}
-#root.root {--bookmarks-border-radius: 5px;}
-#root.root {--tabs-audio-btn-width: 0px;}
-#root.root {--tabs-count-font: 0.5625rem sans-serif;}
-#root.root {--ctx-menu-opt-border-radius: calc(5px - 3px + 1px);}
-#root.root {--ctx-menu-padding: 7px;}
-#root.root {--ctx-menu-font: 0.975rem sans-serif;}
-#root.root {--ctx-menu-border-radius: calc(9px + 1px);}
-#root.root {--ctx-menu-shadow: 0 0 0 1px rgba(255,255,255,0.086), 0 1px 16px 0 rgba(0,0,0,0.282);}
-#root.root {--ntb-border-radius: 59px;}
-#root.root {--ntb-btn-height: 32px;}
-#root.root {--scroll-progress-height: 17px;}
-#root.root {--scroll-progress-bg: #37adef;}
-#root.root {--tabs-border-radius: 3px;}
-#root.root {--tabs-color-layer-opacity: 0.2;}
-#root.root {--nav-btn-active-shadow: inset 0 0 0 1px rgba(255,255,255,0.071), 0 1px 3px 0 rgba(0,0,0,0.212);}
-#root.root {--general-margin: 1px;}
-#root.root {--general-border-radius: 5px;}
-#root.root {--tabs-close-btn-margin: 3px;}
-#root.root {--nav-btn-accent: #aeceaaff;}
-#root.root {--nav-btn-border-radius: 10px 0 10px 0;}
 
-.Tab[data-active="true"] .title {
-  font-weight:400;
-  text-shadow: 1px 2px 0px #0b0a0a;
-  font-size: 16px;
-  text-align:left;
-  font-family: "SF Pro" !important;
-  color: #8ae8fc;
+/* --- 3. Estilos de Componentes --- */
+.NavigationBar {
+  padding: 1.5px !important;
+  font-family: Roboto;
 }
-.Tab .title {
-  background: linear-gradient(90deg, var(--tabs-normal-fg) 60%, #f1f1f100 95%);
-  background-clip: text;
-  color: transparent;
-}
+
 .PinnedTabsBar {
-    box-shadow: inset -2px 0px 3px rgba(0, 0, 0, 0.23);
+  box-shadow: inset -2px 0px 3px rgba(0, 0, 0, 0.23);
+}
+
+.BottomBar {
+  display: none;
 }
 
 .tabbrowser-tabs .tab-text {
   font-family: "Hack Nerd Font Mono", sans-serif !important;
 }
 
-.Tab .-loud {
-  animation: audio-animation 1s infinite;
+/* Estilo do Título da Aba */
+.Tab .title {
+  background: linear-gradient(90deg,
+      var(--tabs-normal-fg) 60%,
+      #f1f1f100 95%);
+  background-clip: text;
+  color: transparent;
+}
 
+.Tab[data-active="true"] .title {
+  font-weight: 400;
+  text-shadow: 1px 2px 0px #0b0a0a;
+  font-size: 16px;
+  text-align: left;
+  font-family: "SF Pro" !important;
+  color: #8ae8fc;
+}
+
+/* Aba Descartada */
+.Tab[data-discarded="true"] .body {
+  opacity: 0.67;
+}
+
+/* Aba Fixada e Ativa */
+.Tab[data-pin="true"][data-active="true"] {
+  border: 1px thin gray;
+  border-radius: 5px;
+}
+
+/* Botão de Fechar Aba */
+.Tab .close>svg {
+  fill: var(--ctp-red);
+}
+
+.Tab .close:hover>svg {
+  fill: var(--ctp-maroon);
+}
+
+/* Animação de Aba com Áudio */
+.Tab.-loud {
+  animation: audio-animation 1s infinite;
 }
 
 @keyframes audio-animation {
@@ -125,24 +168,20 @@
   50% {
     transform: scale(1);
   }
- 100% {
+  100% {
     transform: scale(0.9);
   }
 }
 
-.BookmarkNode[data-type="folder"] > .body > .fav > svg {
-  fill: rgba(174, 23, 53, 0.9);
-  opacity: 1;
-}
-
-/*--New throbber--*/
-
-#root .Tab[data-loading="true"] .fav > .fav-icon {
+/* Animação de Carregamento (Throbber) */
+.Tab[data-loading="true"] .fav>.fav-icon {
   opacity: 0;
 }
+
 #root .Tab[data-loading="true"] .fav {
   opacity: 1;
 }
+
 .Tab[data-loading="true"] .fav:before {
   content: url("https://pub-cc79f915e3d84c13aa11e36fc28fa15f.r2.dev/images/infinity.png");
   position: absolute;
@@ -155,61 +194,69 @@
   text-align: center;
 }
 
-/*--Hide default throbber--*/
 .Tab .progress-spinner {
-display: none !important;
+  display: none !important;
 }
 
-.BottomBar {
-  display: none;
+/* Favoritos */
+.BookmarkNode[data-type="folder"]>.body>.fav>svg {
+  fill: rgba(174, 23, 53, 0.9);
+  opacity: 1;
 }
 
-/*tab close button*/
-.Tab .close > svg {
-  fill: var(--ctp-red);
+/* Notificações em Abas Fixadas */
+.PinnedTab[data-audible] .fav>img,
+.PinnedTab[data-muted] .fav>img,
+.PinnedTab[data-loading] .fav>img {
+  mask: none;
 }
 
-.Tab .close:hover > svg {
-  fill: var(--ctp-maroon);
- 
+.PinnedTab .fav>img {
+  mask: none;
 }
 
-/* Optional patch for better tab notifications on pinned tabs */
-
-    .PinnedTab[data-audible] .fav>img,
-    .PinnedTab[data-muted] .fav>img,
-    .PinnedTab[data-loading] .fav>img {
-        mask: none;
-    }
-
-    .PinnedTab .fav>img {
-        mask: none;
-    }
-
-    .PinnedTab[data-updated="true"] .fav>img {
-        mask: radial-gradient(circle at calc(100% - 2px) calc(100% - 2px), rgba(0, 0, 0, 0.141), rgba(0, 0, 0, 0.141) 4px, #000 5px, #000);
-    }
-
-    .PinnedTab .update-badge {
-        opacity: 50;
-    }
-
-    .PinnedTab[data-updated="true"] .update-badge {
-        opacity: 100;
-    }
-
-.Tab[data-discarded="true"] .body {
-    opacity: 0.67;
-}
- .NavigationBar {
-  padding: 1.5px !important;
-
-  font-family:Roboto;
+.PinnedTab[data-updated="true"] .fav>img {
+  mask: radial-gradient(circle at calc(100% - 2px) calc(100% - 2px),
+      rgba(0, 0, 0, 0.141),
+      rgba(0, 0, 0, 0.141) 4px,
+      #000 5px,
+      #000);
 }
 
-.Tab[data-pin="true"][data-active="true"]{
-border: 1px thin gray;
-border-radius: 5px;
+.PinnedTab .update-badge {
+  opacity: 50;
+}
 
+.PinnedTab[data-updated="true"] .update-badge {
+  opacity: 100;
+}
 
+/*
+=========================================================
+== MODIFICAÇÃO: Borda Esquerda na Aba Ativa (Sem Fundo) ==
+=========================================================
+*/
+/* 1. Remove completamente o fundo e a sombra original da aba ativa */
+.Tab[data-active="true"],
+.Tab[data-active="true"] .body {
+  background: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 2. Adiciona a nova borda esquerda sólida na aba ativa */
+.Tab[data-active="true"] {
+  /* Use a cor que preferir da sua paleta. --ctp-sky é uma boa opção. */
+  border-left: 2px solid var(--ctp-sky) !important;
+  border-radius: 4px;
+}
+
+/* 3. Garante que as outras abas não tenham borda */
+.Tab:not([data-active="true"]) {
+  border-left: 2px solid transparent !important;
+}
+
+/* 4. Ajusta o efeito de passar o mouse */
+.Tab:not([data-active="true"]):hover .body {
+  background-color: var(--ctp-surface0) !important;
 }
