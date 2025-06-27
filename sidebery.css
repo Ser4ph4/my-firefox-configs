@@ -274,12 +274,12 @@
 /* Prepara o container do ícone para ser a referência de posição */
 .Tab:not([data-pin="true"])[data-active="true"] .fav {
     position: relative !important; /* Essencial para a centralização absoluta */
-    background-color: var(--ctp-surface1) !important;
+    background-color: #1a597d7e !important;
     border-radius: 4px !important;
     width: 24px !important;
     height: 24px !important;
     min-width: 24px !important;
-   margin-left: 4px
+    margin-left: 4px
 }
 
 /* --- 3. Centraliza o Ícone (O "Item Flutuante") --- */
