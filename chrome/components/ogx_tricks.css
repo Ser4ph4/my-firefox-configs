@@ -3,41 +3,63 @@
 ❕Sidebery
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
+:where(#main-window) #browser{
+  --uc-sidebar-width: 33px;
+  --uc-sidebar-hover-width: 210px;
+}
+
+#sidebar-box{
+  --uc-autohide-sidebar-delay: 300ms; /* Wait 0.6s before hiding sidebar */
+  --uc-autohide-transition-duration: 115ms;
+  --uc-autohide-transition-type: linear;
+  --browser-area-z-index-sidebar: 3;
+  position: relative;
+  min-width: var(--uc-sidebar-width) !important;
+  width: var(--uc-sidebar-width) !important;
+  max-width: var(--uc-sidebar-width) !important;
+  z-index: var(--browser-area-z-index-sidebar,3);
+  background-color: inherit;
+  /* This directionality flipper is played so that sidebar "grows" into the right direction */
+  direction: ltr;
+  &:is([positionend],[sidebar-positionend]):not(:-moz-locale-dir(rtl)){
+    direction: rtl;
+  }
+}
+
+#sidebar-header,
+#sidebar{
+  transition: min-width var(--uc-autohide-transition-duration) var(--uc-autohide-transition-type) var(--uc-autohide-sidebar-delay) !important;
+  min-width: var(--uc-sidebar-width) !important;
+  will-change: min-width;
+  direction: ltr;
+  &:-moz-locale-dir(rtl){
+    direction: rtl;
+  }
+}
+#sidebar-box:hover > #sidebar-header,
+#sidebar-box:hover > #sidebar,
+#sidebar-box:hover > .sidebar-browser-stack > #sidebar{
+  min-width: var(--uc-sidebar-hover-width) !important;
+  transition-delay: 0ms !important;
+}
+
+@media -moz-pref("sidebar.revamp") {
+  #sidebar, #sidebar-header{ border-style: none }
+  #sidebar-box{ padding: 0 !important; }
+}
+/* Move statuspanel to the other side when sidebar is hovered so it doesn't get covered by sidebar */
+
+#sidebar-box:not([positionend],[sidebar-positionend]):hover ~ #appcontent #statuspanel{
+  inset-inline: auto 0px !important;
+}
+#sidebar-box:not([positionend],[sidebar-positionend]):hover ~ #appcontent #statuspanel-label{
+  margin-inline: 0px !important;
+  border-left-style: solid !important; 
+}
+
 /* Hide menu Sidebery */
 #sidebar-header {
   display: none !important;
-}
-
-/* Hide splitter line */
-#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] + #sidebar-splitter {
-  display: none !important;
-}
-
-/* Shrink sidebar until hovered */
-:root {
-  --thin-tab-width: 32.2px;
-  --wide-tab-width: 200px;
-}
-#sidebar-box:not([sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]) {
-  min-width: var(--wide-tab-width) !important;
-  max-width: none !important;
-}
-#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] {
-  overflow: hidden !important;
-  position: relative !important;
-  transition: all 280ms !important;
-  /*transition: all 0ms 0s !important;*/
-  min-width: var(--thin-tab-width) !important;
-  max-width: var(--thin-tab-width) !important;
- 
-}
-#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:hover,
-#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] #sidebar {
-  /*transition-delay: 0s !important;*/
-  transition: all 280ms !important;
-  min-width: var(--wide-tab-width) !important;
-  max-width: var(--wide-tab-width) !important;
-
 }
 
 @media -moz-pref("firefoxgx.tree-tabs") {
@@ -61,9 +83,8 @@
 */
 .urlbar-icon,
 .toolbarbutton-icon,
-.tab-close-button,
 .downloadIconShow > .button-box > .button-icon,
-.menuitem-iconic .menu-iconic-icon,
+.menuitem-iconic :is(.menu-iconic-icon,.menu-icon),
 #downloads-indicator-icon,
 .urlbar-input-container [role="button"] image{
   transition: transform 83ms linear !important;
@@ -71,36 +92,26 @@
 toolbar .toolbarbutton-1 > .toolbarbutton-icon{
   transition: padding 83ms linear !important;
 }
-.urlbar-input-container [role="button"] image,
-.tab-close-button,
-.downloadIconShow > .button-box > .button-icon,
-.unified-extensions-item-menu-button > .toolbarbutton-icon,
-#downloads-button #downloads-indicator-icon,
-toolbarbutton#scrollbutton-up > .toolbarbutton-icon,
-toolobar .toolbarbutton-1 > .toolbarbutton-icon,
-toolbar .toolbarbutton-1 > .toolbarbutton-badge-stack > .toolbarbutton-icon,
-.menuitem-iconic .menu-iconic-icon,
-.urlbar-icon{
-  transform: scale(0.9) !important;
+.urlbar-input-container [role="button"]:active image,
+.downloadIconShow:active > .button-box > .button-icon,
+#downloads-button:active #downloads-indicator-icon,
+toolbarbutton#scrollbutton-up:active > .toolbarbutton-icon,
+toolbarbutton:not(.toolbarbutton-1):active > .toolbarbutton-icon,
+toolbar .toolbarbutton-1:not([disabled]):active > .toolbarbutton-badge-stack > .toolbarbutton-icon,
+.menuitem-iconic:active :is(.menu-iconic-icon,.menu-icon),
+.urlbar-page-action:active > .urlbar-icon{
+  transform: scale(0.6) !important;
 }
-toolbarbutton#scrollbutton-down > .toolbarbutton-icon{ transform: scale(-0.9) !important; }
-toolbar .toolbarbutton-1 > .toolbarbutton-icon{
-  padding: calc(var(--toolbarbutton-inner-padding) + 2px) !important;
+.tab-close-button:hover{
+  transition: padding-block 83ms linear;
 }
-.urlbar-input-container [role="button"]:not([disabled]):hover image,
-.tab-close-button:hover,
-.downloadIconShow:hover > .button-box > .button-icon,
-#downloads-button:not([disabled]):hover #downloads-indicator-icon,
-toolbarbutton#scrollbutton-up:not([disabled]):hover > .toolbarbutton-icon,
-toolbarbutton:not(.toolbarbutton-1):not([disabled]):hover > .toolbarbutton-icon,
-toolbar .toolbarbutton-1:not([disabled]):hover > .toolbarbutton-badge-stack > .toolbarbutton-icon,
-.menuitem-iconic:not([disabled]):hover .menu-iconic-icon,
-.urlbar-page-action:hover > .urlbar-icon{
-  transform: none !important;
+.tab-close-button:active{
+  padding: calc(var(--tab-close-button-padding) + 2px) !important;
 }
-toolbarbutton#scrollbutton-down:not([disabled]):hover > .toolbarbutton-icon{transform: scale(-1) !important;}
-toolbar .toolbarbutton-1:not([disabled]):hover > .toolbarbutton-icon{
-  padding: var(--toolbarbutton-inner-padding) !important;
+toolbarbutton#scrollbutton-down:active > .toolbarbutton-icon{ transform: scale(-0.6) !important; }
+
+toolbar .toolbarbutton-1:not([disabled]):active > .toolbarbutton-icon{
+  padding: calc(var(--toolbarbutton-inner-padding) + 3px) !important;
 }
 
 /*
@@ -370,7 +381,7 @@ border-radius: 13px !important;
 #tabbrowser-tabpanels {
     browser[type="content"] {
     border-top-left-radius: 10px  !important;
-    border-bottom-left-radius: 10px  !important;
+    
     }
 }
 
