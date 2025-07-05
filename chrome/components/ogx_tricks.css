@@ -1,136 +1,187 @@
 /*
+  ********************************************************************************
+  * *
+  * Ser4ph4 - Firefox Theme                              *
+  * *
+  ********************************************************************************
+  * Este é um tema personalizado para o Mozilla Firefox.                         *
+  * Para usar, este código deve ser colocado no seu arquivo userChrome.css.      *
+  ********************************************************************************
+*/
+
+
+/*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
-❕Sidebery
+❕ Configurações do Sidebery (Barra Lateral)
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
-:where(#main-window) #browser{
-  --uc-sidebar-width: 33px;
-  --uc-sidebar-hover-width: 210px;
+
+/* Define a largura da barra lateral quando recolhida e expandida */
+:where(#main-window) #browser {
+  --uc-sidebar-width: 33px;       /* Largura quando recolhida */
+  --uc-sidebar-hover-width: 210px; /* Largura ao passar o mouse */
 }
 
-#sidebar-box{
-  --uc-autohide-sidebar-delay: 300ms; /* Wait 0.6s before hiding sidebar */
-  --uc-autohide-transition-duration: 115ms;
-  --uc-autohide-transition-type: linear;
+/* Estiliza o contêiner da barra lateral para auto-ocultar */
+#sidebar-box {
+  --uc-autohide-sidebar-delay: 300ms;       /* Atraso para recolher */
+  --uc-autohide-transition-duration: 115ms; /* Duração da transição */
+  --uc-autohide-transition-type: linear;    /* Tipo de transição */
   --browser-area-z-index-sidebar: 3;
+
   position: relative;
   min-width: var(--uc-sidebar-width) !important;
   width: var(--uc-sidebar-width) !important;
   max-width: var(--uc-sidebar-width) !important;
-  z-index: var(--browser-area-z-index-sidebar,3);
+  z-index: var(--browser-area-z-index-sidebar, 3);
   background-color: inherit;
-  /* This directionality flipper is played so that sidebar "grows" into the right direction */
-  direction: ltr;
-  &:is([positionend],[sidebar-positionend]):not(:-moz-locale-dir(rtl)){
-    direction: rtl;
-  }
+  direction: ltr; /* Garante a direção correta do texto */
 }
 
+/* Inverte a direção para a barra lateral à direita */
+#sidebar-box:is([positionend], [sidebar-positionend]):not(:-moz-locale-dir(rtl)) {
+  direction: rtl;
+}
+
+/* Transição suave para a expansão da barra lateral */
 #sidebar-header,
-#sidebar{
+#sidebar {
   transition: min-width var(--uc-autohide-transition-duration) var(--uc-autohide-transition-type) var(--uc-autohide-sidebar-delay) !important;
   min-width: var(--uc-sidebar-width) !important;
   will-change: min-width;
   direction: ltr;
-  &:-moz-locale-dir(rtl){
-    direction: rtl;
-  }
 }
+
+#sidebar-header:-moz-locale-dir(rtl),
+#sidebar:-moz-locale-dir(rtl) {
+  direction: rtl;
+}
+
+/* Expande a barra lateral ao passar o mouse */
 #sidebar-box:hover > #sidebar-header,
 #sidebar-box:hover > #sidebar,
-#sidebar-box:hover > .sidebar-browser-stack > #sidebar{
+#sidebar-box:hover > .sidebar-browser-stack > #sidebar {
   min-width: var(--uc-sidebar-hover-width) !important;
   transition-delay: 0ms !important;
 }
 
+/* Remove a borda da barra lateral com o novo design do Firefox */
 @media -moz-pref("sidebar.revamp") {
-  #sidebar, #sidebar-header{ border-style: none }
-  #sidebar-box{ padding: 0 !important; }
+  #sidebar,
+  #sidebar-header {
+    border-style: none;
+  }
+  #sidebar-box {
+    padding: 0 !important;
+  }
 }
-/* Move statuspanel to the other side when sidebar is hovered so it doesn't get covered by sidebar */
 
-#sidebar-box:not([positionend],[sidebar-positionend]):hover ~ #appcontent #statuspanel{
+/* Move o painel de status para não ser coberto pela barra lateral expandida */
+#sidebar-box:not([positionend], [sidebar-positionend]):hover ~ #appcontent #statuspanel {
   inset-inline: auto 0px !important;
 }
-#sidebar-box:not([positionend],[sidebar-positionend]):hover ~ #appcontent #statuspanel-label{
+
+#sidebar-box:not([positionend], [sidebar-positionend]):hover ~ #appcontent #statuspanel-label {
   margin-inline: 0px !important;
-  border-left-style: solid !important; 
+  border-left-style: solid !important;
 }
 
-/* Hide menu Sidebery */
+/* Oculta o cabeçalho do Sidebery */
 #sidebar-header {
   display: none !important;
 }
 
+/* Remove a sombra da caixa de abas quando a barra lateral de abas em árvore está ativa */
 @media -moz-pref("firefoxgx.tree-tabs") {
-    #sidebar-box:is(
-    [sidebarcommand*="tabcenter"],
-    [sidebarcommand*="treestyletab"],
-    [sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929"]) {
-
-        /* Sidebar content 'open' + web content /**/
-        &[checked="true"] ~ #tabbrowser-tabbox {
-            box-shadow: none !important;
-        }
+  #sidebar-box:is([sidebarcommand*="tabcenter"], [sidebarcommand*="treestyletab"], [sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929"]) {
+    &[checked="true"] ~ #tabbrowser-tabbox {
+      box-shadow: none !important;
     }
+  }
 }
 
 
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
-❕Effect
+❕ Efeitos de Animação para Ícones
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
+
+/* Transição suave para ícones */
 .urlbar-icon,
 .toolbarbutton-icon,
 .downloadIconShow > .button-box > .button-icon,
-.menuitem-iconic :is(.menu-iconic-icon,.menu-icon),
+.menuitem-iconic :is(.menu-iconic-icon, .menu-icon),
 #downloads-indicator-icon,
-.urlbar-input-container [role="button"] image{
+.urlbar-input-container [role="button"] image {
   transition: transform 83ms linear !important;
 }
-toolbar .toolbarbutton-1 > .toolbarbutton-icon{
+
+toolbar .toolbarbutton-1 > .toolbarbutton-icon {
   transition: padding 83ms linear !important;
 }
+
+/* Efeito de clique (escala) para vários ícones */
 .urlbar-input-container [role="button"]:active image,
 .downloadIconShow:active > .button-box > .button-icon,
 #downloads-button:active #downloads-indicator-icon,
 toolbarbutton#scrollbutton-up:active > .toolbarbutton-icon,
 toolbarbutton:not(.toolbarbutton-1):active > .toolbarbutton-icon,
 toolbar .toolbarbutton-1:not([disabled]):active > .toolbarbutton-badge-stack > .toolbarbutton-icon,
-.menuitem-iconic:active :is(.menu-iconic-icon,.menu-icon),
-.urlbar-page-action:active > .urlbar-icon{
+.menuitem-iconic:active :is(.menu-iconic-icon, .menu-icon),
+.urlbar-page-action:active > .urlbar-icon {
   transform: scale(0.6) !important;
 }
-.tab-close-button:hover{
+
+/* Efeito no botão de fechar aba */
+.tab-close-button:hover {
   transition: padding-block 83ms linear;
 }
-.tab-close-button:active{
+.tab-close-button:active {
   padding: calc(var(--tab-close-button-padding) + 2px) !important;
 }
-toolbarbutton#scrollbutton-down:active > .toolbarbutton-icon{ transform: scale(-0.6) !important; }
 
-toolbar .toolbarbutton-1:not([disabled]):active > .toolbarbutton-icon{
+/* Efeitos de clique para botões de rolagem */
+toolbarbutton#scrollbutton-down:active > .toolbarbutton-icon {
+  transform: scale(-0.6) !important;
+}
+toolbar .toolbarbutton-1:not([disabled]):active > .toolbarbutton-icon {
   padding: calc(var(--toolbarbutton-inner-padding) + 3px) !important;
 }
 
+
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
-❕Glow effects on hover
+❕ Efeitos de Brilho (Glow)
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
-:root{
+
+/* Variáveis de cor para o efeito de brilho */
+:root {
   --uc-icon-glow-primary: rgba(3, 172, 172, 0.685);
   --uc-icon-glow-secondary: cadetblue;
   --uc-icon-glow-hover-primary: rgba(255, 0, 0, 0.521);
   --uc-icon-glow-hover-secondary: yellow;
 }
 
+/* Aplica o efeito de brilho ao passar o mouse */
+toolbar #downloads-button:hover #downloads-indicator-anchor,
+.findbar-textbox~toolbarbutton:not([disabled]):hover,
+toolbarbutton.scrollbutton-up:not([disabled]):hover,
+toolbarbutton.scrollbutton-down:not([disabled]):hover,
+toolbarbutton#scrollbutton-up:not([disabled]):hover,
+toolbarbutton#scrollbutton-down:not([disabled]):hover {
+  filter: drop-shadow(0 0 1px var(--uc-icon-glow-primary)) drop-shadow(0 0 1px var(--uc-icon-glow-primary));
+}
+
+
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
-❕Make backgrounds transparent
+❕ Transparência de Elementos
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
+
+/* Torna o fundo de vários elementos da UI transparente */
 .close-icon,
 .urlbar-icon,
 .urlbar-icon-wrapper,
@@ -146,144 +197,151 @@ toolbar toolbarbutton > .toolbarbutton-badge-stack,
 toolbarbutton.scrollbutton-up,
 toolbarbutton.scrollbutton-down,
 toolbarbutton#scrollbutton-up,
-toolbarbutton#scrollbutton-down{
+toolbarbutton#scrollbutton-down {
   background-color: transparent !important;
   border-color: transparent !important;
 }
 
-/*
-░░░░░░░░░░░░░░░░░░░░░░░░░░░
-❕Glow effects on hover 
-░░░░░░░░░░░░░░░░░░░░░░░░░░░
-*/
-toolbar #downloads-button:hover #downloads-indicator-anchor,
-.findbar-textbox~toolbarbutton:not([disabled]):hover,
-toolbarbutton.scrollbutton-up:not([disabled]):hover,
-toolbarbutton.scrollbutton-down:not([disabled]):hover,
-toolbarbutton#scrollbutton-up:not([disabled]):hover,
-toolbarbutton#scrollbutton-down:not([disabled]):hover{ 
-filter: drop-shadow(0 0 1px var(--uc-icon-glow-primary)) drop-shadow(0 0 1px var(--uc-icon-glow-primary))
-}
 
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
-❕Effects loading page 
+❕ Animação de Carregamento de Página
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
-@keyframes statusline-anim{from{background-position-x: left}to{background-position-x: right}}
-#statuspanel[type="status"]::after{
+
+/* Animação para a barra de status */
+@keyframes statusline-anim {
+  from { background-position-x: left; }
+  to { background-position-x: right; }
+}
+
+/* Linha animada no topo da tela durante o carregamento */
+#statuspanel[type="status"]::after {
   position: fixed;
   display: block;
   height: 2px;
   width: 100vw;
   top: 0;
-  left:0;
+  left: 0;
   content: "";
   pointer-events: none;
   background-size: 20%;
   background-repeat: no-repeat;
-  background-image: linear-gradient(to left,transparent,#8599d4,transparent);
+  background-image: linear-gradient(to left, transparent, #8599d4, transparent);
   animation: statusline-anim 500ms alternate infinite ease-in-out;
 }
-@media (min-width: 1000px){ #statuspanel[type="status"]::after{ animation-duration: 460ms } }
-@media (min-width: 1400px){ #statuspanel[type="status"]::after{ animation-duration: 520ms } }
-@media (min-width: 1700px){ #statuspanel[type="status"]::after{ background-size: 15%; animation-duration: 550ms } }
-@media (min-width: 2200px){ #statuspanel[type="status"]::after{ animation-duration: 600ms } }
-.browserContainer{ transform: translate(0) }
-menuseparator::before {
- margin-inline: -12px !important;
+
+/* Ajustes de animação para diferentes larguras de tela */
+@media (min-width: 1000px) { #statuspanel[type="status"]::after { animation-duration: 460ms; } }
+@media (min-width: 1400px) { #statuspanel[type="status"]::after { animation-duration: 520ms; } }
+@media (min-width: 1700px) { #statuspanel[type="status"]::after { background-size: 15%; animation-duration: 550ms; } }
+@media (min-width: 2200px) { #statuspanel[type="status"]::after { animation-duration: 600ms; } }
+
+.browserContainer {
+  transform: translate(0);
 }
+
 
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
-❕Gradient line - separators
+❕ Separadores e Ações da Barra de URL
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
+
+/* Ajuste de margem para separadores */
+menuseparator::before {
+  margin-inline: -12px !important;
+}
 toolbarseparator {
   margin-inline: -1px !important;
 }
 #PlacesToolbar menupopup[placespopup] menuseparator {
   margin-inline: -1px !important;
 }
-.urlbar-page-action{
-  margin-inline-end: calc(-16px - 2 * var(--urlbar-icon-padding) );
+
+/* Oculta e revela as ações da página na barra de URL */
+.urlbar-page-action {
+  margin-inline-end: calc(-16px - 2 * var(--urlbar-icon-padding));
   opacity: 0;
   transition: margin-inline-end 100ms linear, opacity 200ms linear;
 }
 #urlbar:hover .urlbar-page-action,
 .urlbar-page-action[open],
-.urlbar-page-action[open] ~ .urlbar-page-action{
+.urlbar-page-action[open] ~ .urlbar-page-action {
   opacity: 1;
   margin-inline-end: 0px !important;
 }
 
+
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
-❕Border Radius in URL 
+❕ Estilização da Barra de URL
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
+
+/* Define o arredondamento dos cantos da barra de URL */
 :root {
   --megabar_border_roundness: 20px;
 }
 
 #urlbar #urlbar-background,
-#urlbar, :is(#urlbar-input-container,.urlbar-input-container),
-#searchbar, .searchbar-textbox {
+#urlbar,
+:is(#urlbar-input-container, .urlbar-input-container),
+#searchbar,
+.searchbar-textbox {
   border-radius: var(--megabar_border_roundness) !important;
 }
 
+/* Arredondamento dos resultados da pesquisa */
 #urlbar[focused]:not([usertyping]) .urlbarView,
 #urlbar .search-one-offs,
 #urlbar .search-one-offs .search-panel-header,
-#urlbar .search-one-offs .search-panel-one-offs-container {
+#urlbar .search-one-offs .search-panel-one-offs-container,
+#urlbar .search-one-offs .search-setting-button-compact {
   border-bottom-left-radius: var(--megabar_border_roundness) !important;
   border-bottom-right-radius: var(--megabar_border_roundness) !important;
 }
 
-#urlbar .search-one-offs .search-setting-button-compact {
-  border-bottom-right-radius: var(--megabar_border_roundness) !important;
-}
-
-#urlbar[focused="true"][open] :is(#urlbar-input-container,.urlbar-input-container) {
+/* Remove o arredondamento inferior quando os resultados estão abertos */
+#urlbar[focused="true"][open] :is(#urlbar-input-container, .urlbar-input-container) {
   border-bottom-left-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
 }
 
-
+/* Ajusta o arredondamento quando a barra de URL está aberta */
 #urlbar[open] #urlbar-background,
 #urlbar[open],
-#urlbar[open] :is(#urlbar-input-container,.urlbar-input-container) {
+#urlbar[open] :is(#urlbar-input-container, .urlbar-input-container) {
   border-radius: calc(var(--megabar_border_roundness) / 1.5) !important;
 }
-
 #urlbar[focused]:not([usertyping]) .urlbarView,
 #urlbar .search-one-offs,
 #urlbar .search-one-offs .search-panel-header,
-#urlbar .search-one-offs .search-panel-one-offs-container {
+#urlbar .search-one-offs .search-panel-one-offs-container,
+#urlbar .search-one-offs .search-setting-button-compact {
   border-bottom-left-radius: calc(var(--megabar_border_roundness) / 1.5) !important;
   border-bottom-right-radius: calc(var(--megabar_border_roundness) / 1.5) !important;
 }
 
-#urlbar .search-one-offs .search-setting-button-compact {
-  border-bottom-right-radius: calc(var(--megabar_border_roundness) / 1.5) !important;
-}
-
-/* altera a fonte e o tamanho da barra de endereço */
-#identity-box, #urlbar-input, .urlbar-input-box, #urlbar-input-container {
+/* Altera a fonte e o tamanho da barra de endereço */
+#identity-box,
+#urlbar-input,
+.urlbar-input-box,
+#urlbar-input-container {
   font-size: 11pt !important;
   font-family: Fira Sans, sans-serif !important;
 }
 
+/* Cor da seleção de texto na barra de URL */
 .urlbar-input::selection {
   background-color: rgba(182, 179, 179, 0.959) !important;
-
 }
 
 #navigator-toolbox {
- z-index: unset !important;
+  z-index: unset !important;
 }
 
-/* Brilho quando a urlbar [aberta] */
+/* Efeito de sobreposição escura quando a barra de URL está aberta */
 #nav-bar::after {
   position: fixed;
   content: "";
@@ -294,69 +352,78 @@ toolbarseparator {
   background-color: transparent;
   z-index: 4;
   pointer-events: none;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
 }
-
 :root:has(#urlbar[open]) #nav-bar::after {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* tracking protection icon */
-:is(#urlbar-input-container,.urlbar-input-container)[pageproxystate="valid"] > #tracking-protection-icon-container > #tracking-protection-icon-box > #tracking-protection-icon {
-  -moz-context-properties: fill !important;
-  fill: #40aa40b7 !important; /* rgb(64,170,64) */
+
+/*
+░░░░░░░░░░░░░░░░░░░░░░░░░░░
+❕ Cores Dinâmicas da Barra de URL (Status da Conexão)
+░░░░░░░░░░░░░░░░░░░░░░░░░░░
+*/
+
+/* Ícone de proteção contra rastreamento */
+:is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"] > #tracking-protection-icon-container > #tracking-protection-icon-box > #tracking-protection-icon {
+  fill: #40aa40b7 !important; /* Verde quando ativo */
+}
+:is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"] > #tracking-protection-icon-container > #tracking-protection-icon-box[hasException] > #tracking-protection-icon {
+  fill: orangered !important; /* Laranja quando há exceção */
+}
+:is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"] > #tracking-protection-icon-container > #tracking-protection-icon-box:not([hasException])[active] > #tracking-protection-icon {
+  fill: #40aa4075 !important; /* Verde mais claro */
 }
 
-:is(#urlbar-input-container,.urlbar-input-container)[pageproxystate="valid"] > #tracking-protection-icon-container > #tracking-protection-icon-box[hasException] > #tracking-protection-icon {
-  -moz-context-properties: fill !important;
-  fill: orangered !important;
-}
+/* Source: https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/urlbar_connection_type_text_colors.css */
+/* Modifica a cor do texto da barra de URL com base no tipo de conexão */
 
-:is(#urlbar-input-container,.urlbar-input-container)[pageproxystate="valid"] > #tracking-protection-icon-container > #tracking-protection-icon-box:not([hasException])[active] > #tracking-protection-icon {
-  -moz-context-properties: fill !important;
-  fill: #40aa4075 !important; /* rgb(64,170,64) */
-}
-
-/* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/urlbar_connection_type_text_colors.css made available under Mozilla Public License v. 2.0
-See the above repository for updates as well as full license text. */
-
-/* Modifies the urlbar text color based on connection type - "normal" https: won't be mdofied */
-
-/* Mixed content including neterror */
-#identity-box[pageproxystate="valid"].unknownIdentity ~ .urlbar-input-box{ color: orange ;
+/* Conteúdo misto ou erro */
+#identity-box[pageproxystate="valid"].unknownIdentity ~ .urlbar-input-box {
+  color: orange;
   background-color: rgba(80, 67, 3, 0.397);
   border-radius: 13px !important;
   font-style: oblique;
 }
-
-/* http: and potentially some other insecure connections like ftp: */
-#identity-box[pageproxystate="valid"].notSecure ~ .urlbar-input-box{ color: orangered ;
-background-color: rgba(255, 68, 0, 0.226);
-border-radius: 13px !important;
+/* Conexão insegura (http, ftp) */
+#identity-box[pageproxystate="valid"].notSecure ~ .urlbar-input-box {
+  color: orangered;
+  background-color: rgba(255, 68, 0, 0.226);
+  border-radius: 13px !important;
 }
-
-/* http: and potentially some other insecure connections like ftp: */
-#identity-box[pageproxystate="valid"].secure ~ .urlbar-input-box{ color: rgba(12, 170, 25, 0.603) ;}
-
-/* Extension pages */
-#identity-box[pageproxystate="valid"].extensionPage ~ .urlbar-input-box{ color: rgb(5, 187, 233);
-background-color: rgba(42, 86, 97, 0.445);
-border-radius: 13px !important;
+/* Conexão segura (https) - cor sutil */
+#identity-box[pageproxystate="valid"].secure ~ .urlbar-input-box {
+  color: rgba(12, 170, 25, 0.603);
 }
-
-/* Internal about: and chrome:// urls (includes reader-view) */
+/* Páginas de extensão */
+#identity-box[pageproxystate="valid"].extensionPage ~ .urlbar-input-box {
+  color: rgb(5, 187, 233);
+  background-color: rgba(42, 86, 97, 0.445);
+  border-radius: 13px !important;
+}
+/* Páginas internas (about:, chrome:) */
 #identity-box[pageproxystate="valid"].localResource ~ .urlbar-input-box,
-#identity-box[pageproxystate="valid"].chromeUI ~ .urlbar-input-box{ color: rgb(214, 160, 240) ;
-background-color: rgba(169, 49, 224, 0.322) ;
-border-radius: 13px !important;
+#identity-box[pageproxystate="valid"].chromeUI ~ .urlbar-input-box {
+  color: rgb(214, 160, 240);
+  background-color: rgba(169, 49, 224, 0.322);
+  border-radius: 13px !important;
+}
+/* Domínio verificado (EV SSL) */
+#identity-box.verifiedDomain ~ .urlbar-input-box {
+  background-color: rgba(50, 255, 50, 0.13);
+  border-radius: 5px !important;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 2px, rgb(0, 0, 0) 0px 0px 2px;
 }
 
-/* https */
-#identity-box.verifiedDomain~ .urlbar-input-box{ background-color: rgba(50, 255, 50, 0.13);
-border-radius: 5px !important;
-box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 2px, rgb(0, 0, 0) 0px 0px 2px;
 
-}
+/*
+░░░░░░░░░░░░░░░░░░░░░░░░░░░
+❕ Estilos Diversos da Interface
+░░░░░░░░░░░░░░░░░░░░░░░░░░░
+*/
+
+/* Estilo do painel de status */
 #statuspanel-label {
   background: #131019 !important;
   color: rgb(175, 173, 175) !important;
@@ -365,18 +432,19 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 2px, rgb(0, 0, 0) 0px 0px 2px;
   border-right: solid 1px #131019 !important;
 }
 
+/* Ordem do ícone de proteção */
 #tracking-protection-icon-container {
-    order: 0 !important;
+  order: 0 !important;
 }
 
-/* Border Radius in Page Sidebery */
+/* Arredondamento do canto do painel de conteúdo da página */
 #tabbrowser-tabpanels {
-    browser[type="content"] {
-    border-top-left-radius: 10px  !important;
-    
-    }
+  browser[type="content"] {
+    border-top-left-radius: 10px !important;
+  }
 }
 
+/* Cor de fundo principal do navegador */
 .browserContainer {
-  background-color: #131019; !important;
-} 
+  background-color: #131019 !important;
+}
