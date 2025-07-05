@@ -247,20 +247,9 @@ toolbarbutton#scrollbutton-down {
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
 
-/* Ajuste de margem para separadores */
-menuseparator::before {
-  margin-inline: -12px !important;
-}
-toolbarseparator {
-  margin-inline: -1px !important;
-}
-#PlacesToolbar menupopup[placespopup] menuseparator {
-  margin-inline: -1px !important;
-}
-
 /* Oculta e revela as ações da página na barra de URL */
 .urlbar-page-action {
-  margin-inline-end: calc(-16px - 2 * var(--urlbar-icon-padding));
+  margin-inline-end: calc(-26px - 2 * var(--urlbar-icon-padding));
   opacity: 0;
   transition: margin-inline-end 100ms linear, opacity 200ms linear;
 }
@@ -328,7 +317,9 @@ toolbarseparator {
 .urlbar-input-box,
 #urlbar-input-container {
   font-size: 11pt !important;
-  font-family: Roboto, sans-serif !important;
+  font-family: Fira Sans, sans-serif !important;
+  font-weight: 500;
+  
 }
 
 /* Cor da seleção de texto na barra de URL */
