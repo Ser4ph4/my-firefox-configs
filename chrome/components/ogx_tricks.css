@@ -347,33 +347,25 @@ border-radius: 13px !important;
 /* Internal about: and chrome:// urls (includes reader-view) */
 #identity-box[pageproxystate="valid"].localResource ~ .urlbar-input-box,
 #identity-box[pageproxystate="valid"].chromeUI ~ .urlbar-input-box{ color: rgb(214, 160, 240) ;
- background-color: rgba(169, 49, 224, 0.322) ;
+background-color: rgba(169, 49, 224, 0.322) ;
 border-radius: 13px !important;
 }
 
 /* https */
 #identity-box.verifiedDomain~ .urlbar-input-box{ background-color: rgba(50, 255, 50, 0.13);
-border-radius: 13px !important;
+border-radius: 5px !important;
+box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 2px, rgb(0, 0, 0) 0px 0px 2px;
 
 }
 #statuspanel-label {
-	background: #131019 !important;
-	color: rgb(175, 173, 175) !important;
+  background: #131019 !important;
+  color: rgb(175, 173, 175) !important;
   border-radius: 0 4px 0 0;
-	border-top: solid 1px #131019 !important;
+  border-top: solid 1px #131019 !important;
   border-right: solid 1px #131019 !important;
 }
 
-.titlebar-button:hover {
-  background-color: hsla(180, 1%, 33%, 0.507) !important;
-   -khtml-border-radius: 15px 0 10px 0 !important;
-  -moz-border-radius: 15px 0 10px 0 !important;
-   border-radius: 15px 0 10px 0  !important;
-   cursor: pointer;
-   transition: background-color 0.3s;
-  }
-
-  #tracking-protection-icon-container {
+#tracking-protection-icon-container {
     order: 0 !important;
 }
 
