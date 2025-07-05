@@ -9,7 +9,6 @@
   ********************************************************************************
 */
 
-
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ❕ Configurações do Sidebery (Barra Lateral)
@@ -281,7 +280,7 @@ toolbarseparator {
 
 /* Define o arredondamento dos cantos da barra de URL */
 :root {
-  --megabar_border_roundness: 20px;
+  --megabar_border_roundness: 10px;
 }
 
 #urlbar #urlbar-background,
@@ -329,7 +328,7 @@ toolbarseparator {
 .urlbar-input-box,
 #urlbar-input-container {
   font-size: 11pt !important;
-  font-family: Fira Sans, sans-serif !important;
+  font-family: Roboto, sans-serif !important;
 }
 
 /* Cor da seleção de texto na barra de URL */
@@ -358,7 +357,6 @@ toolbarseparator {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ❕ Cores Dinâmicas da Barra de URL (Status da Conexão)
@@ -383,14 +381,14 @@ toolbarseparator {
 #identity-box[pageproxystate="valid"].unknownIdentity ~ .urlbar-input-box {
   color: orange;
   background-color: rgba(80, 67, 3, 0.397);
-  border-radius: 13px !important;
+  border-radius: 5px !important;
   font-style: oblique;
 }
 /* Conexão insegura (http, ftp) */
 #identity-box[pageproxystate="valid"].notSecure ~ .urlbar-input-box {
   color: orangered;
   background-color: rgba(255, 68, 0, 0.226);
-  border-radius: 13px !important;
+  border-radius: 5px !important;
 }
 /* Conexão segura (https) - cor sutil */
 #identity-box[pageproxystate="valid"].secure ~ .urlbar-input-box {
@@ -400,14 +398,14 @@ toolbarseparator {
 #identity-box[pageproxystate="valid"].extensionPage ~ .urlbar-input-box {
   color: rgb(5, 187, 233);
   background-color: rgba(42, 86, 97, 0.445);
-  border-radius: 13px !important;
+  border-radius: 5px !important;
 }
 /* Páginas internas (about:, chrome:) */
 #identity-box[pageproxystate="valid"].localResource ~ .urlbar-input-box,
 #identity-box[pageproxystate="valid"].chromeUI ~ .urlbar-input-box {
   color: rgb(214, 160, 240);
   background-color: rgba(169, 49, 224, 0.322);
-  border-radius: 13px !important;
+  border-radius: 5px !important;
 }
 /* Domínio verificado (EV SSL) */
 #identity-box.verifiedDomain ~ .urlbar-input-box {
