@@ -1,24 +1,22 @@
 /*
   ********************************************************************************
-  * *
-  * Ser4ph4 - Firefox Theme                              *
-  * *
+  * *░░░░░░░░░░░░░                                                                          
+  * Ser4ph4 - Firefox Theme  ▪️ Last Update: 06/07/2025▪️ ░░░░░░░░░░░░░░ *
+  * *░░░░░░░░░░░░░
   ********************************************************************************
   * Este é um tema personalizado para o Mozilla Firefox.                         *
   * Para usar, este código deve ser colocado no seu arquivo userChrome.css.      *
   ********************************************************************************
 */
-
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
-❕ Configurações do Sidebery (Barra Lateral)
+▪️Configurações do Sidebery (Barra Lateral)
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
-
 /* Define a largura da barra lateral quando recolhida e expandida */
 :where(#main-window) #browser {
   --uc-sidebar-width: 33px;       /* Largura quando recolhida */
-  --uc-sidebar-hover-width: 210px; /* Largura ao passar o mouse */
+  --uc-sidebar-hover-width: 220px; /* Largura ao passar o mouse */
 }
 
 /* Estiliza o contêiner da barra lateral para auto-ocultar */
@@ -32,7 +30,7 @@
   min-width: var(--uc-sidebar-width) !important;
   width: var(--uc-sidebar-width) !important;
   max-width: var(--uc-sidebar-width) !important;
-  z-index: var(--browser-area-z-index-sidebar, 3);
+  z-index: var(--browser-area-z-index-sidebar, 3) !important;
   background-color: inherit;
   direction: ltr; /* Garante a direção correta do texto */
 }
@@ -102,10 +100,9 @@
 
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
-❕ Efeitos de Animação para Ícones
+▪️Efeitos de Animação para Ícones
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
-
 /* Transição suave para ícones */
 .urlbar-icon,
 .toolbarbutton-icon,
@@ -151,10 +148,9 @@ toolbar .toolbarbutton-1:not([disabled]):active > .toolbarbutton-icon {
 
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
-❕ Efeitos de Brilho (Glow)
+▪️Efeitos de Brilho (Glow)
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
-
 /* Variáveis de cor para o efeito de brilho */
 :root {
   --uc-icon-glow-primary: rgba(3, 172, 172, 0.685);
@@ -173,13 +169,11 @@ toolbarbutton#scrollbutton-down:not([disabled]):hover {
   filter: drop-shadow(0 0 1px var(--uc-icon-glow-primary)) drop-shadow(0 0 1px var(--uc-icon-glow-primary));
 }
 
-
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
-❕ Transparência de Elementos
+▪️Transparência de Elementos
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
-
 /* Torna o fundo de vários elementos da UI transparente */
 .close-icon,
 .urlbar-icon,
@@ -201,13 +195,11 @@ toolbarbutton#scrollbutton-down {
   border-color: transparent !important;
 }
 
-
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
-❕ Animação de Carregamento de Página
+▪️Animação de Carregamento de Página
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
-
 /* Animação para a barra de status */
 @keyframes statusline-anim {
   from { background-position-x: left; }
@@ -243,15 +235,14 @@ toolbarbutton#scrollbutton-down {
 
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
-❕ Separadores e Ações da Barra de URL
+▪️Separadores e Ações da Barra de URL
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
-
 /* Oculta e revela as ações da página na barra de URL */
 .urlbar-page-action {
   margin-inline-end: calc(-26px - 2 * var(--urlbar-icon-padding));
   opacity: 0;
-  transition: margin-inline-end 100ms linear, opacity 200ms linear;
+  transition: margin-inline-end 150ms linear, opacity 200ms linear;
 }
 #urlbar:hover .urlbar-page-action,
 .urlbar-page-action[open],
@@ -263,10 +254,9 @@ toolbarbutton#scrollbutton-down {
 
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
-❕ Estilização da Barra de URL
+▪️Estilização da Barra de URL
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
-
 /* Define o arredondamento dos cantos da barra de URL */
 :root {
   --megabar_border_roundness: 10px;
@@ -350,10 +340,9 @@ toolbarbutton#scrollbutton-down {
 
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
-❕ Cores Dinâmicas da Barra de URL (Status da Conexão)
+▪️Cores Dinâmicas da Barra de URL (Status da Conexão)
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
-
 /* Ícone de proteção contra rastreamento */
 :is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"] > #tracking-protection-icon-container > #tracking-protection-icon-box > #tracking-protection-icon {
   fill: #40aa40b7 !important; /* Verde quando ativo */
@@ -367,7 +356,6 @@ toolbarbutton#scrollbutton-down {
 
 /* Source: https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/urlbar_connection_type_text_colors.css */
 /* Modifica a cor do texto da barra de URL com base no tipo de conexão */
-
 /* Conteúdo misto ou erro */
 #identity-box[pageproxystate="valid"].unknownIdentity ~ .urlbar-input-box {
   color: orange;
@@ -408,7 +396,7 @@ toolbarbutton#scrollbutton-down {
 
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
-❕ Estilos Diversos da Interface
+▪️Estilos Diversos da Interface
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
 
