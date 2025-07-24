@@ -51,7 +51,7 @@
   --tabs-pinned-height: 30px;
   --tabs-pinned-width: 30px;
   --tabs-margin: 1px;
-  --tabs-font: .9955rem sans-serif;
+  --tabs-font: 0.9955rem sans-serif;
   --tabs-border-radius: 5px;
   --tabs-activated-bg: #2a2a41ff;
   --tabs-activated-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.282),
@@ -101,7 +101,6 @@
   font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
 .PinnedTabsBar {
@@ -221,11 +220,13 @@
 }
 
 .PinnedTab[data-updated="true"] .fav > img {
-  mask: radial-gradient(circle at calc(100% - 2px) calc(100% - 2px),
+  mask: radial-gradient(
+    circle at calc(100% - 2px) calc(100% - 2px),
     rgba(0, 0, 0, 0.141),
     rgba(0, 0, 0, 0.141) 4px,
     #000 5px,
-    #000);
+    #000
+  );
 }
 
 .PinnedTab .update-badge {
@@ -319,8 +320,8 @@
   content: "";
   position: absolute;
   left: 4px;
-  top: 4px;             /* respiro superior */
-  bottom: 5px;          /* respiro inferior */
+  top: 4px; /* respiro superior */
+  bottom: 5px; /* respiro inferior */
   width: 2px;
   background-color: var(--ctp-blue);
   border-radius: 5px 0 0 5px;
