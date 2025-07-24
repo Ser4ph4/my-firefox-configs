@@ -97,7 +97,11 @@
 
 .NavigationBar {
   padding: 1.5px !important;
-  font-family: Roboto;
+  font-family: "Comic Mono", monospace !important;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
 }
 
 .PinnedTabsBar {
@@ -297,3 +301,15 @@
 .Tab[data-active="true"][data-loading="true"] .fav {
   background-color: #1a597d4e !important;
 }
+
+.Tab[data-active="true"]::after {
+  content: "●"; /* bolinha sólida */
+  color: var(--ctp-yellow); /* ou outro tom do seu tema */
+  background: transparent;
+  position: absolute;
+  top: -1px;
+  left: 4px;
+  font-size: 10px;
+  z-index: 1000;
+}
+
