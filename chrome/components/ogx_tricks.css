@@ -15,15 +15,15 @@
 */
 /* Define a largura da barra lateral quando recolhida e expandida */
 :where(#main-window) #browser {
-  --uc-sidebar-width: 33px;       /* Largura quando recolhida */
+  --uc-sidebar-width: 33px; /* Largura quando recolhida */
   --uc-sidebar-hover-width: 220px; /* Largura ao passar o mouse */
 }
 
 /* Estiliza o contêiner da barra lateral para auto-ocultar */
 #sidebar-box {
-  --uc-autohide-sidebar-delay: 300ms;       /* Atraso para recolher */
+  --uc-autohide-sidebar-delay: 300ms; /* Atraso para recolher */
   --uc-autohide-transition-duration: 115ms; /* Duração da transição */
-  --uc-autohide-transition-type: linear;    /* Tipo de transição */
+  --uc-autohide-transition-type: linear; /* Tipo de transição */
   --browser-area-z-index-sidebar: 3;
 
   position: relative;
@@ -36,14 +36,17 @@
 }
 
 /* Inverte a direção para a barra lateral à direita */
-#sidebar-box:is([positionend], [sidebar-positionend]):not(:-moz-locale-dir(rtl)) {
+#sidebar-box:is([positionend], [sidebar-positionend]):not(
+    :-moz-locale-dir(rtl)
+  ) {
   direction: rtl;
 }
 
 /* Transição suave para a expansão da barra lateral */
 #sidebar-header,
 #sidebar {
-  transition: min-width var(--uc-autohide-transition-duration) var(--uc-autohide-transition-type) var(--uc-autohide-sidebar-delay) !important;
+  transition: min-width var(--uc-autohide-transition-duration)
+    var(--uc-autohide-transition-type) var(--uc-autohide-sidebar-delay) !important;
   min-width: var(--uc-sidebar-width) !important;
   will-change: min-width;
   direction: ltr;
@@ -74,11 +77,15 @@
 }
 
 /* Move o painel de status para não ser coberto pela barra lateral expandida */
-#sidebar-box:not([positionend], [sidebar-positionend]):hover ~ #appcontent #statuspanel {
+#sidebar-box:not([positionend], [sidebar-positionend]):hover
+  ~ #appcontent
+  #statuspanel {
   inset-inline: auto 0px !important;
 }
 
-#sidebar-box:not([positionend], [sidebar-positionend]):hover ~ #appcontent #statuspanel-label {
+#sidebar-box:not([positionend], [sidebar-positionend]):hover
+  ~ #appcontent
+  #statuspanel-label {
   margin-inline: 0px !important;
   border-left-style: solid !important;
 }
@@ -90,13 +97,16 @@
 
 /* Remove a sombra da caixa de abas quando a barra lateral de abas em árvore está ativa */
 @media -moz-pref("firefoxgx.tree-tabs") {
-  #sidebar-box:is([sidebarcommand*="tabcenter"], [sidebarcommand*="treestyletab"], [sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929"]) {
+  #sidebar-box:is(
+      [sidebarcommand*="tabcenter"],
+      [sidebarcommand*="treestyletab"],
+      [sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929"]
+    ) {
     &[checked="true"] ~ #tabbrowser-tabbox {
       box-shadow: none !important;
     }
   }
 }
-
 
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -123,7 +133,10 @@ toolbar .toolbarbutton-1 > .toolbarbutton-icon {
 #downloads-button:active #downloads-indicator-icon,
 toolbarbutton#scrollbutton-up:active > .toolbarbutton-icon,
 toolbarbutton:not(.toolbarbutton-1):active > .toolbarbutton-icon,
-toolbar .toolbarbutton-1:not([disabled]):active > .toolbarbutton-badge-stack > .toolbarbutton-icon,
+toolbar
+  .toolbarbutton-1:not([disabled]):active
+  > .toolbarbutton-badge-stack
+  > .toolbarbutton-icon,
 .menuitem-iconic:active :is(.menu-iconic-icon, .menu-icon),
 .urlbar-page-action:active > .urlbar-icon {
   transform: scale(0.6) !important;
@@ -145,7 +158,6 @@ toolbar .toolbarbutton-1:not([disabled]):active > .toolbarbutton-icon {
   padding: calc(var(--toolbarbutton-inner-padding) + 3px) !important;
 }
 
-
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▪️Efeitos de Brilho (Glow)
@@ -161,12 +173,13 @@ toolbar .toolbarbutton-1:not([disabled]):active > .toolbarbutton-icon {
 
 /* Aplica o efeito de brilho ao passar o mouse */
 toolbar #downloads-button:hover #downloads-indicator-anchor,
-.findbar-textbox~toolbarbutton:not([disabled]):hover,
+.findbar-textbox ~ toolbarbutton:not([disabled]):hover,
 toolbarbutton.scrollbutton-up:not([disabled]):hover,
 toolbarbutton.scrollbutton-down:not([disabled]):hover,
 toolbarbutton#scrollbutton-up:not([disabled]):hover,
 toolbarbutton#scrollbutton-down:not([disabled]):hover {
-  filter: drop-shadow(0 0 1px var(--uc-icon-glow-primary)) drop-shadow(0 0 1px var(--uc-icon-glow-primary));
+  filter: drop-shadow(0 0 1px var(--uc-icon-glow-primary))
+    drop-shadow(0 0 1px var(--uc-icon-glow-primary));
 }
 
 /*
@@ -186,7 +199,7 @@ toolbar toolbarbutton > .toolbarbutton-badge-stack,
 #identity-box,
 .identity-box-button,
 #tracking-protection-icon-container,
-.findbar-textbox~toolbarbutton,
+.findbar-textbox ~ toolbarbutton,
 toolbarbutton.scrollbutton-up,
 toolbarbutton.scrollbutton-down,
 toolbarbutton#scrollbutton-up,
@@ -202,8 +215,12 @@ toolbarbutton#scrollbutton-down {
 */
 /* Animação para a barra de status */
 @keyframes statusline-anim {
-  from { background-position-x: left; }
-  to { background-position-x: right; }
+  from {
+    background-position-x: left;
+  }
+  to {
+    background-position-x: right;
+  }
 }
 
 /* Linha animada no topo da tela durante o carregamento */
@@ -223,15 +240,31 @@ toolbarbutton#scrollbutton-down {
 }
 
 /* Ajustes de animação para diferentes larguras de tela */
-@media (min-width: 1000px) { #statuspanel[type="status"]::after { animation-duration: 460ms; } }
-@media (min-width: 1400px) { #statuspanel[type="status"]::after { animation-duration: 520ms; } }
-@media (min-width: 1700px) { #statuspanel[type="status"]::after { background-size: 15%; animation-duration: 550ms; } }
-@media (min-width: 2200px) { #statuspanel[type="status"]::after { animation-duration: 600ms; } }
+@media (min-width: 1000px) {
+  #statuspanel[type="status"]::after {
+    animation-duration: 460ms;
+  }
+}
+@media (min-width: 1400px) {
+  #statuspanel[type="status"]::after {
+    animation-duration: 520ms;
+  }
+}
+@media (min-width: 1700px) {
+  #statuspanel[type="status"]::after {
+    background-size: 15%;
+    animation-duration: 550ms;
+  }
+}
+@media (min-width: 2200px) {
+  #statuspanel[type="status"]::after {
+    animation-duration: 600ms;
+  }
+}
 
 .browserContainer {
   transform: translate(0);
 }
-
 
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -250,7 +283,6 @@ toolbarbutton#scrollbutton-down {
   opacity: 1;
   margin-inline-end: 0px !important;
 }
-
 
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -281,7 +313,8 @@ toolbarbutton#scrollbutton-down {
 }
 
 /* Remove o arredondamento inferior quando os resultados estão abertos */
-#urlbar[focused="true"][open] :is(#urlbar-input-container, .urlbar-input-container) {
+#urlbar[focused="true"][open]
+  :is(#urlbar-input-container, .urlbar-input-container) {
   border-bottom-left-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
 }
@@ -297,8 +330,12 @@ toolbarbutton#scrollbutton-down {
 #urlbar .search-one-offs .search-panel-header,
 #urlbar .search-one-offs .search-panel-one-offs-container,
 #urlbar .search-one-offs .search-setting-button-compact {
-  border-bottom-left-radius: calc(var(--megabar_border_roundness) / 1.5) !important;
-  border-bottom-right-radius: calc(var(--megabar_border_roundness) / 1.5) !important;
+  border-bottom-left-radius: calc(
+    var(--megabar_border_roundness) / 1.5
+  ) !important;
+  border-bottom-right-radius: calc(
+    var(--megabar_border_roundness) / 1.5
+  ) !important;
 }
 
 /* Altera a fonte e o tamanho da barra de endereço */
@@ -311,7 +348,6 @@ toolbarbutton#scrollbutton-down {
   font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
 /* Cor da seleção de texto na barra de URL */
@@ -344,13 +380,22 @@ toolbarbutton#scrollbutton-down {
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
 /* Ícone de proteção contra rastreamento */
-:is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"] > #tracking-protection-icon-container > #tracking-protection-icon-box > #tracking-protection-icon {
+:is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"]
+  > #tracking-protection-icon-container
+  > #tracking-protection-icon-box
+  > #tracking-protection-icon {
   fill: #40aa40b7 !important; /* Verde quando ativo */
 }
-:is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"] > #tracking-protection-icon-container > #tracking-protection-icon-box[hasException] > #tracking-protection-icon {
+:is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"]
+  > #tracking-protection-icon-container
+  > #tracking-protection-icon-box[hasException]
+  > #tracking-protection-icon {
   fill: orangered !important; /* Laranja quando há exceção */
 }
-:is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"] > #tracking-protection-icon-container > #tracking-protection-icon-box:not([hasException])[active] > #tracking-protection-icon {
+:is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"]
+  > #tracking-protection-icon-container
+  > #tracking-protection-icon-box:not([hasException])[active]
+  > #tracking-protection-icon {
   fill: #40aa4075 !important; /* Verde mais claro */
 }
 
@@ -393,7 +438,6 @@ toolbarbutton#scrollbutton-down {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 2px, rgb(0, 0, 0) 0px 0px 2px;
 }
 
-
 /*
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▪️Estilos Diversos da Interface
@@ -425,3 +469,26 @@ toolbarbutton#scrollbutton-down {
 .browserContainer {
   background-color: #131019 !important;
 }
+
+/*
+░░░░░░░░░░░░░░░░░░░░░░░░░░░
+▪️Botoes de Fechar/Max/Min 
+░░░░░░░░░░░░░░░░░░░░░░░░░░░
+*/
+
+@media (-moz-platform: windows) {
+  /* reverter para os botões antigos da barra de título */
+  .titlebar-button {
+    & > .toolbarbutton-icon {
+      display: inline-flex !important;
+    }
+  }
+  /* descartar os novos botões da barra de título */
+  .titlebar-button {
+    &::before {
+      display: none !important;
+    }
+  }
+}
+
+

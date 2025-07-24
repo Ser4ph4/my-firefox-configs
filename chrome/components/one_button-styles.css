@@ -1,0 +1,249 @@
+/* Source file made available under Mozilla Public License v. 2.0 See the main repository for updates as well as full license text. 
+   https://github.com/Godiesc/firefox-one */
+
+/*-------------------------- Marcadores - Arrowpanel ----------------------------------*/
+
+/* Bookmark popup dropdown colors */
+
+panel menulist {
+    &:hover, 
+    &[open] {
+        background-color: var(--button-hover-bgcolor) !important;
+        color: var(--arrowpanel-color, var(--tab-selected-textcolor)) !important;
+        box-shadow: none !important;
+    }
+}
+
+/* Border color (down arrow) */
+
+.hideable {
+    --button-background-color-hover: var(--button-hover-bgcolor) !important;
+}
+
+#editBookmarkPanel .expander-up, #editBookmarkPanel .expander-down {
+    border-color: transparent !important;
+}
+
+/* 'Save' & 'Remove' buttons */
+
+#editBookmarkPanelRemoveButton {
+    --button-background-color-hover: #da3633bb !important;
+    -moz-context-properties: fill !important;
+    fill: var(--toolbarbutton-icon-fill) !important;
+    
+    & label {
+        display: none !important;
+    }
+}
+
+/* Background and Border Color in items (Dropdown Menu) */
+
+treechildren::-moz-tree-row(selected) {
+    outline-color: transparent !important;
+}
+
+#editBMPanel_folderTreeRow treechildren::-moz-tree-row(selected) {
+    background-color: var(--button-active-bgcolor) !important;
+}
+
+treechildren::-moz-tree-image(selected), treechildren::-moz-tree-twisty(selected), treechildren::-moz-tree-cell-text(selected) {
+    color: currentColor !important;
+}
+
+#editBMPanel_folderTree,
+#editBMPanel_tagsSelector {
+    background-color: var(--input-bgcolor, Field) !important;
+    border-color: var(--input-border-color, Field) !important;
+}
+
+/* Bookmark dropdown menu when 'open' -Heart icon- */
+
+/* 'highlight' color of input-box */
+
+richlistitem[selected="true"], 
+#editBMPanel_namePicker,
+#editBMPanel_locationField,
+#editBMPanel_tagsField {
+    &::selection {
+        color: var(--contrast-color) !important;
+    }
+}
+
+/* Show keyword box when bookmark a website */
+
+.editBMPanel_locationRow, .editBMPanel_keywordRow{
+    visibility: visible !important;
+    display: block !important;
+}
+
+/* Gradient in button'Firefox Profiler' > 'info' button */
+
+#PanelUI-profiler-header {
+    &[isinfocollapsed="false"] {
+        background: radial-gradient(circle farthest-side at top left, var(--button-active-bgcolor), var(--button-hover-bgcolor)) !important;
+        border-radius: calc(var(--arrowpanel-border-radius) - 2px) !important;
+    }
+}
+
+/* Remove unwanted margin in 'extensions' buttons */
+
+toolbar .toolbaritem-combined-buttons {
+  margin-inline: 0px !important;
+}
+
+/* --------------------------- Barra de pestañas -------------------------------- */
+
+toolbarbutton.bookmark-item:not(.subviewbutton, [disabled="true"]):is([open],:active, :hover) {
+    color: var(--tab-selected-textcolor) !important;  
+    fill:  var(--tab-selected-textcolor) !important; 
+}
+
+/* Alinear botones de la barra de pestañas */
+
+#TabsToolbar .toolbarbutton-1 { padding-block: var(--tab-block-margin-personal) !important; }
+
+/* margin-right ultimo botón de la nav-bar*/
+
+#nav-bar-overflow-button,
+:root:not([chromehidden~="toolbar"],[sizemode="fullscreen"]) #nav-bar:not([nonemptyoverflow]) #nav-bar-customization-target > :is(toolbarbutton, toolbaritem):last-child{
+    padding-inline-end: var(--toolbar-start-end-padding) !important;
+}
+
+/* Botones de: all-tabs and unified extensions */
+
+/* botón >> ALL tabs */
+
+.all-tabs-item {
+    border-radius: var(--arrowpanel-menuitem-border-radius) !important;
+}
+
+/* Groups icon color in 'List all tabs' button */
+
+.subviewbutton-iconic.tab-group-icon-closed>image {
+  color: light-dark(var(--tab-group-color), var(--tab-group-color)) !important;
+}
+
+/* botón >> Unified extentions */
+
+:root{ --uei-icon-size: 18px !important; }
+
+.toolbaritem-combined-buttons:is(:not([cui-areatype="toolbar"]), [overflowedItem="true"]) > toolbarbutton:not(.toolbarbutton-1)[disabled] {
+    opacity: 1 !important;
+}
+
+#unified-extensions-panel .unified-extensions-item{
+    padding-block: 0 !important;
+    margin-block: 0px !important;
+}
+
+.unified-extensions-item-action-button.panel-no-padding.webextension-browser-action.subviewbutton.subviewbutton-iconic{
+    padding-block: 2px !important;
+    margin-block: 0px !important;
+}
+
+.unified-extensions-item-menu-button:is(panelview .toolbarbutton-1, toolbarbutton.subviewbutton, .widget-overflow-list .toolbarbutton-1, 
+.toolbaritem-combined-buttons:is(:not([cui-areatype="toolbar"]), [overflowedItem="true"]) > toolbarbutton):not([disabled]) {
+    background: transparent !important;
+    padding-block: 0px !important;
+}
+
+.unified-extensions-item-menu-button.subviewbutton.subviewbutton-iconic:hover image {
+    background: var(--button-bgcolor) !important;
+    border-radius: var(--toolbarbutton-border-radius) !important;
+}
+
+/* Second label del botón de extenciones */
+
+@media (-moz-platform: linux) {
+#unified-extensions-area toolbaritem .unified-extensions-item-message-deck label{
+    appearance: none !important;
+    font-size: 0.875em !important;
+    width: -moz-available !important;
+    }
+}
+
+/* Separador linea Vertical para tabs-bar, usando "espacio flexible" */
+
+:is(#TabsToolbar) toolbarpaletteitem[place="toolbar"][id^="wrapper-customizableui-special-spring"],:is(#TabsToolbar) toolbarspring {
+    background-color: transparent !important;
+    max-width: 0px !important;
+    min-width: 0px !important;
+    max-height: calc(var(--tab-height-personal) + var(--tab-block-margin) * 2) !important;
+    margin-inline: 3px !important;
+    border-left: 1px solid red !important;
+    border-image: 0 1 linear-gradient(
+    transparent 28%,
+    color-mix(in srgb, currentColor 20%, transparent) 28%,
+    color-mix(in srgb, currentColor 20%, transparent) 70%,
+    transparent 70%) !important;
+}
+
+/* Estilo separador en 'Customization mode', permite mayor zona para arrastre */
+
+:is(#TabsToolbar) toolbarpaletteitem[place="toolbar"][id^="wrapper-customizableui-special-spring"] {
+    min-width: 10px !important;
+    min-height: var(--tabs-height-personal) !important;
+    max-height: var(--tabs-height-personal) !important;
+    margin-block: 0 !important;
+}
+
+/* Status panel */
+
+#statuspanel label {
+    background-color: var(--lwt-accent-color) !important;
+    color: currentColor !important;
+    border: 1px solid var(--toolbarbutton-hover-personal) !important;
+    border-radius: 0 8px 0 8px !important;
+}
+
+/* Delete style when 'sidebar' button change to 'active' */
+
+#sidebar-button {
+    --toolbarbutton-active-background: transparent !important;
+
+    &[checked] {
+        @media -moz-pref("sidebar.revamp") {
+            list-style-image: url("chrome://browser/skin/sidebar-collapsed.svg") !important;
+        }
+
+        &:hover {
+            --toolbarbutton-active-background: var(--toolbarbutton-hover-background) !important;
+        }
+    }
+}
+
+/* ---------------------------------------------- Used for various smooth transition ---------------------------------------------- */
+
+panel :is(menulist, button, toolbarbutton:not(#firefox-view-button,[.subviewbutton])):not([open]),   /* Botones dentro de arrowpanels */
+.titlebar-button .toolbarbutton-icon,                                                                /* Window controls */
+.toolbarbutton-1 .toolbarbutton-icon,                                                                /* Botones default */
+.toolbarbutton-1 .toolbarbutton-badge-stack,                                                         /* Extensiones */
+.toolbarbutton-1 .toolbarbutton-badge-stack image,                                                   /* Account icon, download icon 'Used in left-sidebar'  | */
+#PlacesToolbarItems>.bookmark-item,                                                                  /* Bookmark items                                      | */
+.toolbarbutton-1>image,                                                                              /* íconos default                                      | */
+#PlacesToolbarItems>.bookmark-item>.toolbarbutton-icon,                                              /* Bookmark icon                                       | */
+#OtherBookmarks:not(bookmark-item)>.toolbarbutton-icon{                                              /* 'Other bookmarks' icon ---------------------------- v */
+    transition: all 0.2s ease !important;
+}
+
+/* Transición del botón de página segura, bookmark y Tracking Protection de la url */
+
+#identity-box[pageproxystate="valid"].chromeUI #identity-icon,
+#pageAction-panel-bookmark[starred], #star-button[starred],
+#urlbar-input-container #tracking-protection-icon { 
+    transition: fill 0.2s ease !important;
+}
+
+/* Transición para los demás botones de la url */
+
+#urlbar box, #page-action-buttons hbox { 
+    transition: background-color 0.2s ease !important;
+}
+
+/* Transition tab 'hover' */
+
+.tab-background {
+    .tabbrowser-tab > .tab-stack > &:not([selected], [multiselected]) {
+        transition: background-color 0.2s ease !important;
+    }
+}

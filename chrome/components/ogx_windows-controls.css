@@ -4,127 +4,127 @@
 /* WindowsOS - window control icons */
 
 @media (-moz-platform: windows) {
+  .titlebar-button {
+    color: var(--general-color) !important;
+    padding-inline-start: 13px !important;
+    padding-inline-end: 13px !important;
+  }
 
-    .titlebar-button {
-        color: var(--general-color) !important;
-        padding-inline-start: 13px !important;
-        padding-inline-end: 13px !important;
-    }
-  
-    @media (not (-moz-bool-pref:"firefoxgx.oneline")) and (not (-moz-bool-pref:"firefoxgx.tree-tabs")) and (not (-moz-bool-pref:"sidebar.verticalTabs")) {
-        .titlebar-min {
-            padding-block-start: 12px !important;
-            padding-block-end: 0px !important;
-        }
-    }
-    
-    .titlebar-close image {
-        border-radius: 0 !important;
-        height: 15px !important;
-        width: 15px !important;
-    }
-    
-    .titlebar-min image, .titlebar-max image  {
-        border-radius: 0 !important;
-        height: 12px !important;
-        width: 12px !important;
-    }
-    .titlebar-restore image {
-        height: 14px !important;
-        width: 13px !important;
-    }
-    :root:is([lwtheme-image], [style*="--lwt-additional-images"]) .titlebar-button:hover:not(.titlebar-close) {
-        background-color: var(--toolbarbutton-hover-personal) !important;
-        color: var(--general-color) !important;
-    }
-    
-    /* Keep the same windows control icons in all the themes, including the themes with images */
-    
-    .titlebar-button {
-        background-color: transparent !important;
-        -moz-context-properties: stroke !important;
-        stroke: currentColor !important;
-    }
-    .titlebar-button:hover {
-        background-color: hsla(180, 1%, 33%, 0.507) !important;
-         -khtml-border-radius: 3px;
-        -moz-border-radius: 3px;
-         border-radius: 3px;
-     
-     
-    }
-    .titlebar-close {
-        list-style-image: url(chrome://browser/skin/window-controls/close.svg) !important
-    }
+  @media (not (-moz-bool-pref: "firefoxgx.oneline")) and (not (-moz-bool-pref: "firefoxgx.tree-tabs")) and (not (-moz-bool-pref: "sidebar.verticalTabs")) {
     .titlebar-min {
-        list-style-image: url(chrome://browser/skin/window-controls/minimize.svg) !important
+      padding-block-start: 0px !important;
+      padding-block-end: 0px !important;
     }
-    .titlebar-max {
-        list-style-image: url(chrome://browser/skin/window-controls/maximize.svg) !important
-    }
-    .titlebar-restore {
-        list-style-image: url(chrome://browser/skin/window-controls/restore.svg) !important
-    }
-    
-    /* Larger buttons (min-max-close) on non-maximized windows */
-    
-    :root:has(#toolbar-menubar[autohide="true"]) .titlebar-buttonbox {
-        height: calc(var(--tab-height-personal) - 1px + var(--windowed-top-padding, 0px) + var(--my-tab-margin-top)) !important;
-        margin-top: calc(0px - var(--windowed-top-padding,0px)) !important;
-    }
+  }
+
+  .titlebar-close image {
+    border-radius: 0 !important;
+    height: 20px !important;
+    width: 20px !important;
+  }
+
+  .titlebar-min image,
+  .titlebar-max image {
+    border-radius: 0 !important;
+    height: 20px !important;
+    width: 20px !important;
+  }
+  .titlebar-restore image {
+    height: 20px !important;
+    width: 20px !important;
+  }
+  :root:is([lwtheme-image], [style*="--lwt-additional-images"])
+    .titlebar-button:hover:not(.titlebar-close) {
+    background-color: var(--toolbarbutton-hover-personal) !important;
+    color: var(--general-color) !important;
+  }
+
+  /* Keep the same windows control icons in all the themes, including the themes with images */
+
+  .titlebar-button {
+    background-color: transparent !important;
+    -moz-context-properties: stroke !important;
+    stroke: currentColor !important;
+  }
+  .titlebar-button:hover {
+    background-color: hsla(180, 1%, 33%, 0.507) !important;
+    -khtml-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 10px 0 10px 0;
+  }
+
+  /* Larger buttons (min-max-close) on non-maximized windows */
+
+  :root:has(#toolbar-menubar[autohide="true"]) .titlebar-buttonbox {
+    height: calc(
+      var(--tab-height-personal) - 1px + var(--windowed-top-padding, 0px) +
+        var(--my-tab-margin-top)
+    ) !important;
+    margin-top: calc(0px - var(--windowed-top-padding, 0px)) !important;
+  }
 }
 
 /* Linux default window control icons */
 
 @media (-moz-platform: linux) {
-
-    .titlebar-button{
-        list-style-image: none !important;
-        appearance: none !important;
-    }
-    .titlebar-button > .toolbarbutton-icon{
-        appearance: auto !important;
-        background: none !important;
-        width: unset !important;
-        height: unset !important;
-    }
-    .titlebar-min > .toolbarbutton-icon{
-        -moz-default-appearance: -moz-window-button-minimize !important;
-    }
-    .titlebar-max > .toolbarbutton-icon{
-        -moz-default-appearance: -moz-window-button-maximize !important;
-    }
-    .titlebar-restore > .toolbarbutton-icon{
-        -moz-default-appearance: -moz-window-button-restore !important;
-    }
-    .titlebar-close > .toolbarbutton-icon{
-        -moz-default-appearance: -moz-window-button-close !important;
-    }
-    .titlebar-buttonbox {
-        min-height: calc(var(--tab-block-margin-personal) * 2 + var(--tab-height-personal)) !important;
-        max-height: calc(var(--tab-block-margin-personal) * 2 + var(--tab-height-personal)) !important;
-    }
+  .titlebar-button {
+    list-style-image: none !important;
+    appearance: none !important;
+  }
+  .titlebar-button > .toolbarbutton-icon {
+    appearance: auto !important;
+    background: none !important;
+    width: unset !important;
+    height: unset !important;
+  }
+  .titlebar-min > .toolbarbutton-icon {
+    -moz-default-appearance: -moz-window-button-minimize !important;
+  }
+  .titlebar-max > .toolbarbutton-icon {
+    -moz-default-appearance: -moz-window-button-maximize !important;
+  }
+  .titlebar-restore > .toolbarbutton-icon {
+    -moz-default-appearance: -moz-window-button-restore !important;
+  }
+  .titlebar-close > .toolbarbutton-icon {
+    -moz-default-appearance: -moz-window-button-close !important;
+  }
+  .titlebar-buttonbox {
+    min-height: calc(
+      var(--tab-block-margin-personal) * 2 + var(--tab-height-personal)
+    ) !important;
+    max-height: calc(
+      var(--tab-block-margin-personal) * 2 + var(--tab-height-personal)
+    ) !important;
+  }
 }
 
 @media (-moz-gtk-csd-reversed-placement) {
-    .titlebar-buttonbox-container {
-        margin-inline: 2px 8px !important;
-    }
+  .titlebar-buttonbox-container {
+    margin-inline: 2px 8px !important;
+  }
 }
-.titlebar-button{
-    background-size: 12px 12px;
-    background-repeat: no-repeat;
-    background-position: center;
-    list-style-image: none !important;
-    background-color: transparent !important; 
-    opacity: 0.7;
+.titlebar-button {
+  background-size: 12px 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+  list-style-image: none !important;
+  background-color: transparent !important;
+  opacity: 0.7;
 }
-.titlebar-min{
-background-image: radial-gradient(rgba(255, 255, 0, 0.514) 55%,transparent 65%);
-} 
-.titlebar-restore, .titlebar-max {
-background-image: radial-gradient(rgba(8, 110, 206, 0.973) 55%,transparent 65%);
+.titlebar-min {
+  background-image: radial-gradient(
+    rgba(255, 255, 0, 0.514) 55%,
+    transparent 65%
+  );
 }
-.titlebar-close{
-background-image: radial-gradient(rgb(221, 0, 0) 55%,transparent 65%);
+.titlebar-restore,
+.titlebar-max {
+  background-image: radial-gradient(
+    rgba(8, 110, 206, 0.973) 55%,
+    transparent 65%
+  );
+}
+.titlebar-close {
+  background-image: radial-gradient(rgb(136, 8, 8) 55%, transparent 65%);
 }

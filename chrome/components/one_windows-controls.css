@@ -1,0 +1,150 @@
+/* Source file made available under Mozilla Public License v. 2.0 See the main repository for updates as well as full license text. 
+   https://github.com/Godiesc/firefox-one */
+
+/* WindowsOS - window control icons */
+
+@media (-moz-platform: windows) {
+
+    /* Size of button */
+    .titlebar-button {
+        padding: 8px 16px !important;
+        
+        &::after {
+            content: "";
+            position: absolute;
+            border-radius: 4px !important;
+            padding-block: calc(var(--tab-height-personal)/2 + 0px) !important;
+            padding-inline: 17px !important;
+            z-index: -1 !important;
+            
+            /* New height for 'Vertical tabs' */
+            @media -moz-pref("firefoxone.tree_tabs_style") or -moz-pref("sidebar.verticalTabs") {
+                padding-block: calc(var(--menubar-height-personal, var(--toolbar-height-personal))/2 - 5px) !important;
+            }
+        }
+    }
+
+    /* Background color when 'hover' */
+    .titlebar-button:hover::after{
+        background-color: var(--toolbarbutton-hover-personal) !important;
+    }
+
+    /* Background color when 'hover' on 'close' button */
+    .titlebar-button:is(.titlebar-close):hover::after {        
+        background-color: hsl(355,86%,49%) !important;
+    }
+
+    /* Keep the same windows control icons in all the themes, including the themes with images */
+
+    .titlebar-button {
+        background-color: transparent !important;
+        -moz-context-properties: stroke !important;
+    }
+    .titlebar-close {
+        list-style-image: url(chrome://browser/skin/window-controls/close.svg) !important;
+    }
+    .titlebar-min {
+        list-style-image: url(chrome://browser/skin/window-controls/minimize.svg) !important
+    }
+    .titlebar-max {
+        list-style-image: url(chrome://browser/skin/window-controls/maximize.svg) !important
+    }
+    .titlebar-restore {
+        list-style-image: url(chrome://browser/skin/window-controls/restore.svg) !important;
+    }
+}
+
+/* Linux default window control icons */
+
+@media (-moz-platform: linux) {
+
+    .titlebar-button {
+        list-style-image: none !important;
+        appearance: none !important;
+    }
+    .titlebar-min > .toolbarbutton-icon {
+        -moz-default-appearance: -moz-window-button-minimize !important;
+    }
+    .titlebar-max > .toolbarbutton-icon {
+        -moz-default-appearance: -moz-window-button-maximize !important;
+    }
+    .titlebar-restore > .toolbarbutton-icon {
+        -moz-default-appearance: -moz-window-button-restore !important;
+    }
+    .titlebar-close > .toolbarbutton-icon {
+        -moz-default-appearance: -moz-window-button-close !important;
+    }
+    .titlebar-buttonbox {
+        min-height: calc(var(--tab-block-margin-personal) * 2 + var(--tab-height-personal)) !important;
+        max-height: calc(var(--tab-block-margin-personal) * 2 + var(--tab-height-personal)) !important;
+    }
+}
+
+@media (-moz-gtk-csd-reversed-placement) {
+    .titlebar-buttonbox-container {
+        padding-inline: 8px !important;
+    }
+}
+
+/* Styles when using 'Vertical tabs' configuration */
+
+@media -moz-pref("firefoxone.tree_tabs_style") or -moz-pref("sidebar.verticalTabs") {
+
+    /* New height */
+    #toolbar-menubar[autohide="true"] .titlebar-buttonbox-container,
+    #toolbar-menubar[autohide="true"] ~ #nav-bar .titlebar-buttonbox-container {
+        max-height: calc(var(--toolbar-height-personal) + 8px) !important;
+        min-height: calc(var(--toolbar-height-personal) + 8px) !important;
+        
+        
+        /* Extra space after close button - windowsOS*/
+        @media (-moz-platform: windows) {
+            & .titlebar-close {
+                padding-inline-end: 22px !important;
+            }
+        }
+        
+        /* Extra space after close button on right - linuxOS */
+        @media (-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement)) {
+            & .titlebar-close {
+                padding-inline-end: 12px !important;
+            }
+        }
+    }
+    
+    /* Separador 'window controls on right' */
+
+    @media -moz-pref("firefoxone.style_without_leftsidebar"),
+    (not -moz-pref("firefoxone.style_without_leftsidebar")) and -moz-pref("browser.toolbars.bookmarks.visibility", 'never') {
+        #toolbar-menubar[autohide="true"],
+        #toolbar-menubar[autohide="true"] ~ #nav-bar {
+            .titlebar-buttonbox-container:before {
+                background: url("../icons/urlbar-separator.svg") no-repeat center !important;
+                content: ""; display: block !important;
+                background-size: 16px 16px !important;
+                width: 21px !important;
+                margin-left: -2px !important;
+                height: calc(var(--toolbar-height-personal) + 8px);
+                -moz-context-properties: fill !important;
+                fill: var(--toolbarbutton-icon-fill) !important;
+                opacity: 0.2;
+            }
+        }
+    }
+    
+    /* Separador 'window controls on left' */
+    
+    @media (-moz-gtk-csd-reversed-placement) {
+        
+        :root:has(#toolbar-menubar[autohide="true"]) .titlebar-buttonbox-container:after {
+            background: url("../icons/urlbar-separator.svg") no-repeat center !important;
+            content: ""; display: block !important;
+            background-size: 6px 16px !important;
+            width: 21px !important;
+            height: calc(var(--toolbar-height-personal) + 8px);
+            -moz-context-properties: fill !important;
+            fill: var(--toolbarbutton-icon-fill) !important;
+            opacity: 0.3;
+        }
+    }
+}
