@@ -140,12 +140,25 @@
   border-radius: 5px;
 }
 
+.Tab .close:hover {
+  background-color: rgba(243, 139, 168, 0.1);
+  transform: scale(0.9);
+}
+
 .Tab .close > svg {
   fill: var(--ctp-red);
+  width: 22px;
+  height: 22px;
+  transform: scale(0.9);
+  transition: fill 0.5s ease, filter 0.2s ease;
+  display: block;
+  left: 1px;
+  top: 1px;
 }
 
 .Tab .close:hover > svg {
   fill: var(--ctp-maroon);
+  filter: drop-shadow(0 0 1px var(--ctp-red));
 }
 
 .Tab.-loud {
