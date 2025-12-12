@@ -28,9 +28,9 @@ findbar {
 
 .urlbarView-row[selected],
 .urlbarView-row[row-selectable]:not([selected]):hover {
-  --urlbar-popup-url-color: var(--toolbar-field-focus-color) !important;
-  background-color: var(--autocomplete-popup-hover-background) !important;
   --link-color: var(--tab-selected-textcolor) !important;
+  background-color: var(--autocomplete-popup-hover-background) !important;
+  color: currentColor !important;
   border-radius: 0px !important;
 }
 
@@ -79,12 +79,10 @@ findbar {
 /* favicons */
 
 .urlbarView-row {
-  @media -moz-pref("browser.urlbar.richSuggestions.featureGate") {
-    &:not([rich-suggestion]),
-    &[rich-suggestion][icon-size="16"] {
-      --urlbarView-icon-margin-start: 18px !important;
-      --urlbarView-icon-margin-end: 14px !important;
-    }
+  &:not([rich-suggestion]),
+  &[rich-suggestion][icon-size="16"] {
+    --urlbarView-icon-margin-start: 18px !important;
+    --urlbarView-icon-margin-end: 14px !important;
   }
 }
 
@@ -224,14 +222,26 @@ findbar {
 
 #urlbar,
 #searchbar {
-  --urlbar-height: calc(var(--toolbar-height-personal) - 12px) !important;
-  --urlbar-min-height: calc(var(--toolbar-height-personal) - 12px) !important;
+  --urlbar-height: calc(var(--toolbar-height-personal) - 10px) !important;
+  --urlbar-min-height: calc(var(--toolbar-height-personal) - 10px) !important;
 }
 
 /* Roundness */
+
 #urlbar,
 #urlbar-background {
-  border-radius: var(--border-radius-urlbar-personal) !important;
+  --toolbarbutton-border-radius: var(
+    --border-radius-urlbar-personal
+  ) !important;
+  border-radius: var(--toolbarbutton-border-radius) !important;
+}
+
+#urlbar[open],
+#urlbar[open] #urlbar-background {
+  --toolbarbutton-border-radius: calc(
+    var(--border-radius-urlbar-personal) + 6px
+  ) !important;
+  border-radius: var(--toolbarbutton-border-radius) !important;
 }
 
 #urlbar:not([open], [focused]) #urlbar-background {
@@ -284,7 +294,7 @@ findbar {
   z-index: unset !important;
 }
 
-/* Brighness when urlbar [open]*/
+/* Dark filter when urlbar is [open] */
 
 #urlbar {
   box-shadow: 0 0 0 100vw transparent;
@@ -294,16 +304,17 @@ findbar {
 #urlbar[open] {
   box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.5);
   transition: box-shadow 250ms ease-out !important;
-  border-radius: calc(var(--border-radius-urlbar-personal) + 6px) !important;
   overflow: hidden !important;
 }
 
 /* Search Engine button */
 
-@media not -moz-pref("browser.urlbar.searchModeSwitcher.featureGate") {
-  #urlbar-searchmode-switcher:not(:hover, [open]) {
-    background-color: transparent !important;
-  }
+#urlbar-searchmode-switcher:not(:hover, [open]) {
+  background-color: transparent !important;
+}
+
+#searchmode-switcher-icon {
+  list-style-image: url("chrome://global/skin/icons/search-glass.svg") !important;
 }
 
 #urlbar-searchmode-switcher {
@@ -341,16 +352,13 @@ findbar {
   margin: -2px !important;
 }
 
-@media -moz-pref("browser.urlbar.searchModeSwitcher.featureGate"),
-  -moz-pref("browser.urlbar.scotchBonnet.enableOverride") {
-  #urlbar[searchmode] {
-    #urlbar-searchmode-switcher {
-      background-color: var(--urlbar-box-bgcolor) !important;
+#urlbar[searchmode] {
+  #urlbar-searchmode-switcher {
+    background-color: var(--urlbar-box-bgcolor) !important;
 
-      &:is(:hover, [open]) {
-        background-color: var(--urlbar-box-hover-bgcolor) !important;
-        border-radius: var(--urlbar-icon-border-radius) !important;
-      }
+    &:is(:hover, [open]) {
+      background-color: var(--urlbar-box-hover-bgcolor) !important;
+      border-radius: var(--urlbar-icon-border-radius) !important;
     }
   }
 }
@@ -554,14 +562,14 @@ findbar {
 /* Space between left url icons */
 
 #identity-box > box {
-  margin-inline-end: 2px !important;
+  margin-inline-end: 4px !important;
 }
 
 /* Space between right url icons */
 
 #page-action-buttons > hbox,
 #tracking-protection-icon-container {
-  margin-inline-start: 2px !important;
+  margin-inline-start: 4px !important;
 }
 
 /* Green color of the secure web description */

@@ -1,60 +1,48 @@
-/* Source file made available under Mozilla Public License v. 2.0 See the main repository for updates as well as full license text. 
+/* Source file made available under Mozilla Public License v. 2.0
+   See the main repository for updates as well as full license text.
    https://github.com/Godiesc/firefox-gx */
 
-/* WindowsOS - window control icons */
+/* Estilos gerais para botões de controle de janela */
+.titlebar-button {
+  background: transparent no-repeat center !important;
+  background-size: 10px 10px !important;
+  list-style-image: none !important;
+  opacity: 0.7;
+}
 
+.titlebar-min {
+  list-style-image: url("../icons/minimize.svg") !important;
+}
+
+.titlebar-max,
+.titlebar-restore {
+  list-style-image: url("../icons/maximize.svg") !important;
+}
+
+.titlebar-close {
+  list-style-image: url("../icons/close.svg") !important;
+}
+
+/* WindowsOS - Window Control Icons */
 @media (-moz-platform: windows) {
   .titlebar-button {
     color: var(--general-color) !important;
-    padding-inline-start: 13px !important;
-    padding-inline-end: 13px !important;
-  }
-
-  @media (not (-moz-bool-pref: "firefoxgx.oneline")) and (not (-moz-bool-pref: "firefoxgx.tree-tabs")) and (not (-moz-bool-pref: "sidebar.verticalTabs")) {
-    .titlebar-min {
-      padding-block-start: 0px !important;
-      padding-block-end: 0px !important;
-    }
-  }
-
-  .titlebar-close image {
-    border-radius: 0 !important;
-    height: 20px !important;
-    width: 20px !important;
-  }
-
-  .titlebar-min image,
-  .titlebar-max image {
-    border-radius: 0 !important;
-    height: 20px !important;
-    width: 20px !important;
-  }
-  .titlebar-restore image {
-    height: 20px !important;
-    width: 20px !important;
-  }
-  :root:is([lwtheme-image], [style*="--lwt-additional-images"])
-    .titlebar-button:hover:not(.titlebar-close) {
-    background-color: var(--toolbarbutton-hover-personal) !important;
-    color: var(--general-color) !important;
-  }
-
-  /* Keep the same windows control icons in all the themes, including the themes with images */
-
-  .titlebar-button {
-    background-color: transparent !important;
+    padding-inline: 8px !important;
     -moz-context-properties: stroke !important;
     stroke: currentColor !important;
   }
-  .titlebar-button:hover {
-    background-color: hsla(180, 1%, 33%, 0.507) !important;
-    -khtml-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 10px 0 10px 0;
-  }
 
-  /* Larger buttons (min-max-close) on non-maximized windows */
+.titlebar-button {
+  transition: background-color 0.2s ease, border-radius 0.2s ease;
+}
 
+.titlebar-button:hover {
+  background-color: hsla(180, 1%, 33%, 0.15) !important;
+  border-radius: 999px; /* borda totalmente arredondada */
+  padding: 2px; /* se quiser que o fundo arredondado fique mais visível */
+}
+
+  /* Ajuste para botões em janelas não maximizadas */
   :root:has(#toolbar-menubar[autohide="true"]) .titlebar-buttonbox {
     height: calc(
       var(--tab-height-personal) - 1px + var(--windowed-top-padding, 0px) +
@@ -62,33 +50,61 @@
     ) !important;
     margin-top: calc(0px - var(--windowed-top-padding, 0px)) !important;
   }
+
+  /* Reduzindo tamanho dos ícones */
+  .titlebar-min image,
+  .titlebar-max image,
+  .titlebar-restore image,
+  .titlebar-close image {
+    border-radius: 0 !important;
+    height: 16px !important;
+    width: 16px !important;
+  }
+
+  /* Hover effect para temas com imagens */
+  :root:is([lwtheme-image], [style*="--lwt-additional-images"])
+    .titlebar-button:hover:not(.titlebar-close) {
+    background-color: var(--toolbarbutton-hover-personal) !important;
+    color: var(--general-color) !important;
+  }
+
+  /* Ajuste para botões em configurações específicas */
+  @media (not (-moz-bool-pref: "firefoxgx.oneline")) and (not (-moz-bool-pref: "firefoxgx.tree-tabs")) and (not (-moz-bool-pref: "sidebar.verticalTabs")) {
+    .titlebar-min {
+      padding-block: 0 !important;
+    }
+  }
 }
 
-/* Linux default window control icons */
-
+/* Linux - Window Control Icons */
 @media (-moz-platform: linux) {
   .titlebar-button {
-    list-style-image: none !important;
     appearance: none !important;
   }
+
   .titlebar-button > .toolbarbutton-icon {
     appearance: auto !important;
     background: none !important;
     width: unset !important;
     height: unset !important;
   }
+
   .titlebar-min > .toolbarbutton-icon {
     -moz-default-appearance: -moz-window-button-minimize !important;
   }
+
   .titlebar-max > .toolbarbutton-icon {
     -moz-default-appearance: -moz-window-button-maximize !important;
   }
+
   .titlebar-restore > .toolbarbutton-icon {
     -moz-default-appearance: -moz-window-button-restore !important;
   }
+
   .titlebar-close > .toolbarbutton-icon {
     -moz-default-appearance: -moz-window-button-close !important;
   }
+
   .titlebar-buttonbox {
     min-height: calc(
       var(--tab-block-margin-personal) * 2 + var(--tab-height-personal)
@@ -99,32 +115,9 @@
   }
 }
 
+/* Linux - Reversed Placement */
 @media (-moz-gtk-csd-reversed-placement) {
   .titlebar-buttonbox-container {
     margin-inline: 2px 8px !important;
   }
-}
-.titlebar-button {
-  background-size: 12px 12px;
-  background-repeat: no-repeat;
-  background-position: center;
-  list-style-image: none !important;
-  background-color: transparent !important;
-  opacity: 0.7;
-}
-.titlebar-min {
-  background-image: radial-gradient(
-    rgba(255, 255, 0, 0.514) 55%,
-    transparent 65%
-  );
-}
-.titlebar-restore,
-.titlebar-max {
-  background-image: radial-gradient(
-    rgba(8, 110, 206, 0.973) 55%,
-    transparent 65%
-  );
-}
-.titlebar-close {
-  background-image: radial-gradient(rgb(136, 8, 8) 55%, transparent 65%);
 }
