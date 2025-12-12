@@ -8,5 +8,6 @@ SIDEBERY CSS
 
 
 ------------------
+![Firefox]([https://github.com/user-attachments/assets/ce9172f0-bedf-4dc8-8186-5adaafbad258](https://github.com/Ser4ph4/my-firefox-configs/blob/main/screenshot.png?raw=true))
 
-[i]https://github.com/Ser4ph4/my-firefox-configs/blob/main/screenshot.png?raw=true
+
