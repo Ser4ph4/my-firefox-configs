@@ -9,4 +9,4 @@ SIDEBERY CSS
 
 ------------------
 
-https://github.com/Ser4ph4/my-firefox-configs/blob/main/screenshot.png?raw=true
+[i]https://github.com/Ser4ph4/my-firefox-configs/blob/main/screenshot.png?raw=true
