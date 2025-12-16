@@ -1,5 +1,5 @@
 /* ============================================================
-   User.Js Otimizado: Ser4ph4 Edition ⚡
+   User.js Otimizado: Ser4ph4 Edition ⚡ 
    ============================================================ */
 
 /* --------- RECURSOS BÁSICOS --------- */
@@ -59,24 +59,25 @@ user_pref("general.smoothScroll.stopDecelerationWeighting", "1.0");
 user_pref("mousewheel.default.delta_multiplier_y", 190);
 user_pref("apz.overscroll.enabled", true);
 
-/* --------- CACHE DE MÍDIA --------- */
-user_pref("media.memory_cache_max_size", -1);
-user_pref("media.cache_readahead_limit", -1);
-user_pref("media.cache_resume_threshold", -1);
+/* --------- CACHE DE MÍDIA (CORRIGIDO - principal causa do alto uso de RAM) --------- */
+user_pref("media.memory_cache_max_size", 524288);       // 512 MB (ajuste para 262144 se quiser mais economia)
+user_pref("media.cache_readahead_limit", 5000);
+user_pref("media.cache_resume_threshold", 3000);
 
 /* --------- CACHE GERAL --------- */
 user_pref("browser.cache.jsbc_compression_level", 5);
 user_pref("browser.cache.disk.enable", true);
-user_pref("browser.cache.disk.smart_size.enabled", false);
-user_pref("browser.cache.disk.capacity", -1);
+user_pref("browser.cache.disk.smart_size.enabled", true);  // Deixa o Firefox gerenciar automaticamente
+user_pref("browser.cache.disk.capacity", 524288);         // 512 MB em disco
 user_pref("browser.cache.disk.max_entry_size", -1);
 user_pref("browser.cache.disk.metadata_memory_limit", 500);
-user_pref("browser.cache.memory.capacity", -1);
+user_pref("browser.cache.memory.capacity", 524288);        // 512 MB em memória (era -1 = ilimitado)
 user_pref("browser.cache.memory.max_entry_size", 10240);
 
 /* --------- CACHE DE IMAGENS --------- */
-user_pref("image.cache.size", 10485760);
+user_pref("image.cache.size", 10485760);                   // 10 MB (mantido - bom custo-benefício)
 user_pref("image.mem.decode_bytes_at_a_time", 65536);
+user_pref("image.mem.max_decoded_image_kb", 512000);       // Limite total de imagens decodificadas (~500 MB)
 user_pref("browser.cache.disk.preload_chunk_count", 4);
 user_pref("browser.cache.frecency_half_life_hours", 6);
 user_pref("browser.cache.disk.max_chunks_memory_usage", 40960);
@@ -150,7 +151,7 @@ user_pref("browser.privatebrowsing.forceMediaMemoryCache", true);
 user_pref("security.insecure_connection_text.enabled", true);
 user_pref("security.insecure_connection_text.pbmode.enabled", true);
 
-/* --------- FONTES --------- */
+/* --------- FONTES (Alta qualidade mantida) --------- */
 user_pref("gfx.font_rendering.cleartype_params.rendering_mode", 5);
 user_pref("gfx.font_rendering.cleartype_params.gamma", 2200);
 user_pref("gfx.font_rendering.cleartype_params.enhanced_contrast", 60);
@@ -160,3 +161,7 @@ user_pref("gfx.font_rendering.directwrite.enabled", true);
 user_pref("gfx.font_rendering.cleartype_params.force_gdi_classic_for_families", "");
 user_pref("gfx.font_rendering.cleartype_params.force_gdi_classic_max_size", 0);
 user_pref("gfx.font_rendering.cleartype_params.disable_hardware_acceleration", false);
+
+/* --------- EXTRA: Controle de processos (opcional, ajuda na memória) --------- */
+user_pref("dom.ipc.processCount.webIsolated", 6);  // Ajuste entre 4-8 conforme sua CPU/RAM
+user_pref("dom.ipc.processPriorityManager.enabled", true);
