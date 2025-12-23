@@ -144,7 +144,7 @@
   transform: scale(0.9);
 }
 
-.Tab .close > svg {
+.Tab .close>svg {
   fill: var(--ctp-red);
   width: 22px;
   height: 22px;
@@ -155,7 +155,7 @@
   top: 1px;
 }
 
-.Tab .close:hover > svg {
+.Tab .close:hover>svg {
   fill: var(--ctp-maroon);
   filter: drop-shadow(0 0 1px var(--ctp-red));
 }
@@ -168,18 +168,21 @@
   0% {
     transform: scale(0.8);
   }
+
   50% {
     transform: scale(5.2);
   }
+
   50% {
     transform: scale(1);
   }
+
   100% {
     transform: scale(0.9);
   }
 }
 
-.Tab[data-loading="true"] .fav > .fav-icon {
+.Tab[data-loading="true"] .fav>.fav-icon {
   opacity: 0;
   padding-left: 10px !important;
 }
@@ -204,29 +207,27 @@
   display: none !important;
 }
 
-.BookmarkNode[data-type="folder"] > .body > .fav > svg {
+.BookmarkNode[data-type="folder"]>.body>.fav>svg {
   fill: rgba(174, 23, 53, 0.9);
   opacity: 1;
 }
 
-.PinnedTab[data-audible] .fav > img,
-.PinnedTab[data-muted] .fav > img,
-.PinnedTab[data-loading] .fav > img {
+.PinnedTab[data-audible] .fav>img,
+.PinnedTab[data-muted] .fav>img,
+.PinnedTab[data-loading] .fav>img {
   mask: none;
 }
 
-.PinnedTab .fav > img {
+.PinnedTab .fav>img {
   mask: none;
 }
 
-.PinnedTab[data-updated="true"] .fav > img {
-  mask: radial-gradient(
-    circle at calc(100% - 2px) calc(100% - 2px),
-    rgba(0, 0, 0, 0.141),
-    rgba(0, 0, 0, 0.141) 4px,
-    #000 5px,
-    #000
-  );
+.PinnedTab[data-updated="true"] .fav>img {
+  mask: radial-gradient(circle at calc(100% - 2px) calc(100% - 2px),
+      rgba(0, 0, 0, 0.141),
+      rgba(0, 0, 0, 0.141) 4px,
+      #000 5px,
+      #000);
 }
 
 .PinnedTab .update-badge {
@@ -256,8 +257,8 @@
   min-width: 24px !important;
 }
 
-.Tab:not([data-pin="true"])[data-active="true"] .fav > .fav-icon,
-.Tab:not([data-pin="true"])[data-active="true"] .fav > svg {
+.Tab:not([data-pin="true"])[data-active="true"] .fav>.fav-icon,
+.Tab:not([data-pin="true"])[data-active="true"] .fav>svg {
   width: 16px !important;
   height: 16px !important;
   min-width: 16px !important;
@@ -296,8 +297,8 @@
   margin-left: 4px;
 }
 
-.Tab:not([data-pin="true"])[data-active="true"] .fav > .fav-icon,
-.Tab:not([data-pin="true"])[data-active="true"] .fav > svg {
+.Tab:not([data-pin="true"])[data-active="true"] .fav>.fav-icon,
+.Tab:not([data-pin="true"])[data-active="true"] .fav>svg {
   position: absolute !important;
   top: 50% !important;
   left: 50% !important;
@@ -320,8 +321,10 @@
   content: "";
   position: absolute;
   left: 4px;
-  top: 4px; /* respiro superior */
-  bottom: 5px; /* respiro inferior */
+  top: 4px;
+  /* respiro superior */
+  bottom: 5px;
+  /* respiro inferior */
   width: 2px;
   background-color: var(--ctp-blue);
   border-radius: 5px 0 0 5px;
