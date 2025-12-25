@@ -192,7 +192,7 @@
 }
 
 .Tab[data-loading="true"] .fav:before {
-  content: url("https://pub-cc79f915e3d84c13aa11e36fc28fa15f.r2.dev/images/infinity.png");
+  content: url("https://cdn.jsdelivr.net/gh/ser4ph4/ser4ph4.github.io/images/infinity.png");
   position: absolute;
   width: 100%;
   height: 100%;
@@ -343,4 +343,5 @@
   opacity: 9.5;
   z-index: 1000;
   pointer-events: none;
+
   text-shadow: 0 0 1px var(--ctp-peach);
