@@ -1,0 +1,344 @@
+/*
+===================================================================
+== TEMA Dark PARA SIDEBERY - By Ser4ph4 (Versão Final Revisada)  ==
+===================================================================
+*/
+
+:root {
+  --ctp-rosewater: #f5e0dc;
+  --ctp-flamingo: #f2cdcd;
+  --ctp-pink: #f5c2e7;
+  --ctp-mauve: #cba6f7;
+  --ctp-red: #f38ba8;
+  --ctp-maroon: #eba0ac;
+  --ctp-peach: #fab387;
+  --ctp-yellow: #f9e2af;
+  --ctp-green: #a6e3a1;
+  --ctp-teal: #94e2d5;
+  --ctp-sky: #89dceb;
+  --ctp-sapphire: #74c7ec;
+  --ctp-blue: #87b0f9;
+  --ctp-lavender: #b4befe;
+  --ctp-text: #c6d0f5;
+  --ctp-subtext1: #b3bcdf;
+  --ctp-subtext0: #a1a8c9;
+  --ctp-overlay2: #8e95b3;
+  --ctp-overlay1: #7b819d;
+  --ctp-overlay0: #696d86;
+  --ctp-surface2: #565970;
+  --ctp-surface1: #43465a;
+  --ctp-surface0: #313244;
+  --ctp-base: #1e1e2e;
+  --ctp-mantle: #181825;
+  --ctp-crust: #11111b;
+}
+
+#root.root {
+  --toolbar-el-overlay-active-bg: rgba(255, 255, 255, 0);
+  --toolbar-bg: #131019;
+  --frame-bg: #131019;
+  --bookmarks-margin: 2px;
+  --bookmarks-bookmark-height: 30px;
+  --bookmarks-folder-height: 30px;
+  --bookmarks-separator-height: 17px;
+  --bookmarks-node-activated-fg: #ccc;
+  --bookmarks-bookmark-font: 0.9333rem sans-serif;
+  --bookmarks-folder-font: 0.9399rem sans-serif;
+  --bookmarks-border-radius: 5px;
+  --tabs-height: 30px;
+  --tabs-indent: 10px;
+  --tabs-inner-gap: 6px;
+  --tabs-pinned-height: 30px;
+  --tabs-pinned-width: 30px;
+  --tabs-margin: 1px;
+  --tabs-font: 0.9955rem sans-serif;
+  --tabs-border-radius: 5px;
+  --tabs-activated-bg: #2a2a41ff;
+  --tabs-activated-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.282),
+    inset 0 0 0 1px rgb(62, 62, 63), inset 2px 0 0 0 rgb(62, 62, 63);
+  --tabs-activated-color-layer-opacity: 0.2;
+  --tabs-lvl-opacity: 5.16;
+  --tabs-progress-bg: #8bdc56ff;
+  --tabs-audio-btn-width: 0px;
+  --tabs-count-font: 0.5625rem sans-serif;
+  --tabs-close-btn-margin: 3px;
+  --nav-btn-width: 28px;
+  --nav-btn-height: 30px;
+  --nav-btn-margin: 2px;
+  --nav-btn-len-margin: 0px;
+  --nav-btn-border-radius: 10px 0 10px 0;
+  --nav-btn-active-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.071),
+    0 1px 3px 0 rgba(0, 0, 0, 0.212);
+  --nav-btn-accent: #aeceaaff;
+  --nav-delimiter-size: 19px;
+  --nav-hidden-btn-border-radius: 4px;
+  --nav-hidden-panels-popup-margin: 3px;
+  --ctx-menu-padding: 7px;
+  --ctx-menu-font: 0.975rem sans-serif;
+  --ctx-menu-border-radius: calc(9px + 1px);
+  --ctx-menu-opt-border-radius: calc(5px - 3px + 1px);
+  --ctx-menu-shadow: 0 0 0 1px rgba(255, 255, 255, 0.086),
+    0 1px 16px 0 rgba(0, 0, 0, 0.282);
+  --history-item-margin: 3px;
+  --history-item-border-radius: 5px;
+  --history-item-padding-right: 1px;
+  --ntb-border-radius: 59px;
+  --ntb-btn-height: 32px;
+  --scroll-progress-height: 17px;
+  --scroll-progress-bg: #37adef;
+  --popup-scrollbar-color: rgba(255, 255, 255, 0.275);
+  --notification-border-radius: 4px;
+  --notification-margin: 4px;
+  --general-margin: 1px;
+  --general-border-radius: 5px;
+  --d-slow: 0.3s;
+  --accent: #a4e9ffff;
+}
+
+.NavigationBar {
+  padding: 1.5px !important;
+  font-family: "Comic Mono", monospace !important;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.PinnedTabsBar {
+  box-shadow: inset -2px 0px 3px rgba(0, 0, 0, 0.23);
+}
+
+.BottomBar {
+  display: none;
+}
+
+.tabbrowser-tabs .tab-text {
+  font-family: "Hack Nerd Font Mono", sans-serif !important;
+}
+
+.Tab .title {
+  background: linear-gradient(90deg, var(--tabs-normal-fg) 60%, #f1f1f100 95%);
+  background-clip: text;
+  color: transparent;
+}
+
+.Tab[data-active="true"] .title {
+  font-weight: 400;
+  text-shadow: 1px 2px 0px #0b0a0a;
+  font-size: 16px;
+  text-align: left;
+  font-family: "SF Pro" !important;
+  color: #8ae8fc;
+}
+
+.Tab[data-discarded="true"] .body {
+  opacity: 0.67;
+}
+
+.Tab[data-pin="true"][data-active="true"] {
+  border: 1px thin gray;
+  border-radius: 5px;
+}
+
+.Tab .close:hover {
+  background-color: rgba(243, 139, 168, 0.1);
+  transform: scale(0.9);
+}
+
+.Tab .close > svg {
+  fill: var(--ctp-red);
+  width: 22px;
+  height: 22px;
+  transform: scale(0.9);
+  transition: fill 0.5s ease, filter 0.2s ease;
+  display: block;
+  left: 1px;
+  top: 1px;
+}
+
+.Tab .close:hover > svg {
+  fill: var(--ctp-maroon);
+  filter: drop-shadow(0 0 1px var(--ctp-red));
+}
+
+.Tab.-loud {
+  animation: audio-animation 1s infinite;
+}
+
+@keyframes audio-animation {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(5.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}
+
+.Tab[data-loading="true"] .fav > .fav-icon {
+  opacity: 0;
+  padding-left: 10px !important;
+}
+
+#root .Tab[data-loading="true"] .fav {
+  opacity: 1;
+}
+
+.Tab[data-loading="true"] .fav:before {
+  content: url("https://cdn.jsdelivr.net/gh/ser4ph4/ser4ph4.github.io/images/infinity.png");
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 3.9px;
+  left: 0;
+  font-size: 1rem;
+  line-height: 16px;
+  text-align: center;
+}
+
+.Tab .progress-spinner {
+  display: none !important;
+}
+
+.BookmarkNode[data-type="folder"] > .body > .fav > svg {
+  fill: rgba(174, 23, 53, 0.9);
+  opacity: 1;
+}
+
+.PinnedTab[data-audible] .fav > img,
+.PinnedTab[data-muted] .fav > img,
+.PinnedTab[data-loading] .fav > img {
+  mask: none;
+}
+
+.PinnedTab .fav > img {
+  mask: none;
+}
+
+.PinnedTab[data-updated="true"] .fav > img {
+  mask: radial-gradient(
+    circle at calc(100% - 2px) calc(100% - 2px),
+    rgba(0, 0, 0, 0.141),
+    rgba(0, 0, 0, 0.141) 4px,
+    #000 5px,
+    #000
+  );
+}
+
+.PinnedTab .update-badge {
+  opacity: 50;
+}
+
+.PinnedTab[data-updated="true"] .update-badge {
+  opacity: 100;
+}
+
+.Tab:not([data-pin="true"])[data-active="true"] {
+  --tabs-activated-bg: transparent !important;
+  --tabs-activated-shadow: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.Tab:not([data-pin="true"])[data-active="true"] .fav {
+  background-color: var(--ctp-surface1) !important;
+  border-radius: 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+}
+
+.Tab:not([data-pin="true"])[data-active="true"] .fav > .fav-icon,
+.Tab:not([data-pin="true"])[data-active="true"] .fav > svg {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  margin: 0 !important;
+  vertical-align: middle !important;
+}
+
+.Tab[data-active="true"][data-loading="true"] .fav {
+  background-color: transparent !important;
+}
+
+#root.-collapsed .Tab,
+#root.-collapsed .NewTabBtn {
+  display: flex !important;
+  justify-content: center !important;
+  padding: 0 !important;
+}
+
+.Tab:not([data-active="true"]) .fav {
+  background-color: transparent !important;
+}
+
+.Tab:not([data-pin="true"])[data-active="true"] {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.Tab:not([data-pin="true"])[data-active="true"] .fav {
+  position: relative !important;
+  background-color: #1a597d7e !important;
+  border-radius: 4px !important;
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  margin-left: 4px;
+}
+
+.Tab:not([data-pin="true"])[data-active="true"] .fav > .fav-icon,
+.Tab:not([data-pin="true"])[data-active="true"] .fav > svg {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  margin: 0 !important;
+}
+
+.Tab:not([data-active="true"]) .fav {
+  background-color: transparent !important;
+}
+
+.Tab[data-active="true"][data-loading="true"] .fav {
+  background-color: #1a597d4e !important;
+}
+
+.Tab[data-active="true"]:not([data-pin="true"])::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 4px; /* respiro superior */
+  bottom: 5px; /* respiro inferior */
+  width: 2px;
+  background-color: var(--ctp-blue);
+  border-radius: 5px 0 0 5px;
+  opacity: 0.8;
+  box-shadow: 0 0 1px var(--ctp-sapphire);
+  z-index: 999;
+}
+
+.Tab[data-pin="true"][data-active="true"]::before {
+  content: "●";
+  position: absolute;
+  top: -3px;
+  left: 2px;
+  font-size: 10px;
+  color: var(--ctp-green);
+  opacity: 9.5;
+  z-index: 1000;
+  pointer-events: none;
+  text-shadow: 0 0 1px var(--ctp-peach);
+}

@@ -1,0 +1,174 @@
+/* Source file made available under Mozilla Public License v. 2.0 See the main repository for updates as well as full license text. 
+   https://github.com/Godiesc/firefox-one */
+
+@media -moz-pref("firefoxone.tree_tabs_style") and (not -moz-pref("sidebar.verticalTabs")) {
+    
+    /* _________________________________________________________________ OCULTAR TABS-BAR _________________________________________________________________
+    ____________________________ https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/hide_tabs_toolbar_v2.css ____________________________  */
+
+    #TabsToolbar{
+        visibility: collapse;
+    }
+    :root[customtitlebar] #toolbar-menubar[autohide="true"] ~ #nav-bar {
+        > .titlebar-buttonbox-container {
+            display: flex !important;
+        }
+        :root[sizemode="maximized"] & {
+            @media -moz-pref("userchrome.force-window-controls-on-left.enabled"),
+                (-moz-gtk-csd-reversed-placement),
+                (-moz-platform: macos){
+                    > .titlebar-spacer[type="post-tabs"] {
+                        display: none !important;
+                    }
+                    > .titlebar-spacer[type="pre-tabs"] {
+                        display: none !important;
+                    }
+            }
+        }
+    }
+}
+
+/* _____________________________________________ 'Tree-tabs style' or 'Firefox-Vertical-Tabs' _____________________________________________*/
+
+@media -moz-pref("firefoxone.tree_tabs_style"), -moz-pref("sidebar.verticalTabs") {
+    
+    :root:is([customtitlebar]) #toolbar-menubar[autohide="true"] ~ #nav-bar {
+        
+        /* New Style navbar */
+        
+        height: calc(var(--toolbar-height-personal) + 4px) !important;
+        background: transparent !important;
+        margin-inline: 0px !important;
+        outline: none !important;
+        
+        /* When 'left-sidebar' visible */
+        @media (not -moz-pref("firefoxone.style_without_leftsidebar")) and -moz-pref("browser.toolbars.bookmarks.visibility", 'always') {
+                margin-inline-start: calc(var(--my-vertical-toolbar-width) + 4px) !important;
+        }
+
+        &::before {
+            content: ''; display: flex; position: absolute; top: 4px !important; inset-inline-start: 4px;
+            width: calc(100% - 8px);
+            height: calc(100% - 4px);
+            border-radius: 8px !important;
+            background-color: var(--toolbar-bgcolor);
+            outline: 1px solid var(--my-content-border-color) !important;
+            outline-offset: -1px !important;
+            pointer-events: none !important;
+            
+            @media (not -moz-pref("firefoxone.style_without_leftsidebar")) and -moz-pref("browser.toolbars.bookmarks.visibility", 'always') {
+                width: calc(100% - 4px);
+                inset-inline-start: 0px;
+            }
+        }
+
+        & .toolbarbutton-1 {
+            z-index: 1 !important;
+        }
+        
+        /* Alinear items de la nav-bar + trick para clic desde el borde superior */
+        
+        #nav-bar-customization-target>toolbarbutton,                                      /* Default buttons */
+        #nav-bar-customization-target>toolbarpaletteitem:not(#wrapper-urlbar-container),  /* default buttons in customization mode */
+        #nav-bar-customization-target>toolbaritem:not(#urlbar-container) toolbarbutton,   /* Extensions and some default buttons */
+        #nav-bar-overflow-button {
+            -moz-window-dragging: no-drag !important;
+            margin-block-start: calc(0px - var(--toolbarbutton-inner-padding)) !important;
+            padding-block-start: calc(var(--toolbarbutton-inner-padding) + 4px) !important;
+        }
+        
+        /* Urlbar vertical align */
+
+        #urlbar { margin-block-start: 4px !important; }
+        
+        /*  Make border top of url 'dragable' */
+        
+        #urlbar-container { 
+            margin-block: 1px !important;
+            
+            &[breakout] { 
+                --urlbar-container-height: calc(var(--toolbar-height-personal) - 2px) !important; 
+            }
+        }
+    }
+    
+    /* Separador nav-bar + window controls - In all wanted scenarios 
+
+    #toolbar-menubar[autohide="true"],
+    #toolbar-menubar[autohide="true"] ~ #nav-bar {
+        .titlebar-buttonbox-container:before {
+            background: url("../icons/urlbar-separator.svg") no-repeat center !important;
+            content: ""; display: block !important;
+            background-size: 16px 16px !important;
+            width: 22px !important;
+            margin-left: -2px !important;
+            height: calc(var(--toolbar-height-personal) + 8px);
+            -moz-context-properties: fill !important;
+            fill: var(--toolbarbutton-icon-fill) !important;
+            opacity: 0.2;
+        }
+    }*/
+    
+    /* New 'menubar' style */
+
+    #toolbar-menubar[autohide="true"] #main-menubar {
+        /*border-radius: 8px 0 0 8px !important;/**/
+        height: calc(var(--toolbar-height-personal)) !important;
+        box-shadow: 1px 0px 5px var(--contrast-color) !important;
+        clip-path: xywh(0 -4px calc(100% + 5px) calc(100% + 5px) round 8px 0 0 8px) !important;
+    }
+    
+    /* Bug fix: Trick to hide urlbar when menubar appears (Alt key) */
+
+    #toolbar-menubar[autohide="true"] ~ #nav-bar #urlbar {
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    #toolbar-menubar[autohide="true"][inactive="true"] ~ #nav-bar #urlbar {
+        opacity: 1 !important;
+        pointer-events: all !important;
+    }
+    
+    /* Remove unwanted space in navbar when using 'Vertical tabs' */
+
+    #vertical-spacer {
+        display: none !important;
+    }
+    
+    /* Remove extension header when using sidebar-revamp */
+    
+    @media -moz-pref("sidebar.revamp") and (not -moz-pref("sidebar.verticalTabs")) {
+        #sidebar-panel-header {
+            display: none !important;
+        }
+    }
+}
+
+/* ¡Necessary for the hamburger button to be above the sidebar when using 'Vertical tabs' + 'left-sidebar' */
+
+@media -moz-pref("sidebar.verticalTabs") and (not -moz-pref("firefoxone.style_without_leftsidebar")) {
+    .browser-titlebar {
+        :root & {
+            will-change: unset !important;
+            transition: none !important;
+        }
+    }
+}
+
+/* __________________________ Toolbars new background __________________________ */
+
+@media -moz-pref("firefoxone.tree_tabs_style"), -moz-pref("sidebar.verticalTabs") {
+
+    /* 'Nav-bar' - 'bookmarks-bar' background color */
+
+    #nav-bar, #PersonalToolbar {
+        background-color: var(--toolbar-bgcolor) !important;
+    }
+    
+    @media (not -moz-pref("firefoxone.style_without_leftsidebar")) {
+        #PersonalToolbar {
+            background-color: transparent !important;
+        }
+    }
+}
