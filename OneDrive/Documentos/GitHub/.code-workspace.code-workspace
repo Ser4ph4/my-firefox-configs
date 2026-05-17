@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "SSH FS - Meu Pi 👽",
+			"uri": "ssh://raspbery/"
+		},
+		{
+			"name": "SSH FS - Notebook 💻",
+			"uri": "ssh://note/"
+		},
+		{
+			"name": "SSH FS - Oracle ☁️",
+			"uri": "ssh://oracle/"
+		}
+	],
+	"settings": {}
+}
