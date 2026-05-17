@@ -3,35 +3,56 @@
  ║              Firefox Theme  ·  userChrome.css               ║
  ║                    Last Update: 23/02/2026                  ║
  ╚══════════════════════════════════════════════════════════════╝
- */
+
+  Índice
+  ──────
+  1. Variáveis Globais
+  2. Barra Lateral (Sidebery)
+  3. Barra de URL
+     3a. Tipografia & Layout
+     3b. Cores por Status de Conexão
+     3c. Ícone de Proteção contra Rastreamento
+     3d. Overlay de Foco
+  4. Efeitos & Animações
+     4a. Transições de Ícones
+     4b. Efeito Glow
+     4c. Barra de Progresso
+  5. Estilos Gerais
+     5a. Fundo & Containers
+     5b. Elementos Transparentes
+     5c. Painel de Status
+     5d. Menus & Janela
+*/
+
 
 /* ══════════════════════════════════════════════════════════════
    1. VARIÁVEIS GLOBAIS
    ══════════════════════════════════════════════════════════════ */
+
 :root {
-  /* Sidebar */
-  --uc-sidebar-width: 33px;
-  --uc-sidebar-hover-width: 220px;
-  --uc-autohide-sidebar-delay: 300ms;
-  --uc-autohide-duration: 115ms;
-  --uc-autohide-easing: linear;
+  /* ── Sidebar ──────────────────────────────────────────── */
+  --uc-sidebar-width:             33px;
+  --uc-sidebar-hover-width:       220px;
+  --uc-autohide-sidebar-delay:    300ms;
+  --uc-autohide-duration:         115ms;
+  --uc-autohide-easing:           linear;
 
-  /* Glow */
-  --uc-glow-primary: rgba(3, 172, 172, 0.685);
-  --uc-glow-secondary: cadetblue;
-  --uc-glow-hover-primary: rgba(255, 0, 0, 0.521);
-  --uc-glow-hover-secondary: yellow;
+  /* ── Glow ─────────────────────────────────────────────── */
+  --uc-glow-primary:              rgba(3, 172, 172, 0.685);
+  --uc-glow-secondary:            cadetblue;
+  --uc-glow-hover-primary:        rgba(255, 0, 0, 0.521);
+  --uc-glow-hover-secondary:      yellow;
 
-  /* URL Bar */
-  --uc-urlbar-radius: 10px;
+  /* ── URL Bar ──────────────────────────────────────────── */
+  --uc-urlbar-radius:             10px;
 
-  /* Cores base */
-  --uc-bg: #131019;
-  --uc-status-color: rgb(175, 173, 175);
+  /* ── Cores Base ───────────────────────────────────────── */
+  --uc-bg:                        #131019;
+  --uc-status-color:              rgb(175, 173, 175);
 
-  /* Transições reutilizáveis */
-  --uc-transition-click: 83ms linear;
-  --uc-transition-opacity: 200ms linear;
+  /* ── Transições Reutilizáveis ─────────────────────────── */
+  --uc-transition-click:          83ms linear;
+  --uc-transition-opacity:        200ms linear;
 }
 
 
@@ -41,16 +62,16 @@
 
 #sidebar-box {
   --browser-area-z-index-sidebar: 3;
-  position: relative;
-  /* Força largura fixa recolhida */
-  min-width: var(--uc-sidebar-width) !important;
-  width: var(--uc-sidebar-width) !important;
-  max-width: var(--uc-sidebar-width) !important;
-  z-index: var(--browser-area-z-index-sidebar) !important;
-  background-color: inherit;
-  padding: 0 !important;
-  border-right: none !important;
-  border-inline-end: none !important;
+
+  position:           relative;
+  z-index:            var(--browser-area-z-index-sidebar) !important;
+  min-width:          var(--uc-sidebar-width) !important;
+  width:              var(--uc-sidebar-width) !important;
+  max-width:          var(--uc-sidebar-width) !important;
+  padding:            0 !important;
+  background-color:   inherit;
+  border-right:       none !important;
+  border-inline-end:  none !important;
 }
 
 /* Remove divisor */
@@ -66,10 +87,11 @@
 /* Transição suave ao recolher */
 #sidebar-header,
 #sidebar {
-  min-width: var(--uc-sidebar-width) !important;
-  transition: min-width var(--uc-autohide-duration) var(--uc-autohide-easing) var(--uc-autohide-sidebar-delay) !important;
-  will-change: min-width;
-  border-style: none !important;
+  min-width:          var(--uc-sidebar-width) !important;
+  transition:         min-width var(--uc-autohide-duration) var(--uc-autohide-easing)
+                      var(--uc-autohide-sidebar-delay) !important;
+  will-change:        min-width;
+  border-style:       none !important;
 }
 
 #sidebar-header:-moz-locale-dir(rtl),
@@ -78,10 +100,10 @@
 }
 
 /* Expansão ao hover */
-#sidebar-box:hover>#sidebar-header,
-#sidebar-box:hover>#sidebar,
-#sidebar-box:hover>.sidebar-browser-stack>#sidebar {
-  min-width: var(--uc-sidebar-hover-width) !important;
+#sidebar-box:hover > #sidebar-header,
+#sidebar-box:hover > #sidebar,
+#sidebar-box:hover > .sidebar-browser-stack > #sidebar {
+  min-width:        var(--uc-sidebar-hover-width) !important;
   transition-delay: 0ms !important;
 }
 
@@ -91,25 +113,30 @@
 }
 
 /* Remove sombra conflitante com abas verticais */
-#sidebar-box:is([sidebarcommand*="tabcenter"],
+#sidebar-box:is(
+  [sidebarcommand*="tabcenter"],
   [sidebarcommand*="treestyletab"],
-  [sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929"])[checked="true"]~#tabbrowser-tabbox {
+  [sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929"]
+)[checked="true"] ~ #tabbrowser-tabbox {
   box-shadow: none !important;
 }
 
 /* Evita que o status panel fique sob a sidebar expandida */
-#sidebar-box:not([positionend], [sidebar-positionend]):hover~#appcontent #statuspanel {
+#sidebar-box:not([positionend], [sidebar-positionend]):hover ~ #appcontent #statuspanel {
   inset-inline: auto 0 !important;
 }
 
-#sidebar-box:not([positionend], [sidebar-positionend]):hover~#appcontent #statuspanel-label {
-  margin-inline: 0 !important;
+#sidebar-box:not([positionend], [sidebar-positionend]):hover ~ #appcontent #statuspanel-label {
+  margin-inline:     0 !important;
   border-left-style: solid !important;
 }
+
 
 /* ══════════════════════════════════════════════════════════════
    3. BARRA DE URL
    ══════════════════════════════════════════════════════════════ */
+
+/* ── 3a. Tipografia & Layout ────────────────────────────────── */
 
 /* Arredondamento */
 #urlbar-background,
@@ -125,9 +152,9 @@
 #urlbar-input,
 .urlbar-input-box,
 #urlbar-input-container {
-  font-size: 15px !important;
-  font-family: "Inter", system-ui, sans-serif !important;
-  font-weight: 500 !important;
+  font-size:              15px !important;
+  font-family:            "Inter", system-ui, sans-serif !important;
+  font-weight:            500 !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -140,73 +167,84 @@
 /* Page actions: ocultas → visíveis no hover */
 .urlbar-page-action {
   margin-inline-end: calc(-26px - 2 * var(--urlbar-icon-padding));
-  opacity: 0;
+  opacity:           0;
   transition:
-    margin-inline-end 150ms linear,
-    opacity var(--uc-transition-opacity);
+    margin-inline-end var(--uc-transition-opacity),
+    opacity           var(--uc-transition-opacity);
 }
 
 #urlbar:hover .urlbar-page-action,
 .urlbar-page-action[open],
-.urlbar-page-action[open]~.urlbar-page-action {
-  opacity: 1;
+.urlbar-page-action[open] ~ .urlbar-page-action {
+  opacity:           1;
   margin-inline-end: 0 !important;
 }
 
-/* ── Cores dinâmicas por status de conexão ──────────────────── */
+/* ── 3b. Cores por Status de Conexão ───────────────────────── */
+
 /* Identidade desconhecida */
-#identity-box[pageproxystate="valid"].unknownIdentity~.urlbar-input-box {
-  color: orange;
+#identity-box[pageproxystate="valid"].unknownIdentity ~ .urlbar-input-box {
+  color:            orange;
   background-color: rgba(80, 67, 3, 0.4);
-  border-radius: 5px !important;
-  font-style: oblique;
+  border-radius:    5px !important;
+  font-style:       oblique;
 }
 
 /* Conteúdo misto / não seguro */
-#identity-box[pageproxystate="valid"].notSecure~.urlbar-input-box {
-  color: orangered;
+#identity-box[pageproxystate="valid"].notSecure ~ .urlbar-input-box {
+  color:            orangered;
   background-color: rgba(255, 68, 0, 0.23);
-  border-radius: 5px !important;
+  border-radius:    5px !important;
 }
 
 /* HTTPS seguro */
-#identity-box[pageproxystate="valid"].secure~.urlbar-input-box {
+#identity-box[pageproxystate="valid"].secure ~ .urlbar-input-box {
   color: rgba(12, 170, 25, 0.6);
 }
 
 /* Página de extensão */
-#identity-box[pageproxystate="valid"].extensionPage~.urlbar-input-box {
-  color: rgb(5, 187, 233);
+#identity-box[pageproxystate="valid"].extensionPage ~ .urlbar-input-box {
+  color:            rgb(5, 187, 233);
   background-color: rgba(42, 86, 97, 0.45);
-  border-radius: 5px !important;
+  border-radius:    5px !important;
 }
 
 /* Recurso local / chrome UI */
-#identity-box[pageproxystate="valid"]:is(.localResource, .chromeUI)~.urlbar-input-box {
-  color: rgb(214, 160, 240);
+#identity-box[pageproxystate="valid"]:is(.localResource, .chromeUI) ~ .urlbar-input-box {
+  color:            rgb(214, 160, 240);
   background-color: rgba(169, 49, 224, 0.32);
-  border-radius: 5px !important;
+  border-radius:    5px !important;
 }
 
 /* Domínio verificado (EV) */
-#identity-box.verifiedDomain~.urlbar-input-box {
+#identity-box.verifiedDomain ~ .urlbar-input-box {
   background-color: rgba(50, 255, 50, 0.13);
-  border-radius: 5px !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 0 2px #000;
+  border-radius:    5px !important;
+  box-shadow:       0 1px 2px rgba(0, 0, 0, 0.25), 0 0 2px #000;
 }
 
-/* ── Ícone de proteção contra rastreamento ──────────────────── */
-:is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"]>#tracking-protection-icon-container>#tracking-protection-icon-box>#tracking-protection-icon {
+/* ── 3c. Ícone de Proteção contra Rastreamento ──────────────── */
+
+:is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"]
+  > #tracking-protection-icon-container
+  > #tracking-protection-icon-box
+  > #tracking-protection-icon {
   fill: #40aa40b7 !important;
 }
 
 /* Com exceção */
-:is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"]>#tracking-protection-icon-container>#tracking-protection-icon-box[hasException]>#tracking-protection-icon {
+:is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"]
+  > #tracking-protection-icon-container
+  > #tracking-protection-icon-box[hasException]
+  > #tracking-protection-icon {
   fill: orangered !important;
 }
 
 /* Ativo sem exceção */
-:is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"]>#tracking-protection-icon-container>#tracking-protection-icon-box:not([hasException])[active]>#tracking-protection-icon {
+:is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"]
+  > #tracking-protection-icon-container
+  > #tracking-protection-icon-box:not([hasException])[active]
+  > #tracking-protection-icon {
   fill: #40aa4075 !important;
 }
 
@@ -214,15 +252,16 @@
   order: 0 !important;
 }
 
-/* ── Overlay de foco na barra de URL ────────────────────────── */
+/* ── 3d. Overlay de Foco na Barra de URL ────────────────────── */
+
 #nav-bar::after {
-  position: fixed;
-  content: "";
-  inset: 0;
+  position:         fixed;
+  content:          "";
+  inset:            0;
   background-color: transparent;
-  z-index: 4;
-  pointer-events: none;
-  transition: background-color 0.3s ease;
+  z-index:          4;
+  pointer-events:   none;
+  transition:       background-color 0.3s ease;
 }
 
 :root:has(#urlbar[open]) #nav-bar::after {
@@ -231,32 +270,33 @@
 
 
 /* ══════════════════════════════════════════════════════════════
-   4. EFEITOS E ANIMAÇÕES
+   4. EFEITOS & ANIMAÇÕES
    ══════════════════════════════════════════════════════════════ */
 
-/* ── Transições de ícones ───────────────────────────────────── */
+/* ── 4a. Transições de Ícones ───────────────────────────────── */
+
 .urlbar-icon,
 .toolbarbutton-icon,
-.downloadIconShow>.button-box>.button-icon,
+.downloadIconShow > .button-box > .button-icon,
 .menuitem-iconic :is(.menu-iconic-icon, .menu-icon),
 #downloads-indicator-icon,
 .urlbar-input-container [role="button"] image {
   transition: transform var(--uc-transition-click) !important;
 }
 
-toolbar .toolbarbutton-1>.toolbarbutton-icon {
+toolbar .toolbarbutton-1 > .toolbarbutton-icon {
   transition: padding var(--uc-transition-click) !important;
 }
 
 /* Escala ao clicar */
 .urlbar-input-container [role="button"]:active image,
-.downloadIconShow:active>.button-box>.button-icon,
+.downloadIconShow:active > .button-box > .button-icon,
 #downloads-button:active #downloads-indicator-icon,
-toolbarbutton#scrollbutton-up:active>.toolbarbutton-icon,
-toolbarbutton:not(.toolbarbutton-1):active>.toolbarbutton-icon,
-toolbar .toolbarbutton-1:not([disabled]):active>.toolbarbutton-badge-stack>.toolbarbutton-icon,
+toolbarbutton#scrollbutton-up:active > .toolbarbutton-icon,
+toolbarbutton:not(.toolbarbutton-1):active > .toolbarbutton-icon,
+toolbar .toolbarbutton-1:not([disabled]):active > .toolbarbutton-badge-stack > .toolbarbutton-icon,
 .menuitem-iconic:active :is(.menu-iconic-icon, .menu-icon),
-.urlbar-page-action:active>.urlbar-icon {
+.urlbar-page-action:active > .urlbar-icon {
   transform: scale(0.6) !important;
 }
 
@@ -270,74 +310,66 @@ toolbar .toolbarbutton-1:not([disabled]):active>.toolbarbutton-badge-stack>.tool
 }
 
 /* Scroll buttons */
-toolbarbutton#scrollbutton-down:active>.toolbarbutton-icon {
+toolbarbutton#scrollbutton-down:active > .toolbarbutton-icon {
   transform: scale(-0.6) !important;
 }
 
-toolbar .toolbarbutton-1:not([disabled]):active>.toolbarbutton-icon {
+toolbar .toolbarbutton-1:not([disabled]):active > .toolbarbutton-icon {
   padding: calc(var(--toolbarbutton-inner-padding) + 3px) !important;
 }
 
-/* ── Efeito Glow ────────────────────────────────────────────── */
+/* ── 4b. Efeito Glow ────────────────────────────────────────── */
+
 toolbar #downloads-button:hover #downloads-indicator-anchor,
-.findbar-textbox~toolbarbutton:not([disabled]):hover,
+.findbar-textbox ~ toolbarbutton:not([disabled]):hover,
 toolbarbutton.scrollbutton-up:not([disabled]):hover,
 toolbarbutton.scrollbutton-down:not([disabled]):hover,
 toolbarbutton#scrollbutton-up:not([disabled]):hover,
 toolbarbutton#scrollbutton-down:not([disabled]):hover {
   filter:
-    drop-shadow(0 0 1px var(--uc-glow-primary)) drop-shadow(0 0 1px var(--uc-glow-primary));
+    drop-shadow(0 0 1px var(--uc-glow-primary))
+    drop-shadow(0 0 1px var(--uc-glow-primary));
 }
 
-/* ── Barra de progresso no topo ─────────────────────────────── */
-@keyframes statusline-anim {
-  from {
-    background-position-x: left;
-  }
+/* ── 4c. Barra de Progresso no Topo ─────────────────────────── */
 
-  to {
-    background-position-x: right;
-  }
+@keyframes statusline-anim {
+  from { background-position-x: left;  }
+  to   { background-position-x: right; }
 }
 
 #statuspanel[type="status"]::after {
-  position: fixed;
-  display: block;
-  content: "";
-  top: 0;
-  left: 0;
-  height: 2px;
-  width: 100vw;
-  pointer-events: none;
-  background-size: 20%;
+  position:          fixed;
+  display:           block;
+  content:           "";
+  top:               0;
+  left:              0;
+  height:            2px;
+  width:             100vw;
+  pointer-events:    none;
+  background-size:   20%;
   background-repeat: no-repeat;
-  background-image: linear-gradient(to left, transparent, #8599d4, transparent);
-  animation: statusline-anim 500ms alternate infinite ease-in-out;
+  background-image:  linear-gradient(to left, transparent, #8599d4, transparent);
+  animation:         statusline-anim 500ms alternate infinite ease-in-out;
 }
 
 @media (min-width: 1000px) {
-  #statuspanel[type="status"]::after {
-    animation-duration: 460ms;
-  }
+  #statuspanel[type="status"]::after { animation-duration: 460ms; }
 }
 
 @media (min-width: 1400px) {
-  #statuspanel[type="status"]::after {
-    animation-duration: 520ms;
-  }
+  #statuspanel[type="status"]::after { animation-duration: 520ms; }
 }
 
 @media (min-width: 1700px) {
   #statuspanel[type="status"]::after {
-    background-size: 15%;
+    background-size:   15%;
     animation-duration: 550ms;
   }
 }
 
 @media (min-width: 2200px) {
-  #statuspanel[type="status"]::after {
-    animation-duration: 600ms;
-  }
+  #statuspanel[type="status"]::after { animation-duration: 600ms; }
 }
 
 
@@ -345,41 +377,12 @@ toolbarbutton#scrollbutton-down:not([disabled]):hover {
    5. ESTILOS GERAIS
    ══════════════════════════════════════════════════════════════ */
 
-/* Fundo principal */
+/* ── 5a. Fundo & Containers ─────────────────────────────────── */
+
+/* Fundo principal — cria contexto de empilhamento */
 .browserContainer {
   background-color: var(--uc-bg) !important;
-  transform: translate(0);
-  /* Cria contexto de empilhamento */
-}
-
-/* Elementos transparentes (backgrounds e bordas) */
-.close-icon,
-.urlbar-icon,
-.urlbar-icon-wrapper,
-toolbar .toolbarbutton-1,
-#tabbrowser-tabs toolbarbutton,
-toolbar toolbarbutton>.toolbarbutton-icon,
-toolbar toolbarbutton>.toolbarbutton-badge-stack,
-.titlebar-button,
-#identity-box,
-.identity-box-button,
-#tracking-protection-icon-container,
-.findbar-textbox~toolbarbutton,
-toolbarbutton.scrollbutton-up,
-toolbarbutton.scrollbutton-down,
-toolbarbutton#scrollbutton-up,
-toolbarbutton#scrollbutton-down {
-  background-color: transparent !important;
-  border-color: transparent !important;
-}
-
-/* Painel de status */
-#statuspanel-label {
-  background: var(--uc-bg) !important;
-  color: var(--uc-status-color) !important;
-  border-radius: 0 4px 0 0;
-  border-top: 1px solid var(--uc-bg) !important;
-  border-right: 1px solid var(--uc-bg) !important;
+  transform:        translate(0);
 }
 
 /* Arredondamento do conteúdo de página */
@@ -392,25 +395,57 @@ toolbarbutton#scrollbutton-down {
   z-index: unset !important;
 }
 
+/* ── 5b. Elementos Transparentes ────────────────────────────── */
+
+.close-icon,
+.urlbar-icon,
+.urlbar-icon-wrapper,
+toolbar .toolbarbutton-1,
+#tabbrowser-tabs toolbarbutton,
+toolbar toolbarbutton > .toolbarbutton-icon,
+toolbar toolbarbutton > .toolbarbutton-badge-stack,
+.titlebar-button,
+#identity-box,
+.identity-box-button,
+#tracking-protection-icon-container,
+.findbar-textbox ~ toolbarbutton,
+toolbarbutton.scrollbutton-up,
+toolbarbutton.scrollbutton-down,
+toolbarbutton#scrollbutton-up,
+toolbarbutton#scrollbutton-down {
+  background-color: transparent !important;
+  border-color:     transparent !important;
+}
+
+/* ── 5c. Painel de Status ───────────────────────────────────── */
+
+#statuspanel-label {
+  background:    var(--uc-bg) !important;
+  color:         var(--uc-status-color) !important;
+  border-radius: 0 4px 0 0;
+  border-top:    1px solid var(--uc-bg) !important;
+  border-right:  1px solid var(--uc-bg) !important;
+}
+
+/* ── 5d. Menus & Janela ─────────────────────────────────────── */
+
 /* Separadores de menu */
 menupopup:not(.in-menulist) menuseparator::before {
   margin-inline: -12px !important;
 }
 
-/* ── Botões da janela no Windows (ícones clássicos) ─────────── */
+/* Ícone de confiança */
+#trust-icon {
+  color: #40aa40b7 !important;
+}
+
+/* Botões da janela no Windows (ícones clássicos) */
 @media (-moz-platform: windows) {
-  .titlebar-button>.toolbarbutton-icon {
+  .titlebar-button > .toolbarbutton-icon {
     display: inline-flex !important;
   }
 
   .titlebar-button::before {
     display: none !important;
   }
-}
-
-
- #trust-icon{
-
-color:#40aa40b7; !important;
-
 }
