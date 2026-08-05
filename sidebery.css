@@ -34,7 +34,7 @@
 
 #root.root {
   --toolbar-el-overlay-active-bg: rgba(255, 255, 255, 0);
-  --toolbar-bg: #131019;
+  --toolbar-bg: #161616;
   --frame-bg: #131019;
   --bookmarks-margin: 2px;
   --bookmarks-bookmark-height: 30px;
@@ -49,19 +49,19 @@
   --tabs-inner-gap: 6px;
   --tabs-pinned-height: 30px;
   --tabs-pinned-width: 30px;
-  --tabs-margin: 1px;
+  --tabs-margin: 3.9px;
   --tabs-font: 0.9955rem sans-serif;
   --tabs-border-radius: 5px;
   --tabs-activated-bg: #2a2a41ff;
   --tabs-activated-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.282),
     inset 0 0 0 1px rgb(62, 62, 63), inset 2px 0 0 0 rgb(62, 62, 63);
   --tabs-activated-color-layer-opacity: 0.2;
-  --tabs-lvl-opacity: 5.16;
+  --tabs-lvl-opacity: 0.5; /* CORRIGIDO DE 5.16 */
   --tabs-progress-bg: #8bdc56ff;
   --tabs-audio-btn-width: 0px;
   --tabs-count-font: 0.5625rem sans-serif;
   --tabs-close-btn-margin: 3px;
-  --nav-btn-width: 28px;
+  --nav-btn-width: 33px;
   --nav-btn-height: 30px;
   --nav-btn-margin: 2px;
   --nav-btn-len-margin: 0px;
@@ -96,7 +96,7 @@
 
 .NavigationBar {
   padding: 1.5px !important;
-  font-family: "Comic Mono", monospace !important;
+  font-family: "Comic Mono", "Fira Code", "Liberation Mono", monospace !important; /* CORRIGIDO FONTE FALLBACK */
   font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -111,11 +111,11 @@
 }
 
 .tabbrowser-tabs .tab-text {
-  font-family: "Hack Nerd Font Mono", sans-serif !important;
+  font-family: "Comic Mono", "Fira Code", "Liberation Mono", monospace !important; /* CORRIGIDO FONTE FALLBACK */
 }
 
 .Tab .title {
-  background: linear-gradient(90deg, var(--tabs-normal-fg) 60%, #f1f1f100 95%);
+  background: linear-gradient(90deg, var(--tabs-normal-fg) 60%, transparent 95%); /* CORRIGIDO TRANSPARENTE */
   background-clip: text;
   color: transparent;
 }
@@ -125,7 +125,7 @@
   text-shadow: 1px 2px 0px #0b0a0a;
   font-size: 16px;
   text-align: left;
-  font-family: "SF Pro" !important;
+  font-family: "SF Pro", "Inter", "Ubuntu", system-ui, sans-serif !important; /* CORRIGIDO FONTE FALLBACK */
   color: #8ae8fc;
 }
 
@@ -134,7 +134,9 @@
 }
 
 .Tab[data-pin="true"][data-active="true"] {
-  border: 1px thin gray;
+  border: none !important;
+  box-shadow: none !important;
+  background-color: var(--ctp-surface0); /* Mantém um fundo suave para destacar a aba ativa */
   border-radius: 5px;
 }
 
@@ -168,10 +170,7 @@
     transform: scale(0.8);
   }
   50% {
-    transform: scale(5.2);
-  }
-  50% {
-    transform: scale(1);
+    transform: scale(1.2); /* CORRIGIDO DUPLICATA E ESCALA MASSIVA */
   }
   100% {
     transform: scale(0.9);
@@ -229,11 +228,11 @@
 }
 
 .PinnedTab .update-badge {
-  opacity: 50;
+  opacity: 0.5; /* CORRIGIDO DE 50 */
 }
 
 .PinnedTab[data-updated="true"] .update-badge {
-  opacity: 100;
+  opacity: 1; /* CORRIGIDO DE 100 */
 }
 
 .Tab:not([data-pin="true"])[data-active="true"] {
@@ -336,7 +335,7 @@
   left: 2px;
   font-size: 10px;
   color: var(--ctp-green);
-  opacity: 9.5;
+  opacity: 0.95; /* CORRIGIDO DE 9.5 */
   z-index: 1000;
   pointer-events: none;
   text-shadow: 0 0 1px var(--ctp-peach);
