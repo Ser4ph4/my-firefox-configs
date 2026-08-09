@@ -3,252 +3,278 @@
 
 @media -moz-pref("firefoxgx.main-image") {
 
-   @media (prefers-color-scheme: dark){
-      :root[brighttext],
-      :root[lwt-toolbar-field-focus-brighttext],
-      :root[lwtheme],
-      :root:not([lwtheme]){
-         --toolbar-bgcolor: color-mix(in srgb, var(--contrast-color), transparent var(--brightness-wallpaper)) !important;
-         --toolbar-field-background-color: transparent !important;                                                    /* toolbar_field */
-         --toolbar-field-border-color: transparent !important;                                                        /* toolbar_field_border */
-         --lwt-selected-tab-background-color: #10101900 !important;                                                   /* tab_selected */
-         --toolbarbutton-hover-background:  color-mix(in srgb, 
-            transparent 90%, color-mix(in srgb, var(--tab-selected-textcolor)50%, var(--general-color))) !important;            /* button_background_hover */
-         --toolbarbutton-hover-personal:  var(--toolbarbutton-hover-background) !important;                           /* Button :hover color personal */
-         /*--lwt-sidebar-background-color: #101019 !important;                                                          /* Sidebar-background */
-         /*--chrome-content-separator-color: var(--toolbar-bgcolor) !important                                          /* toolbar_bottom_separator */
-      }}
-
-   @media (prefers-color-scheme: light){
-      :root:not([lwtheme-brighttext="true"]),
-      :root:not([lwt-toolbar-field-focus-brighttext]),
-      :root[lwtheme],
-      :root:not([lwtheme]){
-         --toolbar-bgcolor: color-mix(in srgb, var(--contrast-color), transparent var(--brightness-wallpaper)) !important;
-         --toolbar-field-background-color: transparent !important;                                                    /* toolbar_field */
-         --toolbar-field-border-color: transparent !important;                                                        /* toolbar_field_border */
-         --lwt-selected-tab-background-color: #f9f9f900 !important;                                                   /* tab_selected */
-         --toolbarbutton-hover-background:  color-mix(in srgb, 
-            transparent 90%, color-mix(in srgb, var(--tab-selected-textcolor)50%, var(--general-color))) !important;  /* button_background_hover */
-         --toolbarbutton-hover-personal:  var(--toolbarbutton-hover-background) !important;                           /* Button :hover color personal */
-         /*--lwt-sidebar-background-color: #f9f9f9 !important;                                                          /* Sidebar-background */
-         /*--chrome-content-separator-color: var(--toolbar-bgcolor) !important;                                         /* toolbar_bottom_separator */
-      }}
-
-   @media (prefers-color-scheme: dark){
-      :root:is([lwtheme-image],[style*="--lwt-additional-images"]) {
-         /*--toolbar-bgcolor: color-mix(in srgb, var(--contrast-color), transparent var(--brightness-wallpaper)) !important;
-         --lwt-selected-tab-background-color: transparent !important;/**/
-      }}
-
-   @media (prefers-color-scheme: light){
-      :root:is([lwtheme-image],[style*="--lwt-additional-images"]) {
-         /*--toolbar-bgcolor: color-mix(in srgb, var(--contrast-color), transparent var(--brightness-wallpaper)) !important;
-         --lwt-selected-tab-background-color: transparent !important;/**/
-      }}
-
-   /* Variables generales */
-
-   :root,
-   :root:is([lwtheme-image],[style*="--lwt-additional-images"]) {
-      --lwt-header-image: var(--lwt-main-image) !important;
-      --lwt-additional-images: var(--lwt-main-image) !important;
+   /* General Variables \
+   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+   :root {
+      &:not([privatebrowsingmode="temporary"]) {
+         --toolbox-background-image: var(--lwt-main-image) !important;                                               /* Set image */
+         --newtab-wallpaper: var(--lwt-header-image) !important;                                                     /* Test it using personal 'expand-on-hover' */
+         --toolbar-background-color: color-mix(in srgb,
+            var(--my-scheme-color), transparent var(--brightness-toolbar)) !important;                               /* Toolbar background */
+         --toolbarbutton-background-color-hover: color-mix(in srgb,
+            transparent 90%, color-mix(in srgb, var(--my-font-color) 50%, var(--general-color))) !important;         /* Button background when 'hover' */
+         --toolbarbutton-hover-personal: var(--toolbarbutton-background-color-hover) !important;                     /* Button background 'hover' personal */
+      }
       
-      & #tabbrowser-tabbox,
-      & #sidebar-box[checked="true"] {
-         --my-content-border-color: color-mix(in srgb, var(--toolbar-bgcolor) 80%, var(--tab-selected-textcolor)) !important;  /* Border around web content */
+      /* Fix tab selected background in private window */
+      &[privatebrowsingmode="temporary"] {
+         --toolbar-background-color: color-mix(in srgb,
+            var(--my-scheme-color), transparent var(--brightness-toolbar)) !important;                               /* toolbar background */
       }
    }
-   
-   /* Set the main image to all body */
-   
-   #main-window {
-      background-size: 100% 100vh !important;
-   }
-   
-   /* blur effect 
-   body::before {
-      content: '';
-      display: flex;
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      backdrop-filter: blur(34px);
-      mask: radial-gradient(ellipse at center, #e66465, #00000020),
-         radial-gradient(ellipse at bottom, #4d9f0c, transparent
-         );
-   }*/
-   
-   body::after {
-      display: none !important;
-   }
-   
-   /* Align tab-background image */
 
-   .tabbrowser-tab:is([visuallyselected],[multiselected]) .tab-background {
-      background-size: 100% 100vh !important;
+   /* Image size and posistion - in this way to keep align in 'expand-on-hover' \
+   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */   
+   #main-window > body {
+      --toolbox-background-size: cover !important;
+      background-position-x: left !important;
+
+      /* Sidebar 'expand-on-hover' + Sidebar on right */
+      @media -moz-pref("sidebar.visibility", "expand-on-hover") and (not -moz-pref("sidebar.position_start")) {
+         background-position-x: right !important;
+      }
    }
 
-   /* Improved background when moving tab */
+   /* Align tab-background image \
+   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+   .tabbrowser-tab:is([visuallyselected],[multiselected]) {
+      .tab-background,
+      .tab-background::before,
+      .tab-background::after {
+         --my-tab-toolbar-bgcolor: color-mix(in srgb, var(--my-scheme-color), transparent var(--brightness-wallpaper));
+         background-image: linear-gradient(var(--tab-group-background-color, var(--my-tab-toolbar-bgcolor)), var(--tab-group-background-color, var(--my-tab-toolbar-bgcolor))),
+            linear-gradient(var(--tab-group-background-color, var(--toolbar-background-color)), var(--tab-group-background-color, var(--toolbar-background-color))),
+            var(--toolbox-background-image),
+            linear-gradient(var(--lwt-accent-color,Field), var(--lwt-accent-color,Field)) !important;
+         background-position-x: left !important;
+         background-size: cover !important;
+      }
+   }
 
-   #tabbrowser-tabs:is([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack  > .tab-background{
-      background-size: 100vw 100vh !important;
+   /* Improved background when moving tab \
+   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+   #tabbrowser-tabs:is([movingtab]) {
+      .tab-background,
+      .tab-background::before,    /* 'before' & 'after' for tab-shapes config*/
+      .tab-background::after {    /* 'before' & 'after' for tab-shapes config*/
+         background-size: auto !important;
+      }
    }
 
    /* I override url-bar 'focus' from ogx_urlbar-searchbar.css */
 
-   #urlbar:not([open]):is([focused]) #urlbar-background {
-      background-color: var(--button-smaller-bgcolor) !important;
+   #urlbar:not([open]):is([focused]) .urlbar-background {
+        background-color: color-mix(in srgb, var(--general-color) 25%, transparent) !important;
    }
 
    /* background-color when buttons are 'open' in solid themes - used to match colors in solid and image themes */
 
-   #TabsToolbar, #nav-bar {   
-      --toolbarbutton-active-background: color-mix(in srgb, transparent 90%, color-mix(in srgb, var(--tab-selected-textcolor)80%, var(--general-color))) !important;
+   :root:not([privatebrowsingmode="temporary"]) {
+      #TabsToolbar, #nav-bar, #PersonalToolbar {
+         --toolbarbutton-background-color-hover: color-mix(in srgb, transparent 90%, color-mix(in srgb, var(--my-font-color) 50%, var(--general-color))) !important;
+         --toolbarbutton-background-color-active: color-mix(in srgb, transparent 90%, var(--my-font-color)) !important;
+      }
    }
 
    /* fix for status panel - findbar */
 
    #statuspanel label, 
-   findbar{
-      background-image: var(--lwt-main-image) !important;
+   findbar {
+      background-color: transparent !important;
       background-size: 100vw 100vh !important;
       background-position: calc(0px - var(--my-vertical-toolbar-width)) bottom !important;
       background-attachment: fixed !important;
       border-color: var(--my-content-border-color) !important;
    }
 
-   /* ______________________ Vertical tabs ______________________ */
+   /* ____________________________________________ Vertical tabs ____________________________________________
+   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
 
    @media -moz-pref("sidebar.verticalTabs") {
       
-      /* When using default 'expand-on-hover' */
-      
+      /* When using default 'expand-on-hover' \
+      ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */      
       :root[sidebar-expand-on-hover]:not([chromehidden~="toolbar"]) {
-         #sidebar-main {
-            background-image: var(--lwt-additional-images), var(--lwt-header-image) !important;
-            background-size: 100vw 100vh !important;
-            background-position-y: bottom !important;
-            
+         
+         /* Solve border color when using base solid theme - Overwrite code from 'ogx_left-sidebar.css' */
+         #sidebar-container {
             &[sidebar-positionend] {
-               background-image: linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)),
-                  var(--lwt-additional-images), var(--lwt-header-image) !important;
+                background-color: var(--toolbar-background-color) !important;
             }
             
             @media -moz-pref("firefoxgx.left-sidebar") {
+                background-color: var(--toolbar-background-color) !important;
+            }
+        }
+         
+         sidebar-main {
+            background-color: var(--toolbar-background-color) !important;
+            --toolbar-background-color: color-mix(in srgb,                                                              /* Toolbars - web content background color */
+               var(--my-scheme-color), transparent var(--brightness-wallpaper)) !important;
+            --my-background-size: cover !important; /* Important to align image when base theme use images */
+            
+            &::before {
+               content: ''; height: 100vh; width: 100vw; position: fixed;
+               background-image: linear-gradient(transparent, transparent),
+                  linear-gradient(var(--toolbar-background-color), var(--toolbar-background-color)),
+                  var(--toolbox-background-image),
+                  linear-gradient(var(--lwt-accent-color,Field), var(--lwt-accent-color,Field)) !important;
+               background-position: left top !important;
+               background-position-y: calc(1px - var(--toolbar-height-personal) - var(--menubar-height-personal, 0px)) !important;
+               background-repeat: no-repeat !important;
+               background-size: cover !important;
+               z-index: -1 !important;
+               mask-image: none;
+            }
+            
+            /* Sidebar on right */
+            &[sidebar-positionend] {
+               /* Add this extra background to match background color - added the same background used in ogx_main-window.css */
+               --my-additional-background: color-mix(in srgb, var(--my-scheme-color), transparent var(--brightness-wallpaper));
+               --toolbar-background-color: color-mix(in srgb, var(--my-scheme-color), transparent var(--brightness-toolbar)) !important;
+               background-color: rgb(from color-mix(in srgb, var(--toolbar-background-color) 70%, var(--my-scheme-color)) r g b / 100%) !important;
                
+               &::before {
+                  background-image: linear-gradient(var(--my-additional-background), var(--my-additional-background)),
+                            linear-gradient(var(--toolbar-background-color), var(--toolbar-background-color)),
+                            var(--toolbox-background-image),
+                            linear-gradient(var(--lwt-accent-color,Field), var(--lwt-accent-color,Field)) !important;
+                  background-position-y: calc(0px - var(--toolbar-height-personal) - var(--bookmarksbar-height-personal, 0px) - var(--menubar-height-personal, 0px)) !important;
+                  inset-inline-end: 0 !important;
+               }
+            }
+            
+            /* Sidebar + 'left-sidebar' */
+            @media -moz-pref("firefoxgx.left-sidebar") {
                &:not([sidebar-positionend]) {
-                  background-image: linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)),
-                     var(--lwt-additional-images), var(--lwt-header-image) !important;
-                  background-position-x: var(--my-elements-left-margin) !important;
+                  --my-additional-background: color-mix(in srgb, var(--my-scheme-color), transparent var(--brightness-wallpaper)) !important;
+                  --toolbar-background-color: color-mix(in srgb, var(--my-scheme-color), transparent var(--brightness-toolbar)) !important;
+                  
+                  &::before {
+                     background-image: linear-gradient(var(--my-additional-background), var(--my-additional-background)),
+                            linear-gradient(var(--toolbar-background-color), var(--toolbar-background-color)),
+                            var(--toolbox-background-image),
+                            linear-gradient(var(--lwt-accent-color,Field), var(--lwt-accent-color,Field)) !important;
+                     background-position-y: calc(0px - var(--toolbar-height-personal) - var(--bookmarksbar-height-personal, 0px) - var(--menubar-height-personal, 0px)) !important;
+                  }
+               }
+               
+               /* Align image only when sidebar is on left and 'left-sidebar' is showed */
+               @media -moz-pref("browser.toolbars.bookmarks.visibility", 'always') and -moz-pref("sidebar.position_start") {
+                  :root:not([lwtheme-image],[style*="--lwt-additional-images"]) & {
+                     &::before {
+                        background-position-x: calc(0px - var(--my-vertical-toolbar-width, 0px)) !important;
+                     }
+                  }
                }
             }
          }
-         #navigator-toolbox::before {
-            background: transparent !important;
-         }
       }
       
-      /* Put image in sidebar when expand-on-hover */
-      
+      /* Not default 'expand-on-hover' - Put image in sidebar when expand-on-hover \
+      ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */      
       @media -moz-pref("firefoxgx.verticalTabs-expandOnHover") {
          
-         :root:not([chromehidden~="toolbar"]) {            
-            #sidebar-main {
-               background-image: linear-gradient(transparent, transparent),
-                  var(--lwt-additional-images), var(--lwt-header-image) !important;
+         :root:not([chromehidden~="toolbar"]) {
+            sidebar-main {
+               background-color: var(--toolbar-background-color) !important;
+               --toolbar-background-color: color-mix(in srgb,                                                              /* Toolbars - web content background color */
+                  var(--my-scheme-color), transparent var(--brightness-wallpaper)) !important;
+               /*--my-background-size: cover !important; /* Important to align image when base theme use images */
                
-               
-               &[positionend] {
-                  background-image: linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)),
-                  var(--lwt-additional-images), var(--lwt-header-image) !important;
-                  background-position-x: right !important;
-               }
-            }
-         }
-         
-         /* 'Vertical tabs' + 'Expand-On-Hover' + 'Left-sidebar' */
-         
-         @media -moz-pref("firefoxgx.left-sidebar") {
-            
-            :root[sidebar-expand-on-hover]:not([chromehidden~="toolbar"]) {
-               #sidebar-main {
-                  background-image: var(--lwt-additional-images), var(--lwt-header-image) !important;
-                  background-position-y: bottom !important;
-                  background-size: 100vw 100vh !important;
-
-                  &[positionend] {
-                     background-image: linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)),
-                        var(--lwt-additional-images), var(--lwt-header-image) !important;
-                     background-position-x: right !important;
-                     background-position-y: bottom !important;
-                  }
+               &::before {
+                  content: '';
+                  height: 100vh !important;
+                  width: 100vw !important;
+                  position: fixed !important;
+                  background-image: linear-gradient(transparent, transparent),
+                     linear-gradient(var(--toolbar-background-color), var(--toolbar-background-color)),
+                     var(--toolbox-background-image),
+                     linear-gradient(var(--lwt-accent-color,Field), var(--lwt-accent-color,Field)) !important;/**/
+                  background-position: 0 0, right top ,right top !important;
+                  background-position-y: calc(1px - var(--toolbar-height-personal) - var(--bookmarksbar-height-personal, 0px) - var(--menubar-height-personal, 0px)) !important;
+                  background-repeat: repeat-x, no-repeat, no-repeat !important;
+                  background-size: var(--my-background-size, auto 100%) !important;
+                  background-attachment: fixed, fixed, fixed !important;
+                  box-shadow: none !important;
+                  background-clip: padding-box;
+                  pointer-events: none !important;
+                  mask-image: none !important;
+                  z-index: -1 !important;
                }
                
-               /* When left-sidebar is on but hidden */
-               
-               &:has(#PersonalToolbar[collapsed="false"]) #sidebar-main {
-                  background-position-x: calc(0px - var(--my-vertical-toolbar-width, 0px)) !important;
+               &[sidebar-positionend] {
+                  --my-additional-background: color-mix(in srgb, var(--my-scheme-color), transparent var(--brightness-wallpaper)) !important;
+                  --toolbar-background-color: color-mix(in srgb, var(--my-scheme-color), transparent var(--brightness-toolbar)) !important;
                   
-                  &[positionend] {
-                     background-image: linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)),
-                        var(--lwt-additional-images), var(--lwt-header-image) !important;
-                     background-position-x: right !important;
-                     background-position-y: bottom !important;
+                  &::before {
+                     background-image: linear-gradient(var(--my-additional-background), var(--my-additional-background)),
+                            linear-gradient(var(--toolbar-background-color), var(--toolbar-background-color)),
+                            var(--lwt-header-image, none), var(--lwt-additional-images,none),
+                            linear-gradient(var(--lwt-accent-color,Field), var(--lwt-accent-color,Field)) !important;
+                     background-position-y: calc(0px - var(--toolbar-height-personal) - var(--bookmarksbar-height-personal, 0px) - var(--menubar-height-personal, 0px)) !important;
+                  }
+               }
+               
+               /* Sidebar + 'left-sidebar' */
+               @media -moz-pref("firefoxgx.left-sidebar") {
+                  &:not([sidebar-positionend]) {
+                     --my-additional-background: color-mix(in srgb, var(--my-scheme-color), transparent var(--brightness-wallpaper)) !important;
+                     --toolbar-background-color: color-mix(in srgb, var(--my-scheme-color), transparent var(--brightness-toolbar)) !important;
+
+                     &::before {
+                        background-image: linear-gradient(var(--my-additional-background), var(--my-additional-background)),
+                           linear-gradient(var(--toolbar-background-color), var(--toolbar-background-color)),
+                           var(--lwt-header-image, none), var(--lwt-additional-images,none),
+                           linear-gradient(var(--lwt-accent-color,Field), var(--lwt-accent-color,Field)) !important;
+                        background-position-y: calc(0px - var(--toolbar-height-personal) - var(--bookmarksbar-height-personal, 0px) - var(--menubar-height-personal, 0px)) !important;
+                     }
                   }
                }
             }
          }
       }
    }
+}
    
-   /* ______________________ Tab-shapes compatibility */
+      /* ______________________ Main image expand on hover alignment ______________________ 
 
-   @media -moz-pref("firefoxgx.tab-shapes") {
-      
-      @media -moz-pref("userChrome.tab.bottom_rounded_corner.wave") or 
-             -moz-pref("userChrome.tab.bottom_rounded_corner.australis") or 
-             -moz-pref("userChrome.tab.bottom_rounded_corner.chrome_legacy") or 
-             -moz-pref("userChrome.tab.bottom_rounded_corner.chrome") or 
-             -moz-pref("userChrome.tab.bottom_rounded_corner.edge") {
-                
-                .tabbrowser-tab:is([visuallyselected],[multiselected])  .tab-background::before,
-                .tabbrowser-tab:is([visuallyselected],[multiselected])  .tab-background::after {
-                   background-size: 100% !important;
-                }
-      }
-   }
-   
-   /* Oneline compatibility */
+      @media -moz-pref("firefoxgx.main-image-expandOnHover-aligned") {
 
-   @media -moz-pref("firefoxgx.oneline") {
-      
-      @media screen and (min-width: 1000px) {
-      /*
-         @media (prefers-color-scheme: dark) {
-            :root, :root[lwtheme], :root:not([lwtheme]) {
-               --lwt-selected-tab-background-color: #0000007f !important;
+         #main-window {
+            background-size: 100% 100vh !important;
+         }
+
+         .tabbrowser-tab:is([visuallyselected],[multiselected]) .tab-background {
+            background-size: 100% 100vh !important;
+         }
+
+         #tabbrowser-tabs:is([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack  > .tab-background {
+            background-size: 100vw 100vh !important;
+         }
+
+         #statuspanel label, 
+         findbar {
+            background-size: 100vw 100vh !important;
+         }
+         
+         :root[sidebar-expand-on-hover]:not([chromehidden~="toolbar"]) {
+            #sidebar-container {
+               background-size: 100vw 100vh !important;
             }
          }
 
-         @media (prefers-color-scheme: light) {
-            :root, :root[lwtheme], :root:not([lwtheme]) {
-               --lwt-selected-tab-background-color: #ffffff7f !important;
-            }
-         }/*
+         @media -moz-pref("firefoxgx.verticalTabs-expandOnHover") {
 
-         #nav-bar {
-            background-color: transparent !important;
-         }
-         
-         /* Fix continuous line with 'Sidebar-revamp' 
-         
-         :root:not([customizing]) {
-            & #navigator-toolbox::before {
-               bottom: -1px !important;
-               height: calc(2px + var(--windowed-top-padding, 0px) + var(--toolbar-height-personal) + var(--bookmarksbar-height-personal, 1px)) !important;
+            @media -moz-pref("firefoxgx.left-sidebar") {
+
+               :root[sidebar-expand-on-hover]:not([chromehidden~="toolbar"]) {
+                  #sidebar-container {
+                     background-size: 100vw 100vh !important;
+                  }
+               }
             }
-         }*/
-      }
+         }
+      }/*
    }
 }

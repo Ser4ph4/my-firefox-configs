@@ -14,8 +14,8 @@
     @media (prefers-color-scheme: dark){
         :root{
         --arrowpanel-background: #1c1726 !important;
-        --contrast-color: #09080d !important;
-        --border-contrast-color: #09080d !important;
+        --my-scheme-color: #09080d !important;
+        --my-scheme-border-color: #09080d !important;
         --organizer-pane-background: #101019 !important;
         --organizer-border-color: #373748 !important;
         --organizer-pane-background2: color-mix(in srgb, var(--organizer-pane-background) 94%, white) !important;
@@ -26,18 +26,18 @@
     @media (prefers-color-scheme: light){
         :root{
         --arrowpanel-background: #f9f9f9 !important;
-        --contrast-color: #f9f9f9 !important;
-        --border-contrast-color: #acacac50 !important;
+        --my-scheme-color: #f9f9f9 !important;
+        --my-scheme-border-color: #acacac50 !important;
         --organizer-pane-background: #f9f9f9 !important;
         --organizer-border-color:#cdcdcd !important;
         --organizer-pane-background2: color-mix(in srgb, var(--organizer-pane-background) 94%, black) !important;
-        --contrast-color: white !important;
+        --my-scheme-color: white !important;
         --organizer-color: black !important;
         --organizer-pane-field-border-color: color-mix(in srgb, var(--organizer-toolbar-background) 78%, black) !important;
     }}
     /* ---------------- Contextual menu border ------------------ */
     .menupopup-arrowscrollbox{
-        box-shadow: 0px 0px 0 1px var(--border-contrast-color) !important;
+        box-shadow: 0px 0px 0 1px var(--my-scheme-border-color) !important;
     }
     /* --------- Border color 'name-Labels-Address' --------- */
     treecol, treecolpicker {
@@ -51,11 +51,11 @@
     }
     #placesMenu > menu:is(:hover, [open]) {
         appearance: none !important;
-        background: var(--button-hover-bgcolor, #0060bf) !important;
+        background: var(--color-accent-primary-hover, #0060bf) !important;
     }
     #placesMenu > menu:is(:hover, [open])[_moz-menuactive="true"][open="true"] {
         appearance: none !important;
-        background: var(--button-active-bgcolor, #0060bf) !important;
+        background: var(--color-accent-primary-active, #0060bf) !important;
     }
     toolbar {
         appearance: none !important;
@@ -83,7 +83,7 @@
     }
     #searchFilter:is([focused]){
         background-color: color-mix(in srgb, var(--organizer-pane-background) 96%, var(--organizer-color, #eaeaea)) !important;
-        outline-color: var(--button-active-bgcolor) !important;
+        outline-color: var(--color-accent-primary-active) !important;
         outline-offset: -1px !important;
         transition-duration: 50ms !important;
     }
@@ -107,12 +107,12 @@
         appearance: none !important;
         padding-inline: 14px !important;
         border-radius: 4px !important;
-        outline: 1px solid  color-mix(in srgb, var(--contrast-color) 30%, transparent) !important;
+        outline: 1px solid  color-mix(in srgb, var(--my-scheme-color) 30%, transparent) !important;
         outline-offset: -1px !important;
         background: var(--organizer-pane-background) !important;
         }
     #editBMPanel_tagsSelectorExpander:hover{
-        background: var(--button-active-bgcolor) !important;
+        background: var(--color-accent-primary-active) !important;
         outline: none !important;
         }
     #placesView>splitter {
@@ -129,7 +129,7 @@
     }
     #contentView treecol:hover{
         appearance: none !important;
-        background-color: var(--button-active-bgcolor, #0060bf) !important;
+        background-color: var(--color-accent-primary-active, #0060bf) !important;
     }
     #placeContent treechildren:not(.autocomplete-treebody)::-moz-tree-cell-text() {
         appearance: none !important;
@@ -140,10 +140,29 @@
         background: var(--organizer-pane-background) !important;
     }
     /* Downloads */
-     #downloadsListBox{
+    #downloadsListBox{
         background-color: var(--organizer-pane-background) !important;
-         border-color: transparent !important;
+        border-color: transparent !important;
     }
+    
+    richlistitem[selected="true"] {
+        background-color: var(--color-accent-primary-small) !important;
+    }
+    
+    @media not (prefers-contrast) {
+        #downloadsListBox > richlistitem[selected] {
+            color: currentColor !important;
+            background-color: transparent !important;
+        }
+        #downloadsListBox:focus  > richlistitem[selected] {
+            background-image: none !important;
+            background-color: var(--color-accent-primary-small) !important;
+            border-radius: 0px !important;
+            outline: 1px solid var(--general-color) !important;
+            outline-offset: -1px !important;
+        }
+    }
+    
     /*--------------Fondo general de Editar--------------------*/
     #detailsPane, #places #downloadsRichListBox, #editBMPanel_keywordRow, #editBMPanel_locationRow, #editBMPanel_tagsRow, #editBMPanel_tagsSelectorRow {
         appearance: none !important;
@@ -153,8 +172,8 @@
     /* General 'Edit' background */
     #editBookmarkPanelRows>vbox>input, #editBookmarkPanelRows>vbox>hbox>input {
         appearance: none !important;
-        background: color-mix(in srgb, var(--organizer-pane-background2) 60%, var(--contrast-color)) !important;
-        border-color: color-mix(in srgb, var(--organizer-pane-background2) 30%, var(--contrast-color)) !important;
+        background: color-mix(in srgb, var(--organizer-pane-background2) 60%, var(--my-scheme-color)) !important;
+        border-color: color-mix(in srgb, var(--organizer-pane-background2) 30%, var(--my-scheme-color)) !important;
     }
     #editBookmarkPanelRows>vbox>input:focus, #editBookmarkPanelRows>vbox>hbox>input:focus{
         appearance: none !important;
@@ -165,7 +184,7 @@
     /* Item "selected" color */
     #places treechildren:not(.autocomplete-treebody)::-moz-tree-row(selected), #placesList>treechildren::-moz-tree-row(selected) {
         appearance: none !important;
-        background: var(--button-active-bgcolor, #0060bf)  !important;
+        background: var(--color-accent-primary-active, #0060bf)  !important;
         outline: none !important;
     }
     #placeContent treechildren:not(.autocomplete-treebody)::-moz-tree-cell-text(selected), #placesList>treechildren::-moz-tree-cell-text(selected) {

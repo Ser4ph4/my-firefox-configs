@@ -1,201 +1,283 @@
 /* Source file made available under Mozilla Public License v. 2.0 See the main repository for updates as well as full license text. 
    https://github.com/Godiesc/firefox-gx */
 
-/* Arrowpanel, popup menus & panels styles */
-
+/* Arrowpanel, popup menus & panels styles \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
 :is(menupopup, panel):where([type="arrow"]) {
-    --my-background-image-popup: radial-gradient( 100% 91.38% at 50% 99.62%,
+    --my-background-image-popup: radial-gradient( 100% 90% at 50% 100%,
                            color-mix(in srgb, var(--general-color) 10%, transparent) 0%,
                            var(--arrowpanel-background));
-    --panel-background: var(--my-background-image-popup), var(--noise-urlbar-personal),
+    --panel-background-color: var(--my-background-image-popup), var(--noise-urlbar-personal),
                         var(--noise-urlbar-personal) , var(--arrowpanel-background) !important;
-    --panel-border-color: var(--arrowpanel-border-color) !important;
 }
 
-panel {
-    --panel-shadow: 0 0 0 1px var(--contrast-color) !important;
+panel:where([type="arrow"]) {
+    --panel-box-shadow: 0 0 0 1px var(--my-scheme-color) !important;
     
     @media (prefers-color-scheme: light) {
-        --contrast-color: var(--border-contrast-color) !important;
+        --my-scheme-color: var(--my-scheme-border-color) !important;
     }
 }
 
-/* Remove unwanted style for radiobutton */
-
-.toggle-button {
-    --toggle-dot-background-color-on-pressed: var(--arrowpanel-background) !important;
-}
-
-/* Alignment of popups [Open] */
-
+/* Alignment of popups [Open] \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
 .panel-no-padding[type="arrow"] {
-    margin-block: calc(-1 * var(--panel-shadow-margin) + 1px) !important;
-    margin-inline: -4px !important;
+    margin-block: calc(-1 * var(--panel-box-shadow-margin) + 1px) !important;
+    margin-inline: calc(-1 * var(--panel-box-shadow-margin)) !important;
 }
 
-/* Gradient border around popups -&- border color in popups like bookmark */
-
+/* Gradient border around popups -&- border color in popups like bookmark \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
 :is(menupopup, panel):where([type="arrow"]) {
     position: relative;  /* Needed for round gradient border ¯¯v */
 }
-
-:is(menupopup, panel):where([type="arrow"])::after {
+                                         /* not: Firefox info messages */
+:is(menupopup, panel):where([type="arrow"]):not(#feature-callout)::after {
     content: "";
     position: absolute;
-    inset: calc(var(--panel-shadow-margin) + 0px);
-    border-radius: var(--arrowpanel-border-radius);
+    inset: var(--panel-box-shadow-margin);
+    border-radius: var(--panel-border-radius);
     padding: 1px;
     background-position: center center !important;
-    background: radial-gradient(ellipse at center, var(--button-hover-bgcolor), transparent);
+    background: radial-gradient(ellipse at center, var(--color-accent-primary-hover), transparent);
     mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     mask-composite: exclude;
     pointer-events: none !important;
 }
 
+/* Panels like 'search engine' - 'open'  - affect too the group tabs preview list */
+.toolbar-menupopup {
+    &, 
+    & menupopup {
+        margin-block-start: 0px !important;
+    }
+}
+
 /* Margin bottom last item of popups */
 
 .panel-subview-footer-button {
-    --arrowpanel-menuitem-margin-inline: 4px !important;
+    --panel-menuitem-margin-inline: 4px !important;
 }
 
-/* Gradient background color when :hover over different items in the main menus */
-
-.protections-popup-category:not(#appMenu-popup toolbarbutton,[disabled]):hover, .protections-popup-footer-button:not(#appMenu-popup toolbarbutton):hover, 
+/* Gradient background color when ':hover' over different items in the main menus \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+.protections-popup-category:not(#appMenu-popup toolbarbutton,[disabled]):hover, 
+.protections-popup-footer-button:not(#appMenu-popup toolbarbutton):hover, 
 #protections-popup-show-report-stack:not(#appMenu-popup toolbarbutton):hover > .protections-popup-footer-button:not(#appMenu-popup toolbarbutton), 
-panelview .toolbarbutton-1:not([disabled], [open]:not(#appMenu-popup toolbarbutton)):is(:hover), toolbarbutton.subviewbutton:not([disabled], [open], 
-.subviewbutton-back):is(:hover), .navigable.subviewbutton:not([disabled], [open]):is(:hover), menu.subviewbutton:not([disabled])[_moz-menuhover], 
-menuitem.subviewbutton:not([disabled])[_moz-menuhover], .widget-overflow-list .toolbarbutton-1:not([disabled], [open]):is(:hover), 
+panelview .toolbarbutton-1:not([disabled],[open]:not(#appMenu-popup toolbarbutton)):is(:hover), 
+toolbarbutton.subviewbutton:not([disabled], [open], .subviewbutton-back, .unified-extensions-item-action-button):is(:hover), 
+.navigable.subviewbutton:not([disabled], [open]):is(:hover),
+menu.subviewbutton:not([disabled])[_moz-menuhover], 
+menuitem.subviewbutton:not([disabled])[_moz-menuhover], 
+.widget-overflow-list .toolbarbutton-1:not([disabled], [open]):is(:hover), 
 .toolbaritem-combined-buttons:is(:not([cui-areatype="toolbar"]), [overflowedItem="true"]) > toolbarbutton:not([disabled], [open]):is(:hover),
 #downloadsListBox > richlistitem[state="1"][exists].hoveringMainArea:hover {
     background: var(--panel-separator-zap-gradient3) !important;
-    color: var(--arrowpanel-color, var(--tab-selected-textcolor)) !important;
+    color: contrast-color(var(--color-accent-primary-hover)) !important;
 }
 
-/* Background color when clicking on different items in the main menus */
-
-.protections-popup-category:active:not([disabled]), .protections-popup-footer-button:active, #protections-popup-show-report-stack:active > .protections-popup-footer-button, 
-panelview .toolbarbutton-1:not([disabled]):is(:active, [open]), toolbarbutton.subviewbutton:not([disabled], .subviewbutton-back):is(:active, [open]), 
-.navigable.subviewbutton:not([disabled]):is(:active, [open]), menu.subviewbutton:not([disabled])[_moz-menuactive], .panel-banner-item:hover, 
-menuitem.subviewbutton:not([disabled])[_moz-menuactive], .widget-overflow-list .toolbarbutton-1:not([disabled]):is(:active, [open]), 
+/* Background color when clicking on different items in the main menus \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+.protections-popup-category:active:not([disabled]), 
+.protections-popup-footer-button:active, 
+#protections-popup-show-report-stack:active > .protections-popup-footer-button, 
+panelview .toolbarbutton-1:not([disabled]):is(:active, [open]), 
+toolbarbutton.subviewbutton:not([disabled], .subviewbutton-back,.unified-extensions-item-action-button):is(:active, [open]), 
+.navigable.subviewbutton:not([disabled]):is(:active, [open]), 
+menu.subviewbutton:not([disabled])[_moz-menuactive], .panel-banner-item:hover, 
+menuitem.subviewbutton:not([disabled])[_moz-menuactive], 
+.widget-overflow-list .toolbarbutton-1:not([disabled]):is(:active, [open]), 
 .toolbaritem-combined-buttons:is(:not([cui-areatype="toolbar"]), [overflowedItem="true"]) > toolbarbutton:not([disabled]):is(:active, [open]),
 #downloadsListBox > richlistitem[state="1"][exists].hoveringMainArea:active {
     background: var(--panel-separator-zap-gradient4) !important;
+    color: contrast-color(var(--color-accent-primary-hover)) !important;
 }
 
-/* Colors on disabled items */
-
-.subviewbutton:is([disabled]), .subviewbutton:where([disabled="true"]):hover {       
-    -moz-context-properties: fill;
-    color: color-mix(in srgb, var(--arrowpanel-color)70%, transparent) !important;
-    fill:  color-mix(in srgb, var(--arrowpanel-color)70%, transparent) !important;
+/* Color of icons and labels \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+:is(panelview .toolbarbutton-1, toolbarbutton.subviewbutton, .widget-overflow-list .toolbarbutton-1,
+.toolbaritem-combined-buttons:is(:not([cui-areatype="toolbar"]), [overflowedItem="true"]) > toolbarbutton) {
+    letter-spacing: 0.2px !important;
 }
 
-/* Gradient line - separators */
+/* Colors on disabled items \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+.subviewbutton:is([disabled]), 
+.subviewbutton:where([disabled="true"]):hover {       
+    color: color-mix(in srgb, currentColor 70%, transparent) !important;
+    fill:  color-mix(in srgb, currentColor 70%, transparent) !important;
+}
 
+/* Shortcuts 'Ctrl +' into arrowpanels \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+.subviewbutton[shortcut] {
+    &::after {
+        background-color: color-mix(in srgb, var(--my-scheme-color), var(--arrowpanel-background)) !important;
+        --text-color-deemphasized: light-dark(lch(from var(--arrowpanel-background) calc(l - 60) calc(c - 10) h),
+            lch(from var(--arrowpanel-background) calc(l + 60) calc(c + 10) h)) !important;
+        border-radius: var(--toolbarbutton-border-radius) !important;
+        padding: 4px !important;
+        margin-block: -4px !important;
+        margin-inline-end: calc(6px - var(--panel-menuitem-padding-inline)) !important;
+        font-family: monospace;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+    }
+
+    &:hover::after {
+        --text-color-deemphasized: var(--my-font-color) !important;
+    }
+    
+    #appMenu-popup & {
+        margin-inline-end: 8px !important;
+    }
+}
+
+/* Shortcuts 'Ctrl +' into menubar items \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+menuitem {
+    .menu-accel::before {
+        background-color: color-mix(in srgb, var(--my-scheme-color), var(--arrowpanel-background)) !important;
+        color: light-dark(lch(from var(--arrowpanel-background) calc(l - 60) calc(c - 10) h),
+            lch(from var(--arrowpanel-background) calc(l + 60) calc(c + 10) h)) !important;
+        border-radius: var(--toolbarbutton-border-radius) !important;
+        padding: 2px 4px !important;
+        margin-block: -4px !important;
+        margin-inline: 4px -8px !important;
+        font-family: monospace;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+    }
+
+    &:hover .menu-accel::before {
+        color: var(--my-font-color) !important;
+    }
+}
+
+menupopup > menu::after {
+    margin-inline-end: -6px !important;
+}
+
+/* Keep arrow icon the same color when hover (into arrowpanel items) */
+#protections-popup-mainView .subviewbutton-nav:not(.notFound), 
+.widget-overflow-list .subviewbutton-nav, 
+.PanelUI-subView .subviewbutton-nav, 
+.tab-preview-add-note.subviewbutton-nav {
+    &:hover::after {
+        fill: contrast-color(var(--my-scheme-color)) !important;
+    }
+}
+
+/* Gradient line - separators \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
 toolbarseparator {
-    border-image: var(--panel-separator-zap-gradient2) 1 !important;
-    margin-inline: 6px !important;
+    &::before {
+        border-image: var(--panel-separator-zap-gradient2) 1 !important;
+    }
+    
+    /* Remove gradient in bookmarks 'bar' separator */
+    :is(#PlacesToolbarItems) & {
+        &::before {
+            border-image: none !important;
+        }
+    }
 }
 
-#PlacesToolbar menupopup[placespopup] menuseparator {
-    margin-inline: 4px !important;
-}
-
-/* Label color  'learn more about' */
-
-toolbar .text-link:hover, panel .text-link:hover {
-    color: var(--general-color) !important;
-}
-
-/* Separator line into Firefox Sidebar items */
-
-treechildren::-moz-tree-separator {
-    border-bottom: none !important;
-}
-
-/* 'Monitor' and 'Relay' items from account dropdown menu */
-
+/* 'Monitor' and 'Relay' items from account dropdown menu \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
 #PanelUI-fxa-menu .fxa-cta-button {
     margin-inline: 0 !important;
     padding-inline-start: var(--margin-left-icons-personal, 0px) !important;
+    
+    .ctaMenuLogo {
+        margin-inline-end: 0.5em !important;
+    }
+    
+    #cta-menu-header-description {
+        margin-inline-start: calc(var(--icon-size) + 0.5em) !important;
+    }
 }
 
-/* 'back' button */
-
+/* Header buttons e.g. back button \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
 .panel-header {
-    --button-background-color-ghost-hover: var(--button-hover-bgcolor) !important;
-    --button-background-color-ghost-active: var(--button-active-bgcolor) !important;
-    --arrowpanel-menuitem-border-radius: 3px !important;
-    --arrowpanel-header-back-icon-padding: 6px 6px 6px 4px !important; 
+    --button-background-color-menu-active: var(--color-accent-primary-active) !important;
+    --panel-menuitem-border-radius: 3px !important;
+    --panel-header-back-icon-padding: 6px 6px 6px 4px !important;
+    --button-text-color-menu-hover: contrast-color(var(--color-accent-primary-hover)) !important;
+    --button-text-color-menu-active: contrast-color(var(--color-accent-primary-hover)) !important;
 }
 
-/* bug fix for Background-color when :hover on zoom buttons */
+/* Color sign when moving bookmark into a folder in bookmarksbar \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+image[part='drop-indicator'] {
+  background-color: var(--general-color) !important;
+}
 
+/* bug fix for Background-color when :hover on zoom buttons \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
 .PanelUI-subView .toolbaritem-combined-buttons > .subviewbutton:is(:hover, :hover:active):not([disabled]) {
     background: transparent !important;
 }
 
-/* _____________________ Sidebar-box ____________________
-   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
-
-/* remove unwanted background color - tested without 'revamp' in 'synced tabs' with a theme with images */
-:root { background-color: transparent !important; }
-
-/* Apply background but not in tree-tabs extension to solve bug 'gradient-line don't display' */
-
-:root:has(#sidebar-box:not(
-[sidebarcommand*="tabcenter"],
-[sidebarcommand*="treestyletab"],
-[sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929"])) #sidebar {
-    background-color: var(--toolbar-bgcolor) !important;
+/* Remove unwanted styles in 'tabgroup' 'hover' preview \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+#tabgroup-panel-content {
+    background-color: transparent !important;
+    box-shadow: none !important;
 }
 
-#sidebar-header {
-    background-color: var(--lwt-sidebar-background-color) !important;
-    box-shadow: 0px -1px 0 0 var(--my-content-border-color) !important;
-    padding: 4px 6px !important;
-
-    & toolbarbutton:is(:hover, [open]) {
-        background-color: var(--toolbarbutton-hover-personal) !important;
-    }
+/* _______________________ 'Firefox Messages' show in some buttons e.g. Messages of new features _______________________
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+#feature-callout:not([arrow-position="inline-start-top"]) {
+    --arrow-corner-distance: 0px !important;
+    --panel-arrow-space: 16px !important;
+    --panel-box-shadow: none !important;
+    margin-inline: -28px !important;
 }
 
-/* Remove limit when resizing 'Firefox sidebar' */
-
-#sidebar-box {
-    max-width: none !important;
-    min-width: 1px !important;
-
-    /* Add border top to web content when sidebar is 'open' */
-    &[checked="true"] ~ #tabbrowser-tabbox {
-        box-shadow: 0 0 0 1px var(--my-content-border-color) !important;
-    }
+#feature-callout:is([arrow-position="inline-start-top"]) {
+    --panel-arrow-space: 16px !important;
+    --panel-box-shadow: none !important;
+    margin-block-start: -26px !important;
 }
 
-/* Splitter */
-
-.sidebar-splitter {
-    @media -moz-pref("sidebar.revamp") or (not (-moz-platform: linux)) {
-        --sidebar-border-color: transparent !important;
+/* Top position and Remove incompatibility styles \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+.arrow-box {
+    #feature-callout & {
+        top: -8px !important;
+        transform: none !important;
+        transform-style: unset !important;
+        z-index: 2 !important;
     }
-    
-    /* Spliter style on Linux */
-    @media (not -moz-pref("sidebar.revamp")) and (-moz-platform: linux) {
-        background-color: var(--sidebar-border-color) !important;
-        min-width: 1px !important;
-        border-width: 0px !important;
+
+    #feature-callout[arrow-position="inline-start-top"] & {
+        top: 16px !important;
+        transform: rotate(-90deg) !important;
+        inset-inline-start: -20px !important;
     }
 }
 
-@media -moz-pref("sidebar.revamp") {
-    @media (-moz-overlay-scrollbars) {
-        .sidebar-splitter {
-            --splitter-width: 4px !important;
-        }
-    }
-    
-    /* Remove unwanted margin when sidebar-box is on right */
-    #sidebar-box[sidebar-positionend] {
-        margin-inline-start: 0px !important;
-    }
+/* Replace default 'arrow' with GX style \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+#feature-callout .arrow {
+    outline-color: transparent !important;
+    box-shadow: none !important;
+    width: 34px!important; 
+    height: 9px !important;
+    background-size: 34px 9px !important;
+    background-image: url("../icons/panelarrow-menu.svg") !important;
+    background-color: transparent !important;
+    -moz-context-properties: fill, stroke !important;
+    fill: var(--arrowpanel-background) !important;
+    stroke: var(--panel-border-color) !important;
+    filter: drop-shadow(0px -1px 0px var(--my-scheme-color)) !important;
+}
+
+/* Fix panel external border */
+#feature-callout .section-main {
+    background-color: var(--arrowpanel-background) !important;
+    border-radius: 3px !important;/**/
+    box-shadow: 0 0 0 1px var(--my-scheme-color) !important;/**/
 }

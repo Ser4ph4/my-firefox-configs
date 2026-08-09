@@ -1,386 +1,130 @@
 /* Source file made available under Mozilla Public License v. 2.0 See the main repository for updates as well as full license text.
    https://github.com/Godiesc/firefox-gx */
 
-@media (prefers-color-scheme: dark) {
-    window, dialog {
+@-moz-document url-prefix(about:preferences), url-prefix(about:settings), url-prefix(about:addons), 
+    url-prefix(about:support), url-prefix(about:profiles) , url-prefix(about:debugging), url-prefix(about:welcome) {
+        
+        /* Replace style for cards background setted in main 'root' variables in 'ogx_UC-newtabpage.css' */
+        
+        :root {
+            --my-gradient-background: radial-gradient( 100% 91.38% at 50% 99.62%,                               /* Background gradient - personal */
+                color-mix(in srgb, var(--color-accent-primary-small) 5%, transparent) 0%,
+                transparent);
+            --my-gradient-background-hover: radial-gradient( 100% 91.38% at 50% 99.62%,                         /* Background gradient when 'hover' - personal */
+                color-mix(in srgb, var(--color-accent-primary-small) 20%, transparent) 0%,
+                transparent);
+        }
+        
+        html,   /* For addons-preferences... */
+        body {  /* For other 'about:' pages */
+            background: transparent !important;                 /* Main background color */
+        }
+        
+        .sticky-container {
+            --background-color-canvas: transparent !important;  /* Sticky background color */
+        }
+        
+        /* Categories - left side */
 
-        --color-accent-primary: var(--general-color) !important;
-        --in-content-page-background: #1a1a24 !important;
-        --in-content-primary-button-background: var(--general-color) !important;
-        --in-content-primary-button-text-color: white !important;
-        --in-content-primary-button-background-hover: var(--button-active-bgcolor) !important;  /* Radiobutton background color on 'hover' */
-        --in-content-primary-button-background-active: var(--general-color) !important;         /* Radiobutton background color on 'clic' with 'check' */
+        moz-page-nav-button {
+            --page-nav-button-background-color-selected: color-mix(in srgb, var(--general-color) 8%, transparent) !important;
+        }
+        
+        button {
+            &[selected] {
+                --page-nav-button-text-color-selected: light-dark(lch(from var(--general-color) calc(l - 5) c h), lch(from var(--general-color) calc(l + 5) c h)) !important;
+                
+                &:hover {
+                    --page-nav-button-text-color-selected: currentColor !important;
+                    --page-nav-button-background-color-selected: var(--color-accent-primary-medium) !important;
+                }
+            }
+        }
+        
+        /* Remove unwanted border in footer items */
+        .sidebar-footer-list {
+            --button-border-color: transparent !important;
+            --button-border: var(--border-width) solid var(--button-border-color);
+        }
+        
+        /* Search box \
+        ¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+        #input {        
+            &[type="search"] {
+                --input-text-background-color: color-mix(in srgb, var(--button-background-color) 70%, transparent) !important; /* background color */
+                border-color: var(--border-color) !important;  /* border color for searchbox */
+                border-radius: var(--my-border-radius) !important;
 
-        --in-content-box-background: #1f1f30  !important;
-        --in-content-box-border-color: #4d4d68  !important;
+                &:hover {
+                    --input-text-background-color: color-mix(in srgb, var(--color-accent-primary-xsmall) 70%, transparent) !important; /* background color */
+                    border-color: var(--color-accent-primary-small) !important;
+                    outline: 0px solid var(--general-color) !important;
+                }
 
-        --in-content-button-background: var(--in-content-box-border-color) !important;          /* Button color */
-        --in-content-button-background-hover: var(--general-color) !important;                  /* Button color on 'hover' */
-        --in-content-button-background-active: var(--button-hover-bgcolor) !important;          /* Button color on 'click' */
-    }}
+                &:focus-visible {
+                    --input-text-background-color: color-mix(in srgb, var(--my-scheme-color), transparent) !important; /* background color */
+                    border-color: var(--general-color) !important;
+                    outline: 1px solid var(--general-color) !important;
+                }
+            }
+        }
+        
+        /* ____________________________ Cards ____________________________
+        ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+        /* Little gradient background in cards */
+        .card:not([active="false"]) {
+            
+            background: var(--my-gradient-background) !important;
+            background-color: var(--button-background-color-menu) !important;
+            transition: background 0.2s ease-in-out, border-color 0.1s ease-in-out !important;
+            
+            &:hover {
+                background: var(--my-gradient-background-hover) !important;
+                background-color: var(--button-background-color-menu) !important;
+            }
+        }
+        
+        /* underline style when 'hover' */
+        addon-card:not([expanded]) > .addon.card {
+            
+            & .addon-name-link {
+                text-decoration: underline transparent !important;
+                text-underline-offset: 2px !important;
+                transition: text-decoration 0.1s ease-in-out !important;
+            }
+            &:hover .addon-name-link {
+                color: inherit !important;
+                text-decoration: underline currentColor !important;
+            }
+        }
 
-@media (prefers-color-scheme: light) {
-    window, dialog {
-        --color-accent-primary: var(--general-color) !important;
-        --in-content-page-background: #f9f9f9 !important;
-        --in-content-primary-button-background: var(--general-color) !important;
-        --in-content-primary-button-text-color: white !important;
-        --in-content-primary-button-background-hover: var(--button-active-bgcolor) !important;  /* Radiobutton background color on 'hover' */
-        --in-content-primary-button-background-active: var(--general-color) !important;         /* Radiobutton background color on 'clic' with 'check' */
-
-        --in-content-box-background: #bababa  !important;
-        --in-content-box-border-color: #aeaeae  !important;
-
-        --in-content-button-background: var(--in-content-box-border-color) !important;          /* Button color */
-        --in-content-button-background-hover: var(--button-active-bgcolor) !important;          /* Button color on 'hover' */
-        --in-content-button-background-active: var(--button-hover-bgcolor) !important;          /* Button color on 'click' */
-        --in-content-button-text-color: black !important;
-    }}
-
-:root { 
-    --toolbarbutton-icon-fill-attention: unset !important;                                      /* Remove unwanted accent color */
-    --color-accent-primary: var(--general-color) !important;                                    /* Main Accent color */
-    --color-accent-primary-hover: var(--button-hover-personal) !important;
-    --color-accent-primary-active: var(--button-active-bgcolor) !important;
-
-    --in-content-text-color: var(--contrast-color) !important;                                  /* General 'text' color */
-    --in-content-page-color: var(--contrast-color) !important;                                  /* Other general 'text' color */
-    --in-content-primary-button-text-color: var(--contrast-color) !important;                   /* Another general 'text' color */
-
-    --in-content-box-background-odd: color-mix(in srgb,                                         
-        var(--in-content-box-border-color), transparent) !important;
-    --table-row-background-color-alternate: var(--in-content-page-background) !important;       /* Color distinction between rows in a 'table' and 'search shortcuts' */
-    
-    --in-content-box-info-background: var(--in-content-box-background-odd) !important;          /* Background color of the box of items that sync */
-    --section-highlight-background-color: var(--in-content-box-info-background) !important;
-
-    --in-content-border-color: var(--in-content-box-border-color) !important;                   /* Separator line in configuration */
-    --in-content-table-border-color: var(--in-content-box-border-color) !important;             /* table border color */
-
-    --background-color-box: var(--in-content-box-background) !important;                        /* Background color of tables */
-    --in-content-table-background: var(--in-content-page-background) !important;                /* Background color of 'about:support' tables */
-
-    --card-outline-color: var(--general-color) !important;                                      /* outline color in 'themes' and 'extensions' */
-    --card-shadow-hover: var(--card-shadow), 0 0 0 5px var(--card-outline-color) !important;    /* outline color in 'themes' and 'extensions' on 'hover' */
-
-    --in-content-item-hover: var(--button-hover-bgcolor) !important;                            /* Combobox background color on 'hover' */
-    --in-content-item-hover-text: var(--in-content-text-color) !important;                      /* Combobox text color on 'hover' */
-    --in-content-item-selected: var(--general-color) !important;                                /* Combobox background color on 'hover' (arrow keys) */
-    --in-content-item-selected-text:  var(--in-content-text-color) !important;                  /* Combobox text color on 'hover' (arrow keys) */
-
-    --in-content-button-background: var(--in-content-border-color) !important;                  /* Button color */
-    --in-content-button-background-hover: var(--button-hover-bgcolor) !important;               /* Button color on 'hover' */
-    --in-content-button-background-active: var(--button-active-bgcolor) !important;             /* Button color on 'click' */
-    --in-content-button-border-color-hover: var(--button-bgcolor) !important;                   /* Button border color on 'hover' */
-
-    --in-content-primary-button-background: var(--general-color) !important;                    /* Primary button color */
-    --in-content-primary-button-background-hover: var(--button-hover-bgcolor) !important;       /* Primary button color on 'hover' */
-    --in-content-primary-button-background-active: var(--button-active-bgcolor) !important;     /* Primary button color on 'active' */
-
-    --link-color: var(--general-color) !important;                                              /* Links color */
-    --link-color-hover: var(--blue) !important;                                                 /* Links color on 'hover' */
-    --link-color-active: var(--purple) !important;                                              /* Links color on 'active' */
-    --link-color-visited: var(--general-color) !important;                                      /* Links color on 'visited' */
-
-    --background-color-information: light-dark(var(--button-bgcolor), var(--button-bgcolor)) !important;
-
-    --gradiente-casual: linear-gradient(to right,                                               /* Personal gradient for 'about:preferences' */
-        var(--in-content-box-border-color) 90%, transparent ) !important;
-    
-    --gradiente-casual-rtl: linear-gradient(to left,                                            /* Personal gradient for 'about:preferences RTL' */
-        var(--in-content-box-border-color) 90%, transparent ) !important;
+        .card[active="true"] {
+            box-shadow: 0 0 0 1px transparent !important;
+            &:hover {
+                border-color: var(--general-color) !important;
+                box-shadow: 0 0 0 1px var(--general-color) !important;
+                transition: border-color 0.1s ease, box-shadow 0.1s ease !important;
+            }
+        }
+        
+        /* 'Separator line' gradient in 'settings' */
+        .subcategory:not([hidden]) ~ .subcategory {
+            border-width: 2px !important;
+            border-image: var(--panel-separator-zap-gradient3) 1 !important; 
+        }
 }
 
-/* Various colors for about:addons and about:settings pages */
+/* ________________________________________ only 'about:addons' page _________________________________________
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
 
-@media (prefers-color-scheme: dark) {
+@-moz-document url-prefix(about:addons) {
+    
     :root {
-        --contrast-color: #ffffff !important;                                                   /* Contrast background color */
-        --border-contrast-color: #000000 !important;                                            /* Contrast border color */
-        --in-content-page-background: #121018 !important;                                       /* Bakground color */
-
-        --in-content-box-background: #15151e !important;                                        /* Color of textboxes and background of drop-down menus */
-        --in-content-box-border-color: #272b37 !important;                                      /* Textbox border color */
+        --newtab-background-color: var(--background-color-box) !important;
     }
     
-    /* Pop-up window background in 'settings' */
-    .dialogBox { --in-content-page-background: #1a1a24 !important; }
-}
-
-@media (prefers-color-scheme: light) {
-    :root{
-        --contrast-color: #000000 !important;                                                   /* Contrast background color */
-        --border-contrast-color: #ffffff !important;                                            /* Contrast border color */
-        --in-content-page-background: #f9f9f9 !important;                                       /* Bakground color */
-
-        --in-content-box-background: #f9f9fb !important;                                        /* Color of textboxes and background of drop-down menus */
-        --in-content-box-border-color: #d4cfe7 !important;                                      /* Textbox border color */
-    }
-
-    /* Pop-up window background in 'settings' */
-    .dialogBox {--in-content-page-background: #f9f9f9 !important;}
-}
-
-/* _____________________________________ Various colors of the 'Add-ons' and 'Preferences' interface _____________________________________ */
-
-@-moz-document url-prefix(about:preferences), url-prefix(about:addons), url-prefix(about:support), url-prefix(about:profiles) , url-prefix(about:debugging), url-prefix(about:welcome) {
-        
-    :root { --opaque: color-mix(in srgb, var(--in-content-page-background) 50%, transparent) !important; }
-
-    /* Informative messages */
-
-    .discopane-notice{
-        --message-bar-background-color: var(--button-bgcolor) !important;
-        --message-bar-border-color: var(--button-hover-bgcolor) !important;
-        --message-bar-icon-color: var(--in-content-page-color) !important;
-    }
-    
-    /* Button background when 'open' */
-    
-    button[aria-expanded="true"] {
-        background-color: var(--general-color) !important;
-    }
-    
-    /* button when 'open' - Menu background */
-    
-    panel-list {
-        background: var(--in-content-button-background) !important;
-    }
-        
-    /* Toggle button */
-
-    .toggle-button[aria-pressed="true"]:enabled {
-        background: var(--button-active-bgcolor) !important;
-    }
-
-    .toggle-button[aria-pressed="true"]:enabled:hover {
-        background: var(--button-hover-bgcolor) !important;
-    }
-
-    /* Checkbox */
-
-    .checkbox-check:not([checked="true"]) {
-        appearance: none !important;
-        background: var(--opaque) !important;
-        border-radius: 2px !important;
-    }
-
-    checkbox:not(:hover) .checkbox-check:not([checked="true"]) { 
-        border: 2px solid color-mix(in srgb, var(--gray) 20%, transparent) !important;
-    }
-
-    checkbox:hover .checkbox-check:not([checked="true"]) {
-        border: 2px solid color-mix(in srgb, var(--gray) 60%, transparent) !important;
-    }
-
-    /* Category - left side */
-        
-    #categories {
-        margin-inline-start: -10px !important;
-
-        &> .category {
-            background-color: transparent !important;
-            color: color-mix(in srgb, var(--in-content-text-color)76%, transparent) !important;
-            font-weight: 600 !important;
-            font-size: 0.9em !important;
-            text-decoration: 1px underline transparent !important;
-            text-underline-offset: 4px !important;
-            
-            &:hover {
-                background-color: transparent !important;
-                color: var(--in-content-text-color) !important;
-                text-decoration: 1px underline var(--in-content-text-color) !important;
-                text-underline-offset: 4px !important; 
-                border-color: transparent !important;
-            }
-        }
-        
-        &> .category[selected] {
-            color: color-mix(in srgb, var(--general-color) 90%, var(--in-content-text-color)) !important;
-
-            &:hover {
-                color: var(--general-color) !important;
-                text-decoration: 1px underline var(--general-color)!important;
-            }
-        }
-    }
-
-    /* Category sidebar footer */
-
-    @media not (max-width: 830px) {
-        .sidebar-footer-list {
-            padding-inline: 25px !important;
-            margin-inline: 0px !important;
-        }
-    }
-
-    @media (max-width: 830px) {
-        .sidebar-footer-list {
-            margin-inline-start: 0px !important;
-            padding-inline-start: 31px !important;
-        }
-    }
-
-/* Rows and columns in 'about:support' */
-        
-    th { 
-        background-color: var(--button-active-bgcolor) !important; 
-        color: white !important; 
-    }
-    
-    th.column{
-        background-color: var(--in-content-box-info-background)  !important;
-        color: var(--in-content-text-color) !important;
-    }
-        
-    td { 
-        border-color: var(--in-content-table-border-color) !important; 
-    }        
-
-    /* 'Separator line' gradient in 'settings' */
-
-    .subcategory:not([hidden]) ~ .subcategory {
-        border-image: linear-gradient(to right, var(--general-color), transparent) 1 !important; 
-    }
-
-    /* ___________ Background and border color of elements in about:addons */
-    
-    /* Addons */
-    
-    .addon.card {
-        transition: outline 150ms, box-shadow 150ms !important;
-    }
-    
-    addon-card:not([expanded]) > .addon.card:hover {
-        & .addon-name-link {
-            color: inherit !important;
-            text-decoration: underline currentColor !important;
-            text-underline-offset: 2px !important;
-        }
-    }
-
-    .card[active="true"] {
-        background-color: color-mix(in srgb, var(--in-content-box-background) 98%, var(--contrast-color)) !important;
-        outline-color: transparent !important;
-
-        &:hover {
-            border-color: var(--general-color) !important;
-            outline: 1px solid var(--general-color) !important;
-        }
-    }
-
-    .card[active="false"]:hover {
-        --border-color-card: color-mix(in srgb, currentColor 20%, transparent) !important;
-    }
-
-    addon-card[expanded] .addon.card {
-        margin-top: 24px !important;
-        outline-color: var(--general-color) !important;
-    }
-        
-    /* Category Sidebar 
-
-    .navigation, 
-    #sidebar {
-        box-shadow: 1px 84px 10px black !important;
-    }
-
-    .navigation:dir(rtl), 
-    #sidebar:dir(rtl) {
-        box-shadow: inset 1px 0 0 0 var(--in-content-box-border-color), 
-            1px 77px 17px black !important;
-    }*/
-    
-    .sticky-container {
-        box-shadow: /*0 1px var(--in-content-box-border-color),
-            3px 1px 10px black!important/**/ ;
-        clip-path: xywh(0px 0px 100% calc(100% + 11px)) !important;
-    }
-
-    /* Search-box in 'about:preferences' */
-
-    #policies-container, 
-    #searchInput {
-        margin-block: 20px !important;
-    }
-    
-    /* Search box in 'about:addons' */
-    
-    #input {
-        &[type="search"] {
-            border-color: color-mix(in srgb, var(--in-content-box-border-color) 80%, var(--in-content-text-color)) !important; 
-            border-radius: 16px !important;
-
-            &:hover {
-                border-color: var(--general-color) !important;
-                outline: 0px solid var(--general-color) !important;
-            }
-            
-            &:focus-visible {
-                border-color: var(--general-color) !important;
-                outline: 1px solid var(--general-color) !important;
-            }
-        }
-    }
-    
-    /* Inside 'Privacy' Category */
-
-    .privacy-detailedoption.selected .content-blocking-warning {  
-        border-color: var(--general-color) !important;
-    }
-
-    .privacy-detailedoption.selected {
-        background-color: color-mix(in srgb, var(--in-content-box-background) 96%, var(--contrast-color)) !important;
-    }
-
-    .privacy-detailedoption {
-        backdrop-filter: var(--personal-blur) !important;
-    }
-
-    /* Various smooth transitions */
-
-    button, menulist, treecol, .sidebar-footer-link {
-        transition: background-color 0.2s ease, border-color 0.2s ease !important;
-    }
-
-    search-textbox {
-        transition: border 0.2s ease !important;
-    }
-
-    #categories > .category .category-name{
-        transition: color 0.1s ease !important;
-    }
-        
-    /* Transparency for various elements */
-
-    .sticky-container, #sidebar, .navigation, .main-heading, .main-search {
-        background-image: none !important;
-        background-color: transparent !important;
-    }
-    
-    /* _________ New layout of sticky and main content _________ */
-
-    /* 'About:preferences' page */
-
-    /* Remove unwanted margin from right section */
-    .main-content {
-        padding-inline: 0px !important;
-    }
-
-    .pane-container{
-        width: max(100%, var(--page-main-content-width)) !important;
-        display: grid !important;
-        overflow-x: hidden !important;
-
-        & #mainPrefPane {
-            padding-top: 20px !important; 
-            padding-inline-start: 60px !important;
-            padding-inline-end: calc(100% - var(--page-main-content-width)) !important;
-            overflow-x: hidden !important;
-        }
-    }
-    /* 'About:addons' page */
-
+    /* 'About:addons' page \
+    ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
     #content {
         max-height: 100vh;
         display: grid !important;
@@ -394,8 +138,6 @@
         scrollbar-gutter: stable !important;
         margin-inline-start: 0px !important;
         padding-inline-start: var(--main-margin-start);
-        /*box-shadow: inset 1px 0 0px 0 var(--in-content-box-border-color) !important;
-        clip-path: xywh(0 0 100% calc(100% - 10px)) !important;/**/
 
         & addon-card[expanded="true"],
         & addon-list,
@@ -403,78 +145,46 @@
         & recommended-extensions-section {
             --page-main-content-width: calc(100% + 28px + 4px) !important;
             display: block !important;
-            max-width: calc(100% - var(--in-content-sidebar-width) - var(--main-margin-start, 0px)) !important;
+            max-width: calc(100% - var(--sidebar-width) - var(--main-margin-start, 0px)) !important;
             padding-inline-start: 4px !important;
         }
 
         & discovery-pane {
             --page-main-content-width: calc(100% + var(--main-margin-start) + 4px) !important;
             display: block !important;
-            max-width: calc(100% - var(--in-content-sidebar-width) - var(--main-margin-start)) !important;
+            max-width: calc(100% - var(--sidebar-width) - var(--main-margin-start)) !important;
             padding-inline-start: 4px !important;
         }
     }
 
-    /* Background without transparent browser */
-
-    @media not -moz-pref("firefoxgx.main-image"), not -moz-pref("browser.tabs.allow_transparent_browser") {
-
-        body,.sticky-container{
-            --bg: linear-gradient(var(--opaque), var(--opaque)), var(--lwt-main-image);
-            background-image: var(--bg) !important;
-            background-size: cover !important;
-            background-attachment: fixed !important;
-        }
-
-        body, .sticky-container {
-            background-image: linear-gradient(var(--opaque), var(--opaque)),
-                var(--bg) !important;
-        }
-    }
-    
-    /* Background When using transparent browser */
-    
-    @media -moz-pref("browser.tabs.allow_transparent_browser") {
-        
-        :root, 
-        body,
-        .sticky-container {  /* used for other 'about' pages */
-            --opaque: transparent !important;
-            background-image: none !important;
-            background-color: transparent !important;
-        }
-    }
-}
-
-/* ________________________________________ only 'about:addons' page _________________________________________ */
-
-@-moz-document url-prefix(about:addons) {
-
-    /* Header */  
-
+    /* Sticky elements in one line \
+    ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+    /* Header */
     .sticky-container {
         display: grid !important;
         grid-template-rows: 1 !important;
         grid-template-columns: auto  auto !important;
 
-        /* Left part */            
+        /* Left side */
         & .main-heading {
             grid-column: 1;
             grid-row: 1;
-            padding-block: 25px !important;
+            align-items: center !important;
+            padding-block-end: unset !important;
 
             & .spacer {
                 max-width: 20px !important;
             }
         }
 
-        /* Right part */
+        /* Right side */
         & .main-search {
             justify-content: center !important;
             display: grid !important;
             grid-column: 2;
             grid-row: 1;
-            padding-block: 25px !important;
+            align-items: center !important;
+            padding-block: 30px !important;
 
             & .search-label {
                 display: none !important;
@@ -493,13 +203,118 @@
     }
 }
 
-/* ______________________________________ only 'about:preferences' page _______________________________________ */
+/* ________________________________________________________________________________________________________________________________________________________
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ Only 'about:preferences' page ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+/* Variables used in popup dialogbox - Needs to be outside */
+@media not ((forced-colors) or (-moz-native-theme)) {
+    :root[dialogroot] {
+        --my-scheme-color: light-dark(#ffffff, #000000) !important;                                         /* Scheme color - needed to set here again */
+        --my-font-color: light-dark(#000000, #ffffff) !important;                                           /* Needed variables to mix colors */
+        --toolbarbutton-icon-fill-attention: unset !important;                                              /* Remove unwanted default accent color */
+        --color-accent-primary-selected: var(--color-accent-primary-hover) !important;                      /* Accent color in some items selected */
+        --text-color-accent-primary-selected: contrast-color(var(--color-accent-primary-hover)) !important; /* Accent text color in some items selected */
+        --background-color-box: light-dark(var(--color-white), #111115) !important;                         /* inset container background - needed to set here again */
+        
+        --color-accent-primary: var(--general-color) !important;                                            /* Main Accent color */
+        --button-background-color-primary: var(--color-accent-primary) !important;                          /* Primary button background */
+        --button-background-color-primary-hover: var(--color-accent-primary-hover) !important;              /* Primary button background when 'hover' */
+        --button-background-color-primary-active: var(--color-accent-primary-active) !important;            /* Primary button background when 'active' */
+        --button-text-color-primary: contrast-color(var(--color-accent-primary-hover)) !important;          /* Primary button text color */
+        
+        --button-background-color: color-mix(in srgb, var(--background-color-box) 75%, 
+            var(--my-font-color), var(--color-accent-primary-small)) !important;                            /* General button background */
+        --button-background-color-hover: color-mix(in srgb, var(--background-color-box) 80%, 
+            var(--my-font-color), var(--color-accent-primary-small)) !important;                            /* General button background when 'hover' */
+    }
+}
 
 @-moz-document url-prefix(about:preferences) {
+    
+    /* General Buttons background */
+    setting-control {
+        --button-background-color: light-dark(lch(from var(--button-background-color-menu) calc(l - 5) c h), 
+            lch(from var(--button-background-color-menu) calc(l + 5) c h)) !important;
+    }
+    
+    /* Remove unwanted margin from right section */
+    .main-content {
+        padding-inline: 0px !important;
+    }
+    
+    .pane-container {
+        width: max(calc(100% - 1px), var(--page-main-content-width)) !important;
+        display: grid !important;
+        overflow-x: hidden !important;
 
-    @media not -moz-pref("firefoxgx.main-image") {
-        #mainPrefPane{
+        & #mainPrefPane {
             padding-top: 20px !important; 
+            padding-inline-start: 60px !important;
+            padding-inline-end: calc(100% - var(--page-main-content-width)) !important;
+            overflow-x: hidden !important;
+        }
+    }
+    
+    /* Background color for modal window */
+    window, 
+    dialog, 
+    .dialogBox {
+        --background-color-canvas: light-dark(#f9f9f9, #1a1a24) !important;
+        border-color: var(--border-color) !important;
+    }
+    
+    :root {
+        --border-color-interactive: light-dark(var(--color-gray-50), var(--border-color)) !important;  /* border color for Picker items */
+    }
+    
+    /* Search input */
+    
+    #search-container {
+        --background-color-canvas: transparent !important;
+    }
+
+    #input {
+        &[type="search"] {
+            width: 30% !important;
+            margin-inline-start: 230px !important;
+        }
+    }
+
+    /* Combobox item roundness */
+    menupopup {
+        --menuitem-border-radius: 1px !important;
+    }
+
+    /* Tested in 'Privacy & Security' \
+    ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+    /* Selected option */
+    @media not (forced-colors) {
+        .info-box-container.selected {
+            background: radial-gradient( 70% 71.38% at 50% 99.62%,
+                color-mix(in srgb, var(--color-accent-primary-xsmall), transparent),
+                transparent) !important;
+            background-color: var(--background-color-box) !important;
+        }
+    }
+
+    /* Box inside selected option */
+    .highlighting-group {
+        --section-highlight-background-color: var(--color-accent-primary-xsmall) !important;
+    }
+    .privacy-detailedoption.selected .content-blocking-warning {
+        border-color: var(--general-color) !important;
+    }
+
+    /* Not selected options */
+    @media not (forced-colors) {
+        .privacy-detailedoption {
+            background-color: var(--button-background-color-menu) !important;
+        }
+
+        /* Not selected options when 'hover' */
+        .info-box-container:not(.selected):hover {
+            background: var(--my-gradient-background-hover) !important;
+            background-color: var(--button-background-color-menu) !important;
         }
     }
 }

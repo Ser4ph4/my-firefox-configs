@@ -33,12 +33,12 @@
     position: var(--my-position) !important;
     top: var(--my-top) !important;
     inset-inline-start: var(--my-inset-inline-start) !important;
-    background-image: var(--my-background-sound-image, none) !important;
+    background-image: var(--my-background-sound-image, var(--message-bar-icon-close-url)) !important;   /* Keep 'close icon' in infobar */
     background-size: var(--my-background-size) !important;
     /*box-shadow: var(--my-box-shadow) !important;/**/
     opacity: var(--my-opacity) !important;
-    fill: var(--my-fill) !important;
-    stroke: var(--my-stroke, inherit) !important;
+    fill: var(--my-fill, currentColor) !important;
+    stroke: var(--my-stroke, inherit) !important;/**/
     outline: var(--my-outline) !important;
     outline-offset: var(--my-outline-offset) !important;
     align-items: var(--my-align-items, center) !important;
@@ -84,13 +84,13 @@
     
     .tab-audio-button[soundplaying] {
         --my-background-sound-image: url("../icons/sound-playing.svg") !important;
-        --button-background-color-ghost: color-mix(in srgb, var(--contrast-color), transparent) !important;
-        --button-background-color-ghost-hover: color-mix(in srgb, var(--contrast-color), transparent) !important;
-        --button-background-color-ghost-active: color-mix(in srgb, var(--contrast-color), transparent) !important;
+        --button-background-color-ghost: color-mix(in srgb, var(--my-scheme-color), transparent) !important;
+        --button-background-color-ghost-hover: color-mix(in srgb, var(--my-scheme-color), transparent) !important;
+        --button-background-color-ghost-active: color-mix(in srgb, var(--my-scheme-color), transparent) !important;
         --my-fill: var(--general-color)  !important;
         
         &:hover {
-            --my-fill: var(--tab-selected-textcolor) !important;
+            --my-fill: var(--my-font-color) !important;
         }
     }
     
@@ -101,24 +101,24 @@
         --button-background-color-ghost: transparent !important;
         --button-background-color-ghost-hover: transparent !important;
         --button-background-color-ghost-active: transparent !important;
-        --my-fill: var(--tab-selected-textcolor)  !important;
+        --my-fill: var(--my-font-color)  !important;
         --my-opacity: 0.8 !important;
         
         &:hover {
             --my-background-sound-image: url("../icons/sound-muted-hover.svg") !important;
-            --my-fill: var(--tab-selected-textcolor) !important;
+            --my-fill: var(--my-font-color) !important;
             --my-opacity: 1 !important;
         }
     }
     
     .tab-audio-button:is([activemedia-blocked]) {
         --my-background-sound-image: url("../icons/sound-blocked.svg") !important;
-        --my-fill: var(--tab-selected-textcolor)  !important;
+        --my-fill: var(--my-font-color)  !important;
     }
     
     /* ¯¯¯¯¯¯¯¯ New margins when tab width get smaller ¯¯¯¯¯¯¯¯ */
     
-    @container smaller-tab (width < 48px) {
+    @container smaller-tab (width < 52px) {
         .tab-audio-button:is([soundplaying],[muted],[activemedia-blocked]) {
             --my-inset-inline-start: calc(50% - 1px) !important;
         }
@@ -132,7 +132,7 @@
             &:is([soundplaying], [muted], [activemedia-blocked]) {
                 width: 14px !important;
                 height: 14px !important;
-                background-color: color-mix(in srgb, var(--contrast-color), transparent) !important;
+                background-color: color-mix(in srgb, var(--my-scheme-color), transparent) !important;
                 background-image: none !important;
                 inset-inline-end: -7px !important;
                 top: -5px !important;
@@ -144,16 +144,16 @@
                 fill: var(--general-color)  !important;
                 
                 &:hover {
-                    fill: var(--tab-selected-textcolor) !important;
+                    fill: var(--my-font-color) !important;
                 }
             }
             
             &:is([muted],[activemedia-blocked]) {
                 list-style-image: url("../icons/sound-muted.svg") !important;
-                background-color: color-mix(in srgb, var(--contrast-color), transparent) !important;
+                background-color: color-mix(in srgb, var(--my-scheme-color), transparent) !important;
                 
                 &:hover {
-                    fill: var(--tab-selected-textcolor) !important;
+                    fill: var(--my-font-color) !important;
                     list-style-image: url("../icons/sound-muted-hover.svg") !important;
                 }
             }
@@ -181,13 +181,13 @@
                 &:is([soundplaying],[muted],[activemedia-blocked]) {
                     height: 14px !important;
                     width: 14px !important;
-                    background-color: color-mix(in srgb, var(--contrast-color), transparent) !important;
+                    background-color: color-mix(in srgb, var(--my-scheme-color), transparent) !important;
                     background-image: none !important;
                     padding: 0px !important;
                     top: -5px !important;
                     
                     &:hover {
-                        fill: var(--tab-selected-textcolor) !important;
+                        fill: var(--my-font-color) !important;
                     }
                 }
 
@@ -259,7 +259,7 @@
             --button-background-color-ghost-active: var(--general-color) !important;
             --my-background-size: inherit !important;
             --my-background-position: center !important;
-            --my-fill: var(--contrast-color) !important;
+            --my-fill: var(--my-scheme-color) !important;
             --my-top: calc(var(--tab-height-personal)/2 - 9px) !important;
             --my-inset-inline-start: 7px !important;
         }
@@ -273,21 +273,21 @@
         --my-background-sound-image: url("chrome://browser/skin/tabbrowser/tab-audio-muted-small.svg") !important;
         --my-background-color: var(--button-background-color-hover) !important;
         --my-background-position: center !important;
-        --my-fill: var(--tab-selected-textcolor) !important;
+        --my-fill: var(--my-font-color) !important;
         --my-top: calc(var(--tab-height-personal)/2 - 9px) !important;
         --my-inset-inline-start: 7px !important;
         --my-opacity: 0.8 !important;
 
         &:hover {         
-            --my-background-color: var(--button-hover-bgcolor) !important;
-            --my-fill: var(--tab-selected-textcolor) !important;
+            --my-background-color: var(--color-accent-primary-hover) !important;
+            --my-fill: var(--my-font-color) !important;
             --my-opacity: 1 !important;
         }
     }
     
     /* ¯¯¯¯¯¯¯¯ New margins when tab width get smaller ¯¯¯¯¯¯¯¯ */
     
-    @container smaller-tab (width < 48px) {
+    @container smaller-tab (width < 52px) {
         .tab-audio-button:is([soundplaying],[muted],[activemedia-blocked]) {
             --my-inset-inline-start: calc(50% - 12px) !important;
             
@@ -319,8 +319,8 @@
             --my-inset-inline-start: 11px !important;
 
             &:hover {         
-                --my-background-color: var(--button-hover-bgcolor) !important;
-                --my-fill: var(--tab-selected-textcolor) !important;
+                --my-background-color: var(--color-accent-primary-hover) !important;
+                --my-fill: var(--my-font-color) !important;
                 --my-opacity: 1 !important;
             }
         }
@@ -363,7 +363,7 @@
             
             &[soundplaying]:is(:hover) {
                 background-color: var(--general-color) !important;
-                fill: var(--contrast-color) !important;
+                fill: var(--my-scheme-color) !important;
             }
             
             &:is([muted],[activemedia-blocked]) {
@@ -371,7 +371,7 @@
 
                 &:hover {
                     background-color: var(--button-background-color-hover) !important;
-                    fill: var(--tab-selected-textcolor) !important;
+                    fill: var(--my-font-color) !important;
                 }
             }
         }
@@ -408,7 +408,7 @@
 
                 &[soundplaying]:is(:hover) {
                     background-color: var(--general-color) !important;
-                    fill: var(--contrast-color) !important;
+                    fill: var(--my-scheme-color) !important;
                 }
 
                 &:is([muted],[activemedia-blocked]) {
@@ -416,7 +416,7 @@
 
                     &:hover {
                         background-color: var(--button-background-color-hover) !important;
-                        fill: var(--tab-selected-textcolor) !important;
+                        fill: var(--my-font-color) !important;
                     }
                 }
             }

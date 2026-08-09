@@ -1,29 +1,8 @@
 /*
- ╔══════════════════════════════════════════════════════════════╗
- ║              Firefox Theme  ·  userChrome.css               ║
- ║                    Last Update: 17/05/2026                  ║
- ╚══════════════════════════════════════════════════════════════╝
-
-  Índice
-  ──────
-  1. Variáveis Globais
-  2. Barra Lateral (Sidebery)
-  3. Barra de URL
-     3a. Tipografia & Layout
-     3b. Cores por Status de Conexão
-     3c. Ícone de Proteção contra Rastreamento
-     3d. Overlay de Foco
-  4. Efeitos & Animações
-     4a. Transições de Ícones
-     4b. Efeito Glow
-     4c. Barra de Progresso
-  5. Estilos Gerais
-     5a. Fundo & Containers
-     5b. Elementos Transparentes
-     5c. Painel de Status
-     5d. Menus & Janela
-*/
-
+ ╔═════════════════════════════════════════════════╗
+ ║              Firefox Theme  ·  userChrome.css
+ ║              Last Update: 09/08/2026
+ ╚═════════════════════════════════════════════════╝
 
 /* ══════════════════════════════════════════════════════════════
    1. VARIÁVEIS GLOBAIS
@@ -153,7 +132,7 @@
 .urlbar-input-box,
 #urlbar-input-container {
   font-size:              15px !important;
-  font-family:            "Inter", system-ui, sans-serif !important;
+  font-family:            "Comic Mono", "Inter", system-ui, monospace !important; /* Modificado para usar Comic Mono */
   font-weight:            500 !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

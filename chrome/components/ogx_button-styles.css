@@ -1,167 +1,232 @@
 /* Source file made available under Mozilla Public License v. 2.0 See the main repository for updates as well as full license text. 
    https://github.com/Godiesc/firefox-gx */
 
-/* Bookmark popup dropdown colors */
-
-panel menulist {
-  &:hover,
-  &[open] {
-    background-color: var(--button-hover-bgcolor) !important;
-    color: var(--arrowpanel-color, var(--tab-selected-textcolor)) !important;
-    box-shadow: none !important;
-  }
-}
-
-/* Border color (down arrow) */
-
-.hideable {
-  --button-background-color-hover: var(--button-hover-bgcolor) !important;
-}
-
-#editBookmarkPanel .expander-up,
-#editBookmarkPanel .expander-down {
-  border-color: transparent !important;
-}
-
-/* 'Save' & 'Remove' buttons */
-
-#editBookmarkPanelDoneButton {
-  color: white !important;
-}
-
-#editBookmarkPanelRemoveButton {
-  --button-background-color-hover: #da3633bb !important;
-  -moz-context-properties: fill !important;
-  fill: var(--toolbarbutton-icon-fill) !important;
-
-  & label {
-    display: none !important;
-  }
-}
-
-/* Searchbox in Sidebar 'bookmarks-history-sync' */
-
-/* First-second variable used for '--general-color' unset to follow the next variable for that accent color */
-
-@-moz-document regexp("^chrome://browser/content/places.*"), url(chrome://browser/content/webext-panels.xhtml),
-    url(chrome://browser/content/syncedtabs/sidebar.xhtml), regexp("^chrome://browser/content/sidebar.*")
-{
-  :root {
-    --toolbarbutton-icon-fill-attention: unset !important;
-    --newtab-text-primary-color: unset !important;
-  }
-}
-
-/* sync-tabs sidebar searchbox */
-
-#input {
-  &[type="search"] {
-    --input-text-background-color: color-mix(
-      in srgb,
-      Field,
-      transparent
-    ) !important;
-    border-color: #80808080 !important;
-    &:focus {
-      --toolbarbutton-icon-fill-attention: unset !important;
-      outline: 1px solid var(--general-color) !important;
-      border-color: var(--general-color) !important;
+/* Buttons(items) into 'search engine button' \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+button[role="menuitem"] {   /* Apply only in items inside */
+    &:enabled:hover {
+        --button-background-color-hover: transparent !important;
+        --button-background-color-active: transparent !important;
+        color: contrast-color(var(--color-accent-primary-hover)) !important;
+        &::before {
+            position: absolute !important;
+            top: 0 !important;
+            inset-inline-start: 0 !important;
+            content: '' !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: var(--panel-separator-zap-gradient3) !important;
+            margin: 0px !important;
+            padding: 0px !important;
+            z-index: -1 !important;
+        }
+        
+        &:active::before {
+            background: var(--panel-separator-zap-gradient4) !important;
+        }
     }
-  }
 }
 
-/* Background and Border Color in items (Dropdown Menu) */
+/* Separator */
+.searchmode-switcher-panel-list {
+    & > hr:not([hidden]) {
+        margin: var(--panel-menuitem-margin);
+        --panel-menuitem-margin: 6px !important;
+        background-color: transparent !important;
+        background-image: var(--panel-separator-zap-gradient2) !important;
+    }
+}
 
+/* Toggle button \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+.toggle-button {
+    --toggle-background-color: transparent !important;
+    --toggle-background-color-hover: var(--color-accent-primary-xsmall) !important;
+    --toggle-background-color-active: var(--color-accent-primary-hover) !important;
+    --toggle-border-radius: var(--border-radius-medium) !important;
+    --toggle-height: 21px !important;
+    --toggle-width: 36px !important;
+    --toggle-dot-height: calc(var(--toggle-height) - 4 * var(--toggle-dot-margin) - 2 * var(--toggle-border-width)) !important;
+    --toggle-dot-width: calc(var(--toggle-height) - 4 * var(--toggle-dot-margin) - 2 * var(--toggle-border-width)) !important;
+    --toggle-dot-background-color: var(--color-gray-60) !important;
+    border-color: var(--color-gray-60) !important;
+
+    /* Toggle hexagon */
+    &::before {
+        margin-inline: 2px !important;
+        border-radius: calc(var(--toggle-border-radius) - 2px) !important;
+    }
+}
+
+/* Toggle Opacity when not 'hover' */
+.toggle-button:not(:hover) {
+    opacity: 0.8 !important;
+}
+
+/* Toggle on */
+.toggle-button[aria-pressed="true"] {
+    --toggle-background-color-pressed: var(--color-accent-primary-small) !important;
+    --toggle-background-color-pressed-hover: var(--color-accent-primary-hover) !important;
+    --toggle-background-color-pressed-active: var(--color-accent-primary-active) !important;
+    border-color: var(--general-color) !important;
+    
+    &[disabled] {
+        --toggle-background-color-pressed: var(--color-accent-primary-xsmall) !important;
+        border-color: transparent !important;
+        opacity: var(--toggle-opacity-disabled) !important;
+    }
+
+    &::before {
+        margin-inline: 1px !important;
+        background-color: currentColor !important;
+    }
+}
+
+/* Combobox e.g. 'allow audio and video' into permissions button \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+menulist:is(:hover, [open]) {
+    --button-background-color: var(--color-accent-primary-hover) !important;
+    --button-text-color: contrast-color(var(--color-accent-primary-hover)) !important;
+}
+
+/* Margins in tabsgroup context-menu \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+.tab-group-editor-panel {    
+    & .tab-group-editor-name,
+    & .tab-group-editor-swatches{
+        --panel-menuitem-margin: 4px 8px !important;
+    }
+    
+    #tab-group-suggestion-button {
+        --panel-menuitem-margin: 0px 4px !important;
+    }
+}
+
+/* AI button 'hover' background */
+#tab-group-suggestion-button {
+    --button-border-color-ghost: var(--color-accent-primary-hover) !important;
+    --button-background-color-ghost: var(--color-accent-primary-xsmall) !important;
+    --button-text-color-ghost-hover: contrast-color(var(--color-accent-primary-hover)) !important;
+}
+
+/* Bookmark - Remove icon \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+#editBookmarkPanelRemoveButton {
+    -moz-context-properties: fill !important;
+    fill: currentColor !important;
+    
+    & label {
+        display: none !important;
+    }
+}
+
+/* Various 'Cancel' button \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+moz-button:is(
+[id*="cancel"],
+.popup-notification-secondary-button
+),
+button:is(
+[data-l10n-id*="cancel"],
+[label*="Block"],
+[dlgtype="cancel"],   /* Button style e.g. Warning dialogs */
+#editBookmarkPanelRemoveButton,
+.popup-notification-secondary-button
+) {
+    --button-background-color: light-dark(lch(from var(--arrowpanel-background, var(--background-color-canvas)) calc(l - 20) c h),
+        lch(from var(--arrowpanel-background, var(--background-color-canvas)) calc(l + 20) c h)) !important;
+    --button-background-color-hover: #da3633 !important;
+    --button-background-color-active: color-mix(in srgb, black 20%, var(--button-background-color-hover)); !important;
+    --button-text-color-hover: contrast-color(var(--button-background-color-hover)) !important;
+    --button-text-color-active: contrast-color(var(--button-background-color-hover)) !important;
+}
+
+/* Background and Border Color in items (Dropdown Menu) \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
 /* Style tested in sidebar-bookmarks, clic in the arrow | can't convine with the next line for unknow reason */
 treechildren::-moz-tree-row(current, focus),
 treechildren::-moz-tree-row(selected) {
-  background-color: var(--button-hover-bgcolor) !important;
-  outline-color: transparent !important;
+    background-color: var(--color-accent-primary-hover) !important;
+    outline-color: transparent !important;
 }
 
 #editBMPanel_folderTreeRow treechildren::-moz-tree-row(selected) {
-  background-color: var(--button-active-bgcolor) !important;
+    background-color: var(--color-accent-primary-active) !important;
 }
 
-treechildren::-moz-tree-image(selected),
-treechildren::-moz-tree-twisty(selected),
+treechildren::-moz-tree-image(selected), 
+treechildren::-moz-tree-twisty(selected), 
 treechildren::-moz-tree-cell-text(selected) {
-  color: currentColor !important;
+    color: currentColor !important;
 }
 
 #editBMPanel_folderTree,
 #editBMPanel_tagsSelector {
-  background-color: var(--input-bgcolor, Field) !important;
-  border-color: var(--input-border-color, Field) !important;
+    background-color: var(--input-bgcolor, Field) !important;
+    border-color: var(--input-border-color, Field) !important;
 }
 
-/* Bookmark dropdown menu when 'open' -Heart icon- */
-
-/* 'highlight' color of input-box */
-
-richlistitem[selected="true"],
-#editBMPanel_namePicker,
-#editBMPanel_locationField,
-#editBMPanel_tagsField {
-  &::selection {
-    color: var(--contrast-color) !important;
-  }
+/* Show keyword box when bookmark a website \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+.editBMPanel_locationRow, .editBMPanel_keywordRow{
+    visibility: visible !important;
+    display: block !important;
 }
 
-/* Show keyword box when bookmark a website */
-
-.editBMPanel_locationRow,
-.editBMPanel_keywordRow {
-  visibility: visible !important;
-  display: block !important;
-}
-
-/* Gradient in button'Firefox Profiler' > 'info' button */
-
+/* Gradient in button 'Firefox Profiler' > 'info' button \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
 #PanelUI-profiler-header {
-  &[isinfocollapsed="false"] {
-    background: radial-gradient(
-      circle farthest-side at top right,
-      var(--button-smaller-bgcolor),
-      var(--button-hover-bgcolor)
-    ) !important;
-    border-radius: calc(var(--arrowpanel-border-radius) - 2px) !important;
-  }
+    &[isinfocollapsed="false"] {
+        background: radial-gradient(circle farthest-side at top right, transparent 25%, var(--color-accent-primary-small)) !important;
+        color: currentColor !important;
+    }
 }
 
-button {
-  border-color: transparent !important;
+#PanelUI-profiler-learn-more {
+    color: currentColor !important;
+}
+
+.PanelUI-profiler-info-icon {
+    fill: currentColor !important;
+}
+
+.PanelUI-profiler-button-primary {
+    border-color: transparent !important;
+}
+
+/* Buttons into url's permission button */
+.permission-popup-permission-remove-button {
+    --button-text-color-hover: contrast-color(var(--color-accent-primary-hover)) !important;
 }
 
 /* ___________________________________________ Tabs-bar buttons __________________________________________
    ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
 
 #TabsToolbar {
-  --toolbarbutton-hover-background: var(
-    --toolbarbutton-hover-personal
-  ) !important;
-  --toolbarbutton-active-background: var(--button-bgcolor) !important;
-  --toolbarbutton-icon-fill: var(--general-color) !important;
-  --toolbarbutton-inner-padding: calc(
-    (var(--tab-min-height) - 24px) / 2
-  ) !important;
-  --tab-border-radius: var(
-    --toolbarbutton-border-radius
-  ) !important; /* Used for tabsbar buttons */
+    --toolbarbutton-background-color-hover: var(--toolbarbutton-hover-personal) !important;
+    --toolbarbutton-background-color-active: var(--color-accent-primary-small) !important;
+    --toolbarbutton-icon-fill: var(--general-color) !important;
+    --toolbarbutton-padding-inner: calc((var(--tab-min-height) - 24px) / 2) !important;
+    --tab-border-radius: var(--toolbarbutton-border-radius) !important; /* Used for tabsbar buttons */
 }
 
 #TabsToolbar .toolbarbutton-1:is([open="true"]):not([disabled="true"]) {
-  --toolbarbutton-icon-fill: var(--toolbar-color) !important;
+    --toolbarbutton-icon-fill: var(--toolbar-text-color) !important;
 }
 
 /* Tabs-bar buttons Vertical alignment */
 
 #TabsToolbar {
-  .toolbarbutton-1,   /* Default buttons */
-    toolbaritem {
-    /* Extensions buttons */
-    height: calc(var(--tab-height-personal) - 2px) !important;
-  }
+    .toolbarbutton-1,   /* Default buttons */
+    toolbaritem {       /* Extensions buttons */
+        height: calc(var(--tab-height-personal) + var(--my-tab-margin-top, 0px) - 4px) !important;
+    }
+}
+
+#TabsToolbar {
+    .toolbarbutton-1 {  /* Default buttons */
+        padding-block-start: calc(var(--toolbarbutton-padding-outer) + var(--my-tab-margin-top, 0px)) !important;
+    }
 }
 
 /* ___________________________________________ Nav-bar buttons ___________________________________________
@@ -169,170 +234,216 @@ button {
 
 /* 'hover' and 'open' button styles */
 
-:root:not([lwtheme-image], [style*="--lwt-additional-images"]) {
-  #nav-bar .toolbarbutton-1:is(:hover, [open="true"]):not([disabled="true"]) {
-    --toolbarbutton-icon-fill: var(--general-color) !important;
-  }
+:root:not([lwtheme-image],[style*="--lwt-additional-images"]) {
+    #nav-bar .toolbarbutton-1:is([open="true"]):not([disabled="true"]) {
+        --toolbarbutton-icon-fill: var(--general-color) !important;
+    }
 }
 
 /* Buttons in themes with images when 'open' */
 
-:root:is([lwtheme-image], [style*="--lwt-additional-images"]) {
-  #nav-bar .toolbarbutton-1:is([open="true"]):not([disabled="true"]) {
-    --toolbarbutton-icon-fill: var(--general-color) !important;
-  }
+:root:is([lwtheme-image],[style*="--lwt-additional-images"]) {
+    #nav-bar .toolbarbutton-1:is([open="true"]):not([disabled="true"]) {
+        --toolbarbutton-icon-fill: var(--general-color) !important;
+    }
 }
 
 /* ________________________________________ bookmarks-bar buttons ________________________________________
    ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
 
 #PersonalToolbar {
-  --toolbarbutton-hover-background: var(
-    --toolbarbutton-hover-personal
-  ) !important;
-  --toolbarbutton-icon-fill: var(--toolbar-color) !important;
-  text-shadow: none !important;
+    --toolbarbutton-background-color-hover: var(--toolbarbutton-hover-personal) !important; 
+    --toolbarbutton-icon-fill: var(--toolbar-text-color) !important;
+    text-shadow: none !important;
 }
 
-:root:is([lwtheme-image], [style*="--lwt-additional-images"]) #PersonalToolbar {
-  /*--toolbarbutton-hover-background: inherit !important; 
-        --toolbarbutton-active-background: var(--contrast-color) !important; /**/
+:root:is([lwtheme-image],[style*="--lwt-additional-images"]) #PersonalToolbar {
+        /*--toolbarbutton-background-color-hover: inherit !important; 
+        --toolbarbutton-background-color-active: var(--my-scheme-color) !important; /**/
 }
 
 /* icon and label when 'open' - 'active' */
 
-#PersonalToolbar .toolbarbutton-1:is([open], :active),
-#PersonalToolbar
-  toolbarbutton.bookmark-item:not(.subviewbutton, [disabled="true"]):is(
-    [open],
-    :active
-  ) {
-  color: var(--general-color) !important;
-  --toolbarbutton-icon-fill: var(--general-color) !important;
+#PersonalToolbar .toolbarbutton-1:is([open],:active) ,
+#PersonalToolbar toolbarbutton.bookmark-item:not(.subviewbutton, [disabled="true"]):is([open],:active) {
+    color: var(--general-color) !important;
+    --toolbarbutton-icon-fill:  var(--general-color) !important;
+}
+
+/* Style when moving a bookmark into a folder - tested by holding the click */
+.bookmark-item:is(toolbarbutton)[dragover="true"][open] {
+    background: var(--color-accent-primary-xsmall) !important;
+    fill: var(--general-color) !important;
 }
 
 /* ___________________ ALL tabs button ___________________ 
    ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
 
 .all-tabs-item {
-  margin-inline: 0px !important;
+    margin-inline: 0px !important;
 }
 
-.all-tabs-secondary-button {
-  margin-inline-end: 4px !important;
-  border-radius: 3px !important;
-  border: none !important;
+.all-tabs-secondary-button{
+    margin-inline-end: 4px !important;
+    border-radius: 3px !important;
+    border: none !important;
 }
 
-#allTabsMenu-allTabsView-tabs
-  > .all-tabs-item
-  > .all-tabs-secondary-button:hover,
+#allTabsMenu-allTabsView-tabs > .all-tabs-item > .all-tabs-secondary-button:hover,
 .all-tabs-secondary-button.subviewbutton.subviewbutton-iconic:hover,
 .all-tabs-close-button.all-tabs-secondary-button.subviewbutton:hover,
-.all-tabs-mute-button.all-tabs-secondary-button.subviewbutton:hover {
-  background: var(--button-hover-bgcolor) !important;
-}
-
-/* Groups icon color in 'List all tabs' button */
-
-.subviewbutton-iconic.tab-group-icon-closed > image {
-  color: light-dark(var(--tab-group-color), var(--tab-group-color)) !important;
+.all-tabs-mute-button.all-tabs-secondary-button.subviewbutton:hover{
+    background: var(--color-accent-primary-hover) !important;
 }
 
 /* ______________ Unified extentions button ______________
    ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
 
-:root {
-  --uei-icon-size: 18px !important;
+#unified-extensions-panel #unified-extensions-view {
+    --uei-icon-size: calc(2 * var(--toolbarbutton-padding-inner) + 6px);
+    --firefoxcss-number-of-extensions-in-a-row: 7;
+    --button-background-color-ghost-hover: var(--color-accent-primary-hover) !important;
+    --button-background-color-ghost-active: var(--color-accent-primary-active) !important;
+    --panel-separator-zap-gradient6: linear-gradient(to left, #70707070, transparent 100%) 1;
 }
 
-#unified-extensions-manage-extensions .toolbarbutton-icon {
-  margin-inline: 2px 4px !important;
+/* Remove Labels */
+.unified-extensions-item-name {
+    display: none !important;
 }
 
-.toolbaritem-combined-buttons:is(
-    :not([cui-areatype="toolbar"]),
-    [overflowedItem="true"]
-  )
-  > toolbarbutton:not(.toolbarbutton-1)[disabled] {
-  opacity: 1 !important;
+/* Remove 'options' button */
+.unified-extensions-item-menu-button.subviewbutton.subviewbutton-iconic {
+    display: none !important;
 }
 
-#unified-extensions-panel {
-  --menu-panel-width-wide: 30em !important; /* Keep the second line in 1 line 'Spanish languaje' */
-
-  .unified-extensions-item {
-    padding-block: 0 !important;
-    margin-block: 0px !important;
-  }
+/* Remove unwanted margin to center icon */
+.unified-extensions-item-icon, 
+.unified-extensions-item .webextension-browser-action.subviewbutton > .toolbarbutton-badge-stack {
+    margin-inline-end: 0px !important;
 }
 
-.unified-extensions-item-action-button.panel-no-padding.webextension-browser-action.subviewbutton.subviewbutton-iconic {
-  padding-block: 2px !important;
-  margin-block: 0px !important;
+/* Align 'Manage Extensions' icon */
+#unified-extensions-manage-extensions>.toolbarbutton-icon {
+    margin-inline-start: 6px !important;
 }
 
-.unified-extensions-item-menu-button:is(
-    panelview .toolbarbutton-1,
-    toolbarbutton.subviewbutton,
-    .widget-overflow-list .toolbarbutton-1,
-    .toolbaritem-combined-buttons:is(
-        :not([cui-areatype="toolbar"]),
-        [overflowedItem="true"]
-      )
-      > toolbarbutton
-  ):not([disabled]) {
-  background: transparent !important;
-  padding: 0px 6px !important;
+#overflowed-extensions-list,    /* Extensions in overflow than get into it */
+#unified-extensions-area,       /* Extensions into the button */
+.unified-extensions-list {      /* Extension not permissions needed */
+    --panel-menuitem-border-radius: 3px !important;
+    display: grid !important;    
+    grid-template-columns: repeat(var(--firefoxcss-number-of-extensions-in-a-row), 1fr) !important;    
+    justify-items:left !important;    
+    align-items:left !important;
+    margin-inline: 6px !important;
+    padding-block-end: var(--my-padding-block-end, 0px) !important;
+    border-top: var(--my-border-top, none) !important;
+    border-bottom: var(--my-border-bottom, none) !important;
+    border-image: var(--my-border-image, none) !important;
 }
 
-.unified-extensions-item-menu-button.subviewbutton.subviewbutton-iconic:hover
-  image {
-  background: var(--button-hover-bgcolor) !important;
-  border-radius: 3px !important;
+/* Margins of first group of extensions */
+#overflowed-extensions-list:has(.unified-extensions-item) {
+    --my-border-bottom: 1px solid transparent !important;
+    --my-border-image: var(--panel-separator-zap-gradient6) 1 !important;
+    --my-padding-block-end: 4px !important;
 }
 
-/* Second label del botón de extensiones */
-
-#unified-extensions-area
-  toolbaritem:hover
-  .unified-extensions-item-message-deck
-  label {
-  color: var(--arrowpanel-color, var(--tab-selected-textcolor)) !important;
+/* Margins of third group of extensions */
+.unified-extensions-list:has(.unified-extensions-item) {
+    --my-border-top: 1px solid transparent !important;
+    --my-border-image: var(--panel-separator-zap-gradient6) 1 !important;/**/
 }
 
-@media (-moz-platform: linux) {
-  #unified-extensions-area
-    toolbaritem
-    .unified-extensions-item-message-deck
-    label {
-    appearance: none !important;
-    font-size: 0.875em !important;
-    width: -moz-available !important;
+#unified-extensions-view #unified-extensions-area {
+    padding-block: 3px !important;
+}
+
+.unified-extensions-item-message-deck {
+    background-color: var(--my-traffic-light-color, transparent) !important;
+    position: absolute !important;
+    box-shadow: var(--my-box-shadow, inset 0 0 1px 1px var(--my-scheme-color)) !important;
+    border-radius: 10px !important;
+    font-size: 0 !important;
+    width: 8px !important;
+    height: 8px !important;
+    margin-inline-start: -2px !important;
+    margin-block-start: 4px !important;
+}
+
+.unified-extensions-item-message-deck:has(label[data-l10n-id="origin-controls-state-no-access"]) {
+    --my-box-shadow: none !important;
+}
+
+/* Extensions with access to the page */
+.unified-extensions-item-message-deck:has(label[data-l10n-id="origin-controls-state-always-on"]) {
+    --my-traffic-light-color: var(--lightgreen) !important;
+}
+
+/* Extensions needing clic to run */
+.unified-extensions-item-message-deck:has(label[data-l10n-id="origin-controls-state-when-clicked"]) {
+    --my-traffic-light-color: var(--yellow) !important;
+}
+
+/* Extensions with no access to the page */
+.unified-extensions-item-message-deck:has(label[data-l10n-id="origin-controls-state-temporary-access"]) {
+    --my-traffic-light-color: var(--green) !important;
+}
+
+/* Extensions with no access to the page */
+.unified-extensions-list .unified-extensions-item-message-deck:has(label[data-l10n-id="origin-controls-state-no-access"]) {
+    --my-traffic-light-color: transparent !important;
+}
+
+/* 'dot' position, extension needing attention */
+#unified-extensions-button[attention] > .toolbarbutton-icon, .unified-extensions-item[attention] > .unified-extensions-item-row-wrapper > .unified-extensions-item-action-button.toolbarbutton-1 > .toolbarbutton-badge-stack, .unified-extensions-item[attention] > .unified-extensions-item-row-wrapper > .unified-extensions-item-action-button.subviewbutton {
+  &.subviewbutton {
+    background-position: center bottom var(--uei-dot-vertical-position-in-panel) !important;
   }
 }
 
 /* _______________ Downloads popup menu _______________
-   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+#downloadsListBox > richlistitem {
+    border-radius: 0px !important;
+    
+    .downloadMainArea:hover {
+        color: contrast-color(var(--color-accent-primary-hover)) !important;
+    }
+}
 
-#downloadsPanel-blockedSubview,
-#downloadsPanel-mainView {
-  padding-inline: 0px !important;
+#downloadsPanel-blockedSubview, #downloadsPanel-mainView {
+    padding-inline: 0px !important;
+    padding-block: 4px !important;
 }
 
 #downloadsListBox > richlistitem[state="1"][exists].hoveringMainArea {
-  border-radius: 0px !important;
+    border-radius: 0px !important;
 }
 
 .downloadButton {
-  margin-inline-end: 2px !important;
-  &:hover:not(:active) {
-    background-color: var(--button-hover-bgcolor) !important;
-  }
+    margin-inline-end: 2px !important;
+    color: var(--panel-text-color) !important;
+    &:hover:not(:active) {
+        background-color: var(--color-accent-primary-hover) !important;
+        color: contrast-color(var(--color-accent-primary-hover)) !important;
+    }
 }
 
-#downloadsFooterButtons .button-icon {
-  margin-inline: 6px 7px !important;
+#downloadsFooterButtons .button-icon { 
+    margin-inline: 0px 8px !important;
+}
+
+/* button icon fill color when 'hover' e.g. test it in swamp theme */
+.subviewbutton:hover .button-icon {
+    fill: contrast-color(var(--color-accent-primary-hover)) !important;
+}
+
+/* 'Connection secure' button into 'trust button' \
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+#trustpanel-popup-connection:not([disabled]) {
+    border-radius: var(--border-radius-medium) 0 0 var(--border-radius-medium) !important;
 }
 
 /* ______________  Vertical line separator for tabs-bar using 'flexible space' _____________
@@ -340,59 +451,83 @@ button {
 
 /* Vertical line separator for tabs-bar using 'flexible space' */
 
-:is(#TabsToolbar)
-  toolbarpaletteitem[place="toolbar"][id^="wrapper-customizableui-special-spring"],
-:is(#TabsToolbar) toolbarspring {
-  max-width: 1px !important;
-  min-width: 1px !important;
-  min-height: calc(var(--tab-height-personal) + 0px) !important;
-  max-height: calc(var(--tab-height-personal) + 0px) !important;
-  margin-inline: 3px !important;
-  background-image: linear-gradient(
-    transparent 25%,
-    var(--button-active-bgcolor) 25%,
-    var(--button-active-bgcolor) 75%,
-    transparent 75%
-  ) !important;
+:is(#TabsToolbar) toolbarpaletteitem[place="toolbar"][id^="wrapper-customizableui-special-spring"], :is(#TabsToolbar) toolbarspring {
+    max-width: 1px !important;
+    min-width: 1px !important;
+    min-height: calc(var(--tab-height-personal) + var(--my-tab-margin-top, 0px)) !important;
+    max-height: calc(var(--tab-height-personal) + var(--my-tab-margin-top, 0px)) !important;
+    margin-inline: 3px !important;
+    background-image: linear-gradient( transparent calc(25% + var(--my-tab-margin-top, 0px)/1.3), var(--color-accent-primary-hover) calc(25% + var(--my-tab-margin-top, 0px)/1.3),
+                    var(--color-accent-primary-hover) calc(75% + var(--my-tab-margin-top, 0px)/4), transparent calc(75% + var(--my-tab-margin-top, 0px)/4) ) !important;
 }
 
-:is(#TabsToolbar)
-  toolbarpaletteitem[place="toolbar"][id^="wrapper-customizableui-special-spring"] {
-  background: var(--button-active-bgcolor) !important;
-  max-width: 3px !important;
-  min-width: 3px !important;
-  padding-inline: 3px !important;
+:is(#TabsToolbar) toolbarpaletteitem[place="toolbar"][id^="wrapper-customizableui-special-spring"]{
+    background: var(--color-accent-primary-active) !important;
+    max-width: 3px !important;
+    min-width: 3px !important;
+    padding-inline: 3px !important; 
 }
 
-:is(#TabsToolbar) toolbarpaletteitem[place="toolbar"] > toolbarspring {
-  display: none !important;
+:is(#TabsToolbar) toolbarpaletteitem[place="toolbar"] > toolbarspring{
+    display: none !important;
 }
 
 /* Status panel */
 
-#statuspanel label {
-  background-color: var(--lwt-accent-color) !important;
-  color: currentColor !important;
-  border-color: var(--toolbarbutton-hover-personal) !important;
-  border-radius: 0px !important;
+#statuspanel-label {
+    background-color: var(--lwt-accent-color, var(--red)) !important;
+    color: currentColor !important;
+    border-color: var(--toolbarbutton-hover-personal) !important;
+    border-radius: 0px !important;
 }
 
 /* Delete style when 'sidebar' button change to 'active' */
 
 #sidebar-button {
-  --toolbarbutton-active-background: transparent !important;
-
-  &[checked] {
-    @media -moz-pref("sidebar.revamp") {
-      list-style-image: url("chrome://browser/skin/sidebar-collapsed.svg") !important;
+    
+    &:not(:hover) {
+    --toolbarbutton-background-color-active: transparent !important;
     }
 
-    &:hover {
-      --toolbarbutton-active-background: var(
-        --toolbarbutton-hover-background
-      ) !important;
+    &[checked] {
+        @media -moz-pref("sidebar.revamp") {
+            list-style-image: url("chrome://browser/skin/sidebar-collapsed.svg") !important;
+            
+            @media not -moz-pref("sidebar.position_start") {
+                list-style-image: url("chrome://browser/skin/sidebar-collapsed-right.svg") !important;
+            }
+        }
+
+        &:hover {
+            --toolbarbutton-background-color-active: var(--toolbarbutton-background-color-hover) !important;
+        }
     }
-  }
+    &[open] {
+        /* When Firefox show a 'Message' in this button */
+        --toolbarbutton-background-color-active: var(--color-accent-primary-active) !important;
+        fill: FieldText !important;
+    }
+}
+
+/* ________________________ Firefox-view ________________________
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
+#tabbrowser-tabs::before {
+    border-image: 0 1 linear-gradient( transparent calc(25% + var(--my-tab-margin-top, 0px)/1.3), var(--color-accent-primary-hover) calc(25% + var(--my-tab-margin-top, 0px)/1.3),
+                    var(--color-accent-primary-hover) calc(75% + var(--my-tab-margin-top, 0px)/4), transparent calc(75% + var(--my-tab-margin-top, 0px)/4) );
+}
+
+#TabsToolbar {
+    & #firefox-view-button:hover .toolbarbutton-icon {
+        background-color: var(--toolbarbutton-hover-personal) !important;
+        fill: var(--general-color) !important;
+        transition: none !important;
+    }
+}
+
+toolbar:is(#TabsToolbar, #nav-bar, #PersonalToolbar) #firefox-view-button[aria-pressed="true"] .toolbarbutton-icon {
+        background: var(--color-accent-primary-small) !important;
+        fill: var(--panel-text-color, var(--my-font-color)) !important;
+        transition: none !important;
 }
 
 /* ---------------------------------------------- Used for various smooth transition ---------------------------------------------- */
@@ -402,23 +537,19 @@ panel :is(menulist, button, toolbarbutton:not([.subviewbutton])):not([open]),   
 .toolbarbutton-1::after,                                                            /* Line under navbar buttons */
 .toolbarbutton-1:not(#tabs-newtab-button) .toolbarbutton-icon,                      /* Default buttons */
 .toolbarbutton-1 .toolbarbutton-badge-stack,                                        /* Extensions buttons */
-#PersonalToolbar #PlacesToolbarItems>.bookmark-item {
-  /* Marcadores */
-  transition: all 0.2s ease !important;
+#PersonalToolbar #PlacesToolbarItems>.bookmark-item {                               /* Marcadores */
+    transition: all 0.2s ease !important;
 }
 
 /* Transition of the secure page button, bookmark and Tracking Protection of the url */
-
-#identity-box[pageproxystate="valid"].chromeUI #identity-icon,
-#pageAction-panel-bookmark[starred],
-#star-button[starred],
-#tracking-protection-icon {
-  transition: fill 0.1s ease !important;
+.urlbar-input-container box:not([open])>image,
+#page-action-buttons>hbox>image,
+#tracking-protection-icon { 
+    transition: fill 0.2s ease;
 }
 
 /* Transition for the other buttons in the url */
 
-#urlbar box,
-#page-action-buttons hbox {
-  transition: background-color 0.2s ease !important;
+#urlbar box, #page-action-buttons hbox { 
+    transition: background-color 0.2s ease !important;
 }
