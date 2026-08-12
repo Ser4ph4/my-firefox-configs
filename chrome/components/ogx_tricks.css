@@ -1,7 +1,7 @@
 /*
  ╔═════════════════════════════════════════════════╗
  ║              Firefox Theme  ·  userChrome.css
- ║              Last Update: 09/08/2026
+ ║              Last Update: 12/08/2026
  ╚═════════════════════════════════════════════════╝
 
 /* ══════════════════════════════════════════════════════════════
@@ -27,7 +27,7 @@
 
   /* ── Cores Base ───────────────────────────────────────── */
   --uc-bg:                        #131019;
-  --uc-status-color:              rgb(175, 173, 175);
+  --uc-status-color:              rgb(96, 199, 130);
 
   /* ── Transições Reutilizáveis ─────────────────────────── */
   --uc-transition-click:          83ms linear;
@@ -132,7 +132,7 @@
 .urlbar-input-box,
 #urlbar-input-container {
   font-size:              15px !important;
-  font-family:            "Comic Mono", "Inter", system-ui, monospace !important; /* Modificado para usar Comic Mono */
+  font-family:            "Comic Mono", "Inter", system-ui, monospace !important;
   font-weight:            500 !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -401,9 +401,11 @@ toolbarbutton#scrollbutton-down {
 #statuspanel-label {
   background:    var(--uc-bg) !important;
   color:         var(--uc-status-color) !important;
-  border-radius: 0 4px 0 0;
+  border-radius: 0 6px 0 0 !important;
   border-top:    1px solid var(--uc-bg) !important;
   border-right:  1px solid var(--uc-bg) !important;
+  font-size: 10px !important;
+  font-family:"Comic Mono" !important;
 }
 
 /* ── 5d. Menus & Janela ─────────────────────────────────────── */
