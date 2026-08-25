@@ -1,41 +1,25 @@
 /*
 ===================================================================
-== TEMA Dark SIDEBERY - By Ser4ph4  ==
+== TEMA Dark SIDEBERY - By Ser4ph4                               
 ===================================================================
 */
 :root {
-  --ctp-rosewater: #f5e0dc;
-  --ctp-flamingo: #f2cdcd;
-  --ctp-pink: #f5c2e7;
-  --ctp-mauve: #cba6f7;
-  --ctp-red: #f38ba8;
-  --ctp-maroon: #eba0ac;
-  --ctp-peach: #fab387;
-  --ctp-yellow: #f9e2af;
-  --ctp-green: #a6e3a1;
-  --ctp-teal: #94e2d5;
-  --ctp-sky: #89dceb;
-  --ctp-sapphire: #74c7ec;
-  --ctp-blue: #87b0f9;
-  --ctp-lavender: #b4befe;
-  --ctp-text: #c6d0f5;
-  --ctp-subtext1: #b3bcdf;
-  --ctp-subtext0: #a1a8c9;
-  --ctp-overlay2: #8e95b3;
-  --ctp-overlay1: #7b819d;
-  --ctp-overlay0: #696d86;
-  --ctp-surface2: #565970;
-  --ctp-surface1: #43465a;
-  --ctp-surface0: #313244;
-  --ctp-base: #1e1e2e;
-  --ctp-mantle: #181825;
-  --ctp-crust: #11111b;
+  /* ── Paleta compartilhada com o userChrome.css ──────────────── */
+  --uc-bg:             #131019;
+  --uc-surface:        #1e1c2b;
+  --uc-surface-alt:    #2a2a41;
+  --uc-glow-primary:   rgba(3, 172, 172, 0.685);
+  --uc-glow-secondary: cadetblue;
+  --uc-status-color:   rgb(96, 199, 130);
+  --uc-danger:         orangered;
+  --uc-danger-hover:   tomato;
 }
 
 #root.root {
   --toolbar-el-overlay-active-bg: rgba(255, 255, 255, 0);
-  --toolbar-bg: #161616;
-  --frame-bg: #131019;
+  --toolbar-bg: transparent !important;
+  --frame-bg: transparent !important;
+  --bg: transparent !important;
   --bookmarks-margin: 2px;
   --bookmarks-bookmark-height: 30px;
   --bookmarks-folder-height: 30px;
@@ -52,12 +36,12 @@
   --tabs-margin: 3.9px;
   --tabs-font: 0.9955rem sans-serif;
   --tabs-border-radius: 5px;
-  --tabs-activated-bg: #2a2a41ff;
+  --tabs-activated-bg: var(--uc-surface-alt);
   --tabs-activated-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.282),
     inset 0 0 0 1px rgb(62, 62, 63), inset 2px 0 0 0 rgb(62, 62, 63);
   --tabs-activated-color-layer-opacity: 0.2;
-  --tabs-lvl-opacity: 0.5; /* CORRIGIDO DE 5.16 */
-  --tabs-progress-bg: #8bdc56ff;
+  --tabs-lvl-opacity: 0.5;
+  --tabs-progress-bg: var(--uc-status-color);
   --tabs-audio-btn-width: 0px;
   --tabs-count-font: 0.5625rem sans-serif;
   --tabs-close-btn-margin: 3px;
@@ -68,7 +52,7 @@
   --nav-btn-border-radius: 10px 0 10px 0;
   --nav-btn-active-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.071),
     0 1px 3px 0 rgba(0, 0, 0, 0.212);
-  --nav-btn-accent: #aeceaaff;
+  --nav-btn-accent: var(--uc-status-color);
   --nav-delimiter-size: 19px;
   --nav-hidden-btn-border-radius: 4px;
   --nav-hidden-panels-popup-margin: 3px;
@@ -84,19 +68,37 @@
   --ntb-border-radius: 59px;
   --ntb-btn-height: 32px;
   --scroll-progress-height: 17px;
-  --scroll-progress-bg: #37adef;
+  --scroll-progress-bg: #03acac;
   --popup-scrollbar-color: rgba(255, 255, 255, 0.275);
   --notification-border-radius: 4px;
   --notification-margin: 4px;
   --general-margin: 1px;
   --general-border-radius: 5px;
   --d-slow: 0.3s;
-  --accent: #a4e9ffff;
+  --accent: #37c9c9;
 }
 
+/* ===================================================================
+== BASE TRANSLÚCIDA PARA BLUR MY SHELL ==
+=================================================================== */
+#root, 
+body, 
+.Sidebar, 
+.NavigationBar, 
+.PinnedTabsBar {
+  background-color: rgba(19, 16, 25, 0.45) !important;
+}
+
+.TabsPanel, .BookmarksPanel, .HistoryPanel {
+  background-color: transparent !important;
+}
+
+/* ===================================================================
+== ESTILOS DOS COMPONENTES DO SIDEBERY ==
+=================================================================== */
 .NavigationBar {
   padding: 1.5px !important;
-  font-family: "Comic Mono", "Fira Code", "Liberation Mono", monospace !important; /* CORRIGIDO FONTE FALLBACK */
+  font-family: "Comic Mono", "Fira Code", "Liberation Mono", monospace !important;
   font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -111,11 +113,11 @@
 }
 
 .tabbrowser-tabs .tab-text {
-  font-family: "Comic Mono", "Fira Code", "Liberation Mono", monospace !important; /* CORRIGIDO FONTE FALLBACK */
+  font-family: "Comic Mono", "Fira Code", "Liberation Mono", monospace !important;
 }
 
 .Tab .title {
-  background: linear-gradient(90deg, var(--tabs-normal-fg) 60%, transparent 95%); /* CORRIGIDO TRANSPARENTE */
+  background: linear-gradient(90deg, var(--tabs-normal-fg) 60%, transparent 95%);
   background-clip: text;
   color: transparent;
 }
@@ -125,7 +127,7 @@
   text-shadow: 1px 2px 0px #0b0a0a;
   font-size: 16px;
   text-align: left;
-  font-family: "SF Pro", "Inter", "Ubuntu", system-ui, sans-serif !important; /* CORRIGIDO FONTE FALLBACK */
+  font-family: "SF Pro", "Inter", "Ubuntu", system-ui, sans-serif !important;
   color: #8ae8fc;
 }
 
@@ -136,17 +138,17 @@
 .Tab[data-pin="true"][data-active="true"] {
   border: none !important;
   box-shadow: none !important;
-  background-color: var(--ctp-surface0); /* Mantém um fundo suave para destacar a aba ativa */
+  background-color: var(--uc-surface-alt);
   border-radius: 5px;
 }
 
 .Tab .close:hover {
-  background-color: rgba(243, 139, 168, 0.1);
+  background-color: rgba(255, 69, 0, 0.1);
   transform: scale(0.9);
 }
 
 .Tab .close > svg {
-  fill: var(--ctp-red);
+  fill: var(--uc-danger);
   width: 22px;
   height: 22px;
   transform: scale(0.9);
@@ -157,8 +159,8 @@
 }
 
 .Tab .close:hover > svg {
-  fill: var(--ctp-maroon);
-  filter: drop-shadow(0 0 1px var(--ctp-red));
+  fill: var(--uc-danger-hover);
+  filter: drop-shadow(0 0 1px var(--uc-danger));
 }
 
 .Tab.-loud {
@@ -170,7 +172,7 @@
     transform: scale(0.8);
   }
   50% {
-    transform: scale(1.2); /* CORRIGIDO DUPLICATA E ESCALA MASSIVA */
+    transform: scale(1.2);
   }
   100% {
     transform: scale(0.9);
@@ -228,11 +230,11 @@
 }
 
 .PinnedTab .update-badge {
-  opacity: 0.5; /* CORRIGIDO DE 50 */
+  opacity: 0.5;
 }
 
 .PinnedTab[data-updated="true"] .update-badge {
-  opacity: 1; /* CORRIGIDO DE 100 */
+  opacity: 1;
 }
 
 .Tab:not([data-pin="true"])[data-active="true"] {
@@ -243,8 +245,10 @@
   border: none !important;
 }
 
+/* FAVICON CONTAINER - ABA ATIVA (OVERFLOW CORRIGIDO) */
 .Tab:not([data-pin="true"])[data-active="true"] .fav {
-  background-color: var(--ctp-surface1) !important;
+  position: relative !important;
+  background-color: rgba(3, 172, 172, 0.35) !important;
   border-radius: 4px !important;
   display: flex !important;
   align-items: center !important;
@@ -252,10 +256,16 @@
   width: 24px !important;
   height: 24px !important;
   min-width: 24px !important;
+  margin-left: 4px;
+  overflow: hidden !important; /* Corta o indicador dentro da borda arredondada */
 }
 
 .Tab:not([data-pin="true"])[data-active="true"] .fav > .fav-icon,
 .Tab:not([data-pin="true"])[data-active="true"] .fav > svg {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
   width: 16px !important;
   height: 16px !important;
   min-width: 16px !important;
@@ -264,7 +274,7 @@
 }
 
 .Tab[data-active="true"][data-loading="true"] .fav {
-  background-color: transparent !important;
+  background-color: rgba(3, 172, 172, 0.2) !important;
 }
 
 #root.-collapsed .Tab,
@@ -278,53 +288,16 @@
   background-color: transparent !important;
 }
 
-.Tab:not([data-pin="true"])[data-active="true"] {
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-.Tab:not([data-pin="true"])[data-active="true"] .fav {
-  position: relative !important;
-  background-color: #1a597d7e !important;
-  border-radius: 4px !important;
-  width: 24px !important;
-  height: 24px !important;
-  min-width: 24px !important;
-  margin-left: 4px;
-}
-
-.Tab:not([data-pin="true"])[data-active="true"] .fav > .fav-icon,
-.Tab:not([data-pin="true"])[data-active="true"] .fav > svg {
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  width: 16px !important;
-  height: 16px !important;
-  min-width: 16px !important;
-  margin: 0 !important;
-}
-
-.Tab:not([data-active="true"]) .fav {
-  background-color: transparent !important;
-}
-
-.Tab[data-active="true"][data-loading="true"] .fav {
-  background-color: #1a597d4e !important;
-}
-
-.Tab[data-active="true"]:not([data-pin="true"])::before {
+/* BARRA INDICADORA CORRIGIDA INSIDE .FAV */
+.Tab[data-active="true"]:not([data-pin="true"]) .fav::before {
   content: "";
   position: absolute;
-  left: 4px;
-  top: 4px; /* respiro superior */
-  bottom: 5px; /* respiro inferior */
-  width: 2px;
-  background-color: var(--ctp-blue);
-  border-radius: 5px 0 0 5px;
-  opacity: 0.8;
-  box-shadow: 0 0 1px var(--ctp-sapphire);
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--uc-glow-primary);
+  box-shadow: 0 0 2px var(--uc-glow-secondary);
   z-index: 999;
 }
 
@@ -334,9 +307,9 @@
   top: -3px;
   left: 2px;
   font-size: 10px;
-  color: var(--ctp-green);
-  opacity: 0.95; /* CORRIGIDO DE 9.5 */
+  color: var(--uc-status-color);
+  opacity: 0.95;
   z-index: 1000;
   pointer-events: none;
-  text-shadow: 0 0 1px var(--ctp-peach);
+  text-shadow: 0 0 1px var(--uc-glow-primary);
 }
