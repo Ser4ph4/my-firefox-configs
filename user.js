@@ -1,5 +1,5 @@
-https://github.com/Ser4ph4/my-firefox-configs/* ============================================================
-   User.js Otimizado — 32GB RAM / Alta Performance
+/* ============================================================
+   User.js Otimizado — Debian/Linux (GNOME + NVIDIA)
    ============================================================ */
 
 /* ============================================================
@@ -25,8 +25,6 @@ user_pref("browser.compactmode.show",                    true);
 user_pref("browser.display.focus_ring_on_anything",      true);
 user_pref("browser.display.focus_ring_style",            0);
 user_pref("browser.display.focus_ring_width",            0);
-user_pref("browser.privateWindowSeparation.enabled",     false);
-user_pref("browser.startup.preXulSkeletonUI",            false);
 
 /* ============================================================
    ABAS E SESSÃO
@@ -56,6 +54,23 @@ user_pref("gfx.content.skia-font-cache-size",    80);
 user_pref("media.gpu-process-decoder",           true);
 user_pref("layers.gpu-process.enabled",          true);
 user_pref("layout.display-list.retain",          true);
+
+/* ============================================================
+   VÍDEO ACELERADO POR HARDWARE (Linux/X11 — VA-API/NVDEC)
+   Requer o pacote nvidia-vaapi-driver instalado no sistema para
+   funcionar com o driver proprietário NVIDIA. Suporte a VA-API no
+   X11 é mais recente que no Wayland — combine sempre com o bloco
+   gfx.x11-egl.force-enabled abaixo.
+   ============================================================ */
+user_pref("media.ffmpeg.vaapi.enabled",         true);
+user_pref("widget.dmabuf-textures.enabled",     true);
+
+/* ============================================================
+   X11 (EGL em vez de GLX)
+   Firefox usa GLX por padrão em X11; forçar EGL melhora integração
+   com WebRender e é o caminho recomendado para aceleração via VA-API.
+   ============================================================ */
+user_pref("gfx.x11-egl.force-enabled",          true);
 
 /* ============================================================
    CONTAINERS
@@ -125,21 +140,8 @@ user_pref("network.dns.disablePrefetch",                         false);
 user_pref("network.prefetch-next",                               true);
 
 /* ============================================================
-   FONTES (Otimizado para Inter / LCD Nitidez)
-   ============================================================ */
-user_pref("gfx.font_rendering.cleartype_params.rendering_mode",              5);
-user_pref("gfx.font_rendering.cleartype_params.gamma",                       1450);
-user_pref("gfx.font_rendering.cleartype_params.enhanced_contrast",           100);
-user_pref("gfx.font_rendering.cleartype_params.level",                       100);
-user_pref("gfx.font_rendering.cleartype_params.pixel_structure",             1);
-user_pref("gfx.font_rendering.directwrite.enabled",                          true);
-user_pref("gfx.font_rendering.cleartype_params.force_gdi_classic_for_families", "");
-user_pref("gfx.font_rendering.cleartype_params.force_gdi_classic_max_size",  0);
-
-/* ============================================================
    PROCESSOS E JS
    ============================================================ */
-// dom.ipc.processCount.webIsolated removido — Firefox gerencia melhor automaticamente
 user_pref("dom.ipc.processPriorityManager.enabled",                   true);
 user_pref("javascript.options.mem.gc_high_frequency_heap_growth_max", 150);
 user_pref("javascript.options.mem.gc_low_frequency_heap_growth_max",  120);
