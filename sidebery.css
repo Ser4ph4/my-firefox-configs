@@ -1,10 +1,13 @@
 /*
 ===================================================================
-= TEMA Dark SIDEBERY - By Ser4ph4    (update:02/09/26)                         =
+= TEMA Dark SIDEBERY - By Ser4ph4  (update:02/09/26) - Ajustado   =
 ===================================================================
-*
-/* ── Paleta compartilhada com o userChrome.css ─────────────────────
+*/
+/* ── Paleta compartilhada com o userChrome.css ───────────────────── */
 :root {
+  /* ⬇️ ALTERE ESTA COR SE PRECISAR DEIXAR MAIS CLARO OU MAIS ESCURO ⬇️ */
+  --fundo-sidebery:    #0a0a0e;
+  
   --uc-surface-alt:    #2a2a41;
   --uc-glow-primary:   rgba(3, 172, 172, 0.685);
   --uc-glow-secondary: cadetblue;
@@ -18,9 +21,9 @@
 =================================================================== */
 #root.root {
   --toolbar-el-overlay-active-bg: rgba(255, 255, 255, 0);
-  --toolbar-bg: transparent !important;
-  --frame-bg: transparent !important;
-  --bg: transparent !important;
+  --toolbar-bg: var(--fundo-sidebery) !important;
+  --frame-bg: var(--fundo-sidebery) !important;
+  --bg: var(--fundo-sidebery) !important;
   --bookmarks-margin: 2px;
   --bookmarks-bookmark-height: 30px;
   --bookmarks-folder-height: 30px;
@@ -32,9 +35,9 @@
   --tabs-height: 30px;
   --tabs-indent: 10px;
   --tabs-inner-gap: 6px;
-  --tabs-pinned-height: 30px;
-  --tabs-pinned-width: 30px;
-  --tabs-margin: 3.9px;
+  --tabs-pinned-height: 29px;
+  --tabs-pinned-width: 33px;
+  --tabs-margin: 3px;
   --tabs-font: 0.9955rem sans-serif;
   --tabs-border-radius: 5px;
   --tabs-activated-bg: var(--uc-surface-alt);
@@ -46,8 +49,8 @@
   --tabs-audio-btn-width: 0px;
   --tabs-count-font: 0.5625rem sans-serif;
   --tabs-close-btn-margin: 3px;
-  --nav-btn-width: 30px;
-  --nav-btn-height: 29px;
+  --nav-btn-width: 32px;
+  --nav-btn-height: 33px;
   --nav-btn-margin: 2px;
   --nav-btn-len-margin: 0px;
   --nav-btn-border-radius: 10px 0 10px 0;
@@ -80,18 +83,18 @@
 }
 
 /* ===================================================================
-== BASE TRANSLÚCIDA PARA BLUR MY SHELL ==
+== BASE DE FUNDO DO TEMA ==
 =================================================================== */
 #root,
 body,
 .Sidebar,
 .NavigationBar,
 .PinnedTabsBar {
-  background-color: rgba(19, 16, 25, 0.45) !important;
+  background-color: var(--fundo-sidebery) !important;
 }
 
 .TabsPanel, .BookmarksPanel, .HistoryPanel {
-  background-color: transparent !important;
+  background-color: var(--fundo-sidebery) !important;
 }
 
 /* ===================================================================
@@ -109,7 +112,6 @@ body,
   display: none;
 }
 
-/* Título das abas: fonte mono por padrão + efeito de gradiente no texto */
 .Tab .title {
   font-family: "Fira Code", "Liberation Mono", monospace;
   background: linear-gradient(90deg, var(--tabs-normal-fg) 60%, transparent 95%);
@@ -156,15 +158,9 @@ body,
 }
 
 @keyframes audio-animation {
-  0% {
-    transform: scale(0.8);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(0.9);
-  }
+  0% { transform: scale(0.8); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(0.9); }
 }
 
 /* ===================================================================
@@ -176,7 +172,6 @@ body,
   border: none !important;
 }
 
-/* FAVICON CONTAINER - ABA ATIVA */
 .Tab:not([data-pin="true"])[data-active="true"] .fav {
   position: relative !important;
   background-color: rgba(3, 172, 172, 0.35) !important;
@@ -212,7 +207,6 @@ body,
   background-color: transparent !important;
 }
 
-/* Barra indicadora da aba ativa (usa ::after pra não conflitar com o ::before do loading) */
 .Tab[data-active="true"]:not([data-pin="true"]) .fav::after {
   content: "";
   position: absolute;
@@ -232,9 +226,9 @@ body,
   box-shadow: inset -2px 0px 3px rgba(0, 0, 0, 0.23);
 }
 
-/* Hover sutil em pinned tabs inativas (não existia antes) */
+/* Hover em pinned tabs inativas */
 .PinnedTab:not([data-active="true"]):hover {
-  background-color: rgba(255, 255, 255, 0.06);
+  background-color: rgba(255, 255, 255, 0.1) !important;
   border-radius: 5px;
   transition: background-color 0.2s ease;
 }
@@ -244,54 +238,50 @@ body,
   transition: transform 0.15s ease;
 }
 
-/* Aba fixada ativa */
+/* Aba fixada ativa - fundo destacado */
 .Tab[data-pin="true"][data-active="true"] {
   border: none !important;
-  box-shadow: none !important;
-  background-color: var(--uc-surface-alt);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2) !important;
+  background-color: rgba(255, 255, 255, 0.14) !important;
   border-radius: 5px;
   transition: background-color 0.2s ease;
 }
 
-/* Bolinha indicadora de aba fixada ativa — agora com glow do --accent do tema */
+/* Indicador da aba fixada ativa (ponto ciano no topo esquerdo) */
 .Tab[data-pin="true"][data-active="true"]::before {
   content: "●";
   position: absolute;
   top: -3px;
   left: 2px;
   font-size: 10px;
-  color: var(--uc-status-color);
-  opacity: 0.95;
+  color: #8ae8fc !important;
+  opacity: 1;
   z-index: 1000;
   pointer-events: none;
-  text-shadow: 0 0 2px var(--accent), 0 0 1px var(--uc-glow-primary);
+  text-shadow: 0 0 5px #37c9c9;
   transition: text-shadow 0.2s ease;
 }
 
-/* Favicon das pinned tabs: sem máscara por padrão */
-.PinnedTab .fav > img {
-  mask: none;
-}
-
-/* Quando o conteúdo da pinned tab muda (data-updated), aplica o "chanfro" na máscara */
+/* Mantém os ícones sem máscara preta de recorte */
+.PinnedTab .fav > img,
 .PinnedTab[data-updated="true"] .fav > img {
-  mask: radial-gradient(
-    circle at calc(100% - 2px) calc(100% - 2px),
-    rgba(0, 0, 0, 0.141),
-    rgba(0, 0, 0, 0.141) 4px,
-    #000 5px,
-    #000
-  );
+  mask: none !important;
 }
 
-/* Badge de "atualizado" nas pinned tabs */
-.PinnedTab .update-badge {
-  opacity: 0.5;
-  transition: opacity 0.25s ease;
-}
-
+/* Bolinha de notificação/atualização em ciano brilhante com glow */
+.Tab .update-badge,
+.PinnedTab .update-badge,
+.Tab[data-updated="true"] .update-badge,
 .PinnedTab[data-updated="true"] .update-badge {
-  opacity: 1;
+  background-color: #37c9c9 !important;
+  fill: #37c9c9 !important;
+  color: #37c9c9 !important;
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  opacity: 1 !important;
+  box-shadow: 0 0 6px #37c9c9 !important;
+  z-index: 10 !important;
 }
 
 /* ===================================================================
