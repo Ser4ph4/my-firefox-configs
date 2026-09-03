@@ -3,11 +3,8 @@
 = TEMA Dark SIDEBERY - By Ser4ph4  (update:02/09/26) - Ajustado   =
 ===================================================================
 */
-/* ── Paleta compartilhada com o userChrome.css ───────────────────── */
 :root {
-  /* ⬇️ ALTERE ESTA COR SE PRECISAR DEIXAR MAIS CLARO OU MAIS ESCURO ⬇️ */
   --fundo-sidebery:    #0a0a0e;
-  
   --uc-surface-alt:    #2a2a41;
   --uc-glow-primary:   rgba(3, 172, 172, 0.685);
   --uc-glow-secondary: cadetblue;
