@@ -1,16 +1,16 @@
 /*
-===================================================================
-= TEMA Dark SIDEBERY - By Ser4ph4  (update:02/09/26) - Ajustado   =
-===================================================================
+========================================================
+= TEMA Dark SIDEBERY - By Ser4ph4  (update:03/09/26)   =
+========================================================
 */
 :root {
-  --fundo-sidebery:    #0a0a0e;
-  --uc-surface-alt:    #2a2a41;
-  --uc-glow-primary:   rgba(3, 172, 172, 0.685);
+  --fundo-sidebery: #0a0a0e;
+  --uc-surface-alt: #2a2a41;
+  --uc-glow-primary: rgba(3, 172, 172, 0.685);
   --uc-glow-secondary: cadetblue;
-  --uc-status-color:   rgb(96, 199, 130);
-  --uc-danger:         orangered;
-  --uc-danger-hover:   tomato;
+  --uc-status-color: rgb(96, 199, 130);
+  --uc-danger: orangered;
+  --uc-danger-hover: tomato;
 }
 
 /* ===================================================================
@@ -20,7 +20,6 @@
   --toolbar-el-overlay-active-bg: rgba(255, 255, 255, 0);
   --toolbar-bg: var(--fundo-sidebery) !important;
   --frame-bg: var(--fundo-sidebery) !important;
-  --bg: var(--fundo-sidebery) !important;
   --bookmarks-margin: 2px;
   --bookmarks-bookmark-height: 30px;
   --bookmarks-folder-height: 30px;
@@ -38,8 +37,7 @@
   --tabs-font: 0.9955rem sans-serif;
   --tabs-border-radius: 5px;
   --tabs-activated-bg: var(--uc-surface-alt);
-  --tabs-activated-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.282),
-    inset 0 0 0 1px rgb(62, 62, 63), inset 2px 0 0 0 rgb(62, 62, 63);
+  --tabs-activated-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.282), inset 0 0 0 1px rgb(62, 62, 63), inset 2px 0 0 0 rgb(62, 62, 63);
   --tabs-activated-color-layer-opacity: 0.2;
   --tabs-lvl-opacity: 0.5;
   --tabs-progress-bg: var(--uc-status-color);
@@ -51,8 +49,7 @@
   --nav-btn-margin: 2px;
   --nav-btn-len-margin: 0px;
   --nav-btn-border-radius: 10px 0 10px 0;
-  --nav-btn-active-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.071),
-    0 1px 3px 0 rgba(0, 0, 0, 0.212);
+  --nav-btn-active-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.071), 0 1px 3px 0 rgba(0, 0, 0, 0.212);
   --nav-btn-accent: var(--uc-status-color);
   --nav-delimiter-size: 19px;
   --nav-hidden-btn-border-radius: 4px;
@@ -61,8 +58,7 @@
   --ctx-menu-font: 0.975rem sans-serif;
   --ctx-menu-border-radius: calc(9px + 1px);
   --ctx-menu-opt-border-radius: calc(5px - 3px + 1px);
-  --ctx-menu-shadow: 0 0 0 1px rgba(255, 255, 255, 0.086),
-    0 1px 16px 0 rgba(0, 0, 0, 0.282);
+  --ctx-menu-shadow: 0 0 0 1px rgba(255, 255, 255, 0.086), 0 1px 16px 0 rgba(0, 0, 0, 0.282);
   --history-item-margin: 3px;
   --history-item-border-radius: 5px;
   --history-item-padding-right: 1px;
@@ -86,11 +82,10 @@
 body,
 .Sidebar,
 .NavigationBar,
-.PinnedTabsBar {
-  background-color: var(--fundo-sidebery) !important;
-}
-
-.TabsPanel, .BookmarksPanel, .HistoryPanel {
+.PinnedTabsBar,
+.TabsPanel,
+.BookmarksPanel,
+.HistoryPanel {
   background-color: var(--fundo-sidebery) !important;
 }
 
@@ -134,7 +129,7 @@ body,
   transform: scale(0.9);
 }
 
-.Tab .close > svg {
+.Tab .close>svg {
   fill: var(--uc-danger);
   width: 22px;
   height: 22px;
@@ -145,7 +140,7 @@ body,
   top: 1px;
 }
 
-.Tab .close:hover > svg {
+.Tab .close:hover>svg {
   fill: var(--uc-danger-hover);
   filter: drop-shadow(0 0 1px var(--uc-danger));
 }
@@ -155,9 +150,17 @@ body,
 }
 
 @keyframes audio-animation {
-  0% { transform: scale(0.8); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(0.9); }
+  0% {
+    transform: scale(0.8);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(0.9);
+  }
 }
 
 /* ===================================================================
@@ -183,8 +186,8 @@ body,
   overflow: hidden !important;
 }
 
-.Tab:not([data-pin="true"])[data-active="true"] .fav > .fav-icon,
-.Tab:not([data-pin="true"])[data-active="true"] .fav > svg {
+.Tab:not([data-pin="true"])[data-active="true"] .fav>.fav-icon,
+.Tab:not([data-pin="true"])[data-active="true"] .fav>svg {
   position: absolute !important;
   top: 50% !important;
   left: 50% !important;
@@ -244,7 +247,6 @@ body,
   transition: background-color 0.2s ease;
 }
 
-/* Indicador da aba fixada ativa (ponto ciano no topo esquerdo) */
 .Tab[data-pin="true"][data-active="true"]::before {
   content: "●";
   position: absolute;
@@ -259,32 +261,10 @@ body,
   transition: text-shadow 0.2s ease;
 }
 
-/* Mantém os ícones sem máscara preta de recorte */
-.PinnedTab .fav > img,
-.PinnedTab[data-updated="true"] .fav > img {
-  mask: none !important;
-}
-
-/* Bolinha de notificação/atualização em ciano brilhante com glow */
-.Tab .update-badge,
-.PinnedTab .update-badge,
-.Tab[data-updated="true"] .update-badge,
-.PinnedTab[data-updated="true"] .update-badge {
-  background-color: #37c9c9 !important;
-  fill: #37c9c9 !important;
-  color: #37c9c9 !important;
-  width: 7px !important;
-  height: 7px !important;
-  border-radius: 50% !important;
-  opacity: 1 !important;
-  box-shadow: 0 0 6px #37c9c9 !important;
-  z-index: 10 !important;
-}
-
 /* ===================================================================
 == ÍCONE DE CARREGAMENTO (LOADING) ==
 =================================================================== */
-.Tab[data-loading="true"] .fav > .fav-icon {
+.Tab[data-loading="true"] .fav>.fav-icon {
   opacity: 0 !important;
 }
 
@@ -313,7 +293,7 @@ body,
 /* ===================================================================
 == BOOKMARKS ==
 =================================================================== */
-.BookmarkNode[data-type="folder"] > .body > .fav > svg {
+.BookmarkNode[data-type="folder"]>.body>.fav>svg {
   fill: rgba(174, 23, 53, 0.9);
   opacity: 1;
 }
@@ -326,4 +306,33 @@ body,
   display: flex !important;
   justify-content: center !important;
   padding: 0 !important;
+}
+
+/* ===================================================================
+== BOLINHA DE NOTIFICAÇÃO/ATUALIZAÇÃO (Update Badge) ==
+=================================================================== */
+.Tab .update-badge,
+.Tab[data-updated="true"] .update-badge {
+  background-color: #37c9c9 !important;
+  fill: #37c9c9 !important;
+  color: #37c9c9 !important;
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  opacity: 1 !important;
+  box-shadow: 0 0 6px #37c9c9 !important;
+  z-index: 10 !important;
+}
+
+.PinnedTab .update-badge,
+.PinnedTab[data-updated="true"] .update-badge,
+.PinnedTab .fav .update-badge {
+  position: absolute !important;
+  top: 2px !important;
+  right: 2px !important;
+  background-color: #ff4757 !important;
+  /* ← MUDE AQUI PARA A COR QUE QUISER */
+  fill: #ff4757 !important;
+  box-shadow: 0 0 6px #ff4757 !important;
+  border: 1px solid rgba(0, 0, 0, 0.3) !important;
 }
