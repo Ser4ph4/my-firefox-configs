@@ -1,76 +1,28 @@
-/*
- ╔═════════════════════════════════════════════════╗
- ║              Firefox Theme  ·  userChrome.css
- ║              Last Update: 01/09/2026
- ╚═════════════════════════════════════════════════╝
-*/
+/* Firefox Theme · userChrome.css — Last Update: 02/09/2026 */
 
-/* ══════════════════════════════════════════════════════════════
-   1. VARIÁVEIS GLOBAIS
-   ══════════════════════════════════════════════════════════════ */
-
+/* ============================== 1. VARIÁVEIS ============================== */
 :root {
-  /* ── Sidebar ──────────────────────────────────────────── */
   --uc-sidebar-width: 33px;
   --uc-sidebar-hover-width: 220px;
   --uc-autohide-sidebar-delay: 300ms;
   --uc-autohide-duration: 115ms;
   --uc-autohide-easing: linear;
 
-  /* ── Glow ─────────────────────────────────────────────── */
   --uc-glow-primary: rgba(28, 184, 8, 0.685);
-  --uc-glow-secondary: rgba(10, 160, 10, 0.692);
-  --uc-glow-hover-primary: rgba(255, 0, 0, 0.521);
-  --uc-glow-hover-secondary: yellow;
-  --uc-glow-downloads: rgba(96, 199, 130, 0.75);
-  /* verdinho do --uc-status-color */
+  --uc-glow-secondary: rgba(4, 66, 4, 0.74);
 
-  /* ── URL Bar ──────────────────────────────────────────── */
   --uc-urlbar-radius: 10px;
   --uc-urlbar-action-gap: 6px;
-  /* espaço entre ícones de page-action revelados */
   --uc-urlbar-action-min-width: 24px;
-  /* largura mínima de cada ícone de page-action */
 
-  /* ── Cores Base ───────────────────────────────────────── */
   --uc-bg: #131019;
   --uc-status-color: rgb(96, 199, 130);
 
-  /* ── Transições Reutilizáveis ─────────────────────────── */
   --uc-transition-click: 110ms cubic-bezier(0.34, 1.56, 0.64, 1);
   --uc-transition-opacity: 200ms linear;
 }
 
-
-/* ══════════════════════════════════════════════════════════════
-   2. BARRA LATERAL (SIDEBERY)
-   ══════════════════════════════════════════════════════════════ */
-
-#sidebar-box {
-  --browser-area-z-index-sidebar: 3;
-
-  position: relative;
-  z-index: var(--browser-area-z-index-sidebar) !important;
-  min-width: var(--uc-sidebar-width) !important;
-  width: var(--uc-sidebar-width) !important;
-  max-width: var(--uc-sidebar-width) !important;
-  padding: 0 !important;
-  background-color: inherit;
-  border-right: none !important;
-  border-inline-end: none !important;
-}
-
-/* Remove divisor */
-#sidebar-splitter {
-  display: none !important;
-}
-
-/* Suporte à posição direita (RTL / positionend) */
-#sidebar-box:is([positionend], [sidebar-positionend]):not(:-moz-locale-dir(rtl)) {
-  direction: rtl;
-}
-
-/* Transição suave ao recolher */
+/* ============================== 2. SIDEBAR (SIDEBERY) ============================== */
 #sidebar-header,
 #sidebar {
   min-width: var(--uc-sidebar-width) !important;
@@ -79,12 +31,6 @@
   border-style: none !important;
 }
 
-#sidebar-header:-moz-locale-dir(rtl),
-#sidebar:-moz-locale-dir(rtl) {
-  direction: rtl;
-}
-
-/* Expansão ao hover */
 #sidebar-box:hover>#sidebar-header,
 #sidebar-box:hover>#sidebar,
 #sidebar-box:hover>.sidebar-browser-stack>#sidebar {
@@ -92,36 +38,9 @@
   transition-delay: 0ms !important;
 }
 
-/* Oculta cabeçalho do Sidebery */
-#sidebar-header {
-  display: none !important;
-}
+/* ============================== 3. BARRA DE URL ============================== */
 
-/* Remove sombra conflitante com abas verticais */
-#sidebar-box:is([sidebarcommand*="tabcenter"],
-  [sidebarcommand*="treestyletab"],
-  [sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929"])[checked="true"]~#tabbrowser-tabbox {
-  box-shadow: none !important;
-}
-
-/* Evita que o status panel fique sob a sidebar expandida */
-#sidebar-box:not([positionend], [sidebar-positionend]):hover~#appcontent #statuspanel {
-  inset-inline: auto 0 !important;
-}
-
-#sidebar-box:not([positionend], [sidebar-positionend]):hover~#appcontent #statuspanel-label {
-  margin-inline: 0 !important;
-  border-left-style: solid !important;
-}
-
-
-/* ══════════════════════════════════════════════════════════════
-   3. BARRA DE URL
-   ══════════════════════════════════════════════════════════════ */
-
-/* ── 3a. Tipografia & Layout ────────────────────────────────── */
-
-/* Arredondamento */
+/* Formato e tipografia */
 #urlbar-background,
 #urlbar,
 :is(#urlbar-input-container, .urlbar-input-container),
@@ -130,7 +49,6 @@
   border-radius: var(--uc-urlbar-radius) !important;
 }
 
-/* Tipografia */
 #identity-box,
 #urlbar-input,
 .urlbar-input-box,
@@ -142,24 +60,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Seleção de texto */
 .urlbar-input::selection {
   background-color: rgba(182, 179, 179, 0.96) !important;
 }
 
-/* Page actions: ocultas → visíveis no hover
-   (fix 09/2026: FF155 reduziu o padding interno dos ícones — usamos
-   min-width + box-sizing pra garantir área de clique/espaçamento
-   consistente entre os botões, mesmo com ícones "largos" tipo o de
-   tradução) */
+/* Page actions: ocultas → visíveis no hover */
 .urlbar-page-action {
   margin-inline-end: calc(-16px - 2 * var(--urlbar-icon-padding));
   opacity: 0;
   min-width: var(--uc-urlbar-action-min-width) !important;
   box-sizing: border-box !important;
-  transition:
-    margin-inline-end var(--uc-transition-opacity),
-    opacity var(--uc-transition-opacity);
+  transition: margin-inline-end var(--uc-transition-opacity), opacity var(--uc-transition-opacity);
 }
 
 #urlbar:hover .urlbar-page-action,
@@ -169,9 +80,7 @@
   margin-inline-end: var(--uc-urlbar-action-gap) !important;
 }
 
-/* ── 3b. Cores por Status de Conexão ───────────────────────── */
-
-/* Identidade desconhecida */
+/* Cores por status de conexão */
 #identity-box[pageproxystate="valid"].unknownIdentity~.urlbar-input-box {
   color: orange;
   background-color: rgba(80, 67, 3, 0.4);
@@ -179,51 +88,43 @@
   font-style: oblique;
 }
 
-/* Conteúdo misto / não seguro */
 #identity-box[pageproxystate="valid"].notSecure~.urlbar-input-box {
   color: orangered;
   background-color: rgba(255, 68, 0, 0.23);
   border-radius: 5px !important;
 }
 
-/* HTTPS seguro */
 #identity-box[pageproxystate="valid"].secure~.urlbar-input-box {
   color: rgba(12, 170, 25, 0.6);
 }
 
-/* Página de extensão */
 #identity-box[pageproxystate="valid"].extensionPage~.urlbar-input-box {
   color: rgb(5, 187, 233);
   background-color: rgba(42, 86, 97, 0.45);
   border-radius: 5px !important;
 }
 
-/* Recurso local / chrome UI */
 #identity-box[pageproxystate="valid"]:is(.localResource, .chromeUI)~.urlbar-input-box {
   color: rgb(214, 160, 240);
   background-color: rgba(169, 49, 224, 0.32);
   border-radius: 5px !important;
 }
 
-/* Domínio verificado (EV) */
 #identity-box.verifiedDomain~.urlbar-input-box {
   background-color: rgba(50, 255, 50, 0.13);
   border-radius: 5px !important;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 0 2px #000;
 }
 
-/* ── 3c. Ícone de Proteção contra Rastreamento ──────────────── */
-
+/* Ícone de proteção contra rastreamento */
 :is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"]>#tracking-protection-icon-container>#tracking-protection-icon-box>#tracking-protection-icon {
   fill: #40aa40b7 !important;
 }
 
-/* Com exceção */
 :is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"]>#tracking-protection-icon-container>#tracking-protection-icon-box[hasException]>#tracking-protection-icon {
   fill: orangered !important;
 }
 
-/* Ativo sem exceção */
 :is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"]>#tracking-protection-icon-container>#tracking-protection-icon-box:not([hasException])[active]>#tracking-protection-icon {
   fill: #40aa4075 !important;
 }
@@ -232,8 +133,7 @@
   order: 0 !important;
 }
 
-/* ── 3d. Overlay de Foco na Barra de URL ────────────────────── */
-
+/* Overlay de foco */
 #nav-bar::after {
   position: fixed;
   content: "";
@@ -248,12 +148,8 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+/* ============================== 4. EFEITOS & ANIMAÇÕES ============================== */
 
-/* ══════════════════════════════════════════════════════════════
-   4. EFEITOS & ANIMAÇÕES
-   ══════════════════════════════════════════════════════════════ */
-
-/* ── 4a. Transições de Ícones ───────────────────────────────── */
 .urlbar-icon,
 .toolbarbutton-icon,
 .downloadIconShow>.button-box>.button-icon,
@@ -266,15 +162,6 @@ toolbar .toolbarbutton-1>.toolbarbutton-icon {
   transition: padding var(--uc-transition-click) !important;
 }
 
-/* Ícone de downloads: mantém o efeito de clique mas preserva o
-   fade nativo de opacity entre os estados da animação */
-#downloads-indicator-icon {
-  transition:
-    transform var(--uc-transition-click),
-    opacity 150ms ease !important;
-}
-
-/* Escala ao clicar */
 .urlbar-input-container [role="button"]:active image,
 .downloadIconShow:active>.button-box>.button-icon,
 #downloads-button:active #downloads-indicator-icon,
@@ -286,7 +173,6 @@ toolbar .toolbarbutton-1:not([disabled]):active>.toolbarbutton-badge-stack>.tool
   transform: scale(0.85) !important;
 }
 
-/* Botão de fechar aba */
 .tab-close-button:hover {
   transition: padding-block var(--uc-transition-click);
 }
@@ -295,7 +181,6 @@ toolbar .toolbarbutton-1:not([disabled]):active>.toolbarbutton-badge-stack>.tool
   padding: calc(var(--tab-close-button-padding) + 2px) !important;
 }
 
-/* Scroll buttons */
 toolbarbutton#scrollbutton-down:active>.toolbarbutton-icon {
   transform: scale(-1.6) !important;
 }
@@ -304,20 +189,17 @@ toolbar .toolbarbutton-1:not([disabled]):active>.toolbarbutton-icon {
   padding: calc(var(--toolbarbutton-inner-padding) + 3px) !important;
 }
 
-/* ── 4b. Efeito Glow ────────────────────────────────────────── */
-
+/* Glow */
 toolbar #downloads-button:hover #downloads-indicator-anchor,
 .findbar-textbox~toolbarbutton:not([disabled]):hover,
 toolbarbutton.scrollbutton-up:not([disabled]):hover,
 toolbarbutton.scrollbutton-down:not([disabled]):hover,
 toolbarbutton#scrollbutton-up:not([disabled]):hover,
 toolbarbutton#scrollbutton-down:not([disabled]):hover {
-  filter:
-    drop-shadow(0 0 1px var(--uc-glow-primary)) drop-shadow(0 0 1px var(--uc-glow-primary));
+  filter: drop-shadow(0 0 5px var(--uc-glow-primary)) drop-shadow(0 0 1px var(--uc-glow-primary));
 }
 
-/* ── 4c. Barra de Progresso no Topo ─────────────────────────── */
-
+/* Barra de progresso no topo */
 @keyframes statusline-anim {
   from {
     background-position-x: left;
@@ -368,30 +250,16 @@ toolbarbutton#scrollbutton-down:not([disabled]):hover {
   }
 }
 
+/* ============================== 5. ESTILOS GERAIS ============================== */
 
-/* ══════════════════════════════════════════════════════════════
-   5. ESTILOS GERAIS
-   ══════════════════════════════════════════════════════════════ */
-
-/* ── 5a. Fundo & Containers ─────────────────────────────────── */
-
-/* Fundo principal — cria contexto de empilhamento */
 .browserContainer {
   background-color: var(--uc-bg) !important;
   transform: translate(0);
 }
 
-/* Arredondamento do conteúdo de página */
 #tabbrowser-tabpanels browser[type="content"] {
   border-top-left-radius: 10px !important;
 }
-
-/* Z-index da toolbar */
-#navigator-toolbox {
-  z-index: unset !important;
-}
-
-/* ── 5b. Elementos Transparentes ────────────────────────────── */
 
 .close-icon,
 .urlbar-icon,
@@ -413,8 +281,6 @@ toolbarbutton#scrollbutton-down {
   border-color: transparent !important;
 }
 
-/* ── 5c. Painel de Status ───────────────────────────────────── */
-
 #statuspanel-label {
   background: var(--uc-bg) !important;
   color: var(--uc-status-color) !important;
@@ -425,19 +291,14 @@ toolbarbutton#scrollbutton-down {
   font-family: "Comic Mono" !important;
 }
 
-/* ── 5d. Menus & Janela ─────────────────────────────────────── */
-
-/* Separadores de menu */
 menupopup:not(.in-menulist) menuseparator::before {
   margin-inline: -12px !important;
 }
 
-/* Ícone de confiança */
 #trust-icon {
   color: #40aa40b7 !important;
 }
 
-/* Botões da janela no Windows (ícones clássicos) */
 @media (-moz-platform: windows) {
   .titlebar-button>.toolbarbutton-icon {
     display: inline-flex !important;
@@ -446,4 +307,26 @@ menupopup:not(.in-menulist) menuseparator::before {
   .titlebar-button::before {
     display: none !important;
   }
+}
+
+#trust-icon-container {
+  order: 0 !important;
+  padding-left: 3px !important;
+  padding-right: 1px !important;
+}
+
+#identity-box {
+  order: -1 !important;
+  padding-left: 3px !important;
+  padding-right: 3px !important;
+}
+
+#urlbar-zoom-button {
+  appearance: none;
+  font-size: 0.8em;
+  padding: 1px 1px;
+  border-radius: var(--urlbar-inner-border-radius);
+  overflow: hidden;
+  color: #a6a689 !important;
+  background: #2b2727 !important;
 }

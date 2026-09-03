@@ -8,28 +8,51 @@ See the above repository for updates as well as full license text. */
   width: var(--urlbar-width) !important;
   margin-top: calc((var(--urlbar-container-height) - var(--urlbar-height)) / 2) !important;
 }
-.urlbarView{
+
+.urlbarView {
   margin-inline: 0 !important;
   width: auto !important;
 }
-.urlbarView-row{
+
+.urlbarView-row {
   padding: 0 2px !important;
 }
-.urlbarView-row-inner{
+
+.urlbarView-row-inner {
   padding-inline-start: 4px !important;
   padding-block: 3px !important;
 }
+
 .urlbar-background,
-#urlbar-background{
+#urlbar-background {
   animation: none !important;
 }
-.urlbar-input-container{
-  padding: var(--urlbar-container-padding,0) 1px !important;
+
+.urlbar-input-container {
+  padding: var(--urlbar-container-padding, 0) 1px !important;
   height: var(--urlbar-min-height) !important;
 }
-#identity-icon{
+
+#identity-icon {
   margin-block: var(--urlbar-icon-padding);
 }
-.urlbarView > .search-one-offs:not([hidden]){
+
+.urlbarView>.search-one-offs:not([hidden]) {
   padding-block: 0px !important;
+}
+
+/* Escurecer a página inteira quando a barra de endereços estiver ativa */
+#navigator-toolbox:has(#urlbar[breakout-extend])~#browser::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  /* Ajuste 0.6 para controlar a escuridão (0.1 a 0.9) */
+  z-index: 9999;
+  pointer-events: none;
+  transition: background-color 0.4s ease !important;
 }

@@ -7,7 +7,7 @@
 /* Non image in the 'left-sidebar + tabsbar + menubar' in themes that use images */
 
 @media -moz-pref("firefoxgx.solid-background") {
-  
+
   /* Without sidebars */
   @media (not -moz-pref("firefoxgx.left-sidebar")) and (not -moz-pref("sidebar.revamp")) {
     :is(#TabsToolbar, #toolbar-menubar) {
@@ -17,7 +17,11 @@
   }
 
   /* With 'left-sidebar' only */
-  @media -moz-pref("firefoxgx.left-sidebar") /*and (not -moz-pref("sidebar.revamp"))/**/ {
+  @media -moz-pref("firefoxgx.left-sidebar")
+
+  /*and (not -moz-pref("sidebar.revamp"))/**/
+    {
+
     :root:not([customizing]) #navigator-toolbox::before,
     :is(#PersonalToolbar, #TabsToolbar, #toolbar-menubar) {
       background-image: none !important;
@@ -27,9 +31,10 @@
 
   /* With 'sidebar-revamp' only */
   @media -moz-pref("sidebar.revamp") and (not -moz-pref("sidebar.verticalTabs")) and (not -moz-pref("firefoxgx.left-sidebar")) {
+
     #sidebar-container,
     :root:not([customizing]) #navigator-toolbox::before,
-    :is(#TabsToolbar, #toolbar-menubar){
+    :is(#TabsToolbar, #toolbar-menubar) {
       background-image: none !important;
       background-color: var(--lwt-accent-color) !important;
     }
@@ -37,16 +42,19 @@
 
   /* Vertical-tabs Without 'left-sidebar' */
   @media -moz-pref("sidebar.verticalTabs") and (not -moz-pref("firefoxgx.left-sidebar")) {
-    #sidebar-container, :root[sidebar-expand-on-hover] #sidebar-container,
+
+    #sidebar-container,
+    :root[sidebar-expand-on-hover] #sidebar-container,
     :root:not([customizing]) #navigator-toolbox::before,
-    :is(#TabsToolbar, #toolbar-menubar:not([autohide])){
+    :is(#TabsToolbar, #toolbar-menubar:not([autohide])) {
       background-image: none !important;
       background-color: var(--lwt-accent-color) !important;
     }
   }
-  
+
   /* With both sidebars */
   @media -moz-pref("sidebar.revamp") and (not -moz-pref("sidebar.verticalTabs")) and -moz-pref("firefoxgx.left-sidebar") {
+
     :is(#PersonalToolbar, #TabsToolbar, #toolbar-menubar),
     #navigator-toolbox::before {
       background-image: none !important;
@@ -68,46 +76,49 @@
 
 @media -moz-pref("firefoxgx.image-in-menus") {
 
-  :root:not([style*="--lwt-additional-images"],[lwtheme-image]) {
+  :root:not([style*="--lwt-additional-images"], [lwtheme-image]) {
+
     :is(menupopup, panel):where([type="arrow"]),
     menupopup:not(.in-menulist) {
       --lwt-header-image: url("../newtab/menu-image.png") !important;
       --lwt-additional-images: var(--lwt-header-image) !important;
     }
   }
-  
+
   menupopup:not(.in-menulist),
   .panel-no-padding[type="arrow"] {
     @media (prefers-color-scheme: dark) {
       --arrowpanel-background: #101019d0 !important;
     }
+
     @media (prefers-color-scheme: light) {
       --arrowpanel-background: #f9f9f9d0 !important;
     }
   }
-  
+
   .panel-no-padding[type="arrow"] panelmultiview,
   #editBookmarkPanel box,
   #editBookmarkPanel vbox {
     --my-background-image-popup: linear-gradient(var(--arrowpanel-background), var(--arrowpanel-background)),
-                                 var(--lwt-header-image,none), var(--lwt-additional-images, none),
-                                 linear-gradient(var(--lwt-accent-color, Field), var(--lwt-accent-color, Field)) !important;    
+      var(--lwt-header-image, none), var(--lwt-additional-images, none),
+      linear-gradient(var(--lwt-accent-color, Field), var(--lwt-accent-color, Field)) !important;
     background-image: var(--my-background-image-popup) !important;
     background-size: auto 100vh !important;
   }
-  
+
   menupopup:not(.in-menulist) {
     --my-background-image1: linear-gradient(var(--arrowpanel-background), var(--arrowpanel-background)),
-                            var(--lwt-additional-images,none), var(--lwt-header-image, none),
-                            linear-gradient(var(--lwt-accent-color, Field), var(--lwt-accent-color, Field)) !important;
+      var(--lwt-additional-images, none), var(--lwt-header-image, none),
+      linear-gradient(var(--lwt-accent-color, Field), var(--lwt-accent-color, Field)) !important;
     --my-background-position: left top !important;
     --my-background-repeat: no-repeat !important;
     --my-background-size: auto 100vh !important;
   }
 
   @media -moz-pref("firefoxgx.main-image") {
-    @media (prefers-color-scheme: dark){
-      :root:not([style*="--lwt-additional-images"],[lwtheme-image]) {
+    @media (prefers-color-scheme: dark) {
+      :root:not([style*="--lwt-additional-images"], [lwtheme-image]) {
+
         :is(menupopup, panel):where([type="arrow"]),
         menupopup:not(.in-menulist) {
           --lwt-header-image: url("../newtab/main-image-dark.png") !important;
@@ -116,8 +127,9 @@
       }
     }
 
-    @media (prefers-color-scheme: light){
-      :root:not([style*="--lwt-additional-images"],[lwtheme-image]) {
+    @media (prefers-color-scheme: light) {
+      :root:not([style*="--lwt-additional-images"], [lwtheme-image]) {
+
         :is(menupopup, panel):where([type="arrow"]),
         menupopup:not(.in-menulist) {
           --lwt-header-image: url("../newtab/main-image-light.png") !important;
@@ -140,11 +152,11 @@
     --my-margin-inline-popups: -9px !important;
   }
 
-                     /* not: Hamburger-menu, tab preview, tabgroup preview panel, contextual menu in group button, menu in customization mode */
-  :is(menupopup, panel):not(
-  #appMenu-popup, #tab-preview-panel, #tabgroup-preview-panel,
-  #customization-uidensity-menu, /*#feature-callout,/**/ #chat-shortcuts-options-panel, #downloads-button-autohide-panel
-  ):where([type="arrow"])::after {
+  /* not: Hamburger-menu, tab preview, tabgroup preview panel, contextual menu in group button, menu in customization mode */
+  :is(menupopup, panel):not(#appMenu-popup, #tab-preview-panel, #tabgroup-preview-panel,
+    #customization-uidensity-menu,
+    /*#feature-callout,/**/
+    #chat-shortcuts-options-panel, #downloads-button-autohide-panel):where([type="arrow"])::after {
     z-index: 0 !important;
     top: calc(var(--my-margin-top-popups, -4px) + 1px) !important;
   }
@@ -154,21 +166,22 @@
   .panel-no-padding[type="arrow"]:not(#appMenu-popup, #feature-callout, #chat-shortcuts-options-panel) {
     padding-block-start: var(--my-margin-top-popups) !important;
     margin-inline: var(--my-margin-inline-popups) !important;
-    
+
     @media -moz-pref("firefoxgx.oneline") {
       margin-inline: calc(var(--my-margin-inline-popups) - 2px) !important;
     }
   }
 
   /* Panelarrow */
-                               /* not: hamburger menu, link preview popup, translation popup, IA popup */
-  .panel-no-padding[type="arrow"]:not(
-  #appMenu-popup, #link-preview-panel, 
-  #select-translations-panel, #selection-shortcut-action-panel, #feature-callout, #chat-shortcuts-options-panel)::before {
-    content: ''; position: absolute;
+  /* not: hamburger menu, link preview popup, translation popup, IA popup */
+  .panel-no-padding[type="arrow"]:not(#appMenu-popup, #link-preview-panel,
+    #select-translations-panel, #selection-shortcut-action-panel, #feature-callout, #chat-shortcuts-options-panel)::before {
+    content: '';
+    position: absolute;
     top: calc(var(--my-margin-top-popups) - 7px);
     inset-inline-start: calc(var(--toolbarbutton-padding-inner) + 0px);
-    width: 34px; height: 9px;
+    width: 34px;
+    height: 9px;
     background-size: 34px 9px;
     background-image: url("../icons/panelarrow-menu.svg");
     -moz-context-properties: fill, stroke;
@@ -180,28 +193,37 @@
 
   /*  Popups in Tabsbar  */
 
-  .panel-no-padding[type="arrow"]:not(#feature-callout) {                               /* not: firefox info messages */
+  .panel-no-padding[type="arrow"]:not(#feature-callout) {
+
+    /* not: firefox info messages */
     :root:has(#TabsToolbar-customization-target toolbarbutton[open]) & {
       margin-inline: calc(var(--my-margin-inline-popups) - 2px) !important;
     }
 
-    :root:has(toolbarbutton[open] ~ #tabbrowser-tabs) & ,                              /* Buttons on left of tabsbar */
-    :root:has(toolbaritem>box>toolbarbutton[open] ~ #tabbrowser-tabs) & {              /* Buttons on left of tabsbar (Extensions) */
-      &::before{
+    :root:has(toolbarbutton[open] ~ #tabbrowser-tabs) &,
+    /* Buttons on left of tabsbar */
+    :root:has(toolbaritem>box>toolbarbutton[open] ~ #tabbrowser-tabs) & {
+
+      /* Buttons on left of tabsbar (Extensions) */
+      &::before {
         inset-inline-start: calc(var(--toolbarbutton-padding-inner) + 0px);
       }
     }
-    :root:has(#tabbrowser-tabs ~ toolbarbutton[open]:not(#firefox-view-button)) &,     /* Buttons on right of tabsbar */
-    :root:has(#tabbrowser-tabs ~ toolbaritem toolbarbutton[open]) & {                  /* Buttons on right of tabsbar (Extensions) */
-      &::before{
+
+    :root:has(#tabbrowser-tabs ~ toolbarbutton[open]:not(#firefox-view-button)) &,
+    /* Buttons on right of tabsbar */
+    :root:has(#tabbrowser-tabs ~ toolbaritem toolbarbutton[open]) & {
+
+      /* Buttons on right of tabsbar (Extensions) */
+      &::before {
         inset-inline-start: unset !important;
         inset-inline-end: calc(var(--toolbarbutton-padding-inner) + 0px);
-        
+
         /* Oneline align */
         @media -moz-pref("firefoxgx.oneline") {
           inset-inline-end: calc(var(--toolbarbutton-padding-inner) + 2px);
         }
-        
+
         @media -moz-pref("firefoxgx.gradientBorder-in-menus") {
           stroke: var(--general-color) !important;
         }
@@ -212,21 +234,26 @@
   /* Popups in Navbar */
 
   .panel-no-padding[type="arrow"] {
-    :root:has(#nav-bar-customization-target ~ .toolbarbutton-1[open]) & ,              /* Unmovable right icon '>>' */
-    :root:has(#urlbar-container ~ toolbarbutton[open]:not(#firefox-view-button)) & ,   /* Movable right icon */
-    :root:has(#urlbar-container ~ toolbaritem toolbarbutton[open]) & {                 /* Movable right icon extensions */
+
+    :root:has(#nav-bar-customization-target ~ .toolbarbutton-1[open]) &,
+    /* Unmovable right icon '>>' */
+    :root:has(#urlbar-container ~ toolbarbutton[open]:not(#firefox-view-button)) &,
+    /* Movable right icon */
+    :root:has(#urlbar-container ~ toolbaritem toolbarbutton[open]) & {
+
+      /* Movable right icon extensions */
       &::before {
         inset-inline-start: unset !important;
         inset-inline-end: calc(var(--toolbarbutton-padding-inner) + 0px) !important;
-        
+
         /* Oneline align */
         @media -moz-pref("firefoxgx.oneline") {
           inset-inline-end: calc(var(--toolbarbutton-padding-inner) + 2px) !important;
         }
-        
+
         /* Arrow + gradientBorder in menus */
         @media -moz-pref("firefoxgx.gradientBorder-in-menus") {
-         stroke: var(--general-color) !important;
+          stroke: var(--general-color) !important;
         }
       }
     }
@@ -234,20 +261,24 @@
 
   /* Popups in Urlbox */
 
-  .panel-no-padding[type="arrow"] {  
-    :root:has(#urlbar-container box[open]) & {                                /* Url buttons */
+  .panel-no-padding[type="arrow"] {
+    :root:has(#urlbar-container box[open]) & {
+      /* Url buttons */
       margin-inline: calc(var(--my-margin-inline-popups) - 3px) !important;
     }
-    
-    :root:has(#page-action-buttons>hbox[open]) & {                            /* Page-action-buttons */
+
+    :root:has(#page-action-buttons>hbox[open]) & {
+      /* Page-action-buttons */
       margin-inline: calc(var(--my-margin-inline-popups) - 6px) !important;
     }
 
-    :root:has(#page-action-buttons>hbox[open]) & {            /* urlbar-page-action */
+    :root:has(#page-action-buttons>hbox[open]) & {
+
+      /* urlbar-page-action */
       &::before {
         inset-inline-start: unset !important;
         inset-inline-end: calc(var(--toolbarbutton-padding-inner) + 2px) !important;
-        
+
         @media -moz-pref("firefoxgx.gradientBorder-in-menus") {
           stroke: var(--general-color) !important;
         }
@@ -259,21 +290,24 @@
 /* ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ Gradient border in menus ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ 
    ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ */
 
-@media -moz-pref("firefoxgx.gradientBorder-in-menus") /*and (not -moz-pref("firefoxgx.arrow-in-menus"))/**/ {
-  
+@media -moz-pref("firefoxgx.gradientBorder-in-menus")
+/*and (not -moz-pref("firefoxgx.arrow-in-menus"))/**/
+  {
+
   :root {
     --panel-border-radius: 0px !important;
     --panel-separator-zap-gradient2: linear-gradient(to right, transparent, var(--general-color)) !important;
-    --panel-separator-zap-gradient5: linear-gradient(to left, transparent 7px,var(--general-color) 7px, 
-                                                   transparent calc(100% - var(--margin-left-icons-personal) - 8px), 
-                                                   transparent calc(100% - var(--margin-left-icons-personal) - 8px)) 1;
-    --panel-border-color: color-mix(in srgb, 
-    var(--panel-background-color) 96%, var(--my-font-color)) !important;                                        /* popup_border */
+    --panel-separator-zap-gradient5: linear-gradient(to left, transparent 7px, var(--general-color) 7px,
+        transparent calc(100% - var(--margin-left-icons-personal) - 8px),
+        transparent calc(100% - var(--margin-left-icons-personal) - 8px)) 1;
+    --panel-border-color: color-mix(in srgb,
+        var(--panel-background-color) 96%, var(--my-font-color)) !important;
+    /* popup_border */
   }
-  
+
   /* Hamburger menu */
-  
-  :root:not([chromehidden~="toolbar"],[sizemode="normal"]) {
+
+  :root:not([chromehidden~="toolbar"], [sizemode="normal"]) {
     & #appMenu-popup {
       --panel-border-radius: 0px !important;
       --color-accent-primary-hover: var(--general-color) !important;
@@ -281,20 +315,20 @@
       border-image: var(--panel-separator-zap-gradient2) 1 !important;
     }
   }
-  
+
   /* Context menus */
-  
+
   :is(menupopup, panel):where(:not([type="arrow"])) {
     --panel-border-radius: 0px !important;
   }
-  
+
   menupopup:not(.in-menulist) {
     --my-border-image: var(--panel-separator-zap-gradient2) 1 !important;
     --panel-border-radius: 0px !important;
   }
-  
+
   /* Arrowpanels */
-  
+
   :is(menupopup, panel):where([type="arrow"])::after {
     background: var(--panel-separator-zap-gradient2) !important;
   }
