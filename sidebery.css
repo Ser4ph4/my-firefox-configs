@@ -1,7 +1,7 @@
 /*
-========================================================
-= TEMA Dark SIDEBERY - By Ser4ph4  (update:03/09/26)   =
-========================================================
+===================================================================
+= TEMA Dark SIDEBERY - By Ser4ph4  (update:02/09/26) - Ajustado   =
+===================================================================
 */
 :root {
   --fundo-sidebery: #0a0a0e;
@@ -31,7 +31,7 @@
   --tabs-height: 30px;
   --tabs-indent: 10px;
   --tabs-inner-gap: 6px;
-  --tabs-pinned-height: 29px;
+  --tabs-pinned-height: 30px;
   --tabs-pinned-width: 33px;
   --tabs-margin: 3px;
   --tabs-font: 0.9955rem sans-serif;
@@ -247,6 +247,7 @@ body,
   transition: background-color 0.2s ease;
 }
 
+/* Indicador da aba fixada ativa (ponto ciano no topo esquerdo) */
 .Tab[data-pin="true"][data-active="true"]::before {
   content: "●";
   position: absolute;
@@ -311,6 +312,7 @@ body,
 /* ===================================================================
 == BOLINHA DE NOTIFICAÇÃO/ATUALIZAÇÃO (Update Badge) ==
 =================================================================== */
+
 .Tab .update-badge,
 .Tab[data-updated="true"] .update-badge {
   background-color: #37c9c9 !important;
@@ -324,6 +326,7 @@ body,
   z-index: 10 !important;
 }
 
+/* FIX ESPECÍFICO: Bolinha exclusiva para abas fixadas no topo */
 .PinnedTab .update-badge,
 .PinnedTab[data-updated="true"] .update-badge,
 .PinnedTab .fav .update-badge {
@@ -331,7 +334,6 @@ body,
   top: 2px !important;
   right: 2px !important;
   background-color: #ff4757 !important;
-  /* ← MUDE AQUI PARA A COR QUE QUISER */
   fill: #ff4757 !important;
   box-shadow: 0 0 6px #ff4757 !important;
   border: 1px solid rgba(0, 0, 0, 0.3) !important;
