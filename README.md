@@ -5,7 +5,7 @@ SIDEBERY CSS
 
 ![Firefox](https://github.com/user-attachments/assets/ce9172f0-bedf-4dc8-8186-5adaafbad258)
 
-Esse CSS deve ser usado com a config oneline> [text](https://github.com/Godiesc/firefox-gx/tree/main/Extras/OneLine)
+Esse CSS deve ser usado com a config oneline> [ONELINE](https://github.com/Godiesc/firefox-gx/tree/main/Extras/OneLine)
 
 Alguns hacks usados:
 ![alt text](image.png)
