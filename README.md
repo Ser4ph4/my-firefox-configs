@@ -14,6 +14,6 @@ Alguns hacks usados:
 ![alt text](image-1.png)
 
 ----------------
-<img width="1920" height="1044" alt="screenshot" src="https://github.com/user-attachments/assets/16182b47-a711-40bc-9472-0324ea4e1105" /># My-firefox-configs
+<img width="1920" height="1044" alt="screenshot" src="![Screen](image-2.png)" /># My-firefox-configs
 
 
