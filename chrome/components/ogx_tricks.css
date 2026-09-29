@@ -1,4 +1,4 @@
-/* Firefox Theme · userChrome.css — Last Update: 11/09/2026 */
+/* Firefox Theme · userChrome.css — Last Update: 29/09/2026 */
 
 /* ============================== 1. VARIÁVEIS ============================== */
 :root {
@@ -20,6 +20,10 @@
 
   --uc-transition-click: 110ms cubic-bezier(0.34, 1.56, 0.64, 1);
   --uc-transition-opacity: 200ms linear;
+
+  --uc-urlbar-dim-brightness: 0.35;
+  --uc-urlbar-dim-saturate: 0.7;
+  --uc-urlbar-dim-duration: 180ms;
 }
 
 /* ============================== 2. SIDEBAR (SIDEBERY) ============================== */
@@ -27,7 +31,6 @@
 #sidebar {
   min-width: var(--uc-sidebar-width) !important;
   transition: min-width var(--uc-autohide-duration) var(--uc-autohide-easing) var(--uc-autohide-sidebar-delay) !important;
-  will-change: min-width;
   border-style: none !important;
 }
 
@@ -67,7 +70,7 @@
 /* Alinhamento do texto de input (LTR) */
 .urlbar:not([focused])[domaindir="ltr"]>.urlbar-input-container>.urlbar-input-box>#urlbar-input {
   direction: ltr;
-  margin-inline: 20px !important;
+  margin-inline-start: 20px !important;
 }
 
 /* Botão de zoom */
@@ -167,21 +170,6 @@
   }
 }
 
-/* Overlay de foco */
-#nav-bar::after {
-  position: fixed;
-  content: "";
-  inset: 0;
-  background-color: transparent;
-  z-index: 4;
-  pointer-events: none;
-  transition: background-color 0.3s ease;
-}
-
-:root:has(#urlbar[open]) #nav-bar::after {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
 /* ============================== 4. EFEITOS & ANIMAÇÕES ============================== */
 
 .urlbar-icon,
@@ -212,11 +200,11 @@ toolbar .toolbarbutton-1:not([disabled]):active>.toolbarbutton-badge-stack>.tool
 }
 
 .tab-close-button:active {
-  padding: calc(var(--tab-close-button-padding) + 2px) !important;
+  padding: 4px !important;
 }
 
 toolbarbutton#scrollbutton-down:active>.toolbarbutton-icon {
-  transform: scale(-1.6) !important;
+  transform: scale(-1.6, 1.6) !important;
 }
 
 toolbar .toolbarbutton-1:not([disabled]):active>.toolbarbutton-icon {
@@ -376,4 +364,25 @@ menupopup:not(.in-menulist) menuseparator::before {
 /* Ícone tradutor customizado na barra de endereço */
 #pageAction-urlbar-_036a55b4-5e72-4d05-a06c-cba2dfcc134a_ {
   list-style-image: url("../icons/translate.svg") !important;
+}
+
+/* ============================== 6. DIMMER AO FOCAR URLBAR ============================== */
+
+/* Escurece o conteúdo da página enquanto a urlbar está expandida */
+#main-window:has(#urlbar[breakout-extend]) #browser {
+  filter: brightness(var(--uc-urlbar-dim-brightness)) saturate(var(--uc-urlbar-dim-saturate));
+}
+
+#browser {
+  transition: filter var(--uc-urlbar-dim-duration) ease-out;
+}
+
+/* (Opcional) escurece também a strip de abas e o conteúdo ao redor */
+/* #main-window:has(#urlbar[breakout-extend]) #navigator-toolbox {
+  filter: brightness(0.7);
+} */
+
+/* (Opcional) deixa o popup da urlbar mais sólido para destacar */
+.urlbarView {
+  background-color: rgba(19, 16, 25, 0.96) !important;
 }
