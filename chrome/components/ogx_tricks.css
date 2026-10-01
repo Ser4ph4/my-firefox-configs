@@ -376,13 +376,13 @@ menupopup:not(.in-menulist) menuseparator::before {
   background-color: var(--uc-bg) !important;
 }
 
-/* Transição do filtro (precisa estar no MESMO elemento que recebe o filter) */
+/* Transição do filtro*/
 #tabbrowser-tabpanels {
   transition: filter var(--uc-urlbar-dim-duration) ease-out;
 }
 
-/* Escurece o conteúdo da página enquanto a urlbar está focada.*/
-#main-window:has(#urlbar:focus-within) #tabbrowser-tabpanels {
+/* Escurece o conteúdo apenas quando o painel da urlbar está aberto. */
+#main-window:has(#urlbar:is([breakout-extend], [open])) #tabbrowser-tabpanels {
   filter: brightness(var(--uc-urlbar-dim-brightness)) saturate(var(--uc-urlbar-dim-saturate));
 }
 
