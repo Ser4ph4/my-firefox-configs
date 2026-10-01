@@ -22,9 +22,7 @@
   --uc-transition-opacity: 200ms linear;
 
   --uc-urlbar-dim-brightness: 0.72;
-  /* leve escurecido */
   --uc-urlbar-dim-saturate: 0.85;
-  /* leve dessaturação */
   --uc-urlbar-dim-duration: 180ms;
 }
 
@@ -44,8 +42,6 @@
 }
 
 /* ============================== 3. BARRA DE URL ============================== */
-
-/* Formato e tipografia */
 #urlbar-background,
 #urlbar,
 :is(#urlbar-input-container, .urlbar-input-container),
@@ -69,13 +65,11 @@
   background-color: rgba(182, 179, 179, 0.96) !important;
 }
 
-/* Alinhamento do texto de input (LTR) */
 .urlbar:not([focused])[domaindir="ltr"]>.urlbar-input-container>.urlbar-input-box>#urlbar-input {
   direction: ltr;
   margin-inline-start: 20px !important;
 }
 
-/* Botão de zoom */
 #urlbar-zoom-button {
   appearance: none;
   font-size: 0.8em;
@@ -138,7 +132,6 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 0 2px #000;
 }
 
-/* Identity box / trust icon */
 #identity-box {
   order: -1 !important;
   padding-inline: 5px 3px !important;
@@ -153,7 +146,6 @@
   padding-inline: 3px 1px !important;
 }
 
-/* Ícone de proteção contra rastreamento */
 #tracking-protection-icon-container {
   order: 0 !important;
 }
@@ -173,7 +165,6 @@
 }
 
 /* ============================== 4. EFEITOS & ANIMAÇÕES ============================== */
-
 .urlbar-icon,
 .toolbarbutton-icon,
 .downloadIconShow>.button-box>.button-icon,
@@ -272,7 +263,6 @@ toolbar #downloads-button:hover #downloads-indicator-anchor,
 }
 
 /* ============================== 5. ESTILOS GERAIS ============================== */
-
 .browserContainer {
   background-color: var(--uc-bg) !important;
   transform: translate(0);
@@ -282,7 +272,6 @@ toolbar #downloads-button:hover #downloads-indicator-anchor,
   border-top-left-radius: 10px !important;
 }
 
-/* Fundo e bordas transparentes para botões e caixas */
 .close-icon,
 .urlbar-icon,
 .urlbar-icon-wrapper,
@@ -363,25 +352,22 @@ menupopup:not(.in-menulist) menuseparator::before {
   color: rgba(151, 225, 248, 0.705) !important;
 }
 
-/* Ícone tradutor customizado na barra de endereço */
 #pageAction-urlbar-_036a55b4-5e72-4d05-a06c-cba2dfcc134a_ {
   list-style-image: url("../icons/translate.svg") !important;
 }
 
 /* ============================== 6. DIMMER AO FOCAR URLBAR ============================== */
-
-/* Fundo por trás dos cantos arredondados e da toolbox */
 #tabbrowser-tabpanels,
 #navigator-toolbox {
   background-color: var(--uc-bg) !important;
 }
 
-/* Transição do filtro*/
 #tabbrowser-tabpanels {
   transition: filter var(--uc-urlbar-dim-duration) ease-out;
 }
 
-/* Escurece o conteúdo apenas quando o painel da urlbar está aberto. */
+/* O filtro vai SÓ no #tabbrowser-tabpanels: .browserContainer é filho dele,
+   aplicar nos dois duplicaria o efeito. */
 #main-window:has(#urlbar:is([breakout-extend], [open])) #tabbrowser-tabpanels {
   filter: brightness(var(--uc-urlbar-dim-brightness)) saturate(var(--uc-urlbar-dim-saturate));
 }
