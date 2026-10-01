@@ -21,8 +21,10 @@
   --uc-transition-click: 110ms cubic-bezier(0.34, 1.56, 0.64, 1);
   --uc-transition-opacity: 200ms linear;
 
-  --uc-urlbar-dim-brightness: 0.35;
-  --uc-urlbar-dim-saturate: 0.7;
+  --uc-urlbar-dim-brightness: 0.72;
+  /* leve escurecido */
+  --uc-urlbar-dim-saturate: 0.85;
+  /* leve dessaturação */
   --uc-urlbar-dim-duration: 180ms;
 }
 
@@ -368,26 +370,22 @@ menupopup:not(.in-menulist) menuseparator::before {
 
 /* ============================== 6. DIMMER AO FOCAR URLBAR ============================== */
 
-/* Escurece o conteúdo da página enquanto a urlbar está expandida */
-#main-window:has(#urlbar[breakout-extend]) #browser {
-  filter: brightness(var(--uc-urlbar-dim-brightness)) saturate(var(--uc-urlbar-dim-saturate));
-}
-
-#browser {
-  transition: filter var(--uc-urlbar-dim-duration) ease-out;
-}
-
-/* (Opcional) escurece também a strip de abas e o conteúdo ao redor */
-/* #main-window:has(#urlbar[breakout-extend]) #navigator-toolbox {
-  filter: brightness(0.7);
-} */
-
-/* (Opcional) deixa o popup da urlbar mais sólido para destacar */
-.urlbarView {
-  background-color: rgba(19, 16, 25, 0.96) !important;
-}
-
+/* Fundo por trás dos cantos arredondados e da toolbox */
 #tabbrowser-tabpanels,
 #navigator-toolbox {
   background-color: var(--uc-bg) !important;
+}
+
+/* Transição do filtro (precisa estar no MESMO elemento que recebe o filter) */
+#tabbrowser-tabpanels {
+  transition: filter var(--uc-urlbar-dim-duration) ease-out;
+}
+
+/* Escurece o conteúdo da página enquanto a urlbar está focada.*/
+#main-window:has(#urlbar:focus-within) #tabbrowser-tabpanels {
+  filter: brightness(var(--uc-urlbar-dim-brightness)) saturate(var(--uc-urlbar-dim-saturate));
+}
+
+.urlbarView {
+  background-color: rgba(19, 16, 25, 0.96) !important;
 }
