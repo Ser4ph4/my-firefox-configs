@@ -377,3 +377,20 @@ menupopup:not(.in-menulist) menuseparator::before {
 .urlbarView {
   background-color: rgba(19, 16, 25, 0.96) !important;
 }
+
+#urlbar-revert-button-container,
+.urlbar-page-action,
+.urlbar-go-button,
+.search-go-button,
+.searchbar-textbox::-moz-search-clear-button,
+.urlbar-input::-moz-search-clear-button,
+.identity-box-button,
+#trust-icon-container,
+#tracking-protection-icon-container {
+  &:not([disabled]):is(:hover, [open], :hover:active) {
+    background-color: rgba(112, 103, 105, 0.4) !important;
+    color: var(--urlbar-box-text-color-active)!important;
+    outline-color: var(--toolbarbutton-outline-color-active)!important;
+    padding: 3px 1px;
+  }
+}
