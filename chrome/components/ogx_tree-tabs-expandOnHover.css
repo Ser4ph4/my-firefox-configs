@@ -105,11 +105,9 @@
                 position: absolute !important;
                 inset: 0 !important;
                 background-color: var(--lwt-accent-color) !important;
-                background-image: url("../icons/firefox-menu.svg") !important;
                 background-repeat: no-repeat !important;
                 background-position: center !important;
                 background-size: 20px 20px !important;
-                border-inline-end: 1px solid var(--general-color) !important;
                 border-image: linear-gradient(to bottom, transparent var(--space-before-gradient-line), var(--general-color) var(--space-before-gradient-line)) 1 !important;
                 pointer-events: none !important;
             }
