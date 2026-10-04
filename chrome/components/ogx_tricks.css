@@ -2,6 +2,8 @@
 
 /* ============================== 1. VARIÁVEIS ============================== */
 :root {
+  --general-color: #fa1e4e !important;
+
   --uc-sidebar-width: 33px;
   --uc-sidebar-hover-width: 220px;
   --uc-autohide-sidebar-delay: 300ms;
