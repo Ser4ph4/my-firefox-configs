@@ -8,14 +8,13 @@
   --uc-autohide-duration: 115ms;
   --uc-autohide-easing: linear;
   --uc-glow-primary: rgba(28, 184, 8, 0.685);
-  --uc-glow-secondary: rgba(4, 66, 4, 0.74);
   --uc-urlbar-radius: 10px;
   --uc-urlbar-action-gap: 6px;
   --uc-urlbar-action-min-width: 24px;
   --uc-bg: #0a0a0e;
   --uc-status-color: rgb(96, 199, 130);
   --uc-transition-click: 110ms cubic-bezier(0.34, 1.56, 0.64, 1);
-  --uc-transition-opacity: 200ms linear;
+  --uc-transition-reveal: 200ms linear;
   --uc-urlbar-dim-brightness: 0.72;
   --uc-urlbar-dim-saturate: 0.85;
   --uc-urlbar-dim-duration: 180ms;
@@ -49,20 +48,23 @@
 #urlbar-input,
 .urlbar-input-box,
 #urlbar-input-container {
-  margin-left: 10px !important;
-  margin-right: 10px !important;
   font-size: 14px !important;
   font-weight: 500 !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+#urlbar-input {
+  margin-inline-start: 10px !important;
+  margin-inline-end: 10px !important;
+}
+
 .urlbar-input::selection {
   background-color: rgba(182, 179, 179, 0.96) !important;
 }
 
-.urlbar:not([focused])[domaindir="ltr"]>.urlbar-input-container>.urlbar-input-box>#urlbar-input {
-  direction: ltr;
+.urlbar:not([focused]) .urlbar-input-box[domaindir="ltr"]>#urlbar-input {
+  direction: ltr !important;
   margin-inline-start: 20px !important;
 }
 
@@ -70,7 +72,7 @@
   appearance: none;
   font-size: 0.8em;
   padding: 1px;
-  border-radius: var(--urlbar-inner-border-radius);
+  border-radius: var(--urlbar-inner-border-radius, 4px);
   overflow: hidden;
   color: #a6a689 !important;
   background: #2b2727 !important;
@@ -82,7 +84,7 @@
   opacity: 0;
   min-width: var(--uc-urlbar-action-min-width) !important;
   box-sizing: border-box !important;
-  transition: margin-inline-end var(--uc-transition-opacity), opacity var(--uc-transition-opacity);
+  transition: margin-inline-end var(--uc-transition-reveal), opacity var(--uc-transition-reveal);
 }
 
 #urlbar:hover .urlbar-page-action,
@@ -260,7 +262,6 @@ toolbar #downloads-button:hover #downloads-indicator-anchor,
 
 /* ============================== 5. ESTILOS GERAIS ============================== */
 .browserContainer {
-  background-color: var(--uc-bg) !important;
   transform: translate(0);
 }
 
@@ -314,12 +315,12 @@ toolbar toolbarbutton>.toolbarbutton-badge-stack,
   border: 1.5px solid var(--uc-status-color) !important;
   border-top-color: transparent !important;
   border-radius: 50% !important;
-  animation: uc-spin 0.7s linear infinite !important;
+  animation: uc-status-spin 0.7s linear infinite !important;
   flex-shrink: 0 !important;
   box-sizing: border-box !important;
 }
 
-@keyframes uc-spin {
+@keyframes uc-status-spin {
   to {
     transform: rotate(360deg);
   }
